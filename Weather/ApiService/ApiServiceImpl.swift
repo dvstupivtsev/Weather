@@ -20,9 +20,13 @@ final class ApiServiceImpl: ApiService {
             return
         }
         
-        urlService.dataTask(with: url) { [weak self] in
-            self?.handleDataTask(result: ($0, $1, $2), completion: completion)
-        }.resume()
+        urlService.dataTask(with: url) {
+            do {
+                completion(.success(try $0.get()))
+            } catch {
+                completion(.failure(error))
+            }
+        }
     }
     
     private func createURL(request: ApiServiceRequest) -> URL? {
@@ -33,16 +37,5 @@ final class ApiServiceImpl: ApiService {
         let urlString = "\(baseURLString)\(request.name)?\(joinedParams)&APPID=\(apiKey)"
         
         return URL(string: urlString)
-    }
-    
-    private func handleDataTask(
-        result: (data: Data?, response: URLResponse?, error: Error?),
-        completion: ResultHandler<Data?>
-    ) {
-        if let error = result.error {
-            completion(.failure(error))
-        } else {
-            completion(.success(result.data))
-        }
     }
 }

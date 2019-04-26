@@ -6,6 +6,6 @@ import Foundation
 
 extension NSError {
     static var common: NSError {
-        return NSError(domain: "Test", code: -1, userInfo: [NSLocalizedDescriptionKey: "Не удалось загрузить данные"])
+        return NSError(domain: "Test", code: -1, userInfo: [NSLocalizedDescriptionKey: "Data loading failed"])
     }
 }

@@ -4,6 +4,7 @@
 
 import Foundation
 
+// sourcery: AutoMockable
 protocol CitiesListService {
     func getWeather(for citiesIds: [String], completion: @escaping ResultHandler<CitiesListResponse>)
 }

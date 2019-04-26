@@ -6,7 +6,8 @@ import UIKit
 
 final class CitiesListFactory {
     func create() -> UIViewController {
-        let apiService = ApiServiceImpl(urlService: URLSession.shared)
+        let urlSessionAdapter = UrlSessionAdapter(session: URLSession.shared)
+        let apiService = ApiServiceImpl(urlService: urlSessionAdapter)
         let citiesListService = CitiesListServiceImpl(apiService: apiService)
         let vm = CitiesViewModelImpl(citiesListService: citiesListService)
         
