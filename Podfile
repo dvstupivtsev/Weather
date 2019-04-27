@@ -1,6 +1,6 @@
 platform :ios, '12.0'
 
-use_modular_headers!
+use_frameworks!
 inhibit_all_warnings!
 
 target 'Weather' do
