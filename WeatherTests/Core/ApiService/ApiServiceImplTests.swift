@@ -3,8 +3,8 @@
 //
 
 import XCTest
+import Promises
 @testable import Weather
-@testable import Promises
 
 final class ApiServiceImplTests: XCTestCase {
     private var urlService: UrlServiceMock!

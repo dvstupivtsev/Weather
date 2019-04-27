@@ -5,8 +5,8 @@
 import UIKit
 import Promises
 
-// TODO: Generic ViewController
-final class CitiesViewController: UIViewController {
+// TODO: Reload view
+final class CitiesViewController: BaseViewController<CitiesView> {
     private let viewModel: CitiesViewModel
     
     init(viewModel: CitiesViewModel) {

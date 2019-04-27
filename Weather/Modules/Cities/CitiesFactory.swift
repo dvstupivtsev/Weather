@@ -13,4 +13,8 @@ final class CitiesFactory {
         
         return CitiesViewController(viewModel: vm)
     }
+    
+    func createWithNavigation() -> UIViewController {
+        return UINavigationController(rootViewController: create())
+    }
 }

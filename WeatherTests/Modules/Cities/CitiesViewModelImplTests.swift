@@ -3,8 +3,8 @@
 //
 
 import XCTest
+import Promises
 @testable import Weather
-@testable import Promises
 
 class CitiesViewModelImplTests: XCTestCase {
     private var citiesService: CitiesServiceMock!
