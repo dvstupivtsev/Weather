@@ -5,7 +5,7 @@
 import Foundation
 
 extension CitiesResponse {
-    struct Main: Decodable {
+    struct Main: Decodable, Equatable {
         let temp: Float
     }
 }

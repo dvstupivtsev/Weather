@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct CitiesResponse {
+struct CitiesResponse: Equatable {
     let data: [City]
 }
 

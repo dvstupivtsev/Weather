@@ -5,7 +5,7 @@
 import Foundation
 
 extension CitiesResponse {
-    struct City {
+    struct City: Equatable {
         let id: Int
         let name: String
         let date: Date

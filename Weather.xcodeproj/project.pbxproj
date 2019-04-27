@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E97B8992274772800DB39EE /* ApiServiceImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8982274772800DB39EE /* ApiServiceImplTests.swift */; };
+		5E97B89B2274774300DB39EE /* NSError_ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B89A2274774300DB39EE /* NSError_ExtensionTests.swift */; };
+		5E97B89D2274774D00DB39EE /* CitiesViewModelImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B89C2274774D00DB39EE /* CitiesViewModelImplTests.swift */; };
 		5EB5DA3D22732F5D0016A1CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB5DA3C22732F5D0016A1CB /* AppDelegate.swift */; };
 		5EB5DA3F22732F5D0016A1CB /* CitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB5DA3E22732F5D0016A1CB /* CitiesViewController.swift */; };
 		5EB5DA4422732F5E0016A1CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EB5DA4322732F5E0016A1CB /* Assets.xcassets */; };
@@ -46,6 +49,9 @@
 		0AD972A3D27631E63D518F51 /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		16726BD309CED375BD0A3226 /* Pods-WeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherTests/Pods-WeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		460CBEE371748C342962F893 /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
+		5E97B8982274772800DB39EE /* ApiServiceImplTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiServiceImplTests.swift; sourceTree = "<group>"; };
+		5E97B89A2274774300DB39EE /* NSError_ExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError_ExtensionTests.swift; sourceTree = "<group>"; };
+		5E97B89C2274774D00DB39EE /* CitiesViewModelImplTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiesViewModelImplTests.swift; sourceTree = "<group>"; };
 		5EB5DA3922732F5D0016A1CB /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EB5DA3C22732F5D0016A1CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EB5DA3E22732F5D0016A1CB /* CitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewController.swift; sourceTree = "<group>"; };
@@ -209,6 +215,8 @@
 			isa = PBXGroup;
 			children = (
 				5EB5DA9D2273A5710016A1CB /* SourceryMocks */,
+				5ED71483227468E1004B9883 /* Modules */,
+				5ED71480227468AD004B9883 /* Core */,
 				5EB5DA972273A5190016A1CB /* Info.plist */,
 			);
 			path = WeatherTests;
@@ -248,6 +256,47 @@
 				5EB5DA57227348D60016A1CB /* Extensions */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		5ED71480227468AD004B9883 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5ED7148822746927004B9883 /* ApiService */,
+				5ED7148922746930004B9883 /* Extensions */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		5ED71483227468E1004B9883 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				5ED71484227468E6004B9883 /* Cities */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		5ED71484227468E6004B9883 /* Cities */ = {
+			isa = PBXGroup;
+			children = (
+				5E97B89C2274774D00DB39EE /* CitiesViewModelImplTests.swift */,
+			);
+			path = Cities;
+			sourceTree = "<group>";
+		};
+		5ED7148822746927004B9883 /* ApiService */ = {
+			isa = PBXGroup;
+			children = (
+				5E97B8982274772800DB39EE /* ApiServiceImplTests.swift */,
+			);
+			path = ApiService;
+			sourceTree = "<group>";
+		};
+		5ED7148922746930004B9883 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5E97B89A2274774300DB39EE /* NSError_ExtensionTests.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E26A0CC244B41C4A6C8FA3FD /* Pods */ = {
@@ -461,7 +510,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EB5DA9F2273A5A70016A1CB /* SourceryMocks.swift in Sources */,
+				5E97B89B2274774300DB39EE /* NSError_ExtensionTests.swift in Sources */,
 				5EB5DAA422742A090016A1CB /* AutoMockable.generated.swift in Sources */,
+				5E97B89D2274774D00DB39EE /* CitiesViewModelImplTests.swift in Sources */,
+				5E97B8992274772800DB39EE /* ApiServiceImplTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
