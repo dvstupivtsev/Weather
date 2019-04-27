@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import Promises
 
 final class ApiServiceImpl: ApiService {
     private let urlService: UrlService
@@ -14,20 +15,14 @@ final class ApiServiceImpl: ApiService {
         self.urlService = urlService
     }
     
-    func execute(request: ApiServiceRequest, completion: @escaping ResultHandler<Data?>) {
+    func execute(request: ApiServiceRequest) -> Promise<Data?> {
         guard let url = createURL(request: request) else {
-            completion(.failure(NSError.common))
-            return
+            return Promise(NSError.common)
         }
         
-        urlService.dataTask(with: url) {
-            do {
-                completion(.success(try $0.get()))
-            } catch {
-                completion(.failure(error))
-            }
-        }
+        return urlService.dataTask(with: url)
     }
+    
     
     private func createURL(request: ApiServiceRequest) -> URL? {
         let joinedParams = request.parameters

@@ -3,8 +3,9 @@
 //
 
 import Foundation
+import Promises
 
 // sourcery: AutoMockable
 protocol ApiService {
-    func execute(request: ApiServiceRequest, completion: @escaping ResultHandler<Data?>)
+    func execute(request: ApiServiceRequest) -> Promise<Data?>
 }

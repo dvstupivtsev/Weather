@@ -3,7 +3,8 @@
 //
 
 import Foundation
+import Promises
 
 protocol CitiesViewModel {
-    func getData()
+    func getData() -> Promise<Void>
 }

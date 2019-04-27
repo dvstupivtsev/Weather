@@ -3,8 +3,9 @@
 //
 
 import Foundation
+import Promises
 
 // sourcery: AutoMockable
 protocol UrlService {
-    func dataTask(with url: URL, completion: @escaping ResultHandler<Data?>)
+    func dataTask(with url: URL) -> Promise<Data?>
 }

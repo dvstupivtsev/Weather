@@ -12,7 +12,6 @@
 		5EB5DA4422732F5E0016A1CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EB5DA4322732F5E0016A1CB /* Assets.xcassets */; };
 		5EB5DA4722732F5E0016A1CB /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5EB5DA4522732F5E0016A1CB /* LaunchScreen.storyboard */; };
 		5EB5DA532273344C0016A1CB /* ApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB5DA522273344C0016A1CB /* ApiService.swift */; };
-		5EB5DA56227347490016A1CB /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB5DA55227347490016A1CB /* Typealiases.swift */; };
 		5EB5DA59227348DF0016A1CB /* NSError+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB5DA58227348DF0016A1CB /* NSError+Extension.swift */; };
 		5EB5DA5C227349160016A1CB /* UrlService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB5DA5B227349160016A1CB /* UrlService.swift */; };
 		5EB5DA5E227349640016A1CB /* ApiServiceRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB5DA5D227349640016A1CB /* ApiServiceRequest.swift */; };
@@ -51,7 +50,6 @@
 		5EB5DA4622732F5E0016A1CB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		5EB5DA4822732F5E0016A1CB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5EB5DA522273344C0016A1CB /* ApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiService.swift; sourceTree = "<group>"; };
-		5EB5DA55227347490016A1CB /* Typealiases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Typealiases.swift; sourceTree = "<group>"; };
 		5EB5DA58227348DF0016A1CB /* NSError+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Extension.swift"; sourceTree = "<group>"; };
 		5EB5DA5B227349160016A1CB /* UrlService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UrlService.swift; sourceTree = "<group>"; };
 		5EB5DA5D227349640016A1CB /* ApiServiceRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiServiceRequest.swift; sourceTree = "<group>"; };
@@ -127,7 +125,6 @@
 				5EB5DA3C22732F5D0016A1CB /* AppDelegate.swift */,
 				5EB5DA5A227348FB0016A1CB /* ApiService */,
 				5EB5DA57227348D60016A1CB /* Extensions */,
-				5EB5DA54227347280016A1CB /* Utilities */,
 				5EB5DA4F2273312C0016A1CB /* CitiesList */,
 				5EB5DA4E2273310E0016A1CB /* SupportingFiles */,
 			);
@@ -163,14 +160,6 @@
 				5EB5DA6522734C0D0016A1CB /* CitiesListServiceImpl.swift */,
 			);
 			path = Service;
-			sourceTree = "<group>";
-		};
-		5EB5DA54227347280016A1CB /* Utilities */ = {
-			isa = PBXGroup;
-			children = (
-				5EB5DA55227347490016A1CB /* Typealiases.swift */,
-			);
-			path = Utilities;
 			sourceTree = "<group>";
 		};
 		5EB5DA57227348D60016A1CB /* Extensions */ = {
@@ -376,7 +365,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				5EB5DA79227386CD0016A1CB /* CitiesListResponse+Main.swift in Sources */,
-				5EB5DA56227347490016A1CB /* Typealiases.swift in Sources */,
 				5EB5DA6922734DB90016A1CB /* CitiesViewModel.swift in Sources */,
 				5EB5DA5C227349160016A1CB /* UrlService.swift in Sources */,
 				5EB5DA752273868C0016A1CB /* CitiesListResponse.swift in Sources */,

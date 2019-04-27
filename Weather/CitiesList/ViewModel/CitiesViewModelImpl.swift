@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import Promises
 
 final class CitiesViewModelImpl: CitiesViewModel {
     private let citiesListService: CitiesListService
@@ -11,7 +12,7 @@ final class CitiesViewModelImpl: CitiesViewModel {
         self.citiesListService = citiesListService
     }
     
-    func getData() {
+    func getData() -> Promise<Void> {
         let citiesIds = [
             "2950159",
             "2968815",
@@ -25,12 +26,13 @@ final class CitiesViewModelImpl: CitiesViewModel {
             "1819729",
         ]
         
-        citiesListService.getWeather(for: citiesIds) { [weak self] result in
-            self?.handleGetData(result: result)
-        }
+        return citiesListService.getWeather(for: citiesIds)
+            .then(handleGetWeather(response:))
     }
     
-    private func handleGetData(result: Result<CitiesListResponse, Error>) {
-        print(result)
+    private func handleGetWeather(response: CitiesListResponse) -> Void {
+        // TODO: make presentation source
+        print(response)
+        return ()
     }
 }

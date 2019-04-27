@@ -3,8 +3,9 @@
 //
 
 import Foundation
+import Promises
 
 // sourcery: AutoMockable
 protocol CitiesListService {
-    func getWeather(for citiesIds: [String], completion: @escaping ResultHandler<CitiesListResponse>)
+    func getWeather(for citiesIds: [String]) -> Promise<CitiesListResponse>
 }

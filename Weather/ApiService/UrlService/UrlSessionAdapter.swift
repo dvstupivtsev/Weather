@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import Promises
 
 final class UrlSessionAdapter: UrlService {
     private let session: URLSession
@@ -11,20 +12,15 @@ final class UrlSessionAdapter: UrlService {
         self.session = session
     }
     
-    func dataTask(with url: URL, completion: @escaping ResultHandler<Data?>) {
-        session.dataTask(with: url) { [weak self] in
-            self?.handleDataTask(result: ($0, $1, $2), completion: completion)
-        }.resume()
-    }
-    
-    private func handleDataTask(
-        result: (data: Data?, response: URLResponse?, error: Error?),
-        completion: @escaping ResultHandler<Data?>
-    ) {
-        if let error = result.error {
-            completion(.failure(error))
-        } else {
-            completion(.success(result.data))
+    func dataTask(with url: URL) -> Promise<Data?> {
+        return Promise { fulfill, reject in
+            self.session.dataTask(with: url) { data, response, error in
+                if let error = error {
+                    reject(error)
+                } else {
+                    fulfill(data)
+                }
+            }.resume()
         }
     }
 }

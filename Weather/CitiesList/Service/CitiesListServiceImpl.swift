@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import Promises
 
 final class CitiesListServiceImpl: CitiesListService {
     private let apiService: ApiService
@@ -11,7 +12,7 @@ final class CitiesListServiceImpl: CitiesListService {
         self.apiService = apiService
     }
     
-    func getWeather(for citiesIds: [String], completion: @escaping (Result<CitiesListResponse, Error>) -> Void) {
+    func getWeather(for citiesIds: [String]) -> Promise<CitiesListResponse> {
         let joinedCitiesIds = citiesIds.joined(separator: ",")
         
         let request = ApiServiceRequest(
@@ -22,20 +23,16 @@ final class CitiesListServiceImpl: CitiesListService {
             ]
         )
         
-        apiService.execute(request: request) { [weak self] in
-            self?.handleGetWeather(result: $0, completion: completion)
-        }
+        return apiService
+            .execute(request: request)
+            .then(parse(data:))
     }
     
-    private func handleGetWeather(result: Result<Data?, Error>, completion: (Result<CitiesListResponse, Error>) -> Void) {
-        do {
-            if let response = try result.get().flatMap({ try JSONDecoder().decode(CitiesListResponse.self, from: $0) }) {
-                completion(.success(response))
-            } else {
-                completion(.failure(NSError.common))
-            }
-        } catch {
-            completion(.failure(error))
+    private func parse(data: Data?) throws -> CitiesListResponse {
+        if let response = try data.flatMap({ try JSONDecoder().decode(CitiesListResponse.self, from: $0) }) {
+            return response
+        } else {
+            throw NSError.common
         }
     }
 }
