@@ -122,11 +122,9 @@
 		5EB5DA3B22732F5D0016A1CB /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				5EB5DA3C22732F5D0016A1CB /* AppDelegate.swift */,
-				5EB5DA5A227348FB0016A1CB /* ApiService */,
-				5EB5DA57227348D60016A1CB /* Extensions */,
-				5EB5DA4F2273312C0016A1CB /* Cities */,
 				5EB5DA4E2273310E0016A1CB /* SupportingFiles */,
+				5ED7147F227467FE004B9883 /* Core */,
+				5ED7147E227467E6004B9883 /* Modules */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -204,7 +202,6 @@
 		5EB5DA942273A5190016A1CB /* WeatherTests */ = {
 			isa = PBXGroup;
 			children = (
-				5ED7147A227465C5004B9883 /* ApiService */,
 				5EB5DA9D2273A5710016A1CB /* SourceryMocks */,
 				5EB5DA972273A5190016A1CB /* Info.plist */,
 			);
@@ -227,6 +224,24 @@
 				5EB5DAA12273A93E0016A1CB /* UrlSessionAdapter.swift */,
 			);
 			path = UrlService;
+			sourceTree = "<group>";
+		};
+		5ED7147E227467E6004B9883 /* Modules */ = {
+			isa = PBXGroup;
+			children = (
+				5EB5DA4F2273312C0016A1CB /* Cities */,
+			);
+			path = Modules;
+			sourceTree = "<group>";
+		};
+		5ED7147F227467FE004B9883 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5EB5DA3C22732F5D0016A1CB /* AppDelegate.swift */,
+				5EB5DA5A227348FB0016A1CB /* ApiService */,
+				5EB5DA57227348D60016A1CB /* Extensions */,
+			);
+			path = Core;
 			sourceTree = "<group>";
 		};
 		E26A0CC244B41C4A6C8FA3FD /* Pods */ = {
