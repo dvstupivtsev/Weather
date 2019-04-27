@@ -76,4 +76,5 @@ iOSInjectionProject/
 
 .DS_Store
 
-**/AutoMockable.generated.swift
+# Sourcery
+WeatherTests/SourceryMocks/AutoMockable.generated.swift
