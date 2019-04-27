@@ -4,7 +4,7 @@
 
 import Foundation
 
-extension CitiesListResponse {
+extension CitiesResponse {
     struct City {
         let id: Int
         let name: String
@@ -14,7 +14,7 @@ extension CitiesListResponse {
     }
 }
 
-extension CitiesListResponse.City: Decodable {
+extension CitiesResponse.City: Decodable {
     private enum CodingKeys: String, CodingKey {
         case id
         case name

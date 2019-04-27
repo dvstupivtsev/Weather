@@ -4,11 +4,11 @@
 
 import Foundation
 
-struct CitiesListResponse {
+struct CitiesResponse {
     let data: [City]
 }
 
-extension CitiesListResponse: Decodable {
+extension CitiesResponse: Decodable {
     private enum CodingKeys: String, CodingKey {
         case data = "list"
     }

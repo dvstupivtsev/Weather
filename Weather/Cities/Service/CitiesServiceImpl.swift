@@ -5,14 +5,14 @@
 import Foundation
 import Promises
 
-final class CitiesListServiceImpl: CitiesListService {
+final class CitiesServiceImpl: CitiesService {
     private let apiService: ApiService
     
     init(apiService: ApiService) {
         self.apiService = apiService
     }
     
-    func getWeather(for citiesIds: [String]) -> Promise<CitiesListResponse> {
+    func getWeather(for citiesIds: [String]) -> Promise<CitiesResponse> {
         let joinedCitiesIds = citiesIds.joined(separator: ",")
         
         let request = ApiServiceRequest(
@@ -28,8 +28,8 @@ final class CitiesListServiceImpl: CitiesListService {
             .then(parse(data:))
     }
     
-    private func parse(data: Data?) throws -> CitiesListResponse {
-        if let response = try data.flatMap({ try JSONDecoder().decode(CitiesListResponse.self, from: $0) }) {
+    private func parse(data: Data?) throws -> CitiesResponse {
+        if let response = try data.flatMap({ try JSONDecoder().decode(CitiesResponse.self, from: $0) }) {
             return response
         } else {
             throw NSError.common
@@ -37,7 +37,7 @@ final class CitiesListServiceImpl: CitiesListService {
     }
 }
 
-private extension CitiesListServiceImpl {
+private extension CitiesServiceImpl {
     struct Constants {
         static let idKey = "id"
         static let unitsKey = "units"

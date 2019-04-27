@@ -6,10 +6,10 @@ import Foundation
 import Promises
 
 final class CitiesViewModelImpl: CitiesViewModel {
-    private let citiesListService: CitiesListService
+    private let citiesService: CitiesService
     
-    init(citiesListService: CitiesListService) {
-        self.citiesListService = citiesListService
+    init(citiesService: CitiesService) {
+        self.citiesService = citiesService
     }
     
     func getData() -> Promise<Void> {
@@ -26,11 +26,11 @@ final class CitiesViewModelImpl: CitiesViewModel {
             "1819729",
         ]
         
-        return citiesListService.getWeather(for: citiesIds)
+        return citiesService.getWeather(for: citiesIds)
             .then(handleGetWeather(response:))
     }
     
-    private func handleGetWeather(response: CitiesListResponse) -> Void {
+    private func handleGetWeather(response: CitiesResponse) -> Void {
         // TODO: make presentation source
         print(response)
         return ()

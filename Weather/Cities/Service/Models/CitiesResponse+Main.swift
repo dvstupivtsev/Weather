@@ -4,7 +4,7 @@
 
 import Foundation
 
-extension CitiesListResponse {
+extension CitiesResponse {
     struct Main: Decodable {
         let temp: Float
     }

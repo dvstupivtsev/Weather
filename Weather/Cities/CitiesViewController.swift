@@ -6,7 +6,7 @@ import UIKit
 import Promises
 
 // TODO: Generic ViewController
-final class CitiesListViewController: UIViewController {
+final class CitiesViewController: UIViewController {
     private let viewModel: CitiesViewModel
     
     init(viewModel: CitiesViewModel) {

@@ -4,7 +4,7 @@
 
 import Foundation
 
-extension CitiesListResponse {
+extension CitiesResponse {
     struct Weather: Decodable {
         let icon: String
     }

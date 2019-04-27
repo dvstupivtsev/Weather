@@ -4,13 +4,13 @@
 
 import UIKit
 
-final class CitiesListFactory {
+final class CitiesFactory {
     func create() -> UIViewController {
         let urlSessionAdapter = UrlSessionAdapter(session: URLSession.shared)
         let apiService = ApiServiceImpl(urlService: urlSessionAdapter)
-        let citiesListService = CitiesListServiceImpl(apiService: apiService)
-        let vm = CitiesViewModelImpl(citiesListService: citiesListService)
+        let citiesService = CitiesServiceImpl(apiService: apiService)
+        let vm = CitiesViewModelImpl(citiesService: citiesService)
         
-        return CitiesListViewController(viewModel: vm)
+        return CitiesViewController(viewModel: vm)
     }
 }
