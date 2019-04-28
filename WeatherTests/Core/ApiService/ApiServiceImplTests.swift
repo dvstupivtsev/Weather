@@ -3,7 +3,7 @@
 //
 
 import XCTest
-import Promises
+@testable import Promises
 @testable import Weather
 
 final class ApiServiceImplTests: XCTestCase {

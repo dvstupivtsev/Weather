@@ -4,7 +4,7 @@
 
 import Foundation
 
-struct ApiServiceRequest {
+struct ApiServiceRequest: Equatable {
     let name: String
     let parameters: [String: String]
 }

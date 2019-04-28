@@ -14,6 +14,15 @@
 		5E97B8A62274BA4400DB39EE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8A52274BA4400DB39EE /* BaseViewController.swift */; };
 		5E97B8A92274BAA000DB39EE /* CitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8A82274BAA000DB39EE /* CitiesView.swift */; };
 		5E97B8AB2274BB0800DB39EE /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8AA2274BB0800DB39EE /* Functions.swift */; };
+		5E97B8AE22757DEE00DB39EE /* CellProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8AD22757DEE00DB39EE /* CellProvider.swift */; };
+		5E97B8B022757E0500DB39EE /* CellProviderConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8AF22757E0500DB39EE /* CellProviderConvertible.swift */; };
+		5E97B8B222757E7300DB39EE /* CitiesViewSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8B122757E7300DB39EE /* CitiesViewSource.swift */; };
+		5E97B8B52275826200DB39EE /* MeasurementFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8B42275826200DB39EE /* MeasurementFormatter+Extension.swift */; };
+		5E97B8B8227589FA00DB39EE /* Array+FloatingPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8B7227589FA00DB39EE /* Array+FloatingPoint.swift */; };
+		5E97B8BA22758A7F00DB39EE /* MeasurementFormatter_ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8B922758A7F00DB39EE /* MeasurementFormatter_ExtensionTests.swift */; };
+		5E97B8BD22758DAB00DB39EE /* Array_FloatingPointTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8BC22758DAB00DB39EE /* Array_FloatingPointTests.swift */; };
+		5E97B8C022758E8600DB39EE /* TestFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8BF22758E8600DB39EE /* TestFunctions.swift */; };
+		5E97B8C22275904900DB39EE /* CitiesServiceImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8C12275904900DB39EE /* CitiesServiceImplTests.swift */; };
 		5EB5DA3D22732F5D0016A1CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB5DA3C22732F5D0016A1CB /* AppDelegate.swift */; };
 		5EB5DA3F22732F5D0016A1CB /* CitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB5DA3E22732F5D0016A1CB /* CitiesViewController.swift */; };
 		5EB5DA4422732F5E0016A1CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EB5DA4322732F5E0016A1CB /* Assets.xcassets */; };
@@ -60,6 +69,15 @@
 		5E97B8A52274BA4400DB39EE /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		5E97B8A82274BAA000DB39EE /* CitiesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesView.swift; sourceTree = "<group>"; };
 		5E97B8AA2274BB0800DB39EE /* Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
+		5E97B8AD22757DEE00DB39EE /* CellProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProvider.swift; sourceTree = "<group>"; };
+		5E97B8AF22757E0500DB39EE /* CellProviderConvertible.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellProviderConvertible.swift; sourceTree = "<group>"; };
+		5E97B8B122757E7300DB39EE /* CitiesViewSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewSource.swift; sourceTree = "<group>"; };
+		5E97B8B42275826200DB39EE /* MeasurementFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MeasurementFormatter+Extension.swift"; sourceTree = "<group>"; };
+		5E97B8B7227589FA00DB39EE /* Array+FloatingPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+FloatingPoint.swift"; sourceTree = "<group>"; };
+		5E97B8B922758A7F00DB39EE /* MeasurementFormatter_ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeasurementFormatter_ExtensionTests.swift; sourceTree = "<group>"; };
+		5E97B8BC22758DAB00DB39EE /* Array_FloatingPointTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Array_FloatingPointTests.swift; sourceTree = "<group>"; };
+		5E97B8BF22758E8600DB39EE /* TestFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFunctions.swift; sourceTree = "<group>"; };
+		5E97B8C12275904900DB39EE /* CitiesServiceImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesServiceImplTests.swift; sourceTree = "<group>"; };
 		5EB5DA3922732F5D0016A1CB /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EB5DA3C22732F5D0016A1CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EB5DA3E22732F5D0016A1CB /* CitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewController.swift; sourceTree = "<group>"; };
@@ -122,6 +140,7 @@
 		5E97B89E2274B9DF00DB39EE /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				5E97B8AC22757DDD00DB39EE /* CellProvider */,
 				5E97B8A12274BA0800DB39EE /* BaseViewController */,
 			);
 			path = CustomViews;
@@ -140,8 +159,18 @@
 			isa = PBXGroup;
 			children = (
 				5E97B8A82274BAA000DB39EE /* CitiesView.swift */,
+				5E97B8B122757E7300DB39EE /* CitiesViewSource.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		5E97B8AC22757DDD00DB39EE /* CellProvider */ = {
+			isa = PBXGroup;
+			children = (
+				5E97B8AD22757DEE00DB39EE /* CellProvider.swift */,
+				5E97B8AF22757E0500DB39EE /* CellProviderConvertible.swift */,
+			);
+			path = CellProvider;
 			sourceTree = "<group>";
 		};
 		5EB5DA3022732F5D0016A1CB = {
@@ -212,6 +241,8 @@
 			isa = PBXGroup;
 			children = (
 				5EB5DA58227348DF0016A1CB /* NSError+Extension.swift */,
+				5E97B8B42275826200DB39EE /* MeasurementFormatter+Extension.swift */,
+				5E97B8B7227589FA00DB39EE /* Array+FloatingPoint.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -250,6 +281,7 @@
 		5EB5DA942273A5190016A1CB /* WeatherTests */ = {
 			isa = PBXGroup;
 			children = (
+				5E97B8BF22758E8600DB39EE /* TestFunctions.swift */,
 				5EB5DA9D2273A5710016A1CB /* SourceryMocks */,
 				5ED71483227468E1004B9883 /* Modules */,
 				5ED71480227468AD004B9883 /* Core */,
@@ -315,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				5E97B89C2274774D00DB39EE /* CitiesViewModelImplTests.swift */,
+				5E97B8C12275904900DB39EE /* CitiesServiceImplTests.swift */,
 			);
 			path = Cities;
 			sourceTree = "<group>";
@@ -331,6 +364,8 @@
 			isa = PBXGroup;
 			children = (
 				5E97B89A2274774300DB39EE /* NSError_ExtensionTests.swift */,
+				5E97B8B922758A7F00DB39EE /* MeasurementFormatter_ExtensionTests.swift */,
+				5E97B8BC22758DAB00DB39EE /* Array_FloatingPointTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -525,14 +560,19 @@
 			files = (
 				5E97B8AB2274BB0800DB39EE /* Functions.swift in Sources */,
 				5EB5DA79227386CD0016A1CB /* CitiesResponse+Main.swift in Sources */,
+				5E97B8B8227589FA00DB39EE /* Array+FloatingPoint.swift in Sources */,
 				5EB5DA6922734DB90016A1CB /* CitiesViewModel.swift in Sources */,
+				5E97B8B52275826200DB39EE /* MeasurementFormatter+Extension.swift in Sources */,
 				5EB5DA5C227349160016A1CB /* UrlService.swift in Sources */,
 				5EB5DA752273868C0016A1CB /* CitiesResponse.swift in Sources */,
 				5E97B8A62274BA4400DB39EE /* BaseViewController.swift in Sources */,
+				5E97B8B222757E7300DB39EE /* CitiesViewSource.swift in Sources */,
 				5EB5DA77227386B60016A1CB /* CitiesResponse+Weather.swift in Sources */,
 				5EB5DA3F22732F5D0016A1CB /* CitiesViewController.swift in Sources */,
 				5EB5DA6422734BB30016A1CB /* CitiesResponse+City.swift in Sources */,
 				5EB5DA6622734C0D0016A1CB /* CitiesServiceImpl.swift in Sources */,
+				5E97B8AE22757DEE00DB39EE /* CellProvider.swift in Sources */,
+				5E97B8B022757E0500DB39EE /* CellProviderConvertible.swift in Sources */,
 				5EB5DA532273344C0016A1CB /* ApiService.swift in Sources */,
 				5EB5DA60227349780016A1CB /* ApiServiceImpl.swift in Sources */,
 				5EB5DA6B22734DCF0016A1CB /* CitiesViewModelImpl.swift in Sources */,
@@ -551,11 +591,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E97B8C22275904900DB39EE /* CitiesServiceImplTests.swift in Sources */,
 				5EB5DA9F2273A5A70016A1CB /* SourceryMocks.swift in Sources */,
 				5E97B89B2274774300DB39EE /* NSError_ExtensionTests.swift in Sources */,
 				5EB5DAA422742A090016A1CB /* AutoMockable.generated.swift in Sources */,
+				5E97B8BA22758A7F00DB39EE /* MeasurementFormatter_ExtensionTests.swift in Sources */,
 				5E97B89D2274774D00DB39EE /* CitiesViewModelImplTests.swift in Sources */,
+				5E97B8BD22758DAB00DB39EE /* Array_FloatingPointTests.swift in Sources */,
 				5E97B8992274772800DB39EE /* ApiServiceImplTests.swift in Sources */,
+				5E97B8C022758E8600DB39EE /* TestFunctions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

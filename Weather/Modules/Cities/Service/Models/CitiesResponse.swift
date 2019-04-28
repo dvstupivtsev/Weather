@@ -8,7 +8,7 @@ struct CitiesResponse: Equatable {
     let data: [City]
 }
 
-extension CitiesResponse: Decodable {
+extension CitiesResponse: Codable {
     private enum CodingKeys: String, CodingKey {
         case data = "list"
     }

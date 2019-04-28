@@ -3,10 +3,10 @@
 //
 
 import XCTest
-import Promises
+@testable import Promises
 @testable import Weather
 
-class CitiesViewModelImplTests: XCTestCase {
+final class CitiesViewModelImplTests: XCTestCase {
     private var citiesService: CitiesServiceMock!
     private var subject: CitiesViewModelImpl!
     
@@ -20,7 +20,7 @@ class CitiesViewModelImplTests: XCTestCase {
     func testGetDataSuccess() {
         citiesService.getWeatherForReturnValue = Promise<CitiesResponse>.pending()
         
-        var receivedValue: Void?
+        var receivedValue: CitiesViewSource?
         var receivedError: Error?
         subject.getData()
             .then { receivedValue = $0 }
@@ -31,14 +31,17 @@ class CitiesViewModelImplTests: XCTestCase {
         
         citiesService.getWeatherForReturnValue.fulfill(CitiesResponse(data: []))
         XCTAssert(waitForPromises(timeout: 1))
-        XCTAssert(receivedValue != nil, "should receive data")
+        
+        let expectedViewSource = self.expectedViewSource
+        XCTAssert(receivedValue?.title == expectedViewSource.title, "should receive valid title")
+        XCTAssert(receivedValue?.cellProviderConvertibles.count == expectedViewSource.cellProviderConvertibles.count, "should receive valid cells providers")
         XCTAssert(receivedError == nil, "shouldn't receive error")
     }
     
     func testGetDataFailure() {
         citiesService.getWeatherForReturnValue = Promise<CitiesResponse>.pending()
         
-        var receivedValue: Void?
+        var receivedValue: CitiesViewSource?
         var receivedError: Error?
         subject.getData()
             .then { receivedValue = $0 }
@@ -69,5 +72,12 @@ private extension CitiesViewModelImplTests {
             "1850147",
             "1819729",
         ]
+    }
+    
+    var expectedViewSource: CitiesViewSource {
+        return CitiesViewSource(
+            title: MeasurementFormatter.celsius.string(from: 0),
+            cellProviderConvertibles: []
+        )
     }
 }

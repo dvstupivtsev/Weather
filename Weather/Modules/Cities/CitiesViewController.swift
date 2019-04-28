@@ -27,20 +27,12 @@ final class CitiesViewController: BaseViewController<CitiesView> {
             .catch(on: .main, handleGetDataFailure(error:))
     }
     
-    private func handleGetDataSuccess(result: Void) {
-        // TODO: show received source
-        let ac = UIAlertController(title: "Success", message: nil, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        present(ac, animated: true)
+    private func handleGetDataSuccess(result: CitiesViewSource) {
+        title = result.title
     }
     
     private func handleGetDataFailure(error: Error) {
-        // TODO: present error
-        let ac = UIAlertController(title: "Failure", message: error.localizedDescription, preferredStyle: .alert)
-        ac.addAction(UIAlertAction(title: "OK", style: .default))
-        
-        present(ac, animated: true)
+        title = nil
     }
 }
 

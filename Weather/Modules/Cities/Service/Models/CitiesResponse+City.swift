@@ -14,7 +14,7 @@ extension CitiesResponse {
     }
 }
 
-extension CitiesResponse.City: Decodable {
+extension CitiesResponse.City: Codable {
     private enum CodingKeys: String, CodingKey {
         case id
         case name

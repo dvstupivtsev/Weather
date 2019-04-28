@@ -6,5 +6,5 @@ import Foundation
 import Promises
 
 protocol CitiesViewModel {
-    func getData() -> Promise<Void>
+    func getData() -> Promise<CitiesViewSource>
 }

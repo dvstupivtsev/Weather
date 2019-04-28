@@ -12,7 +12,7 @@ final class CitiesViewModelImpl: CitiesViewModel {
         self.citiesService = citiesService
     }
     
-    func getData() -> Promise<Void> {
+    func getData() -> Promise<CitiesViewSource> {
         let citiesIds = [
             "2950159",
             "2968815",
@@ -30,9 +30,14 @@ final class CitiesViewModelImpl: CitiesViewModel {
             .then(handleGetWeather(response:))
     }
     
-    private func handleGetWeather(response: CitiesResponse) -> Void {
-        // TODO: make presentation source
-        print(response)
-        return ()
+    private func handleGetWeather(response: CitiesResponse) -> CitiesViewSource {
+        let averageTemp = response.data
+            .map { $0.main.temp }
+            .average()
+        
+        return CitiesViewSource(
+            title: MeasurementFormatter.celsius.string(from: averageTemp),
+            cellProviderConvertibles: []
+        )
     }
 }

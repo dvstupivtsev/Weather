@@ -11,7 +11,7 @@ extension CitiesResponse {
     }
 }
 
-extension CitiesResponse.Weather: Decodable {
+extension CitiesResponse.Weather: Codable {
     private enum CodingKeys: String, CodingKey {
         case icon
         case description = "main"
