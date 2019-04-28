@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5E3964FA2275DD33005F0859 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3964F92275DD33005F0859 /* main.swift */; };
+		5E3964FD2275DD88005F0859 /* TestingAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3964FC2275DD88005F0859 /* TestingAppDelegate.swift */; };
 		5E97B8992274772800DB39EE /* ApiServiceImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8982274772800DB39EE /* ApiServiceImplTests.swift */; };
 		5E97B89B2274774300DB39EE /* NSError_ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B89A2274774300DB39EE /* NSError_ExtensionTests.swift */; };
 		5E97B89D2274774D00DB39EE /* CitiesViewModelImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B89C2274774D00DB39EE /* CitiesViewModelImplTests.swift */; };
@@ -66,6 +68,8 @@
 		0AD972A3D27631E63D518F51 /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		16726BD309CED375BD0A3226 /* Pods-WeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherTests/Pods-WeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		460CBEE371748C342962F893 /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
+		5E3964F92275DD33005F0859 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
+		5E3964FC2275DD88005F0859 /* TestingAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingAppDelegate.swift; sourceTree = "<group>"; };
 		5E97B8982274772800DB39EE /* ApiServiceImplTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiServiceImplTests.swift; sourceTree = "<group>"; };
 		5E97B89A2274774300DB39EE /* NSError_ExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError_ExtensionTests.swift; sourceTree = "<group>"; };
 		5E97B89C2274774D00DB39EE /* CitiesViewModelImplTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CitiesViewModelImplTests.swift; sourceTree = "<group>"; };
@@ -143,6 +147,16 @@
 				DBC9B57DCA05848B82192180 /* Pods_WeatherTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		5E3964FB2275DD6A005F0859 /* Application */ = {
+			isa = PBXGroup;
+			children = (
+				5E3964F92275DD33005F0859 /* main.swift */,
+				5EB5DA3C22732F5D0016A1CB /* AppDelegate.swift */,
+				5E3964FC2275DD88005F0859 /* TestingAppDelegate.swift */,
+			);
+			path = Application;
 			sourceTree = "<group>";
 		};
 		5E97B89E2274B9DF00DB39EE /* CustomViews */ = {
@@ -239,13 +253,13 @@
 		5EB5DA3B22732F5D0016A1CB /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				5E3964FB2275DD6A005F0859 /* Application */,
 				5E97B8CA2275D82800DB39EE /* Generated */,
 				5E97B8C62275D71600DB39EE /* Resources */,
 				5EB5DA4E2273310E0016A1CB /* SupportingFiles */,
 				5ED7147F227467FE004B9883 /* Core */,
 				5E97B89E2274B9DF00DB39EE /* CustomViews */,
 				5ED7147E227467E6004B9883 /* Modules */,
-				5EB5DA3C22732F5D0016A1CB /* AppDelegate.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -605,6 +619,7 @@
 			files = (
 				5E97B8AB2274BB0800DB39EE /* Functions.swift in Sources */,
 				5EB5DA79227386CD0016A1CB /* CitiesResponse+Main.swift in Sources */,
+				5E3964FD2275DD88005F0859 /* TestingAppDelegate.swift in Sources */,
 				5E97B8B8227589FA00DB39EE /* Array+FloatingPoint.swift in Sources */,
 				5EB5DA6922734DB90016A1CB /* CitiesViewModel.swift in Sources */,
 				5E97B8B52275826200DB39EE /* MeasurementFormatter+Extension.swift in Sources */,
@@ -629,6 +644,7 @@
 				5E97B8CD2275D84300DB39EE /* Assets.swift in Sources */,
 				5E97B8A92274BAA000DB39EE /* CitiesView.swift in Sources */,
 				5EB5DA5E227349640016A1CB /* ApiServiceRequest.swift in Sources */,
+				5E3964FA2275DD33005F0859 /* main.swift in Sources */,
 				5E97B8A32274BA1700DB39EE /* BaseView.swift in Sources */,
 				5EB5DA59227348DF0016A1CB /* NSError+Extension.swift in Sources */,
 				5EB5DA6E22734ED10016A1CB /* CitiesFactory.swift in Sources */,
