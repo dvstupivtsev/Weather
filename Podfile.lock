@@ -4,11 +4,13 @@ PODS:
     - PromisesObjC (= 1.2.6)
   - SnapKit (4.2.0)
   - Sourcery (0.15.0)
+  - SwiftGen (6.1.0)
 
 DEPENDENCIES:
   - PromisesSwift
   - SnapKit
   - Sourcery
+  - SwiftGen
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -16,13 +18,15 @@ SPEC REPOS:
     - PromisesSwift
     - SnapKit
     - Sourcery
+    - SwiftGen
 
 SPEC CHECKSUMS:
   PromisesObjC: 60326422b6d692b9718a80666e67a9433862aa88
   PromisesSwift: b3219d5e6545d5d7e8ad8038b4ad139f7ee0b3f0
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   Sourcery: 5895672cae353cdbfa95f3f4aaeb75a664d76f6a
+  SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
 
-PODFILE CHECKSUM: 888ad7cd54276f8b82ceedb1bdf1f6603f659d38
+PODFILE CHECKSUM: 627c357e705165b9314db68f4cb6bcc70fc7cb89
 
 COCOAPODS: 1.6.1
