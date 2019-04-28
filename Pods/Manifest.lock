@@ -2,23 +2,27 @@ PODS:
   - PromisesObjC (1.2.6)
   - PromisesSwift (1.2.6):
     - PromisesObjC (= 1.2.6)
+  - SnapKit (4.2.0)
   - Sourcery (0.15.0)
 
 DEPENDENCIES:
   - PromisesSwift
+  - SnapKit
   - Sourcery
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - PromisesObjC
     - PromisesSwift
+    - SnapKit
     - Sourcery
 
 SPEC CHECKSUMS:
   PromisesObjC: 60326422b6d692b9718a80666e67a9433862aa88
   PromisesSwift: b3219d5e6545d5d7e8ad8038b4ad139f7ee0b3f0
+  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   Sourcery: 5895672cae353cdbfa95f3f4aaeb75a664d76f6a
 
-PODFILE CHECKSUM: 2b7392a83468043c1c06e2eaa5573d99f8c22727
+PODFILE CHECKSUM: 888ad7cd54276f8b82ceedb1bdf1f6603f659d38
 
 COCOAPODS: 1.6.1

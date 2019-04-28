@@ -1,10 +1,10 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC" "${PODS_CONFIGURATION_BUILD_DIR}/PromisesSwift"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC" "${PODS_CONFIGURATION_BUILD_DIR}/PromisesSwift" "${PODS_CONFIGURATION_BUILD_DIR}/SnapKit"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC/FBLPromises.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/PromisesSwift/Promises.framework/Headers" "${PODS_TARGET_SRCROOT}/Sources/FBLPromises/include"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC/FBLPromises.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/PromisesSwift/Promises.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SnapKit/SnapKit.framework/Headers" "${PODS_TARGET_SRCROOT}/Sources/FBLPromises/include"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC/FBLPromises.framework/Headers" -isystem "${PODS_CONFIGURATION_BUILD_DIR}/PromisesSwift/Promises.framework/Headers" -iframework "${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC" -iframework "${PODS_CONFIGURATION_BUILD_DIR}/PromisesSwift"
-OTHER_LDFLAGS = $(inherited) -framework "FBLPromises" -framework "Promises"
+OTHER_CFLAGS = $(inherited) -isystem "${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC/FBLPromises.framework/Headers" -isystem "${PODS_CONFIGURATION_BUILD_DIR}/PromisesSwift/Promises.framework/Headers" -isystem "${PODS_CONFIGURATION_BUILD_DIR}/SnapKit/SnapKit.framework/Headers" -iframework "${PODS_CONFIGURATION_BUILD_DIR}/PromisesObjC" -iframework "${PODS_CONFIGURATION_BUILD_DIR}/PromisesSwift" -iframework "${PODS_CONFIGURATION_BUILD_DIR}/SnapKit"
+OTHER_LDFLAGS = $(inherited) -framework "FBLPromises" -framework "Promises" -framework "SnapKit"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
