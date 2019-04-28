@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class CitiesView: BaseView {
     private let tableView = make(object: UITableView()) {
@@ -23,11 +24,8 @@ final class CitiesView: BaseView {
     }
     
     private func setupConstraints() {
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        
-        tableView.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        tableView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
