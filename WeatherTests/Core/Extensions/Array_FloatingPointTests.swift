@@ -42,7 +42,6 @@ final class Array_FloatingPointTests: XCTestCase {
         compare(expected: 11, received: array.average())
         
         array = [13.1, 14.6, 17.890, 0.01]
-        compare(expected: 11.4, received: array.average())
-        
+        compare(expected: 11.4, received: array.average())   
     }
 }
