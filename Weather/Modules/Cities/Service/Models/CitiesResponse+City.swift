@@ -9,6 +9,7 @@ extension CitiesResponse {
         let id: Int
         let name: String
         let date: Date
+        let coordinate: Coordinate
         let weather: [Weather]
         let main: Main
     }
@@ -21,5 +22,6 @@ extension CitiesResponse.City: Codable {
         case weather
         case main
         case date = "dt"
+        case coordinate = "coord"
     }
 }
