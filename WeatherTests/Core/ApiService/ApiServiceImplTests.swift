@@ -26,14 +26,14 @@ final class ApiServiceImplTests: XCTestCase {
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
-        XCTAssert(urlService.dataTaskWithCallsCount == 1, "should call urlService")
-        XCTAssert(urlService.dataTaskWithReceivedUrl?.absoluteString == validUrlString, "should call urlService")
+        XCTAssertEqual(urlService.dataTaskWithCallsCount, 1, "should call urlService")
+        XCTAssertEqual(urlService.dataTaskWithReceivedUrl?.absoluteString, validUrlString, "should call urlService")
         
         let expectedData = Data()
         urlService.dataTaskWithReturnValue.fulfill(expectedData)
         XCTAssert(waitForPromises(timeout: 1))
-        XCTAssert(receivedValue == expectedData, "should receive success with data")
-        XCTAssert(receivedError == nil, "shouldn't receive error")
+        XCTAssertEqual(receivedValue, expectedData, "should receive success with data")
+        XCTAssertNil(receivedError, "shouldn't receive error")
     }
     
     func testExecuteWithValidUrlFailure() {
@@ -45,14 +45,14 @@ final class ApiServiceImplTests: XCTestCase {
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
-        XCTAssert(urlService.dataTaskWithCallsCount == 1, "should call urlService")
-        XCTAssert(urlService.dataTaskWithReceivedUrl?.absoluteString == validUrlString, "should call urlService")
+        XCTAssertEqual(urlService.dataTaskWithCallsCount, 1, "should call urlService")
+        XCTAssertEqual(urlService.dataTaskWithReceivedUrl?.absoluteString, validUrlString, "should call urlService")
         
         let expectedError = NSError.error(message: "TestError")
         urlService.dataTaskWithReturnValue.reject(expectedError)
         XCTAssert(waitForPromises(timeout: 1))
-        XCTAssert(receivedValue == nil, "shouldn't receive data")
-        XCTAssert(receivedError as NSError? == expectedError, "should receive error")
+        XCTAssertNil(receivedValue, "shouldn't receive data")
+        XCTAssertEqual(receivedError as NSError?, expectedError, "should receive error")
     }
     
     func testExecuteWithInvalidUrl() {
@@ -62,11 +62,11 @@ final class ApiServiceImplTests: XCTestCase {
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
-        XCTAssert(urlService.dataTaskWithCallsCount == 0, "shouldn't call urlService")
+        XCTAssertEqual(urlService.dataTaskWithCallsCount, 0, "shouldn't call urlService")
         
         XCTAssert(waitForPromises(timeout: 1))
-        XCTAssert(receivedError as NSError? == NSError.common, "should receive error")
-        XCTAssert(receivedValue == nil, "shouldn't receive value")
+        XCTAssertEqual(receivedError as NSError?, NSError.common, "should receive error")
+        XCTAssertNil(receivedValue, "shouldn't receive value")
     }
 }
 

@@ -5,5 +5,5 @@
 import XCTest
 
 func compare<Type: Equatable>(expected: Type, received: Type) {
-    XCTAssert(received == expected, "expected value is \(expected), got \(received)")
+    XCTAssertEqual(received, expected, "expected value is \(expected), got \(received)")
 }

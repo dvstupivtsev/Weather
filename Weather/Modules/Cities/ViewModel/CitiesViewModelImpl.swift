@@ -7,9 +7,14 @@ import Promises
 
 final class CitiesViewModelImpl: CitiesViewModel {
     private let citiesService: CitiesService
+    private let dateFormatter: CitiesDateFormatter
     
-    init(citiesService: CitiesService) {
+    init(
+        citiesService: CitiesService,
+        dateFormatter: CitiesDateFormatter
+    ) {
         self.citiesService = citiesService
+        self.dateFormatter = dateFormatter
     }
     
     func getData() -> Promise<CitiesViewSource> {
@@ -31,13 +36,16 @@ final class CitiesViewModelImpl: CitiesViewModel {
     }
     
     private func handleGetWeather(response: CitiesResponse) -> CitiesViewSource {
-        let averageTemp = response.data
-            .map { $0.main.temp }
-            .average()
+        // TODO: Timezone
+        let providers = response.data.map {
+            return CityCell.Model(
+                title: $0.name,
+                dateTimeString: dateFormatter.string(from: $0.date),
+                temperatureString: MeasurementFormatter.celsius.string(from: $0.main.temp),
+                weatherIcon: UIImage()
+            )
+        }
         
-        return CitiesViewSource(
-            title: MeasurementFormatter.celsius.string(from: averageTemp),
-            cellProviderConvertibles: []
-        )
+        return CitiesViewSource(cellProviderConvertibles: providers)
     }
 }

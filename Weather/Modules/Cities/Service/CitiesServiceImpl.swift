@@ -29,7 +29,10 @@ final class CitiesServiceImpl: CitiesService {
     }
     
     private func parse(data: Data?) throws -> CitiesResponse {
-        if let response = try data.flatMap({ try JSONDecoder().decode(CitiesResponse.self, from: $0) }) {
+        let decoder = JSONDecoder()
+        decoder.dateDecodingStrategy = .secondsSince1970
+        
+        if let response = try data.flatMap({ try decoder.decode(CitiesResponse.self, from: $0) }) {
             return response
         } else {
             throw NSError.common

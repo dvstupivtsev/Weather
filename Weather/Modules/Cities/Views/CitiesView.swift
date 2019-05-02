@@ -28,4 +28,17 @@ final class CitiesView: BaseView {
             make.edges.equalToSuperview()
         }
     }
+    
+    func setupTableDelegate(_ delegate: UITableViewDataSource & UITableViewDelegate) {
+        tableView.delegate = delegate
+        tableView.dataSource = delegate
+    }
+    
+    func reloadData() {
+        tableView.reloadData()
+    }
+    
+    func register(cellTypes: [UITableViewCell.Type]) {
+        cellTypes.forEach { tableView.register(type: $0) }
+    }
 }

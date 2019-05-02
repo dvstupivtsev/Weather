@@ -9,10 +9,22 @@
 /* Begin PBXBuildFile section */
 		5E3964FA2275DD33005F0859 /* main.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3964F92275DD33005F0859 /* main.swift */; };
 		5E3964FD2275DD88005F0859 /* TestingAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3964FC2275DD88005F0859 /* TestingAppDelegate.swift */; };
+		5E396516227AE642005F0859 /* CityCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E396515227AE642005F0859 /* CityCell.swift */; };
+		5E396519227AE665005F0859 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E396518227AE665005F0859 /* BaseCell.swift */; };
+		5E39651B227AEC6A005F0859 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39651A227AEC6A005F0859 /* Font.swift */; };
+		5E39651D227AED1F005F0859 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39651C227AED1F005F0859 /* Color.swift */; };
+		5E396521227AF01D005F0859 /* UIEdgeInsets+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E396520227AF01D005F0859 /* UIEdgeInsets+Extension.swift */; };
+		5E396523227AF1D7005F0859 /* UIView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E396522227AF1D7005F0859 /* UIView+Extension.swift */; };
+		5E396526227AF55A005F0859 /* CityCellProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E396525227AF55A005F0859 /* CityCellProvider.swift */; };
+		5E396528227AF5B5005F0859 /* UITableView+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E396527227AF5B5005F0859 /* UITableView+Reuse.swift */; };
+		5E39652A227AF6C6005F0859 /* UITableViewCell+Reuse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E396529227AF6C6005F0859 /* UITableViewCell+Reuse.swift */; };
+		5E39652C227B4796005F0859 /* DateFormatter+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39652B227B4796005F0859 /* DateFormatter+Extension.swift */; };
+		5E39652F227B4C9A005F0859 /* CitiesDateFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39652E227B4C9A005F0859 /* CitiesDateFormatter.swift */; };
+		5E396531227B4CB2005F0859 /* CitiesDateFormatterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E396530227B4CB2005F0859 /* CitiesDateFormatterImpl.swift */; };
+		5E396534227B50E0005F0859 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E396533227B50E0005F0859 /* Date+Extension.swift */; };
 		5E396538227B6B79005F0859 /* CitiesResponse+Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E396537227B6B78005F0859 /* CitiesResponse+Coordinate.swift */; };
 		5E97B8992274772800DB39EE /* ApiServiceImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8982274772800DB39EE /* ApiServiceImplTests.swift */; };
 		5E97B89B2274774300DB39EE /* NSError_ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B89A2274774300DB39EE /* NSError_ExtensionTests.swift */; };
-		5E97B89D2274774D00DB39EE /* CitiesViewModelImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B89C2274774D00DB39EE /* CitiesViewModelImplTests.swift */; };
 		5E97B8A32274BA1700DB39EE /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8A22274BA1700DB39EE /* BaseView.swift */; };
 		5E97B8A62274BA4400DB39EE /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8A52274BA4400DB39EE /* BaseViewController.swift */; };
 		5E97B8A92274BAA000DB39EE /* CitiesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8A82274BAA000DB39EE /* CitiesView.swift */; };
@@ -30,6 +42,12 @@
 		5E97B8C82275D75800DB39EE /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 5E97B8C72275D75800DB39EE /* Localizable.strings */; };
 		5E97B8CD2275D84300DB39EE /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8CB2275D84300DB39EE /* Assets.swift */; };
 		5E97B8CE2275D84300DB39EE /* Localizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B8CC2275D84300DB39EE /* Localizable.swift */; };
+		5EA0A46D227B72D000558BE3 /* Date_ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0A46C227B72D000558BE3 /* Date_ExtensionTests.swift */; };
+		5EA0A470227B749000558BE3 /* UIEdgeInsets_ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0A46F227B749000558BE3 /* UIEdgeInsets_ExtensionTests.swift */; };
+		5EA0A475227B76A800558BE3 /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0A474227B76A800558BE3 /* ColorTests.swift */; };
+		5EA0A477227B79DF00558BE3 /* FontTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0A476227B79DF00558BE3 /* FontTests.swift */; };
+		5EA0A479227B832800558BE3 /* CitiesDateFormatterImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0A478227B832800558BE3 /* CitiesDateFormatterImplTests.swift */; };
+		5EA0A47B227B88A300558BE3 /* CitiesViewModelImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B89C2274774D00DB39EE /* CitiesViewModelImplTests.swift */; };
 		5EB5DA3D22732F5D0016A1CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB5DA3C22732F5D0016A1CB /* AppDelegate.swift */; };
 		5EB5DA3F22732F5D0016A1CB /* CitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB5DA3E22732F5D0016A1CB /* CitiesViewController.swift */; };
 		5EB5DA4422732F5E0016A1CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EB5DA4322732F5E0016A1CB /* Assets.xcassets */; };
@@ -71,6 +89,19 @@
 		460CBEE371748C342962F893 /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
 		5E3964F92275DD33005F0859 /* main.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = main.swift; sourceTree = "<group>"; };
 		5E3964FC2275DD88005F0859 /* TestingAppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingAppDelegate.swift; sourceTree = "<group>"; };
+		5E396515227AE642005F0859 /* CityCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCell.swift; sourceTree = "<group>"; };
+		5E396518227AE665005F0859 /* BaseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
+		5E39651A227AEC6A005F0859 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		5E39651C227AED1F005F0859 /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
+		5E396520227AF01D005F0859 /* UIEdgeInsets+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIEdgeInsets+Extension.swift"; sourceTree = "<group>"; };
+		5E396522227AF1D7005F0859 /* UIView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extension.swift"; sourceTree = "<group>"; };
+		5E396525227AF55A005F0859 /* CityCellProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CityCellProvider.swift; sourceTree = "<group>"; };
+		5E396527227AF5B5005F0859 /* UITableView+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Reuse.swift"; sourceTree = "<group>"; };
+		5E396529227AF6C6005F0859 /* UITableViewCell+Reuse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Reuse.swift"; sourceTree = "<group>"; };
+		5E39652B227B4796005F0859 /* DateFormatter+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extension.swift"; sourceTree = "<group>"; };
+		5E39652E227B4C9A005F0859 /* CitiesDateFormatter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesDateFormatter.swift; sourceTree = "<group>"; };
+		5E396530227B4CB2005F0859 /* CitiesDateFormatterImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesDateFormatterImpl.swift; sourceTree = "<group>"; };
+		5E396533227B50E0005F0859 /* Date+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extension.swift"; sourceTree = "<group>"; };
 		5E396537227B6B78005F0859 /* CitiesResponse+Coordinate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CitiesResponse+Coordinate.swift"; sourceTree = "<group>"; };
 		5E97B8982274772800DB39EE /* ApiServiceImplTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiServiceImplTests.swift; sourceTree = "<group>"; };
 		5E97B89A2274774300DB39EE /* NSError_ExtensionTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NSError_ExtensionTests.swift; sourceTree = "<group>"; };
@@ -92,6 +123,11 @@
 		5E97B8C72275D75800DB39EE /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		5E97B8CB2275D84300DB39EE /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
 		5E97B8CC2275D84300DB39EE /* Localizable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Localizable.swift; sourceTree = "<group>"; };
+		5EA0A46C227B72D000558BE3 /* Date_ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date_ExtensionTests.swift; sourceTree = "<group>"; };
+		5EA0A46F227B749000558BE3 /* UIEdgeInsets_ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEdgeInsets_ExtensionTests.swift; sourceTree = "<group>"; };
+		5EA0A474227B76A800558BE3 /* ColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
+		5EA0A476227B79DF00558BE3 /* FontTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontTests.swift; sourceTree = "<group>"; };
+		5EA0A478227B832800558BE3 /* CitiesDateFormatterImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesDateFormatterImplTests.swift; sourceTree = "<group>"; };
 		5EB5DA3922732F5D0016A1CB /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EB5DA3C22732F5D0016A1CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EB5DA3E22732F5D0016A1CB /* CitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewController.swift; sourceTree = "<group>"; };
@@ -161,12 +197,40 @@
 			path = Application;
 			sourceTree = "<group>";
 		};
+		5E396514227AE62A005F0859 /* CityCell */ = {
+			isa = PBXGroup;
+			children = (
+				5E396515227AE642005F0859 /* CityCell.swift */,
+				5E396525227AF55A005F0859 /* CityCellProvider.swift */,
+			);
+			path = CityCell;
+			sourceTree = "<group>";
+		};
+		5E39651F227AEFFC005F0859 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				5E39651A227AEC6A005F0859 /* Font.swift */,
+				5E39651C227AED1F005F0859 /* Color.swift */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		5E39652D227B4C8A005F0859 /* DateFormatter */ = {
+			isa = PBXGroup;
+			children = (
+				5E39652E227B4C9A005F0859 /* CitiesDateFormatter.swift */,
+				5E396530227B4CB2005F0859 /* CitiesDateFormatterImpl.swift */,
+			);
+			path = DateFormatter;
+			sourceTree = "<group>";
+		};
 		5E97B89E2274B9DF00DB39EE /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				5E97B8C32275CE8500DB39EE /* ReloadView */,
 				5E97B8AC22757DDD00DB39EE /* CellProvider */,
 				5E97B8A12274BA0800DB39EE /* BaseViewController */,
+				5E396518227AE665005F0859 /* BaseCell.swift */,
+				5E97B8C42275CE9800DB39EE /* ReloadView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -183,6 +247,7 @@
 		5E97B8A72274BA6400DB39EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5E396514227AE62A005F0859 /* CityCell */,
 				5E97B8A82274BAA000DB39EE /* CitiesView.swift */,
 				5E97B8B122757E7300DB39EE /* CitiesViewSource.swift */,
 			);
@@ -196,14 +261,6 @@
 				5E97B8AF22757E0500DB39EE /* CellProviderConvertible.swift */,
 			);
 			path = CellProvider;
-			sourceTree = "<group>";
-		};
-		5E97B8C32275CE8500DB39EE /* ReloadView */ = {
-			isa = PBXGroup;
-			children = (
-				5E97B8C42275CE9800DB39EE /* ReloadView.swift */,
-			);
-			path = ReloadView;
 			sourceTree = "<group>";
 		};
 		5E97B8C62275D71600DB39EE /* Resources */ = {
@@ -230,6 +287,15 @@
 				5E97B8CC2275D84300DB39EE /* Localizable.swift */,
 			);
 			path = Generated;
+			sourceTree = "<group>";
+		};
+		5EA0A473227B769200558BE3 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				5EA0A474227B76A800558BE3 /* ColorTests.swift */,
+				5EA0A476227B79DF00558BE3 /* FontTests.swift */,
+			);
+			path = Styles;
 			sourceTree = "<group>";
 		};
 		5EB5DA3022732F5D0016A1CB = {
@@ -278,6 +344,7 @@
 		5EB5DA4F2273312C0016A1CB /* Cities */ = {
 			isa = PBXGroup;
 			children = (
+				5E39652D227B4C8A005F0859 /* DateFormatter */,
 				5E97B8A72274BA6400DB39EE /* Views */,
 				5EB5DA6722734DB20016A1CB /* ViewModel */,
 				5EB5DA51227331650016A1CB /* Service */,
@@ -303,6 +370,12 @@
 				5EB5DA58227348DF0016A1CB /* NSError+Extension.swift */,
 				5E97B8B42275826200DB39EE /* MeasurementFormatter+Extension.swift */,
 				5E97B8B7227589FA00DB39EE /* Array+FloatingPoint.swift */,
+				5E396520227AF01D005F0859 /* UIEdgeInsets+Extension.swift */,
+				5E396522227AF1D7005F0859 /* UIView+Extension.swift */,
+				5E396527227AF5B5005F0859 /* UITableView+Reuse.swift */,
+				5E396529227AF6C6005F0859 /* UITableViewCell+Reuse.swift */,
+				5E39652B227B4796005F0859 /* DateFormatter+Extension.swift */,
+				5E396533227B50E0005F0859 /* Date+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -382,6 +455,7 @@
 			children = (
 				5EB5DA5A227348FB0016A1CB /* ApiService */,
 				5EB5DA57227348D60016A1CB /* Extensions */,
+				5E39651F227AEFFC005F0859 /* Styles */,
 				5E97B8AA2274BB0800DB39EE /* Functions.swift */,
 			);
 			path = Core;
@@ -390,6 +464,7 @@
 		5ED71480227468AD004B9883 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				5EA0A473227B769200558BE3 /* Styles */,
 				5ED7148822746927004B9883 /* ApiService */,
 				5ED7148922746930004B9883 /* Extensions */,
 			);
@@ -409,6 +484,7 @@
 			children = (
 				5E97B89C2274774D00DB39EE /* CitiesViewModelImplTests.swift */,
 				5E97B8C12275904900DB39EE /* CitiesServiceImplTests.swift */,
+				5EA0A478227B832800558BE3 /* CitiesDateFormatterImplTests.swift */,
 			);
 			path = Cities;
 			sourceTree = "<group>";
@@ -427,6 +503,8 @@
 				5E97B89A2274774300DB39EE /* NSError_ExtensionTests.swift */,
 				5E97B8B922758A7F00DB39EE /* MeasurementFormatter_ExtensionTests.swift */,
 				5E97B8BC22758DAB00DB39EE /* Array_FloatingPointTests.swift */,
+				5EA0A46C227B72D000558BE3 /* Date_ExtensionTests.swift */,
+				5EA0A46F227B749000558BE3 /* UIEdgeInsets_ExtensionTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -621,13 +699,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				5E97B8AB2274BB0800DB39EE /* Functions.swift in Sources */,
+				5E396534227B50E0005F0859 /* Date+Extension.swift in Sources */,
+				5E396521227AF01D005F0859 /* UIEdgeInsets+Extension.swift in Sources */,
 				5EB5DA79227386CD0016A1CB /* CitiesResponse+Main.swift in Sources */,
+				5E396516227AE642005F0859 /* CityCell.swift in Sources */,
 				5E3964FD2275DD88005F0859 /* TestingAppDelegate.swift in Sources */,
 				5E97B8B8227589FA00DB39EE /* Array+FloatingPoint.swift in Sources */,
 				5EB5DA6922734DB90016A1CB /* CitiesViewModel.swift in Sources */,
 				5E97B8B52275826200DB39EE /* MeasurementFormatter+Extension.swift in Sources */,
+				5E396519227AE665005F0859 /* BaseCell.swift in Sources */,
 				5EB5DA5C227349160016A1CB /* UrlService.swift in Sources */,
 				5EB5DA752273868C0016A1CB /* CitiesResponse.swift in Sources */,
+				5E39651B227AEC6A005F0859 /* Font.swift in Sources */,
 				5E97B8A62274BA4400DB39EE /* BaseViewController.swift in Sources */,
 				5E97B8CE2275D84300DB39EE /* Localizable.swift in Sources */,
 				5E97B8C52275CE9800DB39EE /* ReloadView.swift in Sources */,
@@ -640,11 +723,18 @@
 				5E97B8B022757E0500DB39EE /* CellProviderConvertible.swift in Sources */,
 				5EB5DA532273344C0016A1CB /* ApiService.swift in Sources */,
 				5EB5DA60227349780016A1CB /* ApiServiceImpl.swift in Sources */,
+				5E39651D227AED1F005F0859 /* Color.swift in Sources */,
 				5EB5DA6B22734DCF0016A1CB /* CitiesViewModelImpl.swift in Sources */,
 				5EB5DA6222734AB70016A1CB /* CitiesService.swift in Sources */,
+				5E396526227AF55A005F0859 /* CityCellProvider.swift in Sources */,
+				5E396528227AF5B5005F0859 /* UITableView+Reuse.swift in Sources */,
 				5EB5DA3D22732F5D0016A1CB /* AppDelegate.swift in Sources */,
+				5E39652A227AF6C6005F0859 /* UITableViewCell+Reuse.swift in Sources */,
+				5E39652C227B4796005F0859 /* DateFormatter+Extension.swift in Sources */,
+				5E396531227B4CB2005F0859 /* CitiesDateFormatterImpl.swift in Sources */,
 				5EB5DAA22273A93E0016A1CB /* UrlSessionAdapter.swift in Sources */,
 				5E97B8CD2275D84300DB39EE /* Assets.swift in Sources */,
+				5E396523227AF1D7005F0859 /* UIView+Extension.swift in Sources */,
 				5E97B8A92274BAA000DB39EE /* CitiesView.swift in Sources */,
 				5EB5DA5E227349640016A1CB /* ApiServiceRequest.swift in Sources */,
 				5E3964FA2275DD33005F0859 /* main.swift in Sources */,
@@ -652,6 +742,7 @@
 				5E396538227B6B79005F0859 /* CitiesResponse+Coordinate.swift in Sources */,
 				5EB5DA59227348DF0016A1CB /* NSError+Extension.swift in Sources */,
 				5EB5DA6E22734ED10016A1CB /* CitiesFactory.swift in Sources */,
+				5E39652F227B4C9A005F0859 /* CitiesDateFormatter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -659,12 +750,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5EA0A475227B76A800558BE3 /* ColorTests.swift in Sources */,
 				5E97B8C22275904900DB39EE /* CitiesServiceImplTests.swift in Sources */,
+				5EA0A46D227B72D000558BE3 /* Date_ExtensionTests.swift in Sources */,
 				5EB5DA9F2273A5A70016A1CB /* SourceryMocks.swift in Sources */,
+				5EA0A477227B79DF00558BE3 /* FontTests.swift in Sources */,
 				5E97B89B2274774300DB39EE /* NSError_ExtensionTests.swift in Sources */,
 				5EB5DAA422742A090016A1CB /* AutoMockable.generated.swift in Sources */,
 				5E97B8BA22758A7F00DB39EE /* MeasurementFormatter_ExtensionTests.swift in Sources */,
-				5E97B89D2274774D00DB39EE /* CitiesViewModelImplTests.swift in Sources */,
+				5EA0A479227B832800558BE3 /* CitiesDateFormatterImplTests.swift in Sources */,
+				5EA0A47B227B88A300558BE3 /* CitiesViewModelImplTests.swift in Sources */,
+				5EA0A470227B749000558BE3 /* UIEdgeInsets_ExtensionTests.swift in Sources */,
 				5E97B8BD22758DAB00DB39EE /* Array_FloatingPointTests.swift in Sources */,
 				5E97B8992274772800DB39EE /* ApiServiceImplTests.swift in Sources */,
 				5E97B8C022758E8600DB39EE /* TestFunctions.swift in Sources */,

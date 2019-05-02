@@ -26,8 +26,9 @@ final class CitiesServiceImplTests: XCTestCase {
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
-        XCTAssert(
-            apiService.executeRequestCallsCount == 1,
+        XCTAssertEqual(
+            apiService.executeRequestCallsCount,
+            1,
             "should call apiService once, got \(apiService.executeRequestCallsCount)"
         )
         
@@ -36,7 +37,7 @@ final class CitiesServiceImplTests: XCTestCase {
         apiService.executeRequestReturnValue.fulfill(validJson)
         XCTAssert(waitForPromises(timeout: 1))
         compare(expected: expectedCitiesResponse, received: receivedValue)
-        XCTAssert(receivedError == nil, "shouldn't receive error")
+        XCTAssertNil(receivedError, "shouldn't receive error")
     }
     
     func testGetWeatherWithInvalidJson() {
@@ -48,8 +49,9 @@ final class CitiesServiceImplTests: XCTestCase {
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
-        XCTAssert(
-            apiService.executeRequestCallsCount == 1,
+        XCTAssertEqual(
+            apiService.executeRequestCallsCount,
+            1,
             "should call apiService once, got \(apiService.executeRequestCallsCount)"
         )
         
@@ -57,8 +59,8 @@ final class CitiesServiceImplTests: XCTestCase {
         
         apiService.executeRequestReturnValue.fulfill(invalidJson)
         XCTAssert(waitForPromises(timeout: 1))
-        XCTAssert(receivedValue == nil, "shouldn't receive value")
-        XCTAssert(receivedError != nil, "should receive error")
+        XCTAssertNil(receivedValue, "shouldn't receive value")
+        XCTAssertNotNil(receivedError, "should receive error")
     }
     
     func testGetWeatherWithNilData() {
@@ -70,8 +72,9 @@ final class CitiesServiceImplTests: XCTestCase {
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
-        XCTAssert(
-            apiService.executeRequestCallsCount == 1,
+        XCTAssertEqual(
+            apiService.executeRequestCallsCount,
+            1,
             "should call apiService once, got \(apiService.executeRequestCallsCount)"
         )
         
@@ -79,7 +82,7 @@ final class CitiesServiceImplTests: XCTestCase {
         
         apiService.executeRequestReturnValue.fulfill(nil)
         XCTAssert(waitForPromises(timeout: 1))
-        XCTAssert(receivedValue == nil, "shouldn't receive value")
+        XCTAssertNil(receivedValue, "shouldn't receive value")
         compare(expected: NSError.common, received: receivedError as NSError?)
     }
 }

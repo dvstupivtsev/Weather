@@ -9,7 +9,10 @@ final class CitiesFactory {
         let urlSessionAdapter = UrlSessionAdapter(session: URLSession.shared)
         let apiService = ApiServiceImpl(urlService: urlSessionAdapter)
         let citiesService = CitiesServiceImpl(apiService: apiService)
-        let vm = CitiesViewModelImpl(citiesService: citiesService)
+        let vm = CitiesViewModelImpl(
+            citiesService: citiesService,
+            dateFormatter: CitiesDateFormatterImpl()
+        )
         
         return CitiesViewController(viewModel: vm)
     }

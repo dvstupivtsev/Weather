@@ -5,8 +5,10 @@
 import UIKit
 import Promises
 
-final class CitiesViewController: BaseViewController<CitiesView> {
+final class CitiesViewController: BaseViewController<CitiesView>, UITableViewDelegate, UITableViewDataSource {
     private let viewModel: CitiesViewModel
+    
+    private lazy var tableSource = [CellProvider]()
     
     init(viewModel: CitiesViewModel) {
         self.viewModel = viewModel
@@ -21,17 +23,33 @@ final class CitiesViewController: BaseViewController<CitiesView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        customView.register(cellTypes: [CityCell.self])
+        customView.setupTableDelegate(self)
+        
         viewModel.getData()
             .then(on: .main, handleGetDataSuccess(result:))
             .catch(on: .main, handleGetDataFailure(error:))
     }
     
     private func handleGetDataSuccess(result: CitiesViewSource) {
-        title = result.title
+        tableSource = result.cellProviderConvertibles.map { $0.cellProvider }
+        customView.reloadData()
     }
     
     private func handleGetDataFailure(error: Error) {
-        title = nil
+        // TODO: handle failure
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return tableSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        return tableSource[indexPath.row].cell(for: tableView, at: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return false
     }
 }
 

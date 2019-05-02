@@ -7,14 +7,20 @@ import XCTest
 @testable import Weather
 
 final class CitiesViewModelImplTests: XCTestCase {
-    private var citiesService: CitiesServiceMock!
     private var subject: CitiesViewModelImpl!
+    private var citiesService: CitiesServiceMock!
+    private var dateFormatter: CitiesDateFormatterMock!
     
     override func setUp() {
         super.setUp()
         
-        citiesService = CitiesServiceMock()
-        subject = CitiesViewModelImpl(citiesService: citiesService)
+        citiesService = .init()
+        dateFormatter = .init()
+        dateFormatter.stringFromReturnValue = "StringFromDateTest"
+        subject = CitiesViewModelImpl(
+            citiesService: citiesService,
+            dateFormatter: dateFormatter
+        )
     }
     
     func testGetDataSuccess() {
@@ -26,16 +32,28 @@ final class CitiesViewModelImplTests: XCTestCase {
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
-        XCTAssert(citiesService.getWeatherForCallsCount == 1, "should request service")
-        XCTAssert(citiesService.getWeatherForReceivedCitiesIds == citiesIds, "should receive valid cities ids")
+        XCTAssertEqual(citiesService.getWeatherForCallsCount, 1, "should request service")
+        XCTAssertEqual(citiesService.getWeatherForReceivedCitiesIds, citiesIds, "should receive valid cities ids")
         
-        citiesService.getWeatherForReturnValue.fulfill(CitiesResponse(data: []))
+        citiesService.getWeatherForReturnValue.fulfill(response)
         XCTAssert(waitForPromises(timeout: 1))
         
-        let expectedViewSource = self.expectedViewSource
-        XCTAssert(receivedValue?.title == expectedViewSource.title, "should receive valid title")
-        XCTAssert(receivedValue?.cellProviderConvertibles.count == expectedViewSource.cellProviderConvertibles.count, "should receive valid cells providers")
-        XCTAssert(receivedError == nil, "shouldn't receive error")
+        let expectedViewSource = response.data.map {
+            return CityCell.Model(
+                title: $0.name,
+                dateTimeString: dateFormatter.stringFromReturnValue,
+                temperatureString: MeasurementFormatter.celsius.string(from: $0.main.temp),
+                weatherIcon: UIImage()
+            )
+        }
+        
+        let receivedCellsModels = receivedValue?.cellProviderConvertibles as? [CityCell.Model] ?? []
+        XCTAssertEqual(
+            receivedCellsModels,
+            expectedViewSource,
+            "expect source to be equal to \(expectedViewSource), got \(receivedCellsModels)"
+        )
+        XCTAssertNil(receivedError, "shouldn't receive error")
     }
     
     func testGetDataFailure() {
@@ -47,14 +65,14 @@ final class CitiesViewModelImplTests: XCTestCase {
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
-        XCTAssert(citiesService.getWeatherForCallsCount == 1, "should request service")
-        XCTAssert(citiesService.getWeatherForReceivedCitiesIds == citiesIds, "should receive valid cities ids")
+        XCTAssertEqual(citiesService.getWeatherForCallsCount, 1, "should request service")
+        XCTAssertEqual(citiesService.getWeatherForReceivedCitiesIds, citiesIds, "should receive valid cities ids")
         
         let expectedError = NSError.error(message: "Test")
         citiesService.getWeatherForReturnValue.reject(expectedError)
         XCTAssert(waitForPromises(timeout: 1))
-        XCTAssert(receivedValue == nil, "shouldn't receive data")
-        XCTAssert(receivedError as NSError? == expectedError, "should receive error")
+        XCTAssertNil(receivedValue, "shouldn't receive data")
+        XCTAssertEqual(receivedError as NSError?, expectedError, "should receive error")
     }
 }
 
@@ -74,10 +92,34 @@ private extension CitiesViewModelImplTests {
         ]
     }
     
-    var expectedViewSource: CitiesViewSource {
-        return CitiesViewSource(
-            title: MeasurementFormatter.celsius.string(from: 0),
-            cellProviderConvertibles: []
-        )
+    var response: CitiesResponse {
+        let cities = [
+            CitiesResponse.City(
+                id: 1,
+                name: "Name1",
+                date: Date(),
+                coordinate: .init(lat: 1, lon: 2),
+                weather: [.init(icon: "Icon1")],
+                main: .init(temp: 1)
+            ),
+            CitiesResponse.City(
+                id: 2,
+                name: "Name2",
+                date: Date(),
+                coordinate: .init(lat: 2, lon: 3),
+                weather: [.init(icon: "Icon2")],
+                main: .init(temp: 2)
+            )
+        ]
+        
+        return CitiesResponse(data: cities)
+    }
+}
+
+extension CityCell.Model: Equatable {
+    public static func == (lhs: CityCell.Model, rhs: CityCell.Model) -> Bool {
+        return lhs.title == rhs.title
+            && lhs.temperatureString == rhs.temperatureString
+            && lhs.dateTimeString == rhs.dateTimeString
     }
 }

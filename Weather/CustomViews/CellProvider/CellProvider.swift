@@ -5,5 +5,5 @@
 import UIKit
 
 protocol CellProvider {
-    func cell(for tableView: UITableView, at indexPath: IndexPath)
+    func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell
 }

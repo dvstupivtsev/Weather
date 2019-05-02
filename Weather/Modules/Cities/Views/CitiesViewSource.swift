@@ -5,6 +5,5 @@
 import Foundation
 
 struct CitiesViewSource {
-    let title: String
     let cellProviderConvertibles: [CellProviderConvertible]
 }
