@@ -19,7 +19,7 @@ final class CityCell: BaseCell {
     }
     
     private let temperatureLabel = make(object: UILabel()) {
-        $0.font = Font.regular40
+        $0.font = Font.regular30
         $0.textColor = Color.black
     }
     
@@ -78,7 +78,7 @@ extension CityCell {
         let title: String
         let dateTimeString: String
         let temperatureString: String
-        let weatherIcon: UIImage
+        let weatherIcon: UIImage?
         
         var cellProvider: CellProvider {
             return CityCellProvider(model: self)
@@ -92,6 +92,6 @@ private extension CityCell {
         let titleCenterOffset: CGFloat = 2
         let dateCenterOffset: CGFloat = 2
         let statusToTemperatureOffset: CGFloat = 4
-        let weatherImageViewSize = CGSize(width: 24, height: 24)
+        let weatherImageViewSize = CGSize(width: 25, height: 25)
     }
 }

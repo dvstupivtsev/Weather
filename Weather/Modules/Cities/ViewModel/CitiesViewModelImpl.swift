@@ -42,7 +42,7 @@ final class CitiesViewModelImpl: CitiesViewModel {
                 title: $0.name,
                 dateTimeString: dateFormatter.string(from: $0.date),
                 temperatureString: MeasurementFormatter.celsius.string(from: $0.main.temp),
-                weatherIcon: UIImage()
+                weatherIcon: ($0.weather.first?.icon).flatMap(UIImage.init(named:))
             )
         }
         
