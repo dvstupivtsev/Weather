@@ -1,5 +1,5 @@
 //
-//  Created by Dmitriy Stupivtsev on 28/04/2019.
+//  Created by Dmitriy Stupivtsev on 04/05/2019.
 //
 
 import XCTest
@@ -7,110 +7,106 @@ import XCTest
 @testable import Weather
 
 final class CitiesServiceImplTests: XCTestCase {
-    var apiService: ApiServiceMock!
-    var subject: CitiesServiceImpl!
+    private var subject: CitiesServiceImpl!
+    private var citiesWeatherService: CitiesWeatherServiceMock!
+    private var timeZoneService: TimeZoneServiceMock!
     
     override func setUp() {
         super.setUp()
         
-        apiService = ApiServiceMock()
-        subject = CitiesServiceImpl(apiService: apiService)
+        citiesWeatherService = .init()
+        timeZoneService = .init()
+        subject = CitiesServiceImpl(
+            citiesWeatherService: citiesWeatherService,
+            timeZoneService: timeZoneService
+        )
     }
     
-    func testGetWeatherWithValidJson() {
-        apiService.executeRequestReturnValue = Promise<Data?>.pending()
+    func testGetWeatherSuccess() {
+        citiesWeatherService.getWeatherForReturnValue = Promise<CitiesResponse>.pending()
+        timeZoneService.getTimeZonesFromReturnValue = Promise<[TimeZone]>.pending()
         
-        var receivedValue: CitiesResponse?
+        var receivedValue: [CitySource]?
         var receivedError: Error?
-        subject.getWeather(for: cities)
+        subject.getWeather(for: citiesIds)
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
-        XCTAssertEqual(
-            apiService.executeRequestCallsCount,
-            1,
-            "should call apiService once, got \(apiService.executeRequestCallsCount)"
-        )
+        XCTAssertEqual(citiesWeatherService.getWeatherForCallsCount, 1, "should request service")
+        XCTAssertEqual(citiesWeatherService.getWeatherForReceivedCitiesIds, citiesIds, "should receive valid cities ids")
         
-        compare(expected: request, received: apiService.executeRequestReceivedRequest)
+        let response = self.response
+        let timeZones = self.timeZones
         
-        apiService.executeRequestReturnValue.fulfill(validJson)
+        citiesWeatherService.getWeatherForReturnValue.fulfill(response)
+        timeZoneService.getTimeZonesFromReturnValue.fulfill(timeZones)
         XCTAssert(waitForPromises(timeout: 1))
-        compare(expected: expectedCitiesResponse, received: receivedValue)
+        
+        XCTAssertEqual(timeZoneService.getTimeZonesFromCallsCount, 1, "should request service")
+        XCTAssertEqual(timeZoneService.getTimeZonesFromReceivedCoordinates, response.data.map { $0.coordinate }, "should receive valid cities ids")
+        
+        let citiesSources = createCitiesSources(with: response.data, timeZones: timeZones)
+        compare(expected: citiesSources, received: receivedValue)
         XCTAssertNil(receivedError, "shouldn't receive error")
     }
     
-    func testGetWeatherWithInvalidJson() {
-        apiService.executeRequestReturnValue = Promise<Data?>.pending()
+    func testGetWeatherFailure() {
+        citiesWeatherService.getWeatherForReturnValue = Promise<CitiesResponse>.pending()
         
-        var receivedValue: CitiesResponse?
+        var receivedValue: [CitySource]?
         var receivedError: Error?
-        subject.getWeather(for: cities)
+        subject.getWeather(for: citiesIds)
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
-        XCTAssertEqual(
-            apiService.executeRequestCallsCount,
-            1,
-            "should call apiService once, got \(apiService.executeRequestCallsCount)"
-        )
+        XCTAssertEqual(citiesWeatherService.getWeatherForCallsCount, 1, "should request service")
+        XCTAssertEqual(citiesWeatherService.getWeatherForReceivedCitiesIds, citiesIds, "should receive valid cities ids")
         
-        compare(expected: request, received: apiService.executeRequestReceivedRequest)
-        
-        apiService.executeRequestReturnValue.fulfill(invalidJson)
+        let expectedError = NSError.error(message: "Test")
+        citiesWeatherService.getWeatherForReturnValue.reject(expectedError)
         XCTAssert(waitForPromises(timeout: 1))
-        XCTAssertNil(receivedValue, "shouldn't receive value")
-        XCTAssertNotNil(receivedError, "should receive error")
-    }
-    
-    func testGetWeatherWithNilData() {
-        apiService.executeRequestReturnValue = Promise<Data?>.pending()
         
-        var receivedValue: CitiesResponse?
-        var receivedError: Error?
-        subject.getWeather(for: cities)
-            .then { receivedValue = $0 }
-            .catch { receivedError = $0 }
+        XCTAssertEqual(timeZoneService.getTimeZonesFromCallsCount, 0, "should request service")
         
-        XCTAssertEqual(
-            apiService.executeRequestCallsCount,
-            1,
-            "should call apiService once, got \(apiService.executeRequestCallsCount)"
-        )
-        
-        compare(expected: request, received: apiService.executeRequestReceivedRequest)
-        
-        apiService.executeRequestReturnValue.fulfill(nil)
-        XCTAssert(waitForPromises(timeout: 1))
-        XCTAssertNil(receivedValue, "shouldn't receive value")
-        compare(expected: NSError.common, received: receivedError as NSError?)
+        XCTAssertNil(receivedValue, "shouldn't receive sources")
+        compare(expected: receivedError as NSError?, received: expectedError)
     }
 }
 
 private extension CitiesServiceImplTests {
-    var expectedCitiesResponse: CitiesResponse {
-        return CitiesResponse(data: [])
+    var citiesIds: [String] {
+        return ["123", "456"]
     }
     
-    var validJson: Data {
-        return try! JSONEncoder().encode(expectedCitiesResponse)
+    var response: CitiesResponse {
+        let cities = [
+            CitiesResponse.City(
+                id: 1,
+                name: "Name1",
+                date: Date(),
+                coordinate: .init(lat: 1, lon: 2),
+                weather: [.init(icon: "Icon1")],
+                main: .init(temp: 1)
+            ),
+            CitiesResponse.City(
+                id: 2,
+                name: "Name2",
+                date: Date(),
+                coordinate: .init(lat: 2, lon: 3),
+                weather: [.init(icon: "Icon2")],
+                main: .init(temp: 2)
+            )
+        ]
+        
+        return CitiesResponse(data: cities)
     }
     
-    var invalidJson: Data {
-        return Data()
+    var timeZones: [TimeZone] {
+        return [.current, TimeZone(secondsFromGMT: 123)!]
     }
     
-    var cities: [String] {
-        return ["123", "42134", "asdfasd"]
-    }
-    
-    var request: ApiServiceRequest {
-        return ApiServiceRequest(
-            name: "group",
-            parameters: [
-                "id": cities.joined(separator: ","),
-                "units": "metric"
-            ]
-        )
+    func createCitiesSources(with cities: [CitiesResponse.City], timeZones: [TimeZone]) -> [CitySource] {
+        return zip(cities, timeZones)
+            .map(CitySource.init(city:timeZone:))
     }
 }

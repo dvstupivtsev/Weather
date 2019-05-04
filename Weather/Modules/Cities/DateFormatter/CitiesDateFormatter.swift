@@ -6,5 +6,5 @@ import Foundation
 
 // sourcery: AutoMockable
 protocol CitiesDateFormatter {
-    func string(from date: Date) -> String
+    func string(from date: Date, timeZone: TimeZone) -> String
 }

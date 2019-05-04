@@ -5,14 +5,18 @@
 import Foundation
 
 final class CitiesDateFormatterImpl: CitiesDateFormatter {
-    func string(from date: Date) -> String {
-        let dateString: String
-        
+    func string(from date: Date, timeZone: TimeZone) -> String {
+        let formatter: DateFormatter
         if date.isToday {
-            dateString = DateFormatter.hhmma.string(from: date)
+            formatter = DateFormatter.hhmma
         } else {
-            dateString = DateFormatter.yyyymmddhhmma.string(from: date)
+            formatter = DateFormatter.yyyymmddhhmma
         }
+        
+        let oldTimeZone = formatter.timeZone
+        formatter.timeZone = timeZone
+        let dateString = formatter.string(from: date)
+        formatter.timeZone = oldTimeZone
         
         return dateString
     }

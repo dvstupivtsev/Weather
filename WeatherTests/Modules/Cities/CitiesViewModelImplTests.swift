@@ -16,7 +16,7 @@ final class CitiesViewModelImplTests: XCTestCase {
         
         citiesService = .init()
         dateFormatter = .init()
-        dateFormatter.stringFromReturnValue = "StringFromDateTest"
+        dateFormatter.stringFromTimeZoneReturnValue = "StringFromDateTest"
         subject = CitiesViewModelImpl(
             citiesService: citiesService,
             dateFormatter: dateFormatter
@@ -24,7 +24,7 @@ final class CitiesViewModelImplTests: XCTestCase {
     }
     
     func testGetDataSuccess() {
-        citiesService.getWeatherForReturnValue = Promise<CitiesResponse>.pending()
+        citiesService.getWeatherForReturnValue = Promise<[CitySource]>.pending()
         
         var receivedValue: CitiesViewSource?
         var receivedError: Error?
@@ -35,29 +35,27 @@ final class CitiesViewModelImplTests: XCTestCase {
         XCTAssertEqual(citiesService.getWeatherForCallsCount, 1, "should request service")
         XCTAssertEqual(citiesService.getWeatherForReceivedCitiesIds, citiesIds, "should receive valid cities ids")
         
-        citiesService.getWeatherForReturnValue.fulfill(response)
+        let citiesSources = self.citiesSources
+        citiesService.getWeatherForReturnValue.fulfill(citiesSources)
         XCTAssert(waitForPromises(timeout: 1))
         
-        let expectedViewSource = response.data.map {
+        let expectedViewSource = citiesSources.map {
             return CityCell.Model(
-                title: $0.name,
-                dateTimeString: dateFormatter.stringFromReturnValue,
-                temperatureString: MeasurementFormatter.celsius.string(from: $0.main.temp),
+                title: $0.city.name,
+                dateTimeString: dateFormatter.stringFromTimeZoneReturnValue,
+                temperatureString: MeasurementFormatter.celsius.string(from: $0.city.main.temp),
                 weatherIcon: UIImage()
             )
         }
         
         let receivedCellsModels = receivedValue?.cellProviderConvertibles as? [CityCell.Model] ?? []
-        XCTAssertEqual(
-            receivedCellsModels,
-            expectedViewSource,
-            "expect source to be equal to \(expectedViewSource), got \(receivedCellsModels)"
-        )
+        XCTAssertEqual(dateFormatter.stringFromTimeZoneCallsCount, 2)
+        compare(expected: expectedViewSource, received: receivedCellsModels)
         XCTAssertNil(receivedError, "shouldn't receive error")
     }
     
     func testGetDataFailure() {
-        citiesService.getWeatherForReturnValue = Promise<CitiesResponse>.pending()
+        citiesService.getWeatherForReturnValue = Promise<[CitySource]>.pending()
         
         var receivedValue: CitiesViewSource?
         var receivedError: Error?
@@ -92,7 +90,7 @@ private extension CitiesViewModelImplTests {
         ]
     }
     
-    var response: CitiesResponse {
+    var citiesSources: [CitySource] {
         let cities = [
             CitiesResponse.City(
                 id: 1,
@@ -112,7 +110,10 @@ private extension CitiesViewModelImplTests {
             )
         ]
         
-        return CitiesResponse(data: cities)
+        let timeZones = [TimeZone.current, TimeZone(secondsFromGMT: 123)!]
+        
+        return zip(cities, timeZones)
+            .map(CitySource.init(city:timeZone:))
     }
 }
 

@@ -6,10 +6,12 @@ import UIKit
 import SnapKit
 
 final class CitiesView: BaseView {
+    private let backgroundView = GradientView(colors: [Color.bg1, Color.bg2, Color.bg3, Color.bg4, Color.bg5])
     private let tableView = make(object: UITableView()) {
-        $0.backgroundColor = .white
         $0.tableFooterView = UIView()
         $0.separatorStyle = .none
+        
+        $0.backgroundColor = .clear
     }
     
     override func commonInit() {
@@ -20,10 +22,14 @@ final class CitiesView: BaseView {
     }
     
     private func setupSubviews() {
-        addSubview(tableView)
+        addSubviews(backgroundView, tableView)
     }
     
     private func setupConstraints() {
+        backgroundView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+        
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }

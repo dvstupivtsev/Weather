@@ -16,10 +16,10 @@ class CitiesDateFormatterImplTests: XCTestCase {
     
     func testStringFromDate() {
         let date = Date()
-        expect(actual: date, isToday: true)
+        expect(actual: date, timeZone: TimeZone(secondsFromGMT: 24352)!, isToday: true)
         
         let startOfDay = Calendar.current.startOfDay(for: date)
-        expect(actual: startOfDay, isToday: true)
+        expect(actual: startOfDay, timeZone: TimeZone(secondsFromGMT: 1234)!, isToday: true)
         
         let endOfDay: Date = {
             var components = DateComponents()
@@ -27,27 +27,28 @@ class CitiesDateFormatterImplTests: XCTestCase {
             components.second = -1
             return Calendar.current.date(byAdding: components, to: startOfDay)!
         }()
-        expect(actual: endOfDay, isToday: true)
+        expect(actual: endOfDay, timeZone: TimeZone(secondsFromGMT: 6543)!, isToday: true)
         
         let startOfDayMinusSecond: Date = {
             var components = DateComponents()
             components.second = -1
             return Calendar.current.date(byAdding: components, to: startOfDay)!
         }()
-        expect(actual: startOfDayMinusSecond, isToday: false)
+        expect(actual: startOfDayMinusSecond, timeZone: TimeZone(secondsFromGMT: 456)!, isToday: false)
         
         let endOfDayPlusSecond: Date = {
             var components = DateComponents()
             components.second = 1
             return Calendar.current.date(byAdding: components, to: endOfDay)!
         }()
-        expect(actual: endOfDayPlusSecond, isToday: false)
+        expect(actual: endOfDayPlusSecond, timeZone: TimeZone(secondsFromGMT: 346)!, isToday: false)
     }
     
-    private func expect(actual: Date, isToday: Bool) {
+    private func expect(actual: Date, timeZone: TimeZone, isToday: Bool) {
         let formatter = isToday ? DateFormatter.hhmma : .yyyymmddhhmma
+        formatter.timeZone = timeZone
         let formattedExpectedDate = formatter.string(from: actual)
-        let formattedActualDate = subject.string(from: actual)
+        let formattedActualDate = subject.string(from: actual, timeZone: timeZone)
         XCTAssertEqual(
             formattedActualDate,
             formattedExpectedDate,

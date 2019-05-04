@@ -5,7 +5,7 @@
 import Foundation
 import Promises
 
-final class CitiesServiceImpl: CitiesService {
+final class CitiesWeatherServiceImpl: CitiesWeatherService {
     private let apiService: ApiService
     
     init(apiService: ApiService) {
@@ -40,7 +40,7 @@ final class CitiesServiceImpl: CitiesService {
     }
 }
 
-private extension CitiesServiceImpl {
+private extension CitiesWeatherServiceImpl {
     struct Constants {
         static let idKey = "id"
         static let unitsKey = "units"

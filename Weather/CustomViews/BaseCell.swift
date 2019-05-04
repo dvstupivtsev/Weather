@@ -18,5 +18,7 @@ class BaseCell: UITableViewCell {
         commonInit()
     }
     
-    func commonInit() { }
+    func commonInit() {
+        backgroundColor = .clear
+    }
 }

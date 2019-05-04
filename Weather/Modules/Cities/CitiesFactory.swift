@@ -8,16 +8,15 @@ final class CitiesFactory {
     func create() -> UIViewController {
         let urlSessionAdapter = UrlSessionAdapter(session: URLSession.shared)
         let apiService = ApiServiceImpl(urlService: urlSessionAdapter)
-        let citiesService = CitiesServiceImpl(apiService: apiService)
+        let citiesWeatherService = CitiesWeatherServiceImpl(apiService: apiService)
         let vm = CitiesViewModelImpl(
-            citiesService: citiesService,
+            citiesService: CitiesServiceImpl(
+                citiesWeatherService: citiesWeatherService,
+                timeZoneService: TimeZoneServiceImpl()
+            ),
             dateFormatter: CitiesDateFormatterImpl()
         )
         
         return CitiesViewController(viewModel: vm)
-    }
-    
-    func createWithNavigation() -> UIViewController {
-        return UINavigationController(rootViewController: create())
     }
 }

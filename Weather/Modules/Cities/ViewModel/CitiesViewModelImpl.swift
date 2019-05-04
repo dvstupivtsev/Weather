@@ -32,17 +32,16 @@ final class CitiesViewModelImpl: CitiesViewModel {
         ]
         
         return citiesService.getWeather(for: citiesIds)
-            .then(handleGetWeather(response:))
+            .then(handleCitiesSources(_:))
     }
     
-    private func handleGetWeather(response: CitiesResponse) -> CitiesViewSource {
-        // TODO: Timezone
-        let providers = response.data.map {
+    private func handleCitiesSources(_ sources: [CitySource]) -> CitiesViewSource {
+        let providers = sources.map {
             return CityCell.Model(
-                title: $0.name,
-                dateTimeString: dateFormatter.string(from: $0.date),
-                temperatureString: MeasurementFormatter.celsius.string(from: $0.main.temp),
-                weatherIcon: ($0.weather.first?.icon).flatMap(UIImage.init(named:))
+                title: $0.city.name,
+                dateTimeString: dateFormatter.string(from: $0.city.date, timeZone: $0.timeZone),
+                temperatureString: MeasurementFormatter.celsius.string(from: $0.city.main.temp),
+                weatherIcon: ($0.city.weather.first?.icon).flatMap(UIImage.init(named:))
             )
         }
         

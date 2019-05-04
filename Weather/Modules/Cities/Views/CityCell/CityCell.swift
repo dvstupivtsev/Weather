@@ -10,20 +10,22 @@ final class CityCell: BaseCell {
     
     private let titleLabel = make(object: UILabel()) {
         $0.font = Font.regular17
-        $0.textColor = Color.black
+        $0.textColor = Color.white
     }
     
     private let dateLabel = make(object: UILabel()) {
         $0.font = Font.regular15
-        $0.textColor = Color.black50
+        $0.textColor = Color.white70
     }
     
     private let temperatureLabel = make(object: UILabel()) {
         $0.font = Font.regular30
-        $0.textColor = Color.black
+        $0.textColor = Color.white
     }
     
-    private let weatherImageView = UIImageView()
+    private let weatherImageView = make(object: UIImageView()) {
+        $0.tintColor = Color.white
+    }
     
     override func commonInit() {
         super.commonInit()
@@ -43,6 +45,7 @@ final class CityCell: BaseCell {
     
     private func setupConstraints() {
         titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(appearance.margins)
             make.leading.equalTo(appearance.margins.left)
             make.bottom.equalTo(contentView.snp.centerY).offset(-appearance.titleCenterOffset)
         }
@@ -50,11 +53,11 @@ final class CityCell: BaseCell {
         dateLabel.snp.makeConstraints { make in
             make.leading.equalTo(appearance.margins.left)
             make.top.equalTo(contentView.snp.centerY).offset(appearance.dateCenterOffset)
+            make.bottom.equalTo(appearance.margins)
         }
         
         temperatureLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(weatherImageView.snp.leading)
-            make.top.equalTo(appearance.margins)
+            make.trailing.equalTo(weatherImageView.snp.leading).offset(-appearance.iconHorizontalSpacing)
             make.centerY.equalToSuperview()
         }
         
@@ -71,7 +74,7 @@ extension CityCell {
         titleLabel.text = model.title
         dateLabel.text = model.dateTimeString
         temperatureLabel.text = model.temperatureString
-        weatherImageView.image = model.weatherIcon
+        weatherImageView.image = model.weatherIcon?.withRenderingMode(.alwaysTemplate)
     }
     
     struct Model: CellProviderConvertible {
@@ -92,6 +95,7 @@ private extension CityCell {
         let titleCenterOffset: CGFloat = 2
         let dateCenterOffset: CGFloat = 2
         let statusToTemperatureOffset: CGFloat = 4
-        let weatherImageViewSize = CGSize(width: 25, height: 25)
+        let weatherImageViewSize = CGSize(width: 24, height: 24)
+        let iconHorizontalSpacing: CGFloat = 4
     }
 }
