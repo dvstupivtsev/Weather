@@ -27,7 +27,7 @@ final class CitiesViewController: BaseViewController<CitiesView>, UITableViewDel
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        customView.register(cellTypes: [CityCell.self])
+        customView.register(cellTypes: [CityCell.self, CitiesHeaderCell.self])
         customView.setupTableDelegate(self)
         
         viewModel.getData()

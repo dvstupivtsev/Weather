@@ -36,7 +36,7 @@ final class CitiesViewModelImpl: CitiesViewModel {
     }
     
     private func handleCitiesSources(_ sources: [CitySource]) -> CitiesViewSource {
-        let providers = sources.map {
+        var providers: [CellProviderConvertible] = sources.map {
             return CityCell.Model(
                 title: $0.city.name,
                 dateTimeString: dateFormatter.string(from: $0.city.date, timeZone: $0.timeZone),
@@ -44,6 +44,11 @@ final class CitiesViewModelImpl: CitiesViewModel {
                 weatherIcon: ($0.city.weather.first?.icon).flatMap(UIImage.init(named:))
             )
         }
+        
+        providers.insert(
+            CitiesHeaderCell.Model(title: L10n.Cities.title, onAddAction: { }),
+            at: 0
+        )
         
         return CitiesViewSource(cellProviderConvertibles: providers)
     }

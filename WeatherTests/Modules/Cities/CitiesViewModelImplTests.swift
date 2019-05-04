@@ -39,7 +39,8 @@ final class CitiesViewModelImplTests: XCTestCase {
         citiesService.getWeatherForReturnValue.fulfill(citiesSources)
         XCTAssert(waitForPromises(timeout: 1))
         
-        let expectedViewSource = citiesSources.map {
+        let expectedHeaderCellModel = CitiesHeaderCell.Model(title: "Fave cities", onAddAction: { })
+        let expectedCityCellModelsSource = citiesSources.map {
             return CityCell.Model(
                 title: $0.city.name,
                 dateTimeString: dateFormatter.stringFromTimeZoneReturnValue,
@@ -48,9 +49,12 @@ final class CitiesViewModelImplTests: XCTestCase {
             )
         }
         
-        let receivedCellsModels = receivedValue?.cellProviderConvertibles as? [CityCell.Model] ?? []
+        let receivedCellsModels = receivedValue?.cellProviderConvertibles
+        let headerCellModel = receivedCellsModels?.first as? CitiesHeaderCell.Model
+        let citiesCellModels = Array(receivedCellsModels![1..<receivedCellsModels!.count]) as? [CityCell.Model] ?? []
         XCTAssertEqual(dateFormatter.stringFromTimeZoneCallsCount, 2)
-        compare(expected: expectedViewSource, received: receivedCellsModels)
+        compare(expected: expectedHeaderCellModel, received: headerCellModel)
+        compare(expected: expectedCityCellModelsSource, received: citiesCellModels)
         XCTAssertNil(receivedError, "shouldn't receive error")
     }
     
@@ -122,5 +126,11 @@ extension CityCell.Model: Equatable {
         return lhs.title == rhs.title
             && lhs.temperatureString == rhs.temperatureString
             && lhs.dateTimeString == rhs.dateTimeString
+    }
+}
+
+extension CitiesHeaderCell.Model: Equatable {
+    public static func == (lhs: CitiesHeaderCell.Model, rhs: CitiesHeaderCell.Model) -> Bool {
+        return lhs.title == rhs.title
     }
 }

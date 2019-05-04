@@ -56,6 +56,11 @@
 		5EA0A490227CE7D000558BE3 /* CitiesServiceImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0A48F227CE7D000558BE3 /* CitiesServiceImplTests.swift */; };
 		5EA0A493227CE86F00558BE3 /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0A492227CE86F00558BE3 /* Coordinate.swift */; };
 		5EA0A494227D753A00558BE3 /* CitiesViewModelImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E97B89C2274774D00DB39EE /* CitiesViewModelImplTests.swift */; };
+		5EA0A497227DF59A00558BE3 /* CitiesHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0A496227DF59A00558BE3 /* CitiesHeaderCell.swift */; };
+		5EA0A499227DF7CF00558BE3 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0A498227DF7CF00558BE3 /* Aliases.swift */; };
+		5EA0A49B227DF96A00558BE3 /* CGSize+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0A49A227DF96A00558BE3 /* CGSize+Extension.swift */; };
+		5EA0A49D227DFA0200558BE3 /* CGSize_ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0A49C227DFA0200558BE3 /* CGSize_ExtensionTests.swift */; };
+		5EA0A49F227DFD0900558BE3 /* CitiesHeaderCellProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0A49E227DFD0900558BE3 /* CitiesHeaderCellProvider.swift */; };
 		5EB5DA3D22732F5D0016A1CB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB5DA3C22732F5D0016A1CB /* AppDelegate.swift */; };
 		5EB5DA3F22732F5D0016A1CB /* CitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB5DA3E22732F5D0016A1CB /* CitiesViewController.swift */; };
 		5EB5DA4422732F5E0016A1CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5EB5DA4322732F5E0016A1CB /* Assets.xcassets */; };
@@ -144,6 +149,11 @@
 		5EA0A48D227CE5C600558BE3 /* CitiesServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesServiceImpl.swift; sourceTree = "<group>"; };
 		5EA0A48F227CE7D000558BE3 /* CitiesServiceImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesServiceImplTests.swift; sourceTree = "<group>"; };
 		5EA0A492227CE86F00558BE3 /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
+		5EA0A496227DF59A00558BE3 /* CitiesHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesHeaderCell.swift; sourceTree = "<group>"; };
+		5EA0A498227DF7CF00558BE3 /* Aliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aliases.swift; sourceTree = "<group>"; };
+		5EA0A49A227DF96A00558BE3 /* CGSize+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGSize+Extension.swift"; sourceTree = "<group>"; };
+		5EA0A49C227DFA0200558BE3 /* CGSize_ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CGSize_ExtensionTests.swift; sourceTree = "<group>"; };
+		5EA0A49E227DFD0900558BE3 /* CitiesHeaderCellProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesHeaderCellProvider.swift; sourceTree = "<group>"; };
 		5EB5DA3922732F5D0016A1CB /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5EB5DA3C22732F5D0016A1CB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5EB5DA3E22732F5D0016A1CB /* CitiesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesViewController.swift; sourceTree = "<group>"; };
@@ -264,6 +274,7 @@
 		5E97B8A72274BA6400DB39EE /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5EA0A495227DF57600558BE3 /* CitiesHeaderCell */,
 				5E396514227AE62A005F0859 /* CityCell */,
 				5E97B8A82274BAA000DB39EE /* CitiesView.swift */,
 				5E97B8B122757E7300DB39EE /* CitiesViewSource.swift */,
@@ -350,6 +361,15 @@
 			path = SharedModels;
 			sourceTree = "<group>";
 		};
+		5EA0A495227DF57600558BE3 /* CitiesHeaderCell */ = {
+			isa = PBXGroup;
+			children = (
+				5EA0A496227DF59A00558BE3 /* CitiesHeaderCell.swift */,
+				5EA0A49E227DFD0900558BE3 /* CitiesHeaderCellProvider.swift */,
+			);
+			path = CitiesHeaderCell;
+			sourceTree = "<group>";
+		};
 		5EB5DA3022732F5D0016A1CB = {
 			isa = PBXGroup;
 			children = (
@@ -430,6 +450,7 @@
 				5E39652B227B4796005F0859 /* DateFormatter+Extension.swift */,
 				5E396533227B50E0005F0859 /* Date+Extension.swift */,
 				5EA0A483227CDCE900558BE3 /* UIColor+Extension.swift */,
+				5EA0A49A227DF96A00558BE3 /* CGSize+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -512,6 +533,7 @@
 				5EB5DA57227348D60016A1CB /* Extensions */,
 				5E39651F227AEFFC005F0859 /* Styles */,
 				5E97B8AA2274BB0800DB39EE /* Functions.swift */,
+				5EA0A498227DF7CF00558BE3 /* Aliases.swift */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -561,6 +583,7 @@
 				5E97B8BC22758DAB00DB39EE /* Array_FloatingPointTests.swift */,
 				5EA0A46C227B72D000558BE3 /* Date_ExtensionTests.swift */,
 				5EA0A46F227B749000558BE3 /* UIEdgeInsets_ExtensionTests.swift */,
+				5EA0A49C227DFA0200558BE3 /* CGSize_ExtensionTests.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -760,6 +783,8 @@
 				5E396521227AF01D005F0859 /* UIEdgeInsets+Extension.swift in Sources */,
 				5EB5DA79227386CD0016A1CB /* CitiesResponse+Main.swift in Sources */,
 				5E396516227AE642005F0859 /* CityCell.swift in Sources */,
+				5EA0A49F227DFD0900558BE3 /* CitiesHeaderCellProvider.swift in Sources */,
+				5EA0A49B227DF96A00558BE3 /* CGSize+Extension.swift in Sources */,
 				5E3964FD2275DD88005F0859 /* TestingAppDelegate.swift in Sources */,
 				5E97B8B8227589FA00DB39EE /* Array+FloatingPoint.swift in Sources */,
 				5EB5DA6922734DB90016A1CB /* CitiesViewModel.swift in Sources */,
@@ -768,6 +793,7 @@
 				5EB5DA5C227349160016A1CB /* UrlService.swift in Sources */,
 				5EB5DA752273868C0016A1CB /* CitiesResponse.swift in Sources */,
 				5E39651B227AEC6A005F0859 /* Font.swift in Sources */,
+				5EA0A499227DF7CF00558BE3 /* Aliases.swift in Sources */,
 				5E97B8A62274BA4400DB39EE /* BaseViewController.swift in Sources */,
 				5E97B8CE2275D84300DB39EE /* Localizable.swift in Sources */,
 				5E97B8C52275CE9800DB39EE /* ReloadView.swift in Sources */,
@@ -786,6 +812,7 @@
 				5EB5DA6222734AB70016A1CB /* CitiesWeatherService.swift in Sources */,
 				5EA0A48A227CE52100558BE3 /* CityService.swift in Sources */,
 				5E396526227AF55A005F0859 /* CityCellProvider.swift in Sources */,
+				5EA0A497227DF59A00558BE3 /* CitiesHeaderCell.swift in Sources */,
 				5E396528227AF5B5005F0859 /* UITableView+Reuse.swift in Sources */,
 				5EB5DA3D22732F5D0016A1CB /* AppDelegate.swift in Sources */,
 				5E39652A227AF6C6005F0859 /* UITableViewCell+Reuse.swift in Sources */,
@@ -823,6 +850,7 @@
 				5EB5DAA422742A090016A1CB /* AutoMockable.generated.swift in Sources */,
 				5E97B8BA22758A7F00DB39EE /* MeasurementFormatter_ExtensionTests.swift in Sources */,
 				5EA0A479227B832800558BE3 /* CitiesDateFormatterImplTests.swift in Sources */,
+				5EA0A49D227DFA0200558BE3 /* CGSize_ExtensionTests.swift in Sources */,
 				5EA0A470227B749000558BE3 /* UIEdgeInsets_ExtensionTests.swift in Sources */,
 				5E97B8BD22758DAB00DB39EE /* Array_FloatingPointTests.swift in Sources */,
 				5E97B8992274772800DB39EE /* ApiServiceImplTests.swift in Sources */,

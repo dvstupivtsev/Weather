@@ -95,7 +95,7 @@ private extension CityCell {
         let titleCenterOffset: CGFloat = 2
         let dateCenterOffset: CGFloat = 2
         let statusToTemperatureOffset: CGFloat = 4
-        let weatherImageViewSize = CGSize(width: 24, height: 24)
+        let weatherImageViewSize = CGSize(edge: 24)
         let iconHorizontalSpacing: CGFloat = 4
     }
 }
