@@ -11,10 +11,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions options: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        window?.rootViewController = CitiesFactory().create()
-        window?.makeKeyAndVisible()
-        
+        window.map(WindowRouter().setRoot(window:))
         return true
     }
 }
-

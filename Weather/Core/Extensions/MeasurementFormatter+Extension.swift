@@ -17,9 +17,9 @@ extension MeasurementFormatter {
         $0.unitOptions = [.naturalScale, .temperatureWithoutUnit]
     }
     
-    func string(from double: Double) -> String {
+    func string(from doubleCelsius: Double) -> String {
         return string(
-            from: Measurement(value: double, unit: UnitTemperature.celsius)
+            from: Measurement(value: doubleCelsius, unit: UnitTemperature.celsius)
         )
     }
 }

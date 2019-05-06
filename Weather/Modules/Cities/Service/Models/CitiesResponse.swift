@@ -4,7 +4,9 @@
 
 import Foundation
 
+// TODO: - Rename
 struct CitiesResponse: Equatable {
+    // TODO: - Rename
     let data: [City]
 }
 

@@ -5,6 +5,7 @@
 import Foundation
 
 extension CitiesResponse {
+    // TODO: rename
     struct City: Equatable {
         let id: Int
         let name: String
