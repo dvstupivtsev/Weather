@@ -28,7 +28,7 @@ final class CitiesServiceImplTests: XCTestCase {
         
         var receivedValue: [CitySource]?
         var receivedError: Error?
-        subject.getWeather(for: citiesIds)
+        subject.getCitiesWeather(for: citiesIds)
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
@@ -43,9 +43,9 @@ final class CitiesServiceImplTests: XCTestCase {
         XCTAssert(waitForPromises(timeout: 1))
         
         XCTAssertEqual(timeZoneService.getTimeZonesFromCallsCount, 1, "should request service")
-        XCTAssertEqual(timeZoneService.getTimeZonesFromReceivedCoordinates, response.data.map { $0.coordinate }, "should receive valid cities ids")
+        XCTAssertEqual(timeZoneService.getTimeZonesFromReceivedCoordinates, response.cities.map { $0.coordinate }, "should receive valid cities ids")
         
-        let citiesSources = createCitiesSources(with: response.data, timeZones: timeZones)
+        let citiesSources = createCitiesSources(with: response.cities, timeZones: timeZones)
         compare(expected: citiesSources, received: receivedValue)
         XCTAssertNil(receivedError, "shouldn't receive error")
     }
@@ -55,7 +55,7 @@ final class CitiesServiceImplTests: XCTestCase {
         
         var receivedValue: [CitySource]?
         var receivedError: Error?
-        subject.getWeather(for: citiesIds)
+        subject.getCitiesWeather(for: citiesIds)
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
@@ -98,7 +98,7 @@ private extension CitiesServiceImplTests {
             )
         ]
         
-        return CitiesResponse(data: cities)
+        return CitiesResponse(cities: cities)
     }
     
     var timeZones: [TimeZone] {

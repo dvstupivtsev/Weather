@@ -7,5 +7,5 @@ import Promises
 
 // sourcery: AutoMockable
 protocol CitiesService {
-    func getWeather(for citiesIds: [String]) -> Promise<[CitySource]>
+    func getCitiesWeather(for citiesIds: [String]) -> Promise<[CitySource]>
 }

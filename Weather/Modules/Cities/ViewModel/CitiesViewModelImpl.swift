@@ -31,7 +31,7 @@ final class CitiesViewModelImpl: CitiesViewModel {
             "1819729",
         ]
         
-        return citiesService.getWeather(for: citiesIds)
+        return citiesService.getCitiesWeather(for: citiesIds)
             .then(handleCitiesSources(_:))
     }
     

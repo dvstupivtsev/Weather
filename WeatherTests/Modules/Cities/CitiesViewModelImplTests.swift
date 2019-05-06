@@ -24,7 +24,7 @@ final class CitiesViewModelImplTests: XCTestCase {
     }
     
     func testGetDataSuccess() {
-        citiesService.getWeatherForReturnValue = Promise<[CitySource]>.pending()
+        citiesService.getCitiesWeatherForReturnValue = Promise<[CitySource]>.pending()
         
         var receivedValue: CitiesViewSource?
         var receivedError: Error?
@@ -32,11 +32,11 @@ final class CitiesViewModelImplTests: XCTestCase {
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
-        XCTAssertEqual(citiesService.getWeatherForCallsCount, 1, "should request service")
-        XCTAssertEqual(citiesService.getWeatherForReceivedCitiesIds, citiesIds, "should receive valid cities ids")
+        XCTAssertEqual(citiesService.getCitiesWeatherForCallsCount, 1, "should request service")
+        XCTAssertEqual(citiesService.getCitiesWeatherForReceivedCitiesIds, citiesIds, "should receive valid cities ids")
         
         let citiesSources = self.citiesSources
-        citiesService.getWeatherForReturnValue.fulfill(citiesSources)
+        citiesService.getCitiesWeatherForReturnValue.fulfill(citiesSources)
         XCTAssert(waitForPromises(timeout: 1))
         
         let expectedHeaderCellModel = CitiesHeaderCell.Model(title: "Fave cities", onAddAction: { })
@@ -59,7 +59,7 @@ final class CitiesViewModelImplTests: XCTestCase {
     }
     
     func testGetDataFailure() {
-        citiesService.getWeatherForReturnValue = Promise<[CitySource]>.pending()
+        citiesService.getCitiesWeatherForReturnValue = Promise<[CitySource]>.pending()
         
         var receivedValue: CitiesViewSource?
         var receivedError: Error?
@@ -67,11 +67,11 @@ final class CitiesViewModelImplTests: XCTestCase {
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
-        XCTAssertEqual(citiesService.getWeatherForCallsCount, 1, "should request service")
-        XCTAssertEqual(citiesService.getWeatherForReceivedCitiesIds, citiesIds, "should receive valid cities ids")
+        XCTAssertEqual(citiesService.getCitiesWeatherForCallsCount, 1, "should request service")
+        XCTAssertEqual(citiesService.getCitiesWeatherForReceivedCitiesIds, citiesIds, "should receive valid cities ids")
         
         let expectedError = NSError.error(message: "Test")
-        citiesService.getWeatherForReturnValue.reject(expectedError)
+        citiesService.getCitiesWeatherForReturnValue.reject(expectedError)
         XCTAssert(waitForPromises(timeout: 1))
         XCTAssertNil(receivedValue, "shouldn't receive data")
         XCTAssertEqual(receivedError as NSError?, expectedError, "should receive error")

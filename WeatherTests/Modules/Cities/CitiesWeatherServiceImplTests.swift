@@ -89,7 +89,7 @@ final class CitiesWeatherServiceImplTests: XCTestCase {
 
 private extension CitiesWeatherServiceImplTests {
     var expectedCitiesResponse: CitiesResponse {
-        return CitiesResponse(data: [])
+        return CitiesResponse(cities: [])
     }
     
     var validJson: Data {

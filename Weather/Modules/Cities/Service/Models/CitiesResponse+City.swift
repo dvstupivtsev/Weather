@@ -4,6 +4,7 @@
 
 import Foundation
 
+// TODO: rename
 extension CitiesResponse {
     // TODO: rename
     struct City: Equatable {

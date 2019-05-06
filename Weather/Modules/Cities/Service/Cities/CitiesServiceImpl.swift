@@ -14,15 +14,14 @@ final class CitiesServiceImpl: CitiesService {
         self.timeZoneService = timeZoneService
     }
     
-    // TODO: rename
-    func getWeather(for citiesIds: [String]) -> Promise<[CitySource]> {
+    func getCitiesWeather(for citiesIds: [String]) -> Promise<[CitySource]> {
         return citiesWeatherService.getWeather(for: citiesIds)
             .then(getAndMergeTimeZones(response:))
     }
     
     private func getAndMergeTimeZones(response: CitiesResponse) -> Promise<[CitySource]> {
-        let coordinates = response.data.map { $0.coordinate }
+        let coordinates = response.cities.map { $0.coordinate }
         return timeZoneService.getTimeZones(from: coordinates)
-            .then { zip(response.data, $0).map(CitySource.init(city:timeZone:)) }
+            .then { zip(response.cities, $0).map(CitySource.init(city:timeZone:)) }
     }
 }

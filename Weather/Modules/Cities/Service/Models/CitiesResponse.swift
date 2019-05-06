@@ -7,11 +7,11 @@ import Foundation
 // TODO: - Rename
 struct CitiesResponse: Equatable {
     // TODO: - Rename
-    let data: [City]
+    let cities: [City]
 }
 
 extension CitiesResponse: Codable {
     private enum CodingKeys: String, CodingKey {
-        case data = "list"
+        case cities = "list"
     }
 }
