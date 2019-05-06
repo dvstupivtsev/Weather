@@ -5,12 +5,14 @@ PODS:
   - SnapKit (4.2.0)
   - Sourcery (0.15.0)
   - SwiftGen (6.1.0)
+  - Weakify (0.5.0)
 
 DEPENDENCIES:
   - PromisesSwift
   - SnapKit
   - Sourcery
   - SwiftGen
+  - Weakify
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -19,6 +21,7 @@ SPEC REPOS:
     - SnapKit
     - Sourcery
     - SwiftGen
+    - Weakify
 
 SPEC CHECKSUMS:
   PromisesObjC: 60326422b6d692b9718a80666e67a9433862aa88
@@ -26,7 +29,8 @@ SPEC CHECKSUMS:
   SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
   Sourcery: 5895672cae353cdbfa95f3f4aaeb75a664d76f6a
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
+  Weakify: c428a0eabdfadce7e367cea87533dbffbd048b09
 
-PODFILE CHECKSUM: 627c357e705165b9314db68f4cb6bcc70fc7cb89
+PODFILE CHECKSUM: 0a8e884443d0a97bce235e498a177dbf71bc1394
 
 COCOAPODS: 1.6.1

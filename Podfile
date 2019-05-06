@@ -6,6 +6,7 @@ inhibit_all_warnings!
 target 'Weather' do
     pod 'PromisesSwift'
     pod 'SnapKit'
+    pod 'Weakify'
 
     # Generating
     pod 'Sourcery'
