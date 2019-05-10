@@ -5,8 +5,14 @@
 import UIKit
 
 final class WindowRouter {
+    private let controllerFactory: ControllerFactory
+    
+    init(controllerFactory: ControllerFactory) {
+        self.controllerFactory = controllerFactory
+    }
+    
     func setRoot(window: UIWindow) {
-        window.rootViewController = PagesViewController(controllers: [CitiesFactory().create()])
+        window.rootViewController = controllerFactory.create()
         window.makeKeyAndVisible()
     }
 }

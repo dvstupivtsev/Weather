@@ -5,7 +5,7 @@
 import UIKit
 import SnapKit
 
-final class PagesView: BaseView {
+final class PageView: BaseView {
     private let appearance = Appearance()
     
     private let pageControl = UIPageControl()
@@ -35,15 +35,23 @@ final class PagesView: BaseView {
         pageControl.currentPage = index
     }
     
-    func addPagesView(_ view: UIView) {
+    func addPageView(_ view: UIView) {
         insertFirst(subview: view)
         view.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
     }
+    
+    func showPagesIndicator() {
+        pageControl.isHidden = false
+    }
+    
+    func hidePagesIndicator() {
+        pageControl.isHidden = true
+    }
 }
 
-private extension PagesView {
+private extension PageView {
     struct Appearance {
         let pageControlMargins = UIEdgeInsets(all: 8)
     }

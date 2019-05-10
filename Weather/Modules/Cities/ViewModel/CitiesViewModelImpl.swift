@@ -4,17 +4,27 @@
 
 import Foundation
 import Promises
+import Weakify
 
 final class CitiesViewModelImpl: CitiesViewModel {
     private let citiesService: CitiesService
     private let dateFormatter: CitiesDateFormatter
+    private let router: CitiesRouter
+    
+    private lazy var cellsSources = [CellSource]()
+    
+    var cellSelectionBehavior: CellSelectionBehavior {
+        return self
+    }
     
     init(
         citiesService: CitiesService,
-        dateFormatter: CitiesDateFormatter
+        dateFormatter: CitiesDateFormatter,
+        router: CitiesRouter
     ) {
         self.citiesService = citiesService
         self.dateFormatter = dateFormatter
+        self.router = router
     }
     
     func getData() -> Promise<CitiesViewSource> {
@@ -36,20 +46,56 @@ final class CitiesViewModelImpl: CitiesViewModel {
     }
     
     private func handleCitiesSources(_ sources: [CitySource]) -> CitiesViewSource {
-        var providers: [CellProviderConvertible] = sources.map {
-            return CityCell.Model(
-                title: $0.city.name,
-                dateTimeString: dateFormatter.string(from: $0.city.date, timeZone: $0.timeZone),
-                temperatureString: MeasurementFormatter.celsius.string(from: $0.city.main.temp),
-                weatherIcon: ($0.city.weather.first?.icon).flatMap(UIImage.init(named:))
+        var cellsSources: [CellSource] = sources.map { citySource in
+            return CellSource(
+                cellProviderConvertible: CityCell.Model(
+                    title: citySource.city.name,
+                    dateTimeString: dateFormatter.string(from: citySource.city.date, timeZone: citySource.timeZone),
+                    temperatureString: MeasurementFormatter.celsius.string(from: citySource.city.main.temp),
+                    weatherIcon: (citySource.city.weather.first?.icon).flatMap(UIImage.init(named:))
+                ),
+                onSelectAction: { [weak self] in self?.openCityWeather(city: citySource.city) }
             )
         }
         
-        providers.insert(
-            CitiesHeaderCell.Model(title: L10n.Cities.title, onAddAction: { }),
+        cellsSources.insert(
+            CellSource(
+                cellProviderConvertible: CitiesHeaderCell.Model(
+                    title: L10n.Cities.title,
+                    onAddAction: weakify(self, type(of: self).openCitySearch)
+                ),
+                onSelectAction: nil
+            ),
             at: 0
         )
         
-        return CitiesViewSource(cellProviderConvertibles: providers)
+        self.cellsSources = cellsSources
+        
+        return CitiesViewSource(cellProviderConvertibles: cellsSources.map { $0.cellProviderConvertible })
+    }
+    
+    private func openCitySearch() {
+        router.openCitySearch()
+    }
+    
+    private func openCityWeather(city: CitiesResponse.City) {
+        router.openCityWeather(city: city)
+    }
+}
+
+extension CitiesViewModelImpl: CellSelectionBehavior {
+    func shouldSelect(at indexPath: IndexPath) -> Bool {
+        return cellsSources[indexPath.row].onSelectAction != nil
+    }
+    
+    func select(at indexPath: IndexPath) {
+        cellsSources[indexPath.row].onSelectAction?()
+    }
+}
+
+private extension CitiesViewModelImpl {
+    struct CellSource {
+        let cellProviderConvertible: CellProviderConvertible
+        let onSelectAction: Action?
     }
 }

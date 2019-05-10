@@ -16,7 +16,6 @@ final class CitiesHeaderCell: BaseCell {
     private let addButton = make(object: UIButton()) {
         $0.imageView?.tintColor = Color.white
         $0.setImage(Assets.add.image.withRenderingMode(.alwaysTemplate), for: .normal)
-        $0.addTarget(self, action: #selector(handleAdd), for: .touchUpInside)
     }
     
     private var onAddAction: Action?
@@ -29,6 +28,8 @@ final class CitiesHeaderCell: BaseCell {
     }
     
     private func setupSubviews() {
+        addButton.addTarget(self, action: #selector(handleAdd), for: .touchUpInside)
+        
         contentView.addSubviews(titleLabel, addButton)
     }
     

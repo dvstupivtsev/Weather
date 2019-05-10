@@ -10,16 +10,19 @@ final class CitiesViewModelImplTests: XCTestCase {
     private var subject: CitiesViewModelImpl!
     private var citiesService: CitiesServiceMock!
     private var dateFormatter: CitiesDateFormatterMock!
+    private var router: CitiesRouterMock!
     
     override func setUp() {
         super.setUp()
         
         citiesService = .init()
         dateFormatter = .init()
+        router = .init()
         dateFormatter.stringFromTimeZoneReturnValue = "StringFromDateTest"
         subject = CitiesViewModelImpl(
             citiesService: citiesService,
-            dateFormatter: dateFormatter
+            dateFormatter: dateFormatter,
+            router: router
         )
     }
     
@@ -56,6 +59,44 @@ final class CitiesViewModelImplTests: XCTestCase {
         compare(expected: expectedHeaderCellModel, received: headerCellModel)
         compare(expected: expectedCityCellModelsSource, received: citiesCellModels)
         XCTAssertNil(receivedError, "shouldn't receive error")
+        
+        testRouting(for: headerCellModel!)
+        testRouting(for: citiesCellModels, for: cities)
+    }
+    
+    private func testRouting(for model: CitiesHeaderCell.Model) {
+        model.onAddAction()
+        
+        XCTAssertEqual(
+            router.openCitySearchCallsCount,
+            1,
+            "expect to open city search once, received calls count: \(router.openCitySearchCallsCount)"
+        )
+    }
+    
+    private func testRouting(for models: [CityCell.Model], for cities: [CitiesResponse.City]) {
+        models.enumerated().forEach { index, model in
+            let indexPath = IndexPath(row: index + 1, section: 0)
+            XCTAssertTrue(
+                subject.shouldSelect(at: indexPath),
+                "expect to should select cell at \(indexPath), got false"
+            )
+            
+            subject.select(at: indexPath)
+            let city = cities[index]
+            XCTAssertEqual(
+                router.openCityWeatherCityReceivedCity,
+                city,
+                "expect to open city \(city), received \(router.openCityWeatherCityReceivedCity!)"
+            )
+            
+            let callsCount = index + 1
+            XCTAssertEqual(
+                router.openCityWeatherCityCallsCount,
+                callsCount,
+                "expect to open city weather \(callsCount) times, received calls count: \(router.openCitySearchCallsCount)"
+            )
+        }
     }
     
     func testGetDataFailure() {
@@ -94,26 +135,11 @@ private extension CitiesViewModelImplTests {
         ]
     }
     
+    var cities: [CitiesResponse.City] {
+        return [.city1, .city2]
+    }
+    
     var citiesSources: [CitySource] {
-        let cities = [
-            CitiesResponse.City(
-                id: 1,
-                name: "Name1",
-                date: Date(),
-                coordinate: .init(lat: 1, lon: 2),
-                weather: [.init(icon: "Icon1")],
-                main: .init(temp: 1)
-            ),
-            CitiesResponse.City(
-                id: 2,
-                name: "Name2",
-                date: Date(),
-                coordinate: .init(lat: 2, lon: 3),
-                weather: [.init(icon: "Icon2")],
-                main: .init(temp: 2)
-            )
-        ]
-        
         let timeZones = [TimeZone.current, TimeZone(secondsFromGMT: 123)!]
         
         return zip(cities, timeZones)

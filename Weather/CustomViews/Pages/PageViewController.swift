@@ -4,17 +4,17 @@
 
 import UIKit
 
-typealias PagesViewControllerType = BaseViewController<PagesView>
+typealias PageViewControllerType = BaseViewController<PageView>
     & UIPageViewControllerDataSource
     & UIPageViewControllerDelegate
 
-final class PagesViewController: PagesViewControllerType {
+final class PageViewController: PageViewControllerType {
     private let pageViewController = UIPageViewController(
         transitionStyle: .scroll,
         navigationOrientation: .horizontal
     )
     
-    private let controllers: [UIViewController]
+    private var controllers: [UIViewController]
     private var currentIndex = 0
     
     init(controllers: [UIViewController]) {
@@ -32,18 +32,16 @@ final class PagesViewController: PagesViewControllerType {
         
         addChild(pageViewController)
         pageViewController.didMove(toParent: self)
-        customView.addPagesView(pageViewController.view)
+        customView.addPageView(pageViewController.view)
         
         updatePagesCount()
-        customView.setCurrentPageIndex(currentIndex)
-        
-        let startControllers = controllers.first.map(Array<UIViewController>.init) ?? []
-        pageViewController.setViewControllers(startControllers, direction: .forward, animated: true)
+        updateCurrentPage(animated: false)
     }
     
     private func updatePagesCount() {
         let count = controllers.count
-        let delegate = count > 1 ? self : nil
+        let isMultiplePages = count > 1
+        let delegate = isMultiplePages ? self : nil
         
         // without delegate pages don't scroll,
         // so we remove it when pages count less than 2
@@ -51,7 +49,32 @@ final class PagesViewController: PagesViewControllerType {
         pageViewController.dataSource = delegate
         
         customView.setPagesCount(count)
+        
+        if isMultiplePages {
+            customView.showPagesIndicator()
+        } else {
+            customView.hidePagesIndicator()
+        }
     }
+    
+    private func updateCurrentPage(animated: Bool) {
+        customView.setCurrentPageIndex(currentIndex)
+        
+        let controller = controllers[currentIndex]
+        pageViewController.setViewControllers([controller], direction: .forward, animated: animated)
+    }
+    
+    func updateControllers(_ controllers: [UIViewController]) {
+        self.controllers = controllers
+        updatePagesCount()
+    }
+    
+    func setCurrentControllerIndex(_ index: Int) {
+        currentIndex = index
+        updateCurrentPage(animated: true)
+    }
+    
+    // MARK: - <UIPageViewControllerDataSource/Delegate>
     
     func pageViewController(
         _ pageViewController: UIPageViewController,

@@ -4,6 +4,7 @@
 
 import UIKit
 
+// TODO: make generic for any cell
 final class CitiesHeaderCellProvider: CellProvider {
     private let model: CitiesHeaderCell.Model
     

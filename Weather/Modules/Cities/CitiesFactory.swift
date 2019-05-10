@@ -5,7 +5,7 @@
 import UIKit
 
 final class CitiesFactory {
-    func create() -> UIViewController {
+    func create(router: CitiesRouter) -> UIViewController {
         let urlSessionAdapter = UrlSessionAdapter(session: URLSession.shared)
         let apiService = ApiServiceImpl(urlService: urlSessionAdapter)
         let citiesWeatherService = CitiesWeatherServiceImpl(apiService: apiService)
@@ -14,7 +14,8 @@ final class CitiesFactory {
                 citiesWeatherService: citiesWeatherService,
                 timeZoneService: TimeZoneServiceImpl()
             ),
-            dateFormatter: CitiesDateFormatterImpl()
+            dateFormatter: CitiesDateFormatterImpl(),
+            router: router
         )
         
         return CitiesViewController(viewModel: vm)

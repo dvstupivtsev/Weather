@@ -79,25 +79,7 @@ private extension CitiesServiceImplTests {
     }
     
     var response: CitiesResponse {
-        let cities = [
-            CitiesResponse.City(
-                id: 1,
-                name: "Name1",
-                date: Date(),
-                coordinate: .init(lat: 1, lon: 2),
-                weather: [.init(icon: "Icon1")],
-                main: .init(temp: 1)
-            ),
-            CitiesResponse.City(
-                id: 2,
-                name: "Name2",
-                date: Date(),
-                coordinate: .init(lat: 2, lon: 3),
-                weather: [.init(icon: "Icon2")],
-                main: .init(temp: 2)
-            )
-        ]
-        
+        let cities: [CitiesResponse.City] = [.city1, .city2]
         return CitiesResponse(cities: cities)
     }
     

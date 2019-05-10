@@ -9,6 +9,7 @@ final class CitiesViewController: BaseViewController<CitiesView>, UITableViewDel
     private let viewModel: CitiesViewModel
     
     private lazy var tableSource = [CellProvider]()
+    private lazy var cellSelectionBehavior = viewModel.cellSelectionBehavior
     
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return .lightContent
@@ -44,6 +45,8 @@ final class CitiesViewController: BaseViewController<CitiesView>, UITableViewDel
         // TODO: handle failure
     }
     
+    // TODO: - Move to separated entity
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableSource.count
     }
@@ -53,7 +56,13 @@ final class CitiesViewController: BaseViewController<CitiesView>, UITableViewDel
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return false
+        return cellSelectionBehavior.shouldSelect(at: indexPath)
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        cellSelectionBehavior.select(at: indexPath)
     }
 }
 
