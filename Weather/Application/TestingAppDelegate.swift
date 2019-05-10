@@ -4,5 +4,5 @@
 
 import Foundation
 
-// Application delegate which prevents view controller presentation logic to optimize tests
+// Application delegate without view loading
 final class TestingAppDelegate: NSObject { }

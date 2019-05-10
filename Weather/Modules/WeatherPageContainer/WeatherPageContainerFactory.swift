@@ -4,7 +4,7 @@
 
 import UIKit
 
-final class CitiesPageControllerFactory: ControllerFactory {
+final class WeatherPageContainerFactory: ControllerFactory {
     func create() -> UIViewController {
         let citiesRouter = CitiesRouterImpl(
             cityWeatherFactory: CityWeatherFactoryImpl(),
@@ -13,10 +13,9 @@ final class CitiesPageControllerFactory: ControllerFactory {
         
         let citiesController = CitiesFactory().create(router: citiesRouter)
         let pageViewController = PageViewController(controllers: [citiesController])
-        pageViewController.customView.setBackgroundView(DayBackgroundView())
         citiesRouter.pageController = pageViewController
         citiesRouter.citiesController = citiesController
         
-        return pageViewController
+        return WeatherPageContainerViewController(pageViewController: pageViewController)
     }
 }

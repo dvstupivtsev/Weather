@@ -11,10 +11,6 @@ final class CitiesViewController: BaseViewController<CitiesView>, UITableViewDel
     private lazy var tableSource = [CellProvider]()
     private lazy var cellSelectionBehavior = viewModel.cellSelectionBehavior
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
-    
     init(viewModel: CitiesViewModel) {
         self.viewModel = viewModel
         
