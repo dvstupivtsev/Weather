@@ -13,6 +13,7 @@ final class CitiesPageControllerFactory: ControllerFactory {
         
         let citiesController = CitiesFactory().create(router: citiesRouter)
         let pageViewController = PageViewController(controllers: [citiesController])
+        pageViewController.customView.setBackgroundView(DayBackgroundView())
         citiesRouter.pageController = pageViewController
         citiesRouter.citiesController = citiesController
         

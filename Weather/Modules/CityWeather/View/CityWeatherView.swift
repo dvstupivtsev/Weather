@@ -5,8 +5,6 @@
 import UIKit
 
 final class CityWeatherView: BaseView {
-    private let backgroundView = DayBackgroundView()
-    
     override func commonInit() {
         super.commonInit()
         
@@ -15,12 +13,10 @@ final class CityWeatherView: BaseView {
     }
     
     private func setupSubviews() {
-        addSubview(backgroundView)
+        
     }
     
     private func setupConstraints() {
-        backgroundView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+        
     }
 }

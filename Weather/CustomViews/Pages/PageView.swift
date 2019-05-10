@@ -8,6 +8,7 @@ import SnapKit
 final class PageView: BaseView {
     private let appearance = Appearance()
     
+    private var backgroundView: UIView?
     private let pageControl = UIPageControl()
     
     override func commonInit() {
@@ -36,6 +37,20 @@ final class PageView: BaseView {
     }
     
     func addPageView(_ view: UIView) {
+        if let backgroundView = backgroundView {
+            insertSubview(view, aboveSubview: backgroundView)
+        } else {
+            insertFirst(subview: view)
+        }
+        
+        view.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
+    }
+    
+    func setBackgroundView(_ view: UIView) {
+        backgroundView = view
+        
         insertFirst(subview: view)
         view.snp.makeConstraints { make in
             make.edges.equalToSuperview()

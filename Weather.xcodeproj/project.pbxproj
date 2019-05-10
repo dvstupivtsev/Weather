@@ -337,12 +337,12 @@
 			path = CommonProtocols;
 			sourceTree = "<group>";
 		};
-		5E44D06F22857FCE00058236 /* CitiesPage */ = {
+		5E44D06F22857FCE00058236 /* CitiesPages */ = {
 			isa = PBXGroup;
 			children = (
 				5E44D0702285803200058236 /* CitiesPageControllerFactory.swift */,
 			);
-			path = CitiesPage;
+			path = CitiesPages;
 			sourceTree = "<group>";
 		};
 		5E44D0722285817900058236 /* WindowRouter */ = {
@@ -705,7 +705,7 @@
 		5ED7147E227467E6004B9883 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				5E44D06F22857FCE00058236 /* CitiesPage */,
+				5E44D06F22857FCE00058236 /* CitiesPages */,
 				5E74988C2280ADF9007005E4 /* CitySearch */,
 				5E74988B2280ADF1007005E4 /* CityWeather */,
 				5EB5DA4F2273312C0016A1CB /* Cities */,
