@@ -22,7 +22,7 @@ final class CitiesRouterImpl: CitiesRouter {
         let cityController = cityWeatherFactory.create(for: city)
         pageController.updateControllers([citiesController, cityController])
         
-        // select second controller (city weather)
+        // select second controller (with city weather)
         pageController.setCurrentControllerIndex(1)
     }
     

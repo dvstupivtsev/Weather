@@ -6,7 +6,7 @@ import UIKit
 import SnapKit
 
 final class CitiesView: BaseView {
-    private let backgroundView = GradientView(colors: [Color.bg1, Color.bg2, Color.bg3, Color.bg4, Color.bg5])
+    private let backgroundView = DayBackgroundView()
     private let tableView = make(object: UITableView()) {
         $0.tableFooterView = UIView()
         $0.separatorStyle = .none
