@@ -9,6 +9,10 @@ struct Font {
         return .systemFont(ofSize: size, weight: .regular)
     }
     
+    static var regular11: UIFont {
+        return regular(ofSize: 11)
+    }
+    
     static var regular15: UIFont {
         return regular(ofSize: 15)
     }
@@ -19,5 +23,9 @@ struct Font {
     
     static var regular30: UIFont {
         return regular(ofSize: 30)
+    }
+    
+    static var regular90: UIFont {
+        return regular(ofSize: 90)
     }
 }

@@ -5,6 +5,7 @@
 import UIKit
 import SnapKit
 
+// TODO: load weather for current location and change background
 final class WeatherPageContainerView: BaseView {
     private var backgroundView: UIView?
     

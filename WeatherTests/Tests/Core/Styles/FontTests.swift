@@ -7,9 +7,11 @@ import XCTest
 
 final class FontTests: XCTestCase {
     func testFonts() {
+        expect(actual: Font.regular11, equalTo: .init(size: 11, weight: .regular))
         expect(actual: Font.regular15, equalTo: .init(size: 15, weight: .regular))
         expect(actual: Font.regular17, equalTo: .init(size: 17, weight: .regular))
         expect(actual: Font.regular30, equalTo: .init(size: 30, weight: .regular))
+        expect(actual: Font.regular90, equalTo: .init(size: 90, weight: .regular))
         
         var size: CGFloat = 1
         expect(actual: Font.regular(ofSize: size), equalTo: .init(size: size, weight: .regular))
