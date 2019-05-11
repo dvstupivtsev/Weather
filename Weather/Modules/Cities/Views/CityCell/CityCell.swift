@@ -8,22 +8,22 @@ import SnapKit
 final class CityCell: BaseCell {
     private let appearance = Appearance()
     
-    private let titleLabel = make(object: UILabel()) {
+    private let titleLabel = make(UILabel()) {
         $0.font = Font.regular17
         $0.textColor = Color.white
     }
     
-    private let dateLabel = make(object: UILabel()) {
+    private let dateLabel = make(UILabel()) {
         $0.font = Font.regular15
         $0.textColor = Color.white70
     }
     
-    private let temperatureLabel = make(object: UILabel()) {
+    private let temperatureLabel = make(UILabel()) {
         $0.font = Font.regular30
         $0.textColor = Color.white
     }
     
-    private let weatherImageView = make(object: UIImageView()) {
+    private let weatherImageView = make(UIImageView()) {
         $0.tintColor = Color.white
     }
     

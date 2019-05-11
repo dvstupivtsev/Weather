@@ -8,27 +8,27 @@ import SnapKit
 final class CityWeatherView: BaseView {
     private let appearance = Appearance()
     
-    private let titleLabel = make(object: UILabel()) {
+    private let titleLabel = make(UILabel()) {
         $0.textColor = Color.white
         $0.font = Font.regular17
     }
     
-    private let temperatureLabel = make(object: UILabel()) {
+    private let temperatureLabel = make(UILabel()) {
         $0.textColor = Color.white
         $0.font = Font.regular90
     }
     
-    private let degreeLabel = make(object: UILabel()) {
+    private let degreeLabel = make(UILabel()) {
         $0.textColor = Color.white
         $0.font = Font.regular90
     }
     
-    private let weatherStatusLabel = make(object: UILabel()) {
+    private let weatherStatusLabel = make(UILabel()) {
         $0.textColor = Color.white
         $0.font = Font.regular15
     }
     
-    private let dateLabel = make(object: UILabel()) {
+    private let dateLabel = make(UILabel()) {
         $0.textColor = Color.white
         $0.font = Font.regular11
     }

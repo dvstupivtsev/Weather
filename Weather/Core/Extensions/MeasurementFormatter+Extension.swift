@@ -5,7 +5,7 @@
 import Foundation
 
 extension MeasurementFormatter {
-    static let celsius = make(object: MeasurementFormatter()) {
+    static let celsius = make(MeasurementFormatter()) {
         $0.numberFormatter = .temperature
         $0.unitOptions = [.naturalScale, .temperatureWithoutUnit]
     }

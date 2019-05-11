@@ -9,7 +9,9 @@ final class PageView: BaseView {
     private let appearance = Appearance()
     
     private var backgroundView: UIView?
-    private let pageControl = UIPageControl()
+    private let pageControl = make(UIPageControl()) {
+        $0.isUserInteractionEnabled = false
+    }
     
     override func commonInit() {
         super.commonInit()

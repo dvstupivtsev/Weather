@@ -8,7 +8,7 @@ import SnapKit
 final class DailyForecastView: BaseView {
     private let appearance = Appearance()
     
-    private let tableView = make(object: UITableView()) {
+    private let tableView = make(UITableView()) {
         $0.tableFooterView = UIView()
         $0.separatorStyle = .none
         $0.backgroundColor = .clear

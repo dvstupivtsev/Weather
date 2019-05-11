@@ -7,7 +7,7 @@ import SnapKit
 
 // TODO: Add reload view if smth went wrong, add Pull2Refresh for reloading data, add skeleton loading
 final class CitiesView: BaseView {
-    private let tableView = make(object: UITableView()) {
+    private let tableView = make(UITableView()) {
         $0.tableFooterView = UIView()
         $0.separatorStyle = .none
         $0.backgroundColor = .clear

@@ -16,7 +16,7 @@ extension NumberFormatter: NumberFormatterProtocol {
 }
 
 extension NumberFormatter {
-    static let temperature = make(object: NumberFormatter()) {
+    static let temperature = make(NumberFormatter()) {
         $0.minimumIntegerDigits = 1
         $0.minimumFractionDigits = 0
         $0.maximumFractionDigits = 0

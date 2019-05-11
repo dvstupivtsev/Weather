@@ -4,7 +4,7 @@
 
 import Foundation
 
-func make<Type>(object: Type, setup: (Type) -> Void) -> Type {
+func make<Type>(_ object: Type, setup: (Type) -> Void) -> Type {
     setup(object)
     return object
 }
