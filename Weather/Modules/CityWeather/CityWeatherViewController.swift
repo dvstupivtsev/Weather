@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import Weakify
 
 final class CityWeatherViewController: BaseViewController<CityWeatherView> {
     private let viewModel: CityWeatherViewModel
@@ -21,5 +22,19 @@ final class CityWeatherViewController: BaseViewController<CityWeatherView> {
         super.viewDidLoad()
         
         customView.update(mainSource: viewModel.mainSource)
+        
+        viewModel.getDailyForecastSource()
+            .then(weakify(self, type(of: self).updateDailyForecast(cellProviderConvertibles:)))
+            .catch { [weak self] _ in self?.updateDailyForecast(cellProviderConvertibles: []) }
+    }
+    
+    private func updateDailyForecast(cellProviderConvertibles: [CellProviderConvertible]) {
+        let sectionSource = TableSectionSource(cellProviderConvertibles: cellProviderConvertibles)
+        let tableSource = TableDataSource(
+            sources: [sectionSource],
+            selectionBehavior: DisabledCellSelectionBehavior()
+        )
+        
+        customView.update(dailyForecastSource: tableSource)
     }
 }

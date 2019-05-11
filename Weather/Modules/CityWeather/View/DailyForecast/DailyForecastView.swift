@@ -38,6 +38,13 @@ final class DailyForecastView: BaseView {
         
         roundCorners([.topLeft, .topRight], radius: appearance.cornerRadius)
     }
+    
+    func update(tableSource: TableDataSource) {
+        tableView.dataSource = tableSource
+        tableView.delegate = tableSource
+        
+        tableView.reloadData()
+    }
 }
 
 private extension DailyForecastView {

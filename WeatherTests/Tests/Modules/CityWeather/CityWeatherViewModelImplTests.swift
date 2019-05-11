@@ -4,12 +4,14 @@
 
 import XCTest
 @testable import Weather
+@testable import Promises
 
 final class CityWeatherViewModelImplTests: XCTestCase {
-    var subject: CityWeatherViewModelImpl!
-    var citySource: CitySource!
-    var numberFormatter: NumberFormatterProtocolMock!
-    var dateFormatter: DateFormatterProtocolMock!
+    private var subject: CityWeatherViewModelImpl!
+    private var citySource: CitySource!
+    private var numberFormatter: NumberFormatterProtocolMock!
+    private var dateFormatter: DateFormatterProtocolMock!
+    private var cityWeatherService: CityWeatherServiceMock!
     
     override func setUp() {
         super.setUp()
@@ -22,10 +24,13 @@ final class CityWeatherViewModelImplTests: XCTestCase {
         dateFormatter = .init()
         dateFormatter.stringFromReturnValue = "DateTest"
         
+        cityWeatherService = .init()
+        
         subject = CityWeatherViewModelImpl(
             citySource: citySource,
             numberFormatter: numberFormatter,
-            dateFormatter: dateFormatter
+            dateFormatter: dateFormatter,
+            cityWeatherService: cityWeatherService
         )
     }
     
@@ -42,5 +47,27 @@ final class CityWeatherViewModelImplTests: XCTestCase {
         XCTAssertEqual(receivedValue, expectedValue)
         XCTAssertEqual(numberFormatter.stringFromCallsCount, 1, "expect to call number formatter once, got \(numberFormatter.stringFromCallsCount)")
         XCTAssertEqual(dateFormatter.stringFromCallsCount, 1, "expect to call date formatter once, got \(dateFormatter.stringFromCallsCount)")
+    }
+    
+    func testGetDailyForecastSourceSuccess() {
+        let expectedWeathers = [DayWeather.weather1, .weather2]
+        cityWeatherService.getDailyForecastForReturnValue = Promise(expectedWeathers)
+        
+        let result = subject.getDailyForecastSource()
+        
+        XCTAssert(waitForPromises(timeout: 1))
+        XCTAssertEmpty(result.value)
+        XCTAssertNil(result.error)
+    }
+    
+    func testGetDailyForecastSourceFailure() {
+        let expectedError = Constants.error
+        cityWeatherService.getDailyForecastForReturnValue = Promise(expectedError)
+        
+        let result = subject.getDailyForecastSource()
+        
+        XCTAssert(waitForPromises(timeout: 1))
+        XCTAssertNil(result.value)
+        XCTAssertEqual(result.error as NSError?, expectedError)
     }
 }

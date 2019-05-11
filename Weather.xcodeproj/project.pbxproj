@@ -101,6 +101,9 @@
 		5E9A15E7228734CE00EFA833 /* HourWeather+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A15E6228734CE00EFA833 /* HourWeather+Extension.swift */; };
 		5E9A15E92287379800EFA833 /* WeatherDailyForecastServiceImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A15E82287379800EFA833 /* WeatherDailyForecastServiceImplTests.swift */; };
 		5E9A15EB22873F3800EFA833 /* WeatherHourlyForecastServiceImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A15EA22873F3800EFA833 /* WeatherHourlyForecastServiceImplTests.swift */; };
+		5E9A15EF22875A0600EFA833 /* TableSectionSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A15EE22875A0600EFA833 /* TableSectionSource.swift */; };
+		5E9A15F122875A1600EFA833 /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A15F022875A1600EFA833 /* TableDataSource.swift */; };
+		5E9A15F422875C4100EFA833 /* EmptyCellSelectionBehavior.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E9A15F322875C4100EFA833 /* EmptyCellSelectionBehavior.swift */; };
 		5EA0A46D227B72D000558BE3 /* Date_ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0A46C227B72D000558BE3 /* Date_ExtensionTests.swift */; };
 		5EA0A470227B749000558BE3 /* UIEdgeInsets_ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0A46F227B749000558BE3 /* UIEdgeInsets_ExtensionTests.swift */; };
 		5EA0A475227B76A800558BE3 /* ColorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EA0A474227B76A800558BE3 /* ColorTests.swift */; };
@@ -255,6 +258,9 @@
 		5E9A15E6228734CE00EFA833 /* HourWeather+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HourWeather+Extension.swift"; sourceTree = "<group>"; };
 		5E9A15E82287379800EFA833 /* WeatherDailyForecastServiceImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherDailyForecastServiceImplTests.swift; sourceTree = "<group>"; };
 		5E9A15EA22873F3800EFA833 /* WeatherHourlyForecastServiceImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherHourlyForecastServiceImplTests.swift; sourceTree = "<group>"; };
+		5E9A15EE22875A0600EFA833 /* TableSectionSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableSectionSource.swift; sourceTree = "<group>"; };
+		5E9A15F022875A1600EFA833 /* TableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableDataSource.swift; sourceTree = "<group>"; };
+		5E9A15F322875C4100EFA833 /* EmptyCellSelectionBehavior.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCellSelectionBehavior.swift; sourceTree = "<group>"; };
 		5EA0A46C227B72D000558BE3 /* Date_ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date_ExtensionTests.swift; sourceTree = "<group>"; };
 		5EA0A46F227B749000558BE3 /* UIEdgeInsets_ExtensionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIEdgeInsets_ExtensionTests.swift; sourceTree = "<group>"; };
 		5EA0A474227B76A800558BE3 /* ColorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorTests.swift; sourceTree = "<group>"; };
@@ -627,8 +633,8 @@
 		5E97B89E2274B9DF00DB39EE /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				5E9A15EC228759E900EFA833 /* TableView */,
 				5E39FC1C227F5BB5004F3137 /* Pages */,
-				5E97B8AC22757DDD00DB39EE /* CellProvider */,
 				5E97B8A12274BA0800DB39EE /* BaseViewController */,
 				5E396518227AE665005F0859 /* BaseCell.swift */,
 				5E97B8C42275CE9800DB39EE /* ReloadView.swift */,
@@ -663,7 +669,6 @@
 			children = (
 				5E97B8AD22757DEE00DB39EE /* CellProvider.swift */,
 				5E97B8AF22757E0500DB39EE /* CellProviderConvertible.swift */,
-				5E7498892280A9B4007005E4 /* CellSelectionBehavior.swift */,
 			);
 			path = CellProvider;
 			sourceTree = "<group>";
@@ -727,6 +732,34 @@
 				5E9A15D922871B6800EFA833 /* CitiesWeatherJsonDecoderImpl.swift */,
 			);
 			path = JsonDecoder;
+			sourceTree = "<group>";
+		};
+		5E9A15EC228759E900EFA833 /* TableView */ = {
+			isa = PBXGroup;
+			children = (
+				5E9A15F222875C1700EFA833 /* CellSelectionBehavior */,
+				5E9A15ED228759F900EFA833 /* Source */,
+				5E97B8AC22757DDD00DB39EE /* CellProvider */,
+			);
+			path = TableView;
+			sourceTree = "<group>";
+		};
+		5E9A15ED228759F900EFA833 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				5E9A15EE22875A0600EFA833 /* TableSectionSource.swift */,
+				5E9A15F022875A1600EFA833 /* TableDataSource.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
+		5E9A15F222875C1700EFA833 /* CellSelectionBehavior */ = {
+			isa = PBXGroup;
+			children = (
+				5E7498892280A9B4007005E4 /* CellSelectionBehavior.swift */,
+				5E9A15F322875C4100EFA833 /* EmptyCellSelectionBehavior.swift */,
+			);
+			path = CellSelectionBehavior;
 			sourceTree = "<group>";
 		};
 		5EA0A473227B769200558BE3 /* Styles */ = {
@@ -1232,6 +1265,7 @@
 				5E0F26F5228713500093BB48 /* WeatherHourlyForecastService.swift in Sources */,
 				5EB5DA752273868C0016A1CB /* CitiesResponse.swift in Sources */,
 				5E39651B227AEC6A005F0859 /* Font.swift in Sources */,
+				5E9A15EF22875A0600EFA833 /* TableSectionSource.swift in Sources */,
 				5EA0A499227DF7CF00558BE3 /* Aliases.swift in Sources */,
 				5E97B8A62274BA4400DB39EE /* BaseViewController.swift in Sources */,
 				5E97B8CE2275D84300DB39EE /* Localizable.swift in Sources */,
@@ -1244,6 +1278,7 @@
 				5EB5DA77227386B60016A1CB /* Weather.swift in Sources */,
 				5EB5DA3F22732F5D0016A1CB /* CitiesViewController.swift in Sources */,
 				5E9A15D0228719BD00EFA833 /* HourlyForecastJsonDecoderImpl.swift in Sources */,
+				5E9A15F122875A1600EFA833 /* TableDataSource.swift in Sources */,
 				5EB5DA6422734BB30016A1CB /* CityWeather.swift in Sources */,
 				5EB5DA6622734C0D0016A1CB /* CitiesWeatherServiceImpl.swift in Sources */,
 				5E74988E2280AE0C007005E4 /* CitySearchFactory.swift in Sources */,
@@ -1281,6 +1316,7 @@
 				5E97B8CD2275D84300DB39EE /* Assets.swift in Sources */,
 				5E9A15D822871B5900EFA833 /* CitiesWeatherJsonDecoder.swift in Sources */,
 				5E396523227AF1D7005F0859 /* UIView+Extension.swift in Sources */,
+				5E9A15F422875C4100EFA833 /* EmptyCellSelectionBehavior.swift in Sources */,
 				5E39FC23227F5F5A004F3137 /* WindowRouter.swift in Sources */,
 				5E97B8A92274BAA000DB39EE /* CitiesView.swift in Sources */,
 				5E74988A2280A9B4007005E4 /* CellSelectionBehavior.swift in Sources */,

@@ -105,6 +105,10 @@ extension CityWeatherView {
         weatherStatusLabel.text = mainSource.weatherStatus
         dateLabel.text = mainSource.dateString
     }
+    
+    func update(dailyForecastSource: TableDataSource) {
+        dailyForecastView.update(tableSource: dailyForecastSource)
+    }
 }
 
 private extension CityWeatherView {
