@@ -1,9 +1,9 @@
 PODS:
-  - PromisesObjC (1.2.6)
-  - PromisesSwift (1.2.6):
-    - PromisesObjC (= 1.2.6)
-  - SnapKit (4.2.0)
-  - Sourcery (0.15.0)
+  - PromisesObjC (1.2.8)
+  - PromisesSwift (1.2.8):
+    - PromisesObjC (= 1.2.8)
+  - SnapKit (5.0.0)
+  - Sourcery (0.16.1)
   - SwiftGen (6.1.0)
   - Weakify (0.5.0)
 
@@ -24,10 +24,10 @@ SPEC REPOS:
     - Weakify
 
 SPEC CHECKSUMS:
-  PromisesObjC: 60326422b6d692b9718a80666e67a9433862aa88
-  PromisesSwift: b3219d5e6545d5d7e8ad8038b4ad139f7ee0b3f0
-  SnapKit: fe8a619752f3f27075cc9a90244d75c6c3f27e2a
-  Sourcery: 5895672cae353cdbfa95f3f4aaeb75a664d76f6a
+  PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
+  PromisesSwift: 37bad6f4daddb02f7c9c531efe91e8b21c13ee2f
+  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
+  Sourcery: 16779170d35ee204666843b09031f36721a84bcc
   SwiftGen: f872ca75cbd17bf7103c17f13dcfa0d9a15667b0
   Weakify: c428a0eabdfadce7e367cea87533dbffbd048b09
 
