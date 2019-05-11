@@ -11,6 +11,8 @@ final class CitiesRouterImpl: CitiesRouter {
     weak var citiesController: UIViewController?
     weak var pageController: PageViewController?
     
+    private var selectedCity: CitiesResponse.City?
+    
     init(cityWeatherFactory: CityWeatherFactory, citySearchFactory: CitySearchFactory) {
         self.cityWeatherFactory = cityWeatherFactory
         self.citySearchFactory = citySearchFactory
@@ -19,8 +21,12 @@ final class CitiesRouterImpl: CitiesRouter {
     func openCityWeather(city: CitiesResponse.City) {
         guard let pageController = pageController, let citiesController = citiesController else { return }
         
-        let cityController = cityWeatherFactory.create(for: city)
-        pageController.updateControllers([citiesController, cityController])
+        if city != selectedCity {
+            let cityController = cityWeatherFactory.create(for: city)
+            pageController.updateControllers([citiesController, cityController])
+            
+            selectedCity = city
+        }
         
         // select second controller (with city weather)
         pageController.setCurrentControllerIndex(1)
