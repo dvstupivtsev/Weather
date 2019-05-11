@@ -5,11 +5,10 @@
 import UIKit
 import Promises
 
-final class CitiesViewController: BaseViewController<CitiesView>, UITableViewDelegate, UITableViewDataSource {
+final class CitiesViewController: BaseViewController<CitiesView> {
     private let viewModel: CitiesViewModel
     
-    private lazy var tableSource = [CellProvider]()
-    private lazy var cellSelectionBehavior = viewModel.cellSelectionBehavior
+    private lazy var tableSource: TableDataSource = .empty
     
     init(viewModel: CitiesViewModel) {
         self.viewModel = viewModel
@@ -25,7 +24,6 @@ final class CitiesViewController: BaseViewController<CitiesView>, UITableViewDel
         super.viewDidLoad()
         
         customView.register(cellTypes: [CityCell.self, CitiesHeaderCell.self])
-        customView.setupTableDelegate(self)
         
         viewModel.getData()
             .then(on: .main, handleGetDataSuccess(result:))
@@ -33,32 +31,17 @@ final class CitiesViewController: BaseViewController<CitiesView>, UITableViewDel
     }
     
     private func handleGetDataSuccess(result: CitiesViewSource) {
-        tableSource = result.cellProviderConvertibles.map { $0.cellProvider }
-        customView.reloadData()
+        let sectionSource = TableSectionSource(cellProviderConvertibles: result.cellProviderConvertibles)
+        tableSource = TableDataSource(
+            sources: [sectionSource],
+            selectionBehavior: viewModel.cellSelectionBehavior
+        )
+        
+        customView.update(tableSource: tableSource)
     }
     
     private func handleGetDataFailure(error: Error) {
         // TODO: handle failure
-    }
-    
-    // TODO: - Move to separated data source
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return tableSource.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return tableSource[indexPath.row].cell(for: tableView, at: indexPath)
-    }
-    
-    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return cellSelectionBehavior.shouldSelect(at: indexPath)
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        cellSelectionBehavior.select(at: indexPath)
     }
 }
 

@@ -43,6 +43,6 @@ final class CityWeatherViewModelImpl: CityWeatherViewModel {
     }
     
     private func createCellProviders(with dailyForecast: [DayWeather]) -> [CellProviderConvertible] {
-        return []
+        return dailyForecast.map { _ in DailyForecastCell.Model() }
     }
 }

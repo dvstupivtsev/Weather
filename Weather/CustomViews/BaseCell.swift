@@ -5,7 +5,7 @@
 import UIKit
 import SnapKit
 
-class BaseCell: UITableViewCell {
+class BaseCell<Model>: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -21,4 +21,6 @@ class BaseCell: UITableViewCell {
     func commonInit() {
         backgroundColor = .clear
     }
+    
+    func update(model: Model) { }
 }

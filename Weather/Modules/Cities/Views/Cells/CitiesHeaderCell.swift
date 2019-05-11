@@ -5,7 +5,7 @@
 import UIKit
 import SnapKit
 
-final class CitiesHeaderCell: BaseCell {
+final class CitiesHeaderCell: BaseCell<CitiesHeaderCell.Model> {
     private let appearance = Appearance()
     
     private let titleLabel = make(UILabel()) {
@@ -50,20 +50,20 @@ final class CitiesHeaderCell: BaseCell {
     private func handleAdd() {
         onAddAction?()
     }
-}
-
-extension CitiesHeaderCell {
-    func update(model: Model) {
+    
+    override func update(model: Model) {
         titleLabel.text = model.title
         onAddAction = model.onAddAction
     }
-    
+}
+
+extension CitiesHeaderCell {
     struct Model: CellProviderConvertible {
         let title: String
         let onAddAction: Action
         
         var cellProvider: CellProvider {
-            return CitiesHeaderCellProvider(model: self)
+            return GenericCellProvider<Model, CitiesHeaderCell>(model: self)
         }
     }
 }

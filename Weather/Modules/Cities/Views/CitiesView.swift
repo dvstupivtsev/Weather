@@ -30,16 +30,14 @@ final class CitiesView: BaseView {
         }
     }
     
-    func setupTableDelegate(_ delegate: UITableViewDataSource & UITableViewDelegate) {
-        tableView.delegate = delegate
-        tableView.dataSource = delegate
-    }
-    
-    func reloadData() {
-        tableView.reloadData()
-    }
-    
     func register(cellTypes: [UITableViewCell.Type]) {
         cellTypes.forEach { tableView.register(type: $0) }
+    }
+    
+    func update(tableSource: TableDataSource) {
+        tableView.delegate = tableSource
+        tableView.dataSource = tableSource
+        
+        tableView.reloadData()
     }
 }

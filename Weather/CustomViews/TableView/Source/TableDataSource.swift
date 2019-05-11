@@ -38,3 +38,9 @@ final class TableDataSource: NSObject & UITableViewDataSource & UITableViewDeleg
         selectionBehavior.select(at: indexPath)
     }
 }
+
+extension TableDataSource {
+    static var empty: TableDataSource {
+        return TableDataSource(sources: [], selectionBehavior: DisabledCellSelectionBehavior())
+    }
+}

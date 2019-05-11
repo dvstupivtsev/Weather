@@ -5,7 +5,7 @@
 import UIKit
 import SnapKit
 
-final class CityCell: BaseCell {
+final class CityCell: BaseCell<CityCell.Model> {
     private let appearance = Appearance()
     
     private let titleLabel = make(UILabel()) {
@@ -67,16 +67,16 @@ final class CityCell: BaseCell {
             make.centerY.equalToSuperview()
         }
     }
-}
-
-extension CityCell {
-    func update(model: Model) {
+    
+    override func update(model: Model) {
         titleLabel.text = model.title
         dateLabel.text = model.dateTimeString
         temperatureLabel.text = model.temperatureString
         weatherImageView.image = model.weatherIcon?.withRenderingMode(.alwaysTemplate)
     }
-    
+}
+
+extension CityCell {
     struct Model: CellProviderConvertible {
         let title: String
         let dateTimeString: String
@@ -84,7 +84,7 @@ extension CityCell {
         let weatherIcon: UIImage?
         
         var cellProvider: CellProvider {
-            return CityCellProvider(model: self)
+            return GenericCellProvider<Model, CityCell>(model: self)
         }
     }
 }
