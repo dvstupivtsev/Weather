@@ -5,7 +5,7 @@
 import XCTest
 @testable import Weather
 
-class CGSize_ExtensionTests: XCTestCase {
+final class CGSize_ExtensionTests: XCTestCase {
     func testInitEdgeCGFloat() {
         var value: CGFloat = 100
         XCTAssertEqual(CGSize(edge: value), CGSize(width: value, height: value))

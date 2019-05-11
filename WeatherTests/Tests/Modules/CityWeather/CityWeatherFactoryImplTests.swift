@@ -8,7 +8,7 @@ import XCTest
 class CityWeatherFactoryImplTests: XCTestCase {
     func testCreate() {
         let subject = CityWeatherFactoryImpl()
-        let receivedController = subject.create(for: .city1)
+        let receivedController = subject.create(with: CitySource(city: .city1, timeZone: .current))
         
         XCTAssert(
             receivedController,

@@ -18,14 +18,14 @@ final class CitiesRouterImpl: CitiesRouter {
         self.citySearchFactory = citySearchFactory
     }
     
-    func openCityWeather(city: City) {
+    func openCityWeather(citySource: CitySource) {
         guard let pageController = pageController, let citiesController = citiesController else { return }
         
-        if city != selectedCity {
-            let cityController = cityWeatherFactory.create(for: city)
+        if citySource.city != selectedCity {
+            let cityController = cityWeatherFactory.create(with: citySource)
             pageController.updateControllers([citiesController, cityController])
             
-            selectedCity = city
+            selectedCity = citySource.city
         }
         
         // select second controller (with city weather)

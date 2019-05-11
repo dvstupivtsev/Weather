@@ -12,11 +12,11 @@ final class ColorTests: XCTestCase {
         expect(actual: Color.white, equalTo: ColorComponents(red: 1, green: 1, blue: 1, alpha: 1))
         expect(actual: Color.white70, equalTo: ColorComponents(red: 1, green: 1, blue: 1, alpha: 0.7))
         
-        expect(actual: Color.bg1, nearTo: ColorComponents(red: 61/255.0, green: 102/255.0, blue: 133/255.0, alpha: 1))
-        expect(actual: Color.bg2, nearTo: ColorComponents(red: 70/255.0, green: 109/255.0, blue: 139/255.0, alpha: 1))
-        expect(actual: Color.bg3, nearTo: ColorComponents(red: 77/255.0, green: 116/255.0, blue: 145/255.0, alpha: 1))
-        expect(actual: Color.bg4, nearTo: ColorComponents(red: 91/255.0, green: 127/255.0, blue: 155/255.0, alpha: 1))
-        expect(actual: Color.bg5, nearTo: ColorComponents(red: 119/255.0, green: 151/255.0, blue: 174/255.0, alpha: 1))
+        expect(actual: Color.bg1, nearTo: ColorComponents(red: 25/255.0, green: 125/255.0, blue: 200/255.0, alpha: 1))
+        expect(actual: Color.bg2, nearTo: ColorComponents(red: 50/255.0, green: 140/255.0, blue: 200/255.0, alpha: 1))
+        expect(actual: Color.bg3, nearTo: ColorComponents(red: 75/255.0, green: 150/255.0, blue: 200/255.0, alpha: 1))
+        expect(actual: Color.bg4, nearTo: ColorComponents(red: 100/255.0, green: 160/255.0, blue: 200/255.0, alpha: 1))
+        expect(actual: Color.bg5, nearTo: ColorComponents(red: 125/255.0, green: 170/255.0, blue: 200/255.0, alpha: 1))
     }
     
     private func expect(actual: UIColor, equalTo components: ColorComponents) {

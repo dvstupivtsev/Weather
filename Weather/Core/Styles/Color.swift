@@ -22,22 +22,22 @@ struct Color {
     }
     
     static var bg1: UIColor {
-        return UIColor(hex: 0x3D6685)
+        return UIColor(hex: 0x197DC8)
     }
     
     static var bg2: UIColor {
-        return UIColor(hex: 0x466D8B)
+        return UIColor(hex: 0x328CC8)
     }
     
     static var bg3: UIColor {
-        return UIColor(hex: 0x4D7491)
+        return UIColor(hex: 0x4B96C8)
     }
     
     static var bg4: UIColor {
-        return UIColor(hex: 0x5B7F9B)
+        return UIColor(hex: 0x64A0C8)
     }
     
     static var bg5: UIColor {
-        return UIColor(hex: 0x7797AE)
+        return UIColor(hex: 0x7DAAC8)
     }
 }

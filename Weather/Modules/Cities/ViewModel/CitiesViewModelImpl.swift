@@ -54,7 +54,7 @@ final class CitiesViewModelImpl: CitiesViewModel {
                     temperatureString: MeasurementFormatter.celsius.string(from: citySource.city.main.temp),
                     weatherIcon: (citySource.city.weather.first?.icon).flatMap(UIImage.init(named:))
                 ),
-                onSelectAction: { [weak self] in self?.openCityWeather(city: citySource.city) }
+                onSelectAction: { [weak self] in self?.router.openCityWeather(citySource: citySource) }
             )
         }
         
@@ -76,10 +76,6 @@ final class CitiesViewModelImpl: CitiesViewModel {
     
     private func openCitySearch() {
         router.openCitySearch()
-    }
-    
-    private func openCityWeather(city: City) {
-        router.openCityWeather(city: city)
     }
 }
 

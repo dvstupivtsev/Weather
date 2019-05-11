@@ -5,8 +5,14 @@
 import UIKit
 
 final class CityWeatherFactoryImpl: CityWeatherFactory {
-    func create(for city: City) -> UIViewController {
-        return CityWeatherViewController()
+    func create(with citySource: CitySource) -> UIViewController {
+        let viewModel = CityWeatherViewModelImpl(
+            citySource: citySource,
+            numberFormatter: NumberFormatter.temperature,
+            dateFormatter: DateFormatter.EEEE_MMM_dd
+        )
+        
+        return CityWeatherViewController(viewModel: viewModel)
     }
 }
 

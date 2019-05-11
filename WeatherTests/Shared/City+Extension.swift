@@ -9,18 +9,18 @@ extension City {
     static let city1 = City(
         id: 1,
         name: "Name1",
-        date: Date(),
+        date: Date(timeIntervalSince1970: 1557569160),
         coordinate: .init(lat: 1, lon: 2),
-        weather: [.init(icon: "Icon1")],
+        weather: [.init(description: "Desc1", icon: "Icon1")],
         main: .init(temp: 1)
     )
     
     static let city2 = City(
         id: 2,
         name: "Name2",
-        date: Date(),
+        date: Date(timeIntervalSince1970: 1557569160),
         coordinate: .init(lat: 2, lon: 3),
-        weather: [.init(icon: "Icon2")],
+        weather: [.init(description: "Desc2", icon: "Icon2")],
         main: .init(temp: 2)
     )
 }

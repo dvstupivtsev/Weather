@@ -61,7 +61,7 @@ final class CitiesViewModelImplTests: XCTestCase {
         XCTAssertNil(receivedError, "shouldn't receive error")
         
         testRouting(for: headerCellModel!)
-        testRouting(for: citiesCellModels, for: cities)
+        testRouting(for: citiesCellModels, for: citiesSources)
     }
     
     private func testRouting(for model: CitiesHeaderCell.Model) {
@@ -74,7 +74,7 @@ final class CitiesViewModelImplTests: XCTestCase {
         )
     }
     
-    private func testRouting(for models: [CityCell.Model], for cities: [City]) {
+    private func testRouting(for models: [CityCell.Model], for citiesSources: [CitySource]) {
         models.enumerated().forEach { index, model in
             let indexPath = IndexPath(row: index + 1, section: 0)
             XCTAssertTrue(
@@ -83,18 +83,14 @@ final class CitiesViewModelImplTests: XCTestCase {
             )
             
             subject.select(at: indexPath)
-            let city = cities[index]
-            XCTAssertEqual(
-                router.openCityWeatherCityReceivedCity,
-                city,
-                "expect to open city \(city), received \(router.openCityWeatherCityReceivedCity!)"
-            )
+            let citySource = citiesSources[index]
+            XCTAssertEqual(router.openCityWeatherCitySourceReceivedCitySource, citySource)
             
             let callsCount = index + 1
             XCTAssertEqual(
-                router.openCityWeatherCityCallsCount,
+                router.openCityWeatherCitySourceCallsCount,
                 callsCount,
-                "expect to open city weather \(callsCount) times, received calls count: \(router.openCitySearchCallsCount)"
+                "expect to open city weather \(callsCount) times, received calls count: \(router.openCityWeatherCitySourceCallsCount)"
             )
         }
     }
@@ -135,11 +131,8 @@ private extension CitiesViewModelImplTests {
         ]
     }
     
-    var cities: [City] {
-        return [.city1, .city2]
-    }
-    
     var citiesSources: [CitySource] {
+        let cities: [City] = [.city1, .city2]
         let timeZones = [TimeZone.current, TimeZone(secondsFromGMT: 123)!]
         
         return zip(cities, timeZones)

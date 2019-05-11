@@ -5,7 +5,7 @@
 import UIKit
 import SnapKit
 
-final class LongTermForecastView: BaseView {
+final class DailyForecastView: BaseView {
     private let appearance = Appearance()
     
     private let tableView = make(object: UITableView()) {
@@ -40,7 +40,7 @@ final class LongTermForecastView: BaseView {
     }
 }
 
-private extension LongTermForecastView {
+private extension DailyForecastView {
     struct Appearance {
         let cornerRadius: CGFloat = 16
     }

@@ -21,7 +21,6 @@ final class CityWeatherView: BaseView {
     private let degreeLabel = make(object: UILabel()) {
         $0.textColor = Color.white
         $0.font = Font.regular90
-        $0.text = "°"
     }
     
     private let weatherStatusLabel = make(object: UILabel()) {
@@ -34,8 +33,8 @@ final class CityWeatherView: BaseView {
         $0.font = Font.regular11
     }
     
-    private let dayForecastView = DayForecastView()
-    private let longTermForecastView = LongTermForecastView()
+    private let hourlyForecastView = HourlyForecastView()
+    private let dailyForecastView = DailyForecastView()
     
     override func commonInit() {
         super.commonInit()
@@ -51,16 +50,12 @@ final class CityWeatherView: BaseView {
             degreeLabel,
             weatherStatusLabel,
             dateLabel,
-            dayForecastView,
-            longTermForecastView
+            hourlyForecastView,
+            dailyForecastView
         )
         
         // TODO: test data, should be removed
-        titleLabel.text = "SAN FRANCISCO"
-        temperatureLabel.text = "8"
-        weatherStatusLabel.text = "CLEAR"
-        dateLabel.text = "THURSDAY, JANUARY 18"
-        dayForecastView.backgroundColor = Color.white
+        hourlyForecastView.backgroundColor = Color.white
     }
     
     private func setupConstraints() {
@@ -89,16 +84,26 @@ final class CityWeatherView: BaseView {
             make.centerX.equalToSuperview()
         }
         
-        dayForecastView.snp.makeConstraints { make in
-            make.top.equalTo(dateLabel.snp.bottom).offset(appearance.dayForecastToDateTopOffset)
-            make.height.equalTo(appearance.dayForecastHeight)
+        hourlyForecastView.snp.makeConstraints { make in
+            make.top.equalTo(dateLabel.snp.bottom).offset(appearance.hourlyForecastToDateTopOffset)
+            make.height.equalTo(appearance.hourlyForecastHeight)
             make.leading.trailing.equalToSuperview()
         }
         
-        longTermForecastView.snp.makeConstraints { make in
+        dailyForecastView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
-            make.top.equalTo(dayForecastView.snp.bottom).offset(appearance.longTermForecastToDayForecastTopOffset)
+            make.top.equalTo(hourlyForecastView.snp.bottom).offset(appearance.dailyForecastToHourlyForecastTopOffset)
         }
+    }
+}
+
+extension CityWeatherView {
+    func update(mainSource: CityWeatherViewSource.Main) {
+        titleLabel.text = mainSource.cityName
+        temperatureLabel.text = mainSource.temperatue
+        degreeLabel.text = mainSource.degreeSymbol
+        weatherStatusLabel.text = mainSource.weatherStatus
+        dateLabel.text = mainSource.dateString
     }
 }
 
@@ -108,8 +113,8 @@ private extension CityWeatherView {
         let temperatureToTitleTopOffset: CGFloat = 25
         let weatherStatusToTemperatureTopOffset: CGFloat = 15
         let dateToWeatherStatusTopOffset: CGFloat = 8
-        let dayForecastToDateTopOffset: CGFloat = 30
-        let dayForecastHeight: CGFloat = 64
-        let longTermForecastToDayForecastTopOffset: CGFloat = 20
+        let hourlyForecastToDateTopOffset: CGFloat = 30
+        let hourlyForecastHeight: CGFloat = 64
+        let dailyForecastToHourlyForecastTopOffset: CGFloat = 20
     }
 }

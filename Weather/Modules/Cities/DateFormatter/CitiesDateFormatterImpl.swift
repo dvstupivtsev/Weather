@@ -8,9 +8,9 @@ final class CitiesDateFormatterImpl: CitiesDateFormatter {
     func string(from date: Date, timeZone: TimeZone) -> String {
         let formatter: DateFormatter
         if date.isToday {
-            formatter = DateFormatter.hhmma
+            formatter = DateFormatter.hh_mm_a
         } else {
-            formatter = DateFormatter.yyyymmddhhmma
+            formatter = DateFormatter.MM_dd_yyyy_hh_mm_a
         }
         
         let oldTimeZone = formatter.timeZone

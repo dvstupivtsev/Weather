@@ -45,7 +45,8 @@ class CitiesDateFormatterImplTests: XCTestCase {
     }
     
     private func expect(actual: Date, timeZone: TimeZone, isToday: Bool) {
-        let formatter = isToday ? DateFormatter.hhmma : .yyyymmddhhmma
+        var formatter = isToday ? DateFormatter.hh_mm_a : .MM_dd_yyyy_hh_mm_a
+        formatter = formatter.copy() as! DateFormatter
         formatter.timeZone = timeZone
         let formattedExpectedDate = formatter.string(from: actual)
         let formattedActualDate = subject.string(from: actual, timeZone: timeZone)

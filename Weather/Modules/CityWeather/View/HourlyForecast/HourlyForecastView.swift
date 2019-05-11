@@ -5,7 +5,7 @@
 import UIKit
 import SnapKit
 
-final class DayForecastView: BaseView {
+final class HourlyForecastView: BaseView {
     override func commonInit() {
         super.commonInit()
         
