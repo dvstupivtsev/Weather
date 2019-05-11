@@ -23,7 +23,7 @@ final class CitiesServiceImplTests: XCTestCase {
     }
     
     func testGetWeatherSuccess() {
-        citiesWeatherService.getWeatherForReturnValue = Promise<CitiesResponse>.pending()
+        citiesWeatherService.getWeatherForReturnValue = Promise<[City]>.pending()
         timeZoneService.getTimeZonesFromReturnValue = Promise<[TimeZone]>.pending()
         
         var receivedValue: [CitySource]?
@@ -43,15 +43,15 @@ final class CitiesServiceImplTests: XCTestCase {
         XCTAssert(waitForPromises(timeout: 1))
         
         XCTAssertEqual(timeZoneService.getTimeZonesFromCallsCount, 1, "should request service")
-        XCTAssertEqual(timeZoneService.getTimeZonesFromReceivedCoordinates, response.cities.map { $0.coordinate }, "should receive valid cities ids")
+        XCTAssertEqual(timeZoneService.getTimeZonesFromReceivedCoordinates, response.map { $0.coordinate }, "should receive valid cities ids")
         
-        let citiesSources = createCitiesSources(with: response.cities, timeZones: timeZones)
-        compare(expected: citiesSources, received: receivedValue)
+        let citiesSources = createCitiesSources(with: response, timeZones: timeZones)
+        XCTAssertEqual(receivedValue, citiesSources)
         XCTAssertNil(receivedError, "shouldn't receive error")
     }
     
     func testGetWeatherFailure() {
-        citiesWeatherService.getWeatherForReturnValue = Promise<CitiesResponse>.pending()
+        citiesWeatherService.getWeatherForReturnValue = Promise<[City]>.pending()
         
         var receivedValue: [CitySource]?
         var receivedError: Error?
@@ -69,7 +69,7 @@ final class CitiesServiceImplTests: XCTestCase {
         XCTAssertEqual(timeZoneService.getTimeZonesFromCallsCount, 0, "should request service")
         
         XCTAssertNil(receivedValue, "shouldn't receive sources")
-        compare(expected: receivedError as NSError?, received: expectedError)
+        XCTAssertEqual(receivedError as NSError?, expectedError)
     }
 }
 
@@ -78,16 +78,15 @@ private extension CitiesServiceImplTests {
         return ["123", "456"]
     }
     
-    var response: CitiesResponse {
-        let cities: [CitiesResponse.City] = [.city1, .city2]
-        return CitiesResponse(cities: cities)
+    var response: [City] {
+        return [.city1, .city2]
     }
     
     var timeZones: [TimeZone] {
         return [.current, TimeZone(secondsFromGMT: 123)!]
     }
     
-    func createCitiesSources(with cities: [CitiesResponse.City], timeZones: [TimeZone]) -> [CitySource] {
+    func createCitiesSources(with cities: [City], timeZones: [TimeZone]) -> [CitySource] {
         return zip(cities, timeZones)
             .map(CitySource.init(city:timeZone:))
     }

@@ -5,6 +5,6 @@
 import Foundation
 
 struct CitySource: Equatable {
-    let city: CitiesResponse.City
+    let city: City
     let timeZone: TimeZone
 }

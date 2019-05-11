@@ -5,7 +5,7 @@
 import UIKit
 
 final class CityWeatherFactoryImpl: CityWeatherFactory {
-    func create(for city: CitiesResponse.City) -> UIViewController {
+    func create(for city: City) -> UIViewController {
         return CityWeatherViewController()
     }
 }

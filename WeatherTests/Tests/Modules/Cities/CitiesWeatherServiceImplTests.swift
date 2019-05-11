@@ -20,9 +20,9 @@ final class CitiesWeatherServiceImplTests: XCTestCase {
     func testGetWeatherWithValidJson() {
         apiService.executeRequestReturnValue = Promise<Data?>.pending()
         
-        var receivedValue: CitiesResponse?
+        var receivedValue: [City]?
         var receivedError: Error?
-        subject.getWeather(for: cities)
+        subject.getWeather(for: citiesIds)
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
@@ -32,20 +32,20 @@ final class CitiesWeatherServiceImplTests: XCTestCase {
             "should call apiService once, got \(apiService.executeRequestCallsCount)"
         )
         
-        compare(expected: request, received: apiService.executeRequestReceivedRequest)
+        XCTAssertEqual(apiService.executeRequestReceivedRequest, request)
         
         apiService.executeRequestReturnValue.fulfill(validJson)
         XCTAssert(waitForPromises(timeout: 1))
-        compare(expected: expectedCitiesResponse, received: receivedValue)
+        XCTAssertEqual(receivedValue, expectedCities)
         XCTAssertNil(receivedError, "shouldn't receive error")
     }
     
     func testGetWeatherWithInvalidJson() {
         apiService.executeRequestReturnValue = Promise<Data?>.pending()
         
-        var receivedValue: CitiesResponse?
+        var receivedValue: [City]?
         var receivedError: Error?
-        subject.getWeather(for: cities)
+        subject.getWeather(for: citiesIds)
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
@@ -55,7 +55,7 @@ final class CitiesWeatherServiceImplTests: XCTestCase {
             "should call apiService once, got \(apiService.executeRequestCallsCount)"
         )
         
-        compare(expected: request, received: apiService.executeRequestReceivedRequest)
+        XCTAssertEqual(apiService.executeRequestReceivedRequest, request)
         
         apiService.executeRequestReturnValue.fulfill(invalidJson)
         XCTAssert(waitForPromises(timeout: 1))
@@ -66,9 +66,9 @@ final class CitiesWeatherServiceImplTests: XCTestCase {
     func testGetWeatherWithNilData() {
         apiService.executeRequestReturnValue = Promise<Data?>.pending()
         
-        var receivedValue: CitiesResponse?
+        var receivedValue: [City]?
         var receivedError: Error?
-        subject.getWeather(for: cities)
+        subject.getWeather(for: citiesIds)
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
@@ -78,29 +78,31 @@ final class CitiesWeatherServiceImplTests: XCTestCase {
             "should call apiService once, got \(apiService.executeRequestCallsCount)"
         )
         
-        compare(expected: request, received: apiService.executeRequestReceivedRequest)
+        XCTAssertEqual(apiService.executeRequestReceivedRequest, request)
         
         apiService.executeRequestReturnValue.fulfill(nil)
         XCTAssert(waitForPromises(timeout: 1))
         XCTAssertNil(receivedValue, "shouldn't receive value")
-        compare(expected: NSError.common, received: receivedError as NSError?)
+        XCTAssertEqual(receivedError as NSError?, NSError.common)
     }
 }
 
 private extension CitiesWeatherServiceImplTests {
-    var expectedCitiesResponse: CitiesResponse {
-        return CitiesResponse(cities: [])
+    var expectedCities: [City] {
+        return [.city1, .city2]
     }
     
     var validJson: Data {
-        return try! JSONEncoder().encode(expectedCitiesResponse)
+        let encoder = JSONEncoder()
+        encoder.dateEncodingStrategy = .secondsSince1970
+        return try! encoder.encode(CitiesResponse(cities: expectedCities))
     }
     
     var invalidJson: Data {
         return Data()
     }
     
-    var cities: [String] {
+    var citiesIds: [String] {
         return ["123", "42134", "asdfasd"]
     }
     
@@ -108,7 +110,7 @@ private extension CitiesWeatherServiceImplTests {
         return ApiServiceRequest(
             name: "group",
             parameters: [
-                "id": cities.joined(separator: ","),
+                "id": citiesIds.joined(separator: ","),
                 "units": "metric"
             ]
         )

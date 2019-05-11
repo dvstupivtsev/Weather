@@ -5,8 +5,8 @@
 import Foundation
 @testable import Weather
 
-extension CitiesResponse.City {
-    static let city1 = CitiesResponse.City(
+extension City {
+    static let city1 = City(
         id: 1,
         name: "Name1",
         date: Date(),
@@ -15,7 +15,7 @@ extension CitiesResponse.City {
         main: .init(temp: 1)
     )
     
-    static let city2 = CitiesResponse.City(
+    static let city2 = City(
         id: 2,
         name: "Name2",
         date: Date(),

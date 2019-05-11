@@ -4,7 +4,7 @@
 
 import Foundation
 
-extension CitiesResponse {
+extension City {
     struct Main: Codable, Equatable {
         let temp: Double
     }

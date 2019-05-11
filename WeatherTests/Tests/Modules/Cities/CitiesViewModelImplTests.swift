@@ -56,8 +56,8 @@ final class CitiesViewModelImplTests: XCTestCase {
         let headerCellModel = receivedCellsModels?.first as? CitiesHeaderCell.Model
         let citiesCellModels = Array(receivedCellsModels![1..<receivedCellsModels!.count]) as? [CityCell.Model] ?? []
         XCTAssertEqual(dateFormatter.stringFromTimeZoneCallsCount, 2)
-        compare(expected: expectedHeaderCellModel, received: headerCellModel)
-        compare(expected: expectedCityCellModelsSource, received: citiesCellModels)
+        XCTAssertEqual(headerCellModel, expectedHeaderCellModel)
+        XCTAssertEqual(citiesCellModels, expectedCityCellModelsSource)
         XCTAssertNil(receivedError, "shouldn't receive error")
         
         testRouting(for: headerCellModel!)
@@ -74,7 +74,7 @@ final class CitiesViewModelImplTests: XCTestCase {
         )
     }
     
-    private func testRouting(for models: [CityCell.Model], for cities: [CitiesResponse.City]) {
+    private func testRouting(for models: [CityCell.Model], for cities: [City]) {
         models.enumerated().forEach { index, model in
             let indexPath = IndexPath(row: index + 1, section: 0)
             XCTAssertTrue(
@@ -135,7 +135,7 @@ private extension CitiesViewModelImplTests {
         ]
     }
     
-    var cities: [CitiesResponse.City] {
+    var cities: [City] {
         return [.city1, .city2]
     }
     

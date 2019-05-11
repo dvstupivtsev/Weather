@@ -12,7 +12,7 @@ final class CitiesWeatherServiceImpl: CitiesWeatherService {
         self.apiService = apiService
     }
     
-    func getWeather(for citiesIds: [String]) -> Promise<CitiesResponse> {
+    func getWeather(for citiesIds: [String]) -> Promise<[City]> {
         let joinedCitiesIds = citiesIds.joined(separator: ",")
         
         let request = ApiServiceRequest(
@@ -28,12 +28,12 @@ final class CitiesWeatherServiceImpl: CitiesWeatherService {
             .then(parse(data:))
     }
     
-    private func parse(data: Data?) throws -> CitiesResponse {
+    private func parse(data: Data?) throws -> [City] {
         let decoder = JSONDecoder()
         decoder.dateDecodingStrategy = .secondsSince1970
         
         if let response = try data.flatMap({ try decoder.decode(CitiesResponse.self, from: $0) }) {
-            return response
+            return response.cities
         } else {
             throw NSError.common
         }

@@ -16,12 +16,13 @@ final class CitiesServiceImpl: CitiesService {
     
     func getCitiesWeather(for citiesIds: [String]) -> Promise<[CitySource]> {
         return citiesWeatherService.getWeather(for: citiesIds)
-            .then(getAndMergeTimeZones(response:))
+            .then(mergeTimeZones(with:))
     }
     
-    private func getAndMergeTimeZones(response: CitiesResponse) -> Promise<[CitySource]> {
-        let coordinates = response.cities.map { $0.coordinate }
-        return timeZoneService.getTimeZones(from: coordinates)
-            .then { zip(response.cities, $0).map(CitySource.init(city:timeZone:)) }
+    private func mergeTimeZones(with cities: [City]) -> Promise<[CitySource]> {
+        let coordinates = cities.map { $0.coordinate }
+        return timeZoneService.getTimeZones(from: coordinates).then {
+            zip(cities, $0).map(CitySource.init(city:timeZone:))
+        }
     }
 }

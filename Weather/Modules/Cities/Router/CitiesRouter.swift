@@ -6,6 +6,6 @@ import UIKit
 
 // sourcery: AutoMockable
 protocol CitiesRouter {
-    func openCityWeather(city: CitiesResponse.City)
+    func openCityWeather(city: City)
     func openCitySearch()
 }

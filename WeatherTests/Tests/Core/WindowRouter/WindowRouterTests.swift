@@ -15,6 +15,6 @@ class WindowRouterTests: XCTestCase {
         subject.setRoot(window: window)
         
         XCTAssertEqual(controllerFactory.createCallsCount, 1, "expected to ask factory once to create controller")
-        compare(expected: window.rootViewController, received: controllerFactory.createReturnValue)
+        XCTAssertEqual(window.rootViewController, controllerFactory.createReturnValue)
     }
 }

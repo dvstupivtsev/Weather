@@ -11,14 +11,14 @@ final class CitiesRouterImpl: CitiesRouter {
     weak var citiesController: UIViewController?
     weak var pageController: PageViewController?
     
-    private var selectedCity: CitiesResponse.City?
+    private var selectedCity: City?
     
     init(cityWeatherFactory: CityWeatherFactory, citySearchFactory: CitySearchFactory) {
         self.cityWeatherFactory = cityWeatherFactory
         self.citySearchFactory = citySearchFactory
     }
     
-    func openCityWeather(city: CitiesResponse.City) {
+    func openCityWeather(city: City) {
         guard let pageController = pageController, let citiesController = citiesController else { return }
         
         if city != selectedCity {

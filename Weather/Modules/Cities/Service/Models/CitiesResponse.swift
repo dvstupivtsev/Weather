@@ -4,9 +4,7 @@
 
 import Foundation
 
-// TODO: - Remove CitiesResponse
 struct CitiesResponse: Equatable {
-    // TODO: - Rename
     let cities: [City]
 }
 

@@ -6,5 +6,5 @@ import UIKit
 
 // sourcery: AutoMockable
 protocol CityWeatherFactory {
-    func create(for city: CitiesResponse.City) -> UIViewController
+    func create(for city: City) -> UIViewController
 }

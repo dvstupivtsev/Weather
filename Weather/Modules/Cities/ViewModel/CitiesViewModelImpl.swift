@@ -78,7 +78,7 @@ final class CitiesViewModelImpl: CitiesViewModel {
         router.openCitySearch()
     }
     
-    private func openCityWeather(city: CitiesResponse.City) {
+    private func openCityWeather(city: City) {
         router.openCityWeather(city: city)
     }
 }

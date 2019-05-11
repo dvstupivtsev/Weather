@@ -4,13 +4,13 @@
 
 import Foundation
 
-extension CitiesResponse {
+extension City {
     struct Weather: Equatable {
         let icon: String
     }
 }
 
-extension CitiesResponse.Weather: Codable {
+extension City.Weather: Codable {
     private enum CodingKeys: String, CodingKey {
         case icon
     }
