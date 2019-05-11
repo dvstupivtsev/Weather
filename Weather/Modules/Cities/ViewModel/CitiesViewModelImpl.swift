@@ -28,6 +28,7 @@ final class CitiesViewModelImpl: CitiesViewModel {
     }
     
     func getData() -> Promise<CitiesViewSource> {
+        // TODO: - remove
         let citiesIds = [
             "2950159",
             "2968815",

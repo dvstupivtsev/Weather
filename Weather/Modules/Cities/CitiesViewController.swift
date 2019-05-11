@@ -41,7 +41,7 @@ final class CitiesViewController: BaseViewController<CitiesView>, UITableViewDel
         // TODO: handle failure
     }
     
-    // TODO: - Move to separated entity
+    // TODO: - Move to separated data source
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tableSource.count

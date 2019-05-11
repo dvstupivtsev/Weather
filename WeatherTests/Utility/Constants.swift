@@ -8,4 +8,6 @@ import UIKit
 struct Constants {
     static let controller = UIViewController()
     static let error = NSError.error(message: "Test")
+    static let date = Date(timeIntervalSince1970: 1557569160)
+    static let data = "Test".data(using: .utf8)!
 }

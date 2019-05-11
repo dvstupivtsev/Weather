@@ -7,17 +7,21 @@ import XCTest
 @testable import Weather
 
 final class CitiesWeatherServiceImplTests: XCTestCase {
-    var apiService: ApiServiceMock!
     var subject: CitiesWeatherServiceImpl!
+    var apiService: ApiServiceMock!
+    var jsonDecoder: CitiesWeatherJsonDecoderMock!
     
     override func setUp() {
         super.setUp()
         
-        apiService = ApiServiceMock()
-        subject = CitiesWeatherServiceImpl(apiService: apiService)
+        apiService = .init()
+        jsonDecoder = .init()
+        subject = CitiesWeatherServiceImpl(apiService: apiService, jsonDecoder: jsonDecoder)
     }
     
-    func testGetWeatherWithValidJson() {
+    func testGetWeatherSuccess() {
+        jsonDecoder.parseDataReturnValue = expectedCities
+        
         apiService.executeRequestReturnValue = Promise<Data?>.pending()
         
         var receivedValue: [City]?
@@ -26,21 +30,24 @@ final class CitiesWeatherServiceImplTests: XCTestCase {
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
-        XCTAssertEqual(
-            apiService.executeRequestCallsCount,
-            1,
-            "should call apiService once, got \(apiService.executeRequestCallsCount)"
-        )
-        
+        XCTAssertEqual(apiService.executeRequestCallsCount, 1, "should call apiService once")
         XCTAssertEqual(apiService.executeRequestReceivedRequest, request)
         
-        apiService.executeRequestReturnValue.fulfill(validJson)
+        let data = Constants.data
+        apiService.executeRequestReturnValue.fulfill(data)
         XCTAssert(waitForPromises(timeout: 1))
+        
+        XCTAssertEqual(jsonDecoder.parseDataCallsCount, 1, "should call jsonDecoder once")
+        XCTAssertEqual(jsonDecoder.parseDataReceivedData, data)
+        
         XCTAssertEqual(receivedValue, expectedCities)
         XCTAssertNil(receivedError, "shouldn't receive error")
     }
     
-    func testGetWeatherWithInvalidJson() {
+    func testGetWeatherFailure() {
+        let expectedError = Constants.error
+        jsonDecoder.parseDataClosure = { _ in throw expectedError }
+        
         apiService.executeRequestReturnValue = Promise<Data?>.pending()
         
         var receivedValue: [City]?
@@ -49,57 +56,24 @@ final class CitiesWeatherServiceImplTests: XCTestCase {
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
-        XCTAssertEqual(
-            apiService.executeRequestCallsCount,
-            1,
-            "should call apiService once, got \(apiService.executeRequestCallsCount)"
-        )
-        
+        XCTAssertEqual(apiService.executeRequestCallsCount, 1, "should call apiService once")
         XCTAssertEqual(apiService.executeRequestReceivedRequest, request)
         
-        apiService.executeRequestReturnValue.fulfill(invalidJson)
+        let data = Constants.data
+        apiService.executeRequestReturnValue.fulfill(data)
         XCTAssert(waitForPromises(timeout: 1))
+        
+        XCTAssertEqual(jsonDecoder.parseDataCallsCount, 1, "should call jsonDecoder once")
+        XCTAssertEqual(jsonDecoder.parseDataReceivedData, data)
+        
         XCTAssertNil(receivedValue, "shouldn't receive value")
-        XCTAssertNotNil(receivedError, "should receive error")
-    }
-    
-    func testGetWeatherWithNilData() {
-        apiService.executeRequestReturnValue = Promise<Data?>.pending()
-        
-        var receivedValue: [City]?
-        var receivedError: Error?
-        subject.getWeather(for: citiesIds)
-            .then { receivedValue = $0 }
-            .catch { receivedError = $0 }
-        
-        XCTAssertEqual(
-            apiService.executeRequestCallsCount,
-            1,
-            "should call apiService once, got \(apiService.executeRequestCallsCount)"
-        )
-        
-        XCTAssertEqual(apiService.executeRequestReceivedRequest, request)
-        
-        apiService.executeRequestReturnValue.fulfill(nil)
-        XCTAssert(waitForPromises(timeout: 1))
-        XCTAssertNil(receivedValue, "shouldn't receive value")
-        XCTAssertEqual(receivedError as NSError?, NSError.common)
+        XCTAssertEqual(receivedError as NSError?, expectedError)
     }
 }
 
 private extension CitiesWeatherServiceImplTests {
     var expectedCities: [City] {
         return [.city1, .city2]
-    }
-    
-    var validJson: Data {
-        let encoder = JSONEncoder()
-        encoder.dateEncodingStrategy = .secondsSince1970
-        return try! encoder.encode(CitiesResponse(cities: expectedCities))
-    }
-    
-    var invalidJson: Data {
-        return Data()
     }
     
     var citiesIds: [String] {

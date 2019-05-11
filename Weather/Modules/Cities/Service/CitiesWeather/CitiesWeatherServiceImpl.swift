@@ -7,9 +7,11 @@ import Promises
 
 final class CitiesWeatherServiceImpl: CitiesWeatherService {
     private let apiService: ApiService
+    private let jsonDecoder: CitiesWeatherJsonDecoder
     
-    init(apiService: ApiService) {
+    init(apiService: ApiService, jsonDecoder: CitiesWeatherJsonDecoder) {
         self.apiService = apiService
+        self.jsonDecoder = jsonDecoder
     }
     
     func getWeather(for citiesIds: [String]) -> Promise<[City]> {
@@ -25,18 +27,7 @@ final class CitiesWeatherServiceImpl: CitiesWeatherService {
         
         return apiService
             .execute(request: request)
-            .then(parse(data:))
-    }
-    
-    private func parse(data: Data?) throws -> [City] {
-        let decoder = JSONDecoder()
-        decoder.dateDecodingStrategy = .secondsSince1970
-        
-        if let response = try data.flatMap({ try decoder.decode(CitiesResponse.self, from: $0) }) {
-            return response.cities
-        } else {
-            throw NSError.common
-        }
+            .then(jsonDecoder.parse(data:))
     }
 }
 

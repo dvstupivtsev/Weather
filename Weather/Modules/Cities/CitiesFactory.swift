@@ -8,7 +8,11 @@ final class CitiesFactory {
     func create(router: CitiesRouter) -> UIViewController {
         let urlSessionAdapter = UrlSessionAdapter(session: URLSession.shared)
         let apiService = ApiServiceImpl(urlService: urlSessionAdapter)
-        let citiesWeatherService = CitiesWeatherServiceImpl(apiService: apiService)
+        let citiesWeatherService = CitiesWeatherServiceImpl(
+            apiService: apiService,
+            jsonDecoder: CitiesWeatherJsonDecoderImpl()
+        )
+        
         let vm = CitiesViewModelImpl(
             citiesService: CitiesServiceImpl(
                 citiesWeatherService: citiesWeatherService,
