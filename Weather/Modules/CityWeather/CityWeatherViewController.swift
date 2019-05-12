@@ -22,6 +22,7 @@ final class CityWeatherViewController: BaseViewController<CityWeatherView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        customView.registerDailyForecastCellsClasses(classes: [DailyForecastCell.self])
         customView.update(mainSource: viewModel.mainSource)
         
         viewModel.getDailyForecastSource()

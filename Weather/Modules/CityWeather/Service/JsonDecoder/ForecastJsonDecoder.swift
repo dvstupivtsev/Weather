@@ -5,6 +5,6 @@
 import Foundation
 
 // sourcery: AutoMockable
-protocol DailyForecastJsonDecoder {
-    func parse(data: Data?) throws -> [DayWeather]
+protocol ForecastJsonDecoder {
+    func parse(data: Data?) throws -> [Forecast]
 }

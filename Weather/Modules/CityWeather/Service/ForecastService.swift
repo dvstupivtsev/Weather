@@ -6,6 +6,6 @@ import Foundation
 import Promises
 
 // sourcery: AutoMockable
-protocol WeatherHourlyForecastService {
-    func getHourlyForecast(for cityId: Int) -> Promise<[HourWeather]>
+protocol ForecastService {
+    func getForecast(for cityId: Int) -> Promise<[Forecast]>
 }

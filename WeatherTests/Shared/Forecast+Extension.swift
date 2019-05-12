@@ -5,16 +5,16 @@
 import Foundation
 @testable import Weather
 
-extension HourWeather {
-    static let weather1 = HourWeather(
+extension Forecast {
+    static let forecast1 = Forecast(
         date: Constants.date,
-        main: HourWeather.Main(temp: 1),
+        temperature: Forecast.Temperature(value: 5, min: -10, max: 20),
         weather: [Weather(description: "DescTest1", icon: "IconNameTest1")]
     )
     
-    static let weather2 = HourWeather(
+    static let forecast2 = Forecast(
         date: Constants.date,
-        main: HourWeather.Main(temp: 2),
+        temperature: Forecast.Temperature(value: 50, min: -100, max: 200),
         weather: [Weather(description: "DescTest2", icon: "IconNameTest2")]
     )
 }

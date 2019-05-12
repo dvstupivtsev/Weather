@@ -6,32 +6,32 @@ import XCTest
 @testable import Weather
 @testable import Promises
 
-final class WeatherHourlyForecastServiceImplTests: XCTestCase {
+final class ForecastServiceImplTests: XCTestCase {
     private let cityId = 1234
     
-    private var subject: WeatherHourlyForecastServiceImpl!
+    private var subject: ForecastServiceImpl!
     private var apiService: ApiServiceMock!
-    private var jsonDecoder: HourlyForecastJsonDecoderMock!
+    private var jsonDecoder: ForecastJsonDecoderMock!
     
     override func setUp() {
         super.setUp()
         
         apiService = .init()
         jsonDecoder = .init()
-        subject = WeatherHourlyForecastServiceImpl(apiService: apiService, jsonDecoder: jsonDecoder)
+        subject = ForecastServiceImpl(apiService: apiService, jsonDecoder: jsonDecoder)
     }
     
     func testGetDailyForecastSuccess() {
         let data = Constants.data
         apiService.executeRequestReturnValue = Promise(data)
         
-        let expectedWeathers = [HourWeather.weather1, .weather2]
-        jsonDecoder.parseDataReturnValue = expectedWeathers
+        let expectedForecasts = [Forecast.forecast1, .forecast2]
+        jsonDecoder.parseDataReturnValue = expectedForecasts
         
-        let result = subject.getHourlyForecast(for: cityId)
+        let result = subject.getForecast(for: cityId)
         
         XCTAssert(waitForPromises(timeout: 1))
-        XCTAssertEqual(result.value, expectedWeathers)
+        XCTAssertEqual(result.value, expectedForecasts)
         XCTAssertNil(result.error)
     }
     
@@ -39,10 +39,10 @@ final class WeatherHourlyForecastServiceImplTests: XCTestCase {
         let expectedError = Constants.error
         apiService.executeRequestReturnValue = Promise(expectedError)
         
-        let expectedWeathers = [HourWeather.weather1, .weather2]
-        jsonDecoder.parseDataReturnValue = expectedWeathers
+        let expectedForecasts = [Forecast.forecast1, .forecast2]
+        jsonDecoder.parseDataReturnValue = expectedForecasts
         
-        let result = subject.getHourlyForecast(for: cityId)
+        let result = subject.getForecast(for: cityId)
         
         XCTAssert(waitForPromises(timeout: 1))
         XCTAssertEqual(result.error as NSError?, expectedError)
@@ -56,7 +56,7 @@ final class WeatherHourlyForecastServiceImplTests: XCTestCase {
         let expectedError = Constants.error
         jsonDecoder.parseDataClosure = { _ in throw expectedError }
         
-        let result = subject.getHourlyForecast(for: cityId)
+        let result = subject.getForecast(for: cityId)
         
         XCTAssert(waitForPromises(timeout: 1))
         XCTAssertEqual(result.error as NSError?, expectedError)

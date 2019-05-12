@@ -14,7 +14,7 @@ struct Font {
     }
     
     static var regular13: UIFont {
-        return regular(ofSize: 11)
+        return regular(ofSize: 13)
     }
     
     static var regular15: UIFont {

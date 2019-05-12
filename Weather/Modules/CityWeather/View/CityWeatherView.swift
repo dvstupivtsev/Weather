@@ -98,6 +98,10 @@ final class CityWeatherView: BaseView {
 }
 
 extension CityWeatherView {
+    func registerDailyForecastCellsClasses(classes: [UITableViewCell.Type]) {
+        dailyForecastView.register(cellsClasses: classes)
+    }
+    
     func update(mainSource: CityWeatherViewSource.Main) {
         titleLabel.text = mainSource.cityName
         temperatureLabel.text = mainSource.temperatue

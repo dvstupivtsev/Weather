@@ -4,16 +4,16 @@
 
 import Foundation
 
-struct HourWeather: Equatable {
+struct Forecast: Equatable {
     let date: Date
-    let main: Main
+    let temperature: Temperature
     let weather: [Weather]
 }
 
-extension HourWeather: Codable {
+extension Forecast: Codable {
     private enum CodingKeys: String, CodingKey {
         case date = "dt"
-        case main
+        case temperature = "main"
         case weather
     }
 }

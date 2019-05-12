@@ -27,12 +27,12 @@ final class ApiServiceImplTests: XCTestCase {
             .catch { receivedError = $0 }
         
         XCTAssertEqual(urlService.dataTaskWithCallsCount, 1, "should call urlService")
-        XCTAssertEqual(urlService.dataTaskWithReceivedUrl?.absoluteString, validUrlString, "should call urlService")
+        XCTAssertEqual(urlService.dataTaskWithReceivedUrl?.absoluteString, validUrlString)
         
         let expectedData = Data()
         urlService.dataTaskWithReturnValue.fulfill(expectedData)
         XCTAssert(waitForPromises(timeout: 1))
-        XCTAssertEqual(receivedValue, expectedData, "should receive success with data")
+        XCTAssertEqual(receivedValue, expectedData)
         XCTAssertNil(receivedError, "shouldn't receive error")
     }
     
@@ -46,13 +46,13 @@ final class ApiServiceImplTests: XCTestCase {
             .catch { receivedError = $0 }
         
         XCTAssertEqual(urlService.dataTaskWithCallsCount, 1, "should call urlService")
-        XCTAssertEqual(urlService.dataTaskWithReceivedUrl?.absoluteString, validUrlString, "should call urlService")
+        XCTAssertEqual(urlService.dataTaskWithReceivedUrl?.absoluteString, validUrlString)
         
         let expectedError = NSError.error(message: "TestError")
         urlService.dataTaskWithReturnValue.reject(expectedError)
         XCTAssert(waitForPromises(timeout: 1))
         XCTAssertNil(receivedValue, "shouldn't receive data")
-        XCTAssertEqual(receivedError as NSError?, expectedError, "should receive error")
+        XCTAssertEqual(receivedError as NSError?, expectedError)
     }
     
     func testExecuteWithInvalidUrl() {
@@ -65,7 +65,7 @@ final class ApiServiceImplTests: XCTestCase {
         XCTAssertEqual(urlService.dataTaskWithCallsCount, 0, "shouldn't call urlService")
         
         XCTAssert(waitForPromises(timeout: 1))
-        XCTAssertEqual(receivedError as NSError?, NSError.common, "should receive error")
+        XCTAssertEqual(receivedError as NSError?, NSError.common)
         XCTAssertNil(receivedValue, "shouldn't receive value")
     }
 }
@@ -80,6 +80,6 @@ private extension ApiServiceImplTests {
     }
     
     private var validUrlString: String {
-        return "https://api.openweathermap.org/data/2.5/TestName?TestKey=TestValue&APPID=95ff45a9380c75f19a9a9ef20502dac9"
+        return "https://api.openweathermap.org/data/2.5/TestName?TestKey=TestValue&appid=95ff45a9380c75f19a9a9ef20502dac9"
     }
 }

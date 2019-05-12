@@ -8,26 +8,23 @@ final class CityWeatherFactoryImpl: CityWeatherFactory {
     func create(with citySource: CitySource) -> UIViewController {
         let urlService = UrlSessionAdapter(session: URLSession.shared)
         let apiService = ApiServiceImpl(urlService: urlService)
+        let forecastService = ForecastServiceImpl(
+            apiService: apiService,
+            jsonDecoder: ForecastJsonDecoderImpl()
+        )
         
-        let cityWeatherService = CityWeatherServiceImpl(
-            dailyForecastService: WeatherDailyForecastServiceImpl(
-                apiService: apiService,
-                jsonDecoder: DailyForecastJsonDecoderImpl()
-            ),
-            hourlyForecastService: WeatherHourlyForecastServiceImpl(
-                apiService: apiService,
-                jsonDecoder: HourlyForecastJsonDecoderImpl()
-            )
+        let formatter = CityWeatherFormatterImpl(
+            numberFormatter: NumberFormatter.temperature,
+            currentDateFormatter: DateFormatter.EEEE_MMM_dd,
+            forecastDateFormatter: DateFormatter.MMM_dd,
+            forecastWeekdayDateFormatter: DateFormatter.EEEE,
+            temperatureFormatter: MeasurementFormatter.celsius
         )
         
         let viewModel = CityWeatherViewModelImpl(
             citySource: citySource,
-            cityWeatherService: cityWeatherService,
-            numberFormatter: NumberFormatter.temperature,
-            mainDateFormatter: DateFormatter.EEEE_MMM_dd,
-            dailyForecastDateFormatter: DateFormatter.MMM_dd,
-            dailyForecastWeekdayDateFormatter: DateFormatter.EEEE,
-            temperatureFormatter: MeasurementFormatter.celsius
+            forecastService: forecastService,
+            formatter: formatter
         )
         
         return CityWeatherViewController(viewModel: viewModel)

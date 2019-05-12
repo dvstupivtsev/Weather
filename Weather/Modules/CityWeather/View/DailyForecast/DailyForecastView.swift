@@ -24,6 +24,8 @@ final class DailyForecastView: BaseView {
     private func setupSubviews() {
         backgroundColor = Color.white
         
+        tableView.contentInset = appearance.margins
+        
         addSubview(tableView)
     }
     
@@ -39,6 +41,11 @@ final class DailyForecastView: BaseView {
         roundCorners([.topLeft, .topRight], radius: appearance.cornerRadius)
     }
     
+    // TODO: pass object which register cells classes
+    func register(cellsClasses: [UITableViewCell.Type]) {
+        cellsClasses.forEach(tableView.register(type:))
+    }
+    
     func update(tableSource: TableDataSource) {
         tableView.dataSource = tableSource
         tableView.delegate = tableSource
@@ -49,6 +56,7 @@ final class DailyForecastView: BaseView {
 
 private extension DailyForecastView {
     struct Appearance {
+        let margins = UIEdgeInsets(horizontal: 0, vertical: 8)
         let cornerRadius: CGFloat = 16
     }
 }

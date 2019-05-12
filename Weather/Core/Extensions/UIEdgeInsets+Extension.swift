@@ -8,4 +8,8 @@ extension UIEdgeInsets {
     init(all edge: CGFloat) {
         self.init(top: edge, left: edge, bottom: edge, right: edge)
     }
+    
+    init(horizontal: CGFloat, vertical: CGFloat) {
+        self.init(top: vertical, left: horizontal, bottom: vertical, right: horizontal)
+    }
 }

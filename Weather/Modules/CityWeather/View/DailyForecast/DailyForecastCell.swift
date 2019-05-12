@@ -28,7 +28,9 @@ final class DailyForecastCell: BaseCell<DailyForecastCell.Model> {
         $0.textColor = Color.black50
     }
     
-    private let weatherImageView = UIImageView()
+    private let weatherImageView = make(UIImageView()) {
+        $0.tintColor = Color.black50
+    }
     
     override func commonInit() {
         super.commonInit()
@@ -70,7 +72,7 @@ final class DailyForecastCell: BaseCell<DailyForecastCell.Model> {
         weatherImageView.snp.makeConstraints { make in
             make.size.equalTo(appearance.imageSize)
             make.centerY.equalToSuperview()
-            make.trailing.equalTo(appearance.imageTrailingMarginWithSuperview)
+            make.trailing.equalTo(-appearance.imageTrailingMarginWithSuperview)
         }
     }
     
@@ -79,7 +81,7 @@ final class DailyForecastCell: BaseCell<DailyForecastCell.Model> {
         dateLabel.text = model.dateString
         maxTempLabel.text = model.maxTemperatureString
         minTempLabel.text = model.minTemperatureString
-        weatherImageView.image = model.weatherImage
+        weatherImageView.image = model.weatherImage.withRenderingMode(.alwaysTemplate)
     }
 }
 
@@ -101,8 +103,8 @@ private extension DailyForecastCell {
     struct Appearance {
         let margins = UIEdgeInsets(all: 12)
         let dateWithWeekdaySpacing: CGFloat = 4
-        let minTempLeadingWithMaxTempCenterXSpacing: CGFloat = 20
-        let imageTrailingMarginWithSuperview: CGFloat = 80
+        let minTempLeadingWithMaxTempCenterXSpacing: CGFloat = 24
+        let imageTrailingMarginWithSuperview: CGFloat = 90
         let imageSize = CGSize(edge: 24)
     }
 }

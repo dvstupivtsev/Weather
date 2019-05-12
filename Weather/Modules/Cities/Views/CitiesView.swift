@@ -7,6 +7,8 @@ import SnapKit
 
 // TODO: Add reload view if smth went wrong, add Pull2Refresh for reloading data, add skeleton loading
 final class CitiesView: BaseView {
+    private let appearance = Appearance()
+    
     private let tableView = make(UITableView()) {
         $0.tableFooterView = UIView()
         $0.separatorStyle = .none
@@ -21,6 +23,8 @@ final class CitiesView: BaseView {
     }
     
     private func setupSubviews() {
+        tableView.contentInset = appearance.margins
+        
         addSubview(tableView)
     }
     
@@ -39,5 +43,11 @@ final class CitiesView: BaseView {
         tableView.dataSource = tableSource
         
         tableView.reloadData()
+    }
+}
+
+private extension CitiesView {
+    struct Appearance {
+        let margins = UIEdgeInsets(top: 0, left: 0, bottom: 12, right: 0)
     }
 }

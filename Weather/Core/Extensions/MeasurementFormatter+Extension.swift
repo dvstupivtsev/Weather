@@ -4,6 +4,7 @@
 
 import Foundation
 
+// sourcery: AutoMockable
 protocol MeasurementFormatterProtocol {
     func string(from doubleCelsius: Double) -> String
 }

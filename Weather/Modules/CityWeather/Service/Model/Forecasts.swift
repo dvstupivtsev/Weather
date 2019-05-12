@@ -4,6 +4,6 @@
 
 import Foundation
 
-struct HourlyForecast: Codable, Equatable {
-    let list: [HourWeather]
+struct Forecasts: Codable, Equatable {
+    let list: [Forecast]
 }
