@@ -32,4 +32,18 @@ extension DateFormatter {
         $0.timeZone = TimeZone(secondsFromGMT: 0)
         $0.dateFormat = "EEEE, MMM dd"
     }
+    
+    // Saturday
+    static let EEEE = make(DateFormatter()) {
+        $0.locale = Locale(identifier: "en_US")
+        $0.timeZone = TimeZone(secondsFromGMT: 0)
+        $0.dateFormat = "EEEE"
+    }
+    
+    // May 11
+    static let MMM_dd = make(DateFormatter()) {
+        $0.locale = Locale(identifier: "en_US")
+        $0.timeZone = TimeZone(secondsFromGMT: 0)
+        $0.dateFormat = "MMM dd"
+    }
 }

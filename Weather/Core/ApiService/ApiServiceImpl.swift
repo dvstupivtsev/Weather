@@ -29,7 +29,7 @@ final class ApiServiceImpl: ApiService {
             .map { "\($0.key)=\($0.value)" }
             .joined(separator: "&")
         
-        let urlString = "\(baseURLString)\(request.name)?\(joinedParams)&APPID=\(apiKey)"
+        let urlString = "\(baseURLString)\(request.name)?\(joinedParams)&appid=\(apiKey)"
         
         return URL(string: urlString)
     }

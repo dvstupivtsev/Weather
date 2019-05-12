@@ -11,5 +11,7 @@ final class DateFormatterTests: XCTestCase {
         XCTAssertEqual(DateFormatter.hh_mm_a.string(from: date), "10:06 AM")
         XCTAssertEqual(DateFormatter.MM_dd_yyyy_hh_mm_a.string(from: date), "05/11/2019 10:06 AM")
         XCTAssertEqual(DateFormatter.EEEE_MMM_dd.string(from: date), "Saturday, May 11")
+        XCTAssertEqual(DateFormatter.EEEE.string(from: date), "Saturday")
+        XCTAssertEqual(DateFormatter.MMM_dd.string(from: date), "May 11")
     }
 }

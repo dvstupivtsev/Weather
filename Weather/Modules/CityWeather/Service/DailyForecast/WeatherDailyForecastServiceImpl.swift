@@ -29,6 +29,6 @@ final class WeatherDailyForecastServiceImpl: WeatherDailyForecastService {
 private extension WeatherDailyForecastServiceImpl {
     struct Constants {
         static let idKey = "id"
-        static let apiName = "forecast/hourly"
+        static let apiName = "forecast/daily"
     }
 }

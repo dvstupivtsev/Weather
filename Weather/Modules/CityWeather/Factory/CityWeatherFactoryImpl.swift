@@ -22,9 +22,12 @@ final class CityWeatherFactoryImpl: CityWeatherFactory {
         
         let viewModel = CityWeatherViewModelImpl(
             citySource: citySource,
+            cityWeatherService: cityWeatherService,
             numberFormatter: NumberFormatter.temperature,
-            dateFormatter: DateFormatter.EEEE_MMM_dd,
-            cityWeatherService: cityWeatherService
+            mainDateFormatter: DateFormatter.EEEE_MMM_dd,
+            dailyForecastDateFormatter: DateFormatter.MMM_dd,
+            dailyForecastWeekdayDateFormatter: DateFormatter.EEEE,
+            temperatureFormatter: MeasurementFormatter.celsius
         )
         
         return CityWeatherViewController(viewModel: viewModel)

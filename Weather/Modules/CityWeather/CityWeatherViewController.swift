@@ -7,6 +7,7 @@ import Weakify
 
 final class CityWeatherViewController: BaseViewController<CityWeatherView> {
     private let viewModel: CityWeatherViewModel
+    private var tableSource: TableDataSource = .empty
     
     init(viewModel: CityWeatherViewModel) {
         self.viewModel = viewModel
@@ -30,7 +31,7 @@ final class CityWeatherViewController: BaseViewController<CityWeatherView> {
     
     private func updateDailyForecast(cellProviderConvertibles: [CellProviderConvertible]) {
         let sectionSource = TableSectionSource(cellProviderConvertibles: cellProviderConvertibles)
-        let tableSource = TableDataSource(
+        tableSource = TableDataSource(
             sources: [sectionSource],
             selectionBehavior: DisabledCellSelectionBehavior()
         )

@@ -4,7 +4,11 @@
 
 import Foundation
 
-extension MeasurementFormatter {
+protocol MeasurementFormatterProtocol {
+    func string(from doubleCelsius: Double) -> String
+}
+
+extension MeasurementFormatter: MeasurementFormatterProtocol {
     static let celsius = make(MeasurementFormatter()) {
         $0.numberFormatter = .temperature
         $0.unitOptions = [.naturalScale, .temperatureWithoutUnit]
