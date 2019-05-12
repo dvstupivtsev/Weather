@@ -8,14 +8,14 @@ import Weakify
 
 final class CityWeatherViewModelImpl: CityWeatherViewModel {
     private let citySource: CitySource
-    private let forecastService: ForecastService
+    private let forecastService: CityForecastService
     private let formatter: CityWeatherFormatter
     
     private(set) lazy var mainSource = createMainSource()
     
     init(
         citySource: CitySource,
-        forecastService: ForecastService,
+        forecastService: CityForecastService,
         formatter: CityWeatherFormatter
     ) {
         self.citySource = citySource
@@ -33,14 +33,31 @@ final class CityWeatherViewModelImpl: CityWeatherViewModel {
         )
     }
     
-    func getDailyForecastSource() -> Promise<[CellProviderConvertible]> {
+    func getForecastSource() -> Promise<CityWeatherViewSource.Forecast> {
         return forecastService
             .getForecast(for: citySource.city.id)
-            .then(createDailyForecastCellProviders(with:))
+            .then(createForecastViewSource(with:))
     }
     
-    private func createDailyForecastCellProviders(with dailyForecast: [Forecast]) -> [CellProviderConvertible] {
-        return dailyForecast.map {
+    private func createForecastViewSource(with forecast: CityForecast) -> CityWeatherViewSource.Forecast {
+        return CityWeatherViewSource.Forecast(
+            hourlyProviderConvertibles: createHourlyForecastCellProviders(with: forecast.hourlyForecast),
+            dailyProviderConvertibles: createDailyForecastCellProviders(with: forecast.dailyForecast)
+        )
+    }
+    
+    private func createHourlyForecastCellProviders(with forecast: [Forecast]) -> [CollectionCellProviderConvertible] {
+        return forecast.map {
+            HourlyForecastCollectionCell.Model(
+                dateString: formatter.formatHourlyForecastDate($0.date),
+                temperatureString: formatter.formatForecastTemperature($0.temperature.value),
+                iconImage: $0.weather.first.flatMap { UIImage(named: $0.icon) } ?? UIImage()
+            )
+        }
+    }
+    
+    private func createDailyForecastCellProviders(with forecast: [Forecast]) -> [CellProviderConvertible] {
+        return forecast.map {
             DailyForecastCell.Model(
                 weekdayTitle: formatter.formatForecastWeekday($0.date),
                 dateString: formatter.formatForecastDate($0.date),

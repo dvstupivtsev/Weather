@@ -8,5 +8,5 @@ import Promises
 protocol CityWeatherViewModel {
     var mainSource: CityWeatherViewSource.Main { get }
     
-    func getDailyForecastSource() -> Promise<[CellProviderConvertible]>
+    func getForecastSource() -> Promise<CityWeatherViewSource.Forecast>
 }

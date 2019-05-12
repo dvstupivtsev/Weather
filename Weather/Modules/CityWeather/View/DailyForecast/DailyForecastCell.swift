@@ -5,6 +5,7 @@
 import UIKit
 import SnapKit
 
+// TODO: Rename to DailyForecastTableCell
 final class DailyForecastCell: BaseCell<DailyForecastCell.Model> {
     private let appearance = Appearance()
     

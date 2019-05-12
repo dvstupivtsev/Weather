@@ -12,7 +12,7 @@ final class CitiesView: BaseView {
     private let tableView = make(UITableView()) {
         $0.tableFooterView = UIView()
         $0.separatorStyle = .none
-        $0.backgroundColor = .clear
+        $0.backgroundColor = Color.clear
     }
     
     override func commonInit() {
@@ -34,8 +34,8 @@ final class CitiesView: BaseView {
         }
     }
     
-    func register(cellTypes: [UITableViewCell.Type]) {
-        cellTypes.forEach { tableView.register(type: $0) }
+    func registerViews(with registrator: TableReusableViewRegistrator) {
+        registrator.registerViews(for: tableView)
     }
     
     func update(tableSource: TableDataSource) {

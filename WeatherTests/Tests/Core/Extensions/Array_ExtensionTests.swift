@@ -5,7 +5,21 @@
 import XCTest
 @testable import Weather
 
-final class Array_FloatingPointTests: XCTestCase {
+final class Array_ExtensionTests: XCTestCase {
+    func testIsNotEmpty() {
+        var array = [Any]()
+        XCTAssertEmpty(array)
+        
+        array = [1]
+        XCTAssertNotEmpty(array)
+        
+        array = [11234.1234, "123412", NSNumber()]
+        XCTAssertNotEmpty(array)
+        
+        array = [NSObject()]
+        XCTAssertNotEmpty(array)
+    }
+    
     func testAverageFloat() {
         var array = [Float]()
         XCTAssertEqual(array.average(), 0)

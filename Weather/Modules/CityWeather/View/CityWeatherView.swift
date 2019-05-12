@@ -53,9 +53,6 @@ final class CityWeatherView: BaseView {
             hourlyForecastView,
             dailyForecastView
         )
-        
-        // TODO: test data, should be removed
-        hourlyForecastView.backgroundColor = Color.white
     }
     
     private func setupConstraints() {
@@ -98,8 +95,12 @@ final class CityWeatherView: BaseView {
 }
 
 extension CityWeatherView {
-    func registerDailyForecastCellsClasses(classes: [UITableViewCell.Type]) {
-        dailyForecastView.register(cellsClasses: classes)
+    func registerDailyForecastViews(with registrator: TableReusableViewRegistrator) {
+        dailyForecastView.registerViews(with: registrator)
+    }
+    
+    func registerHourlyForecastViews(with registrator: CollectionReusableViewRegistrator) {
+        hourlyForecastView.registerViews(with: registrator)
     }
     
     func update(mainSource: CityWeatherViewSource.Main) {
@@ -108,6 +109,10 @@ extension CityWeatherView {
         degreeLabel.text = mainSource.degreeSymbol
         weatherStatusLabel.text = mainSource.weatherStatus
         dateLabel.text = mainSource.dateString
+    }
+    
+    func update(hourlyForecastSource: CollectionDataSource) {
+        hourlyForecastView.update(collectionSource: hourlyForecastSource)
     }
     
     func update(dailyForecastSource: TableDataSource) {

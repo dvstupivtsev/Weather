@@ -4,6 +4,7 @@
 
 import UIKit
 
+// TODO: Rename to GenericTableCellProvider
 struct GenericCellProvider<Model, Cell: BaseCell<Model>>: CellProvider {
     private let model: Model
     
@@ -12,7 +13,7 @@ struct GenericCellProvider<Model, Cell: BaseCell<Model>>: CellProvider {
     }
     
     func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        let cell: Cell = tableView.dequeue(for: tableView, at: indexPath)
+        let cell: Cell = tableView.dequeue(at: indexPath)
         cell.update(model: model)
         
         return cell

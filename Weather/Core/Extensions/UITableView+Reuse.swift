@@ -9,8 +9,8 @@ extension UITableView {
         register(type, forCellReuseIdentifier: type.reuseIdentifier)
     }
     
-    func dequeue<T: UITableViewCell>(for tableView: UITableView, at indexPath: IndexPath) -> T {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: T.reuseIdentifier, for: indexPath) as? T else {
+    func dequeue<T: UITableViewCell>(at indexPath: IndexPath) -> T {
+        guard let cell = dequeueReusableCell(withIdentifier: T.reuseIdentifier, for: indexPath) as? T else {
             fatalError("Invalid type for reuse id: \(T.reuseIdentifier)")
         }
         

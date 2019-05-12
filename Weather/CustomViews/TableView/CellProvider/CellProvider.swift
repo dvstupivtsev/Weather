@@ -4,6 +4,7 @@
 
 import UIKit
 
+// TODO: Rename to TableCellProvider
 protocol CellProvider {
     func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell
 }

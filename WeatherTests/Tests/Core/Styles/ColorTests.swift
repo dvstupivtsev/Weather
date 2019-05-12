@@ -7,10 +7,11 @@ import XCTest
 
 final class ColorTests: XCTestCase {
     func testColors() {
-        expect(actual: Color.black, equalTo: ColorComponents(red: 0, green: 0, blue: 0, alpha: 1))
-        expect(actual: Color.black50, equalTo: ColorComponents(red: 0, green: 0, blue: 0, alpha: 0.5))
+        expect(actual: Color.clear, equalTo: ColorComponents(red: 0, green: 0, blue: 0, alpha: 0))
         expect(actual: Color.white, equalTo: ColorComponents(red: 1, green: 1, blue: 1, alpha: 1))
         expect(actual: Color.white70, equalTo: ColorComponents(red: 1, green: 1, blue: 1, alpha: 0.7))
+        expect(actual: Color.black, equalTo: ColorComponents(red: 0, green: 0, blue: 0, alpha: 1))
+        expect(actual: Color.black50, equalTo: ColorComponents(red: 0, green: 0, blue: 0, alpha: 0.5))
         
         expect(actual: Color.bg1, nearTo: ColorComponents(red: 25/255.0, green: 125/255.0, blue: 200/255.0, alpha: 1))
         expect(actual: Color.bg2, nearTo: ColorComponents(red: 50/255.0, green: 140/255.0, blue: 200/255.0, alpha: 1))

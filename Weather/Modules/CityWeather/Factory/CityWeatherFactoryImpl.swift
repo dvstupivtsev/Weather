@@ -13,17 +13,20 @@ final class CityWeatherFactoryImpl: CityWeatherFactory {
             jsonDecoder: ForecastJsonDecoderImpl()
         )
         
+        let forecastAdapter = CityForecastAdapter(forecastService: forecastService)
+        
         let formatter = CityWeatherFormatterImpl(
             numberFormatter: NumberFormatter.temperature,
             currentDateFormatter: DateFormatter.EEEE_MMM_dd,
             forecastDateFormatter: DateFormatter.MMM_dd,
             forecastWeekdayDateFormatter: DateFormatter.EEEE,
+            hourlyForecastDateFormatter: DateFormatter.h_a,
             temperatureFormatter: MeasurementFormatter.celsius
         )
         
         let viewModel = CityWeatherViewModelImpl(
             citySource: citySource,
-            forecastService: forecastService,
+            forecastService: forecastAdapter,
             formatter: formatter
         )
         

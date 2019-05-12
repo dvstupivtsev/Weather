@@ -5,6 +5,7 @@
 import UIKit
 import SnapKit
 
+// TODO: Rename to CityTableCell
 final class CityCell: BaseCell<CityCell.Model> {
     private let appearance = Appearance()
     

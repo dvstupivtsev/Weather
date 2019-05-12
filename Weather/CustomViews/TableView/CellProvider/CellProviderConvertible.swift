@@ -4,6 +4,7 @@
 
 import Foundation
 
+// TODO: Rename to TableCellProviderConvertible
 protocol CellProviderConvertible {
     var cellProvider: CellProvider { get }
 }

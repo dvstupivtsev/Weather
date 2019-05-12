@@ -5,6 +5,7 @@
 import UIKit
 import SnapKit
 
+// TODO: Rename to CitiesHeaderTableCell
 final class CitiesHeaderCell: BaseCell<CitiesHeaderCell.Model> {
     private let appearance = Appearance()
     

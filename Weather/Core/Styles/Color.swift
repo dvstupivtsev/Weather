@@ -5,6 +5,10 @@
 import UIKit
 
 struct Color {
+    static var clear: UIColor {
+        return .clear
+    }
+    
     static var white: UIColor {
         return .white
     }

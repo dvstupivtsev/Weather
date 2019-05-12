@@ -4,11 +4,13 @@
 
 import Foundation
 
+// TODO: add timezone
 final class CityWeatherFormatterImpl: CityWeatherFormatter {
     private let numberFormatter: NumberFormatterProtocol
     private let currentDateFormatter: DateFormatterProtocol
     private let forecastDateFormatter: DateFormatterProtocol
     private let forecastWeekdayDateFormatter: DateFormatterProtocol
+    private let hourlyForecastDateFormatter: DateFormatterProtocol
     private let temperatureFormatter: MeasurementFormatterProtocol
     
     init(
@@ -16,12 +18,14 @@ final class CityWeatherFormatterImpl: CityWeatherFormatter {
         currentDateFormatter: DateFormatterProtocol,
         forecastDateFormatter: DateFormatterProtocol,
         forecastWeekdayDateFormatter: DateFormatterProtocol,
+        hourlyForecastDateFormatter: DateFormatterProtocol,
         temperatureFormatter: MeasurementFormatterProtocol
     ) {
         self.numberFormatter = numberFormatter
         self.currentDateFormatter = currentDateFormatter
         self.forecastDateFormatter = forecastDateFormatter
         self.forecastWeekdayDateFormatter = forecastWeekdayDateFormatter
+        self.hourlyForecastDateFormatter = hourlyForecastDateFormatter
         self.temperatureFormatter = temperatureFormatter
     }
     
@@ -39,6 +43,10 @@ final class CityWeatherFormatterImpl: CityWeatherFormatter {
     
     func formatForecastWeekday(_ date: Date) -> String {
         return forecastWeekdayDateFormatter.string(from: date)
+    }
+    
+    func formatHourlyForecastDate(_ date: Date) -> String {
+        return hourlyForecastDateFormatter.string(from: date)
     }
     
     func formatForecastTemperature(_ value: Double) -> String {

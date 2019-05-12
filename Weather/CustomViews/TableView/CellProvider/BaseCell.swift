@@ -3,8 +3,8 @@
 //
 
 import UIKit
-import SnapKit
 
+// TODO: Rename to BaseTableCell
 class BaseCell<Model>: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -19,7 +19,7 @@ class BaseCell<Model>: UITableViewCell {
     }
     
     func commonInit() {
-        backgroundColor = .clear
+        backgroundColor = Color.clear
     }
     
     func update(model: Model) { }

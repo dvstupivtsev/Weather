@@ -10,5 +10,6 @@ protocol CityWeatherFormatter {
     func formatCurrentDate(_ date: Date) -> String
     func formatForecastDate(_ date: Date) -> String
     func formatForecastWeekday(_ date: Date) -> String
+    func formatHourlyForecastDate(_ date: Date) -> String
     func formatForecastTemperature(_ value: Double) -> String
 }

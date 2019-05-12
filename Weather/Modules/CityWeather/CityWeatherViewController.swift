@@ -7,7 +7,8 @@ import Weakify
 
 final class CityWeatherViewController: BaseViewController<CityWeatherView> {
     private let viewModel: CityWeatherViewModel
-    private var tableSource: TableDataSource = .empty
+    private var dailyForecastSource: TableDataSource = .empty
+    private var hourlyForecastSource: CollectionDataSource = .empty
     
     init(viewModel: CityWeatherViewModel) {
         self.viewModel = viewModel
@@ -22,21 +23,46 @@ final class CityWeatherViewController: BaseViewController<CityWeatherView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        customView.registerDailyForecastCellsClasses(classes: [DailyForecastCell.self])
+        customView.registerHourlyForecastViews(with: HourlyForecastReusableViewRegistrator())
+        customView.registerDailyForecastViews(with: DailyForecastReusableViewRegistrator())
+        
         customView.update(mainSource: viewModel.mainSource)
         
-        viewModel.getDailyForecastSource()
-            .then(weakify(self, type(of: self).updateDailyForecast(cellProviderConvertibles:)))
-            .catch { [weak self] _ in self?.updateDailyForecast(cellProviderConvertibles: []) }
+        viewModel.getForecastSource()
+            .then(weakify(self, type(of: self).updateForecast(with:)))
+            .catch { [weak self] _ in
+                self?.updateForecast(with: .init(hourlyProviderConvertibles: [], dailyProviderConvertibles: []))
+            }
     }
     
-    private func updateDailyForecast(cellProviderConvertibles: [CellProviderConvertible]) {
-        let sectionSource = TableSectionSource(cellProviderConvertibles: cellProviderConvertibles)
-        tableSource = TableDataSource(
+    private func updateForecast(with viewSource: CityWeatherViewSource.Forecast) {
+        updateHourlyForecast(with: viewSource.hourlyProviderConvertibles)
+        updateDailyForecast(with: viewSource.dailyProviderConvertibles)
+    }
+    
+    private func updateDailyForecast(with providerConvertibles: [CellProviderConvertible]) {
+        let sectionSource = TableSectionSource(
+            cellProviderConvertibles: providerConvertibles
+        )
+        
+        dailyForecastSource = TableDataSource(
             sources: [sectionSource],
             selectionBehavior: DisabledCellSelectionBehavior()
         )
         
-        customView.update(dailyForecastSource: tableSource)
+        customView.update(dailyForecastSource: dailyForecastSource)
+    }
+    
+    private func updateHourlyForecast(with providerConvertibles: [CollectionCellProviderConvertible]) {
+        let sectionSource = CollectionSectionSource(
+            providerConvertibles: providerConvertibles
+        )
+        
+        hourlyForecastSource = CollectionDataSource(
+            sources: [sectionSource],
+            selectionBehavior: DisabledCollectionSelectionBehavior()
+        )
+        
+        customView.update(hourlyForecastSource: hourlyForecastSource)
     }
 }

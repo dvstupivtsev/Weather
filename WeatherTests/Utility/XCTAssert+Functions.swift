@@ -42,3 +42,21 @@ func XCTAssertEmpty<Type: Collection>(
         XCTFail(message(), file: file, line: line)
     }
 }
+
+func XCTAssertNotEmpty<Type: Collection>(
+    _ expression: @autoclosure () throws -> Type?,
+    _ message: @autoclosure () -> String = "",
+    file: StaticString = #file,
+    line: UInt = #line
+) {
+    do {
+        guard let collection = try expression() else {
+            XCTFail("Received collection is nil", file: file, line: line)
+            return
+        }
+        
+        XCTAssertTrue(collection.isEmpty == false, file: file, line: line)
+    } catch {
+        XCTFail(message(), file: file, line: line)
+    }
+}

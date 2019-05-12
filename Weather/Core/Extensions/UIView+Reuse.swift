@@ -4,7 +4,11 @@
 
 import UIKit
 
-extension UITableViewCell {
+protocol ReusableView {
+    static var reuseIdentifier: String { get }
+}
+
+extension UIView: ReusableView {
     static var reuseIdentifier: String {
         return String(describing: self)
     }

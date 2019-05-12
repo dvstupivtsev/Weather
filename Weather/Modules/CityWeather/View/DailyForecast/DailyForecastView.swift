@@ -11,7 +11,7 @@ final class DailyForecastView: BaseView {
     private let tableView = make(UITableView()) {
         $0.tableFooterView = UIView()
         $0.separatorStyle = .none
-        $0.backgroundColor = .clear
+        $0.backgroundColor = Color.clear
     }
     
     override func commonInit() {
@@ -41,9 +41,8 @@ final class DailyForecastView: BaseView {
         roundCorners([.topLeft, .topRight], radius: appearance.cornerRadius)
     }
     
-    // TODO: pass object which register cells classes
-    func register(cellsClasses: [UITableViewCell.Type]) {
-        cellsClasses.forEach(tableView.register(type:))
+    func registerViews(with registrator: TableReusableViewRegistrator) {
+        registrator.registerViews(for: tableView)
     }
     
     func update(tableSource: TableDataSource) {

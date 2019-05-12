@@ -4,6 +4,14 @@
 
 import Foundation
 
+extension Array {
+    var isNotEmpty: Bool {
+        return isEmpty == false
+    }
+}
+
+// MARK: - FloatingPoint
+
 extension Array where Element: FloatingPoint {
     func average() -> Element {
         guard count > 0 else { return 0 }
