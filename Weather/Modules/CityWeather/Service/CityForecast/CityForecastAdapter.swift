@@ -21,6 +21,8 @@ final class CityForecastAdapter: CityForecastService {
         guard forecast.isNotEmpty else { return CityForecast(hourlyForecast: [], dailyForecast: []) }
         
         let maxForecastsCount = forecast.count < 8 ? forecast.count : 8
+        
+        // TODO: interpolate, make it 24 hour forecast
         let firstEightForecasts = Array(forecast[0..<maxForecastsCount])
         
         // TODO: refactor this monster
@@ -40,6 +42,7 @@ final class CityForecastAdapter: CityForecastService {
                 return Forecast(
                     date: $0.key,
                     temperature: Forecast.Temperature(value: averageTemp, min: minTemp, max: maxTemp),
+                    // TODO: replace icons with day icons
                     weather: $0.value.map { $0.weather }.first ?? []
                 )
             }
