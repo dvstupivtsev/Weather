@@ -23,7 +23,7 @@ final class CitiesViewController: BaseViewController<CitiesView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        customView.registerViews(with: CitiesReusableViewRegistrator())
+        customView.registerViews(with: CitiesReusableViewRegistrationDirector())
         
         viewModel.getData()
             .then(on: .main, handleGetDataSuccess(result:))

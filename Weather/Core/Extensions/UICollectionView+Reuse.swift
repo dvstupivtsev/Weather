@@ -4,11 +4,13 @@
 
 import UIKit
 
-extension UICollectionView {
+extension UICollectionView: CollectionReusableViewRegistrator {
     func register<T: UICollectionViewCell>(type: T.Type) {
         register(type, forCellWithReuseIdentifier: type.reuseIdentifier)
     }
-    
+}
+
+extension UICollectionView {
     func dequeue<T: UICollectionViewCell>(at indexPath: IndexPath) -> T {
         guard let cell = dequeueReusableCell(withReuseIdentifier: T.reuseIdentifier, for: indexPath) as? T else {
             fatalError("Invalid type for reuse id: \(T.reuseIdentifier)")

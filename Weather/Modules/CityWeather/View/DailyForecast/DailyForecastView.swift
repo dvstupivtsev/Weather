@@ -41,8 +41,8 @@ final class DailyForecastView: BaseView {
         roundCorners([.topLeft, .topRight], radius: appearance.cornerRadius)
     }
     
-    func registerViews(with registrator: TableReusableViewRegistrator) {
-        registrator.registerViews(for: tableView)
+    func registerViews(with registrationDirector: TableReusableViewRegistrationDirector) {
+        registrationDirector.registerViews(using: tableView)
     }
     
     func update(tableSource: TableDataSource) {

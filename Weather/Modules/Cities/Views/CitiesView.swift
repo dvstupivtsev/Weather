@@ -34,8 +34,8 @@ final class CitiesView: BaseView {
         }
     }
     
-    func registerViews(with registrator: TableReusableViewRegistrator) {
-        registrator.registerViews(for: tableView)
+    func registerViews(with registrationDirector: TableReusableViewRegistrationDirector) {
+        registrationDirector.registerViews(using: tableView)
     }
     
     func update(tableSource: TableDataSource) {

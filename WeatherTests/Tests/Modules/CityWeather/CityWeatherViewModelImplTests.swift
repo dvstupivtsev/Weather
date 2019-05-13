@@ -9,7 +9,7 @@ import XCTest
 final class CityWeatherViewModelImplTests: XCTestCase {
     private var subject: CityWeatherViewModelImpl!
     private var citySource: CitySource!
-    private var forecastService: ForecastServiceMock!
+    private var forecastService: CityForecastServiceMock!
     private var formatter: CityWeatherFormatterMock!
     
     override func setUp() {
@@ -23,7 +23,8 @@ final class CityWeatherViewModelImplTests: XCTestCase {
         formatter.formatForecastDateReturnValue = "TestFormattedValue2"
         formatter.formatForecastWeekdayReturnValue = "TestFormattedValue3"
         formatter.formatTemperatureValueReturnValue = "TestFormattedValue4"
-        formatter.formatForecastTemperatureReturnValue = "TestFormattedValue5"
+        formatter.formatHourlyForecastDateReturnValue = "TestFormattedValue5"
+        formatter.formatForecastTemperatureReturnValue = "TestFormattedValue6"
         
         subject = CityWeatherViewModelImpl(
             citySource: citySource,
@@ -47,14 +48,14 @@ final class CityWeatherViewModelImplTests: XCTestCase {
         XCTAssertEqual(formatter.formatCurrentDateCallsCount, 1, "expect to call date formatter once, got \(formatter.formatCurrentDateCallsCount)")
     }
     
-    func testGetDailyForecastSourceSuccess() {
-        let expectedForecast = [Forecast.forecast1, .forecast2]
-        forecastService.getForecastForReturnValue = Promise(expectedForecast)
+    func testGetForecastSourceSuccess() {
+        forecastService.getForecastForReturnValue = Promise(cityForecast)
         
-        let result = subject.getDailyForecastSource()
+        let result = subject.getForecastSource()
         
         XCTAssert(waitForPromises(timeout: 1))
-        expect(actual: result.value, equalTo: expectedCellsModels)
+        expect(actual: result.value?.hourlyProviderConvertibles, equalTo: expectedHourlyForecastCellsModels)
+        expect(actual: result.value?.dailyProviderConvertibles, equalTo: expectedDailyForecastCellsModels)
         XCTAssertNil(result.error)
     }
     
@@ -63,11 +64,16 @@ final class CityWeatherViewModelImplTests: XCTestCase {
         XCTAssertEqual(actualCellsModels, expected)
     }
     
-    func testGetDailyForecastSourceFailure() {
+    private func expect(actual: [CollectionCellProviderConvertible]?, equalTo expected: [HourlyForecastCollectionCell.Model]) {
+        let actualCellsModels = actual?.compactMap { $0 as? HourlyForecastCollectionCell.Model }
+        XCTAssertEqual(actualCellsModels, expected)
+    }
+    
+    func testGetForecastSourceFailure() {
         let expectedError = Constants.error
         forecastService.getForecastForReturnValue = Promise(expectedError)
         
-        let result = subject.getDailyForecastSource()
+        let result = subject.getForecastSource()
         
         XCTAssert(waitForPromises(timeout: 1))
         XCTAssertNil(result.value)
@@ -76,7 +82,29 @@ final class CityWeatherViewModelImplTests: XCTestCase {
 }
 
 private extension CityWeatherViewModelImplTests {
-    var expectedCellsModels: [DailyForecastCell.Model] {
+    var cityForecast: CityForecast {
+        return CityForecast(
+            hourlyForecast: [Forecast.forecast1, .forecast2],
+            dailyForecast: [Forecast.forecast2, .forecast1]
+        )
+    }
+    
+    var expectedHourlyForecastCellsModels: [HourlyForecastCollectionCell.Model] {
+        return [
+            HourlyForecastCollectionCell.Model(
+                dateString: formatter.formatHourlyForecastDateReturnValue,
+                temperatureString: formatter.formatForecastTemperatureReturnValue,
+                iconImage: UIImage()
+            ),
+            HourlyForecastCollectionCell.Model(
+                dateString: formatter.formatHourlyForecastDateReturnValue,
+                temperatureString: formatter.formatForecastTemperatureReturnValue,
+                iconImage: UIImage()
+            )
+        ]
+    }
+    
+    var expectedDailyForecastCellsModels: [DailyForecastCell.Model] {
         return [
             DailyForecastCell.Model(
                 weekdayTitle: formatter.formatForecastWeekdayReturnValue,
@@ -102,5 +130,12 @@ extension DailyForecastCell.Model: Equatable {
             && lhs.dateString == rhs.dateString
             && lhs.maxTemperatureString == rhs.maxTemperatureString
             && lhs.minTemperatureString == rhs.minTemperatureString
+    }
+}
+
+extension HourlyForecastCollectionCell.Model: Equatable {
+    public static func == (lhs: HourlyForecastCollectionCell.Model, rhs: HourlyForecastCollectionCell.Model) -> Bool {
+        return lhs.temperatureString == rhs.temperatureString
+            && lhs.dateString == rhs.dateString
     }
 }

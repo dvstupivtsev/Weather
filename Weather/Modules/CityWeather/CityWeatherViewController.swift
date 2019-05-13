@@ -23,8 +23,8 @@ final class CityWeatherViewController: BaseViewController<CityWeatherView> {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        customView.registerHourlyForecastViews(with: HourlyForecastReusableViewRegistrator())
-        customView.registerDailyForecastViews(with: DailyForecastReusableViewRegistrator())
+        customView.registerHourlyForecastViews(with: HourlyForecastReusableViewRegistrationDirector())
+        customView.registerDailyForecastViews(with: DailyForecastReusableViewRegistrationDirector())
         
         customView.update(mainSource: viewModel.mainSource)
         

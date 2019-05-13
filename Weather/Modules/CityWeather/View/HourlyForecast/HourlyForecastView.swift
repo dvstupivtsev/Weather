@@ -62,8 +62,8 @@ final class HourlyForecastView: BaseView {
         }
     }
     
-    func registerViews(with registrator: CollectionReusableViewRegistrator) {
-        registrator.registerViews(for: collectionView)
+    func registerViews(with registrationDirector: CollectionReusableViewRegistrationDirector) {
+        registrationDirector.registerViews(using: collectionView)
     }
     
     func update(collectionSource: CollectionDataSource) {

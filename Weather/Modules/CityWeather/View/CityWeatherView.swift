@@ -95,12 +95,12 @@ final class CityWeatherView: BaseView {
 }
 
 extension CityWeatherView {
-    func registerDailyForecastViews(with registrator: TableReusableViewRegistrator) {
-        dailyForecastView.registerViews(with: registrator)
+    func registerDailyForecastViews(with registrationDirector: TableReusableViewRegistrationDirector) {
+        dailyForecastView.registerViews(with: registrationDirector)
     }
     
-    func registerHourlyForecastViews(with registrator: CollectionReusableViewRegistrator) {
-        hourlyForecastView.registerViews(with: registrator)
+    func registerHourlyForecastViews(with registrationDirector: CollectionReusableViewRegistrationDirector) {
+        hourlyForecastView.registerViews(with: registrationDirector)
     }
     
     func update(mainSource: CityWeatherViewSource.Main) {

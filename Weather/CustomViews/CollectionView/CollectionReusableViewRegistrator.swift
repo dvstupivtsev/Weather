@@ -5,5 +5,5 @@
 import UIKit
 
 protocol CollectionReusableViewRegistrator {
-    func registerViews(for collectionView: UICollectionView)
+    func register<T: UICollectionViewCell>(type: T.Type)
 }

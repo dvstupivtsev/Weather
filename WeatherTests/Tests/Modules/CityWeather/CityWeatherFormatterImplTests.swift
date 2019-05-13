@@ -11,6 +11,7 @@ final class CityWeatherFormatterImplTests: XCTestCase {
     private var currentDateFormatter: DateFormatterProtocolMock!
     private var forecastDateFormatter: DateFormatterProtocolMock!
     private var forecastWeekdayDateFormatter: DateFormatterProtocolMock!
+    private var hourlyForecastDateFormatter: DateFormatterProtocolMock!
     private var temperatureFormatter: MeasurementFormatterProtocolMock!
     
     override func setUp() {
@@ -28,6 +29,9 @@ final class CityWeatherFormatterImplTests: XCTestCase {
         forecastWeekdayDateFormatter = .init()
         forecastWeekdayDateFormatter.stringFromReturnValue = "TestFormattedForecastWeekday"
         
+        hourlyForecastDateFormatter = .init()
+        hourlyForecastDateFormatter.stringFromReturnValue = "TestFormattedHourlyForecastDate"
+        
         temperatureFormatter = .init()
         temperatureFormatter.stringFromReturnValue = "TestFormattedTemperature"
         
@@ -36,6 +40,7 @@ final class CityWeatherFormatterImplTests: XCTestCase {
             currentDateFormatter: currentDateFormatter,
             forecastDateFormatter: forecastDateFormatter,
             forecastWeekdayDateFormatter: forecastWeekdayDateFormatter,
+            hourlyForecastDateFormatter: hourlyForecastDateFormatter,
             temperatureFormatter: temperatureFormatter
         )
     }
@@ -74,6 +79,15 @@ final class CityWeatherFormatterImplTests: XCTestCase {
         XCTAssertEqual(receivedValue, forecastWeekdayDateFormatter.stringFromReturnValue)
         XCTAssertEqual(forecastWeekdayDateFormatter.stringFromCallsCount, 1)
         XCTAssertEqual(forecastWeekdayDateFormatter.stringFromReceivedFrom, value)
+    }
+    
+    func testFormatHourlyForecastDate() {
+        let value = Constants.date
+        let receivedValue = subject.formatHourlyForecastDate(value)
+        
+        XCTAssertEqual(receivedValue, hourlyForecastDateFormatter.stringFromReturnValue)
+        XCTAssertEqual(hourlyForecastDateFormatter.stringFromCallsCount, 1)
+        XCTAssertEqual(hourlyForecastDateFormatter.stringFromReceivedFrom, value)
     }
     
     func testFormatForecastTemperature() {

@@ -34,4 +34,26 @@ final class Date_ExtensionTests: XCTestCase {
         }()
         XCTAssertFalse(endOfDayPlusSecond.isToday, "expect end of day plus second should be false, got true")
     }
+    
+    func testStartOfDay() {
+        let date = Date()
+        let startOfDay = Calendar.current.startOfDay(for: date)
+        
+        let receivedValue = date.startOfDay
+        XCTAssertEqual(receivedValue, startOfDay)
+        
+        let startOfDayMinusSecond: Date = {
+            var components = DateComponents()
+            components.second = -1
+            return Calendar.current.date(byAdding: components, to: startOfDay)!
+        }()
+        XCTAssertNotEqual(receivedValue, startOfDayMinusSecond)
+        
+        let startOfDayPlusSecond: Date = {
+            var components = DateComponents()
+            components.second = 1
+            return Calendar.current.date(byAdding: components, to: startOfDay)!
+        }()
+        XCTAssertNotEqual(receivedValue, startOfDayPlusSecond)
+    }
 }

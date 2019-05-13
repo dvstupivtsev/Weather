@@ -5,7 +5,7 @@
 import XCTest
 @testable import Weather
 
-final class NumberFormatterTests: XCTestCase {
+final class NumberFormatter_ExtensionTests: XCTestCase {
     func testStringFromDate() {
         XCTAssertEqual(NumberFormatter.temperature.string(from: 0), "0")
         XCTAssertEqual(NumberFormatter.temperature.string(from: 1), "1")
