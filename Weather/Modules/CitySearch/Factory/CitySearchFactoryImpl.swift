@@ -6,7 +6,6 @@ import UIKit
 
 final class CitySearchFactoryImpl: CitySearchFactory {
     func create() -> UIViewController {
-        // TODO: replace with real implementation
-        return UIViewController()
+        return CitySearchViewController(viewModel: CitySearchViewModelImpl())
     }
 }

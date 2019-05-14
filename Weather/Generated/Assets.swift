@@ -18,26 +18,30 @@
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Assets {
-  internal static let _01d = ImageAsset(name: "01d")
-  internal static let _01n = ImageAsset(name: "01n")
-  internal static let _02d = ImageAsset(name: "02d")
-  internal static let _02n = ImageAsset(name: "02n")
-  internal static let _03d = ImageAsset(name: "03d")
-  internal static let _03n = ImageAsset(name: "03n")
-  internal static let _04d = ImageAsset(name: "04d")
-  internal static let _04n = ImageAsset(name: "04n")
-  internal static let _09d = ImageAsset(name: "09d")
-  internal static let _09n = ImageAsset(name: "09n")
-  internal static let _10d = ImageAsset(name: "10d")
-  internal static let _10n = ImageAsset(name: "10n")
-  internal static let _11d = ImageAsset(name: "11d")
-  internal static let _11n = ImageAsset(name: "11n")
-  internal static let _13d = ImageAsset(name: "13d")
-  internal static let _13n = ImageAsset(name: "13n")
-  internal static let _50d = ImageAsset(name: "50d")
-  internal static let _50n = ImageAsset(name: "50n")
-  internal static let reload = ImageAsset(name: "Reload")
+  internal enum WeatherStatus {
+
+    internal static let _01d = ImageAsset(name: "01d")
+    internal static let _01n = ImageAsset(name: "01n")
+    internal static let _02d = ImageAsset(name: "02d")
+    internal static let _02n = ImageAsset(name: "02n")
+    internal static let _03d = ImageAsset(name: "03d")
+    internal static let _03n = ImageAsset(name: "03n")
+    internal static let _04d = ImageAsset(name: "04d")
+    internal static let _04n = ImageAsset(name: "04n")
+    internal static let _09d = ImageAsset(name: "09d")
+    internal static let _09n = ImageAsset(name: "09n")
+    internal static let _10d = ImageAsset(name: "10d")
+    internal static let _10n = ImageAsset(name: "10n")
+    internal static let _11d = ImageAsset(name: "11d")
+    internal static let _11n = ImageAsset(name: "11n")
+    internal static let _13d = ImageAsset(name: "13d")
+    internal static let _13n = ImageAsset(name: "13n")
+    internal static let _50d = ImageAsset(name: "50d")
+    internal static let _50n = ImageAsset(name: "50n")
+  }
   internal static let add = ImageAsset(name: "add")
+  internal static let close = ImageAsset(name: "close")
+  internal static let reload = ImageAsset(name: "reload")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name
 
