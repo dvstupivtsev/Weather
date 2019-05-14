@@ -2,4 +2,8 @@
 //  Created by Dmitriy Stupivtsev on 28/04/2019.
 //
 
-"Cities.Title" = "Fave cities";
+"Close" = "Close";
+
+"Cities.Title" = "Favorite cities";
+
+"CitySearch.SearchPlaceholder" = "Enter city name";

@@ -25,6 +25,10 @@ struct Color {
         return black.withAlphaComponent(0.5)
     }
     
+    static var black10: UIColor {
+        return black.withAlphaComponent(0.1)
+    }
+    
     static var bg1: UIColor {
         return UIColor(hex: 0x197DC8)
     }

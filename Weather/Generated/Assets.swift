@@ -18,6 +18,7 @@
 
 // swiftlint:disable identifier_name line_length nesting type_body_length type_name
 internal enum Assets {
+  internal static let search = ImageAsset(name: "Search")
   internal enum WeatherStatus {
 
     internal static let _01d = ImageAsset(name: "01d")
@@ -40,7 +41,7 @@ internal enum Assets {
     internal static let _50n = ImageAsset(name: "50n")
   }
   internal static let add = ImageAsset(name: "add")
-  internal static let close = ImageAsset(name: "close")
+  internal static let clear = ImageAsset(name: "clear")
   internal static let reload = ImageAsset(name: "reload")
 }
 // swiftlint:enable identifier_name line_length nesting type_body_length type_name

@@ -11,10 +11,17 @@ import Foundation
 // swiftlint:disable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:disable nesting type_body_length type_name
 internal enum L10n {
+  /// Close
+  internal static let close = L10n.tr("Localizable", "Close")
 
   internal enum Cities {
-    /// Fave cities
+    /// Favorite cities
     internal static let title = L10n.tr("Localizable", "Cities.Title")
+  }
+
+  internal enum CitySearch {
+    /// Enter city name
+    internal static let searchPlaceholder = L10n.tr("Localizable", "CitySearch.SearchPlaceholder")
   }
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length

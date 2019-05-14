@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		5E0433F9228B47FA00A96CF7 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0433F8228B47FA00A96CF7 /* UIViewController+Extensions.swift */; };
 		5E0433FB228B49B400A96CF7 /* CitySearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0433FA228B49B400A96CF7 /* CitySearchHeaderView.swift */; };
+		5E0433FD228B60A700A96CF7 /* ViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0433FC228B60A700A96CF7 /* ViewContainer.swift */; };
+		5E0433FF228B61BB00A96CF7 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0433FE228B61BB00A96CF7 /* SeparatorView.swift */; };
 		5E0F26F02286E1790093BB48 /* DateFormatter_ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E44D0B92286D5BF00058236 /* DateFormatter_ExtensionTests.swift */; };
 		5E0F26F5228713500093BB48 /* ForecastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F26F4228713500093BB48 /* ForecastService.swift */; };
 		5E0F26FD228714400093BB48 /* ForecastServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F26FC228714400093BB48 /* ForecastServiceImpl.swift */; };
@@ -190,6 +192,8 @@
 		460CBEE371748C342962F893 /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
 		5E0433F8228B47FA00A96CF7 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		5E0433FA228B49B400A96CF7 /* CitySearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchHeaderView.swift; sourceTree = "<group>"; };
+		5E0433FC228B60A700A96CF7 /* ViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewContainer.swift; sourceTree = "<group>"; };
+		5E0433FE228B61BB00A96CF7 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		5E0F26F4228713500093BB48 /* ForecastService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastService.swift; sourceTree = "<group>"; };
 		5E0F26FC228714400093BB48 /* ForecastServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastServiceImpl.swift; sourceTree = "<group>"; };
 		5E2594152289BBE500B7C8C2 /* DisabledCollectionSelectionBehaviorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledCollectionSelectionBehaviorTests.swift; sourceTree = "<group>"; };
@@ -693,6 +697,8 @@
 				5E97B8C42275CE9800DB39EE /* ReloadView.swift */,
 				5EA0A485227CDD0600558BE3 /* GradientView.swift */,
 				5E44D08D2286046D00058236 /* DayBackgroundView.swift */,
+				5E0433FC228B60A700A96CF7 /* ViewContainer.swift */,
+				5E0433FE228B61BB00A96CF7 /* SeparatorView.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -1447,6 +1453,7 @@
 				5E396526227AF55A005F0859 /* CellProvider.swift in Sources */,
 				5E44D086228601E900058236 /* CityWeatherViewController.swift in Sources */,
 				5E9A16312288A6E900EFA833 /* DailyForecastReusableViewRegistrationDirector.swift in Sources */,
+				5E0433FD228B60A700A96CF7 /* ViewContainer.swift in Sources */,
 				5E44D0B82286CF0A00058236 /* NumberFormatter+Extension.swift in Sources */,
 				5E9A161222889D7000EFA833 /* UICollectionView+Reuse.swift in Sources */,
 				5EA0A497227DF59A00558BE3 /* CitiesHeaderCell.swift in Sources */,
@@ -1472,6 +1479,7 @@
 				5E74988A2280A9B4007005E4 /* CellSelectionBehavior.swift in Sources */,
 				5EA0A484227CDCE900558BE3 /* UIColor+Extension.swift in Sources */,
 				5E39FC20227F5BE8004F3137 /* PageViewController.swift in Sources */,
+				5E0433FF228B61BB00A96CF7 /* SeparatorView.swift in Sources */,
 				5E44D09E2286B14400058236 /* Forecasts.swift in Sources */,
 				5EB5DA5E227349640016A1CB /* ApiServiceRequest.swift in Sources */,
 				5E3964FA2275DD33005F0859 /* main.swift in Sources */,

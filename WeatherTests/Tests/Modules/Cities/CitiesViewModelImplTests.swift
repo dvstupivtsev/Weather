@@ -42,7 +42,7 @@ final class CitiesViewModelImplTests: XCTestCase {
         citiesService.getCitiesWeatherForReturnValue.fulfill(citiesSources)
         XCTAssert(waitForPromises(timeout: 1))
         
-        let expectedHeaderCellModel = CitiesHeaderCell.Model(title: "Fave cities", onAddAction: { })
+        let expectedHeaderCellModel = CitiesHeaderCell.Model(title: "Favorite cities", onAddAction: { })
         let expectedCityCellModelsSource = citiesSources.map {
             return CityCell.Model(
                 title: $0.city.name,
