@@ -60,3 +60,22 @@ func XCTAssertNotEmpty<Type: Collection>(
         XCTFail(message(), file: file, line: line)
     }
 }
+
+func XCTAssertIdentical(
+    _ expression: @autoclosure () throws -> Any?,
+    to expected: Any,
+    _ message: @autoclosure () -> String = "",
+    file: StaticString = #file,
+    line: UInt = #line
+) {
+    do {
+        guard let received = try expression() else {
+            XCTFail(message(), file: file, line: line)
+            return
+        }
+        
+        XCTAssertTrue(received as AnyObject === expected as AnyObject)
+    } catch {
+        XCTFail(message(), file: file, line: line)
+    }
+}

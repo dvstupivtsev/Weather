@@ -22,5 +22,12 @@ final class CitySearchViewController: BaseViewController<CitySearchView> {
         super.viewDidLoad()
         
         customView.setupCloseAction(weakify(self, type(of: self).dismissAnimated))
+        customView.setupTextFieldBehavior(CitySearchTextFieldBehavior(delegate: viewModel.textEditingDelegate))
+    }
+}
+
+extension CitySearchViewController: CitySearchViewUpdatable {
+    func update(providerConvertibles: [CellProviderConvertible]) {
+        
     }
 }

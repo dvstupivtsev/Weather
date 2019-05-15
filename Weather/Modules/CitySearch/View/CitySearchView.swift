@@ -30,4 +30,8 @@ final class CitySearchView: BaseView {
     func setupCloseAction(_ action: Action?) {
         headerView.setupCloseAction(action)
     }
+    
+    func setupTextFieldBehavior(_ behavior: TextFieldBehavior) {
+        headerView.setupTextFieldBehavior(behavior)
+    }
 }

@@ -3,5 +3,8 @@
 //
 
 import Foundation
+import Promises
 
-protocol CitySearchViewModel { }
+protocol CitySearchViewModel {
+    var textEditingDelegate: TextEditingDelegate { get }
+}

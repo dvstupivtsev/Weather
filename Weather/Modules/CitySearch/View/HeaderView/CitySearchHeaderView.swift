@@ -8,6 +8,8 @@ import SnapKit
 final class CitySearchHeaderView: BaseView {
     private let appearance = Appearance()
     
+    private var textFieldBehavior: TextFieldBehavior?
+    
     private lazy var searchImageContainer = ViewContainer(
         contained: make(UIImageView()) {
             $0.tintColor = Color.black
@@ -96,6 +98,11 @@ final class CitySearchHeaderView: BaseView {
     
     func setupCloseAction(_ action: Action?) {
         onClose = action
+    }
+    
+    func setupTextFieldBehavior(_ behavior: TextFieldBehavior) {
+        self.textFieldBehavior = behavior
+        behavior.setup(textField: searchTextField)
     }
 }
 

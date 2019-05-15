@@ -6,6 +6,11 @@ import UIKit
 
 final class CitySearchFactoryImpl: CitySearchFactory {
     func create() -> UIViewController {
-        return CitySearchViewController(viewModel: CitySearchViewModelImpl())
+        let viewUpdatableProxy = CitySearchViewUpdatableProxy()
+        let vm = CitySearchViewModelImpl(viewUpdatable: viewUpdatableProxy)
+        let vc = CitySearchViewController(viewModel: vm)
+        viewUpdatableProxy.wrapped = vc
+        
+        return vc
     }
 }
