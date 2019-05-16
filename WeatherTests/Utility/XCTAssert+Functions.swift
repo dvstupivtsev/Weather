@@ -13,7 +13,8 @@ func XCTAssert(
 ) {
     do {
         guard let object = try expression() else {
-            XCTFail(message(), file: file, line: line)
+            let message = createMessage(with: "Expected object is kind of \(expectedClass), received nil", message())
+            XCTFail(message, file: file, line: line)
             return
         }
         
@@ -21,7 +22,7 @@ func XCTAssert(
         let expectedTypeString = String(describing: expectedClass)
         XCTAssertEqual(receivedObjectTypeString, expectedTypeString, message(), file: file, line: line)
     } catch {
-        XCTFail(message(), file: file, line: line)
+        XCTFail(error.localizedDescription, file: file, line: line)
     }
 }
 
@@ -33,14 +34,23 @@ func XCTAssertEmpty<Type: Collection>(
 ) {
     do {
         guard let collection = try expression() else {
-            XCTFail("Received collection is nil", file: file, line: line)
+            XCTFail(createMessage(with: "Received collection is nil", message()), file: file, line: line)
             return
         }
         
-        XCTAssertTrue(collection.isEmpty, file: file, line: line)
+        if collection.isEmpty == false {
+            let message = createMessage(with: "expected \(collection) is empty, received with \(collection.count) elements", message())
+            XCTFail(message, file: file, line: line)
+        }
     } catch {
-        XCTFail(message(), file: file, line: line)
+        XCTFail(error.localizedDescription, file: file, line: line)
     }
+}
+
+private func createMessage(with messages: String...) -> String {
+    return messages
+        .filter { $0.isEmpty == false }
+        .joined(separator: " - ")
 }
 
 func XCTAssertNotEmpty<Type: Collection>(
@@ -51,13 +61,16 @@ func XCTAssertNotEmpty<Type: Collection>(
 ) {
     do {
         guard let collection = try expression() else {
-            XCTFail("Received collection is nil", file: file, line: line)
+            XCTFail(createMessage(with: "Received collection is nil", message()), file: file, line: line)
             return
         }
         
-        XCTAssertTrue(collection.isEmpty == false, file: file, line: line)
+        if collection.isEmpty {
+            let message = createMessage(with: "expected \(collection) is not empty, received empty", message())
+            XCTFail(message, file: file, line: line)
+        }
     } catch {
-        XCTFail(message(), file: file, line: line)
+        XCTFail(error.localizedDescription, file: file, line: line)
     }
 }
 
@@ -70,12 +83,15 @@ func XCTAssertIdentical(
 ) {
     do {
         guard let received = try expression() else {
-            XCTFail(message(), file: file, line: line)
+            XCTFail(createMessage(with: "expected to \(expected), received nil", message()), file: file, line: line)
             return
         }
         
-        XCTAssertTrue(received as AnyObject === expected as AnyObject)
+        if received as AnyObject !== expected as AnyObject {
+            let message = createMessage(with: "\(received) is not identical to \(expected)", message())
+            XCTFail(message, file: file, line: line)
+        }
     } catch {
-        XCTFail(message(), file: file, line: line)
+        XCTFail(error.localizedDescription, file: file, line: line)
     }
 }
