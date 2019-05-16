@@ -7,7 +7,18 @@ import UIKit
 final class CitySearchFactoryImpl: CitySearchFactory {
     func create() -> UIViewController {
         let viewUpdatableProxy = CitySearchViewUpdatableProxy()
-        let vm = CitySearchViewModelImpl(viewUpdatable: viewUpdatableProxy)
+        
+        let citiesLoadingService = CitiesLoadingServiceImpl(
+            diskFileReader: DiskJsonFileReader(),
+            jsonDecoder: CitiesLoadingJsonDecoderImpl()
+        )
+        let service = CitySearchServiceImpl(citiesLoadingService: citiesLoadingService)
+        
+        let vm = CitySearchViewModelImpl(
+            service: service,
+            viewUpdatable: viewUpdatableProxy
+        )
+        
         let vc = CitySearchViewController(viewModel: vm)
         viewUpdatableProxy.wrapped = vc
         
