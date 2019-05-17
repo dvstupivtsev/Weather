@@ -7,9 +7,9 @@ import XCTest
 @testable import Promises
 
 final class CitiesLoadingServiceImplTests: XCTestCase {
-    var subject: CitiesLoadingServiceImpl!
-    var diskFileReader: DiskFileReaderMock!
-    var jsonDecoder: CitiesLoadingJsonDecoderMock!
+    private var subject: CitiesLoadingServiceImpl!
+    private var diskFileReader: DiskFileReaderMock!
+    private var jsonDecoder: CitiesLoadingJsonDecoderMock!
     
     override func setUp() {
         super.setUp()
@@ -25,13 +25,13 @@ final class CitiesLoadingServiceImplTests: XCTestCase {
         
         var result = subject.getCities()
         
+        XCTAssert(waitForPromises(timeout: 1))
         XCTAssertEqual(diskFileReader.dataForReceivedFileName, "cities")
         XCTAssertEqual(diskFileReader.dataForCallsCount, 1)
         
         XCTAssertEqual(jsonDecoder.parseDataReceivedData, diskFileReader.dataForReturnValue)
         XCTAssertEqual(jsonDecoder.parseDataCallsCount, 1)
         
-        XCTAssert(waitForPromises(timeout: 1))
         XCTAssertEqual(result.value, jsonDecoder.parseDataReturnValue)
         XCTAssertNil(result.error)
         
@@ -50,11 +50,11 @@ final class CitiesLoadingServiceImplTests: XCTestCase {
         
         let result = subject.getCities()
         
+        XCTAssert(waitForPromises(timeout: 1))
         XCTAssertEqual(diskFileReader.dataForReceivedFileName, "cities")
         XCTAssertEqual(diskFileReader.dataForCallsCount, 1)
         XCTAssertEqual(jsonDecoder.parseDataCallsCount, 0)
         
-        XCTAssert(waitForPromises(timeout: 1))
         XCTAssertIdentical(result.error, to: expectedError)
         XCTAssertNil(result.value)
     }
@@ -67,13 +67,13 @@ final class CitiesLoadingServiceImplTests: XCTestCase {
         
         let result = subject.getCities()
         
+        XCTAssert(waitForPromises(timeout: 1))
         XCTAssertEqual(diskFileReader.dataForReceivedFileName, "cities")
         XCTAssertEqual(diskFileReader.dataForCallsCount, 1)
         
         XCTAssertEqual(jsonDecoder.parseDataReceivedData, diskFileReader.dataForReturnValue)
         XCTAssertEqual(jsonDecoder.parseDataCallsCount, 1)
         
-        XCTAssert(waitForPromises(timeout: 1))
         XCTAssertIdentical(result.error, to: expectedError)
         XCTAssertNil(result.value)
     }

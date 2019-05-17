@@ -9,3 +9,4 @@ struct DailyForecastReusableViewRegistrationDirector: TableReusableViewRegistrat
         registrator.register(type: DailyForecastCell.self)
     }
 }
+

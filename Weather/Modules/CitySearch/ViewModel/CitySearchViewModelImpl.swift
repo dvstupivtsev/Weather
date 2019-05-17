@@ -35,13 +35,8 @@ extension CitySearchViewModelImpl: TextEditingDelegate {
             .catch(on: .main, handleError(_:))
     }
     
-    private func handleError(_ error: Error) {
-        viewUpdatable.update(providerConvertibles: [])
-    }
-    
     private func getCities(for name: String) -> Promise<[CellProviderConvertible]> {
         guard name.count > minimumNumberOfSymbolsToSearch else {
-            foundCitiesSources.removeAll()
             return Promise([])
         }
         
@@ -50,7 +45,21 @@ extension CitySearchViewModelImpl: TextEditingDelegate {
     }
     
     private func createProviderConvertibles(from models: [CityModel]) -> [CellProviderConvertible] {
-        return []
+        foundCitiesSources = models.map { cityModel in
+            let title = "\(cityModel.name), \(cityModel.country)"
+            let model = CitySearchCell.Model(title: title)
+            
+            return CellSource(providerConvertible: model) { [weak self] in
+                self?.select(city: cityModel)
+            }
+        }
+        
+        return foundCitiesSources.map { $0.providerConvertible }
+    }
+    
+    private func handleError(_ error: Error) {
+        foundCitiesSources.removeAll()
+        viewUpdatable.update(providerConvertibles: [])
     }
 }
 
@@ -61,6 +70,10 @@ extension CitySearchViewModelImpl: CellSelectionBehavior {
     
     func select(at indexPath: IndexPath) {
         foundCitiesSources[indexPath.row].onSelectAction()
+    }
+    
+    private func select(city: CityModel) {
+        // TODO: Route
     }
 }
 

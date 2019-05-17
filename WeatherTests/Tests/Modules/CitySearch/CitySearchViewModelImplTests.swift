@@ -41,7 +41,7 @@ final class CitySearchViewModelImplTests: XCTestCase {
     }
     
     func testDidChangeTextSuccess() {
-        service.getCitiesForReturnValue = Promise([.model1, .model2])
+        service.getCitiesForReturnValue = Promise(TestData.expectedModels)
         
         subject.didChangeText(filterString)
         
@@ -50,15 +50,15 @@ final class CitySearchViewModelImplTests: XCTestCase {
         
         XCTAssert(waitForPromises(timeout: 1))
         
+        let receivedModels = viewUpdatable.updateProviderConvertiblesReceivedProviderConvertibles as? [CitySearchCell.Model]
         XCTAssertEqual(viewUpdatable.updateProviderConvertiblesCallsCount, 1)
-        XCTAssertEmpty(viewUpdatable.updateProviderConvertiblesReceivedProviderConvertibles)
+        XCTAssertEqual(receivedModels, TestData.expectedCellModels)
     }
     
     func testDidChangeTextWithTooShortFilterString() {
         subject.didChangeText("12")
         
         XCTAssertEqual(service.getCitiesForCallsCount, 0)
-        XCTAssertEqual(service.getCitiesForReceivedName, filterString)
         
         XCTAssert(waitForPromises(timeout: 1))
         
@@ -79,5 +79,20 @@ final class CitySearchViewModelImplTests: XCTestCase {
         
         XCTAssertEqual(viewUpdatable.updateProviderConvertiblesCallsCount, 1)
         XCTAssertEmpty(viewUpdatable.updateProviderConvertiblesReceivedProviderConvertibles)
+    }
+}
+
+private extension CitySearchViewModelImplTests {
+    struct TestData {
+        static let expectedModels = [CityModel.model1, .model2, .model3]
+        static let expectedCellModels = expectedModels.map {
+            CitySearchCell.Model(title: "\($0.name), \($0.country)")
+        }
+    }
+}
+
+extension CitySearchCell.Model: Equatable {
+    public static func == (lhs: CitySearchCell.Model, rhs: CitySearchCell.Model) -> Bool {
+        return lhs.title == rhs.title
     }
 }
