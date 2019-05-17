@@ -32,9 +32,11 @@ extension CitySearchViewModelImpl: TextEditingDelegate {
         // TODO: Cancel previous operation while delay
         getCities(for: text ?? "")
             .then(on: .main, viewUpdatable.update(providerConvertibles:))
-            .catch(on: .main) { [weak self] _ in
-                self?.viewUpdatable.update(providerConvertibles: [])
-            }
+            .catch(on: .main, handleError(_:))
+    }
+    
+    private func handleError(_ error: Error) {
+        viewUpdatable.update(providerConvertibles: [])
     }
     
     private func getCities(for name: String) -> Promise<[CellProviderConvertible]> {

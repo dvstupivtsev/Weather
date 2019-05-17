@@ -15,7 +15,7 @@ final class CitySearchServiceImpl: CitySearchService {
     func getCities(for name: String) -> Promise<[CityModel]> {
         return citiesLoadingService
             .getCities()
-            .then { self.filter(citiesModels: $0, name: name) }
+            .then(on: .global(qos: .userInteractive)) { self.filter(citiesModels: $0, name: name) }
     }
     
     private func filter(citiesModels: [CityModel], name: String) -> [CityModel] {
