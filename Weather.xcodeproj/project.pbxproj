@@ -212,6 +212,11 @@
 		5EBC0A7B2290699600AF2095 /* KeyboardObserverImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A7A2290699600AF2095 /* KeyboardObserverImpl.swift */; };
 		5EBC0A7E229073EC00AF2095 /* KeyboardObserverImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A7D229073EC00AF2095 /* KeyboardObserverImplTests.swift */; };
 		5EBC0A802290775800AF2095 /* KeyboardInfo+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A7F2290775800AF2095 /* KeyboardInfo+Equatable.swift */; };
+		5EBC0A832290988100AF2095 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A822290988100AF2095 /* Store.swift */; };
+		5EBC0A862290A1BB00AF2095 /* AnyStoreSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A852290A1BB00AF2095 /* AnyStoreSubscriber.swift */; };
+		5EBC0A882290A1CB00AF2095 /* StoreSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A872290A1CB00AF2095 /* StoreSubscriber.swift */; };
+		5EBC0A8B2290A1E700AF2095 /* AnyStoreAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A8A2290A1E700AF2095 /* AnyStoreAction.swift */; };
+		5EBC0A8D2290A1F500AF2095 /* StoreAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A8C2290A1F500AF2095 /* StoreAction.swift */; };
 		A93FA943ED64112ACAAA1343 /* Pods_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD972A3D27631E63D518F51 /* Pods_Weather.framework */; };
 		AA3B4CC661E4A7CDC545D35E /* Pods_WeatherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC9B57DCA05848B82192180 /* Pods_WeatherTests.framework */; };
 /* End PBXBuildFile section */
@@ -439,6 +444,11 @@
 		5EBC0A7A2290699600AF2095 /* KeyboardObserverImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserverImpl.swift; sourceTree = "<group>"; };
 		5EBC0A7D229073EC00AF2095 /* KeyboardObserverImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserverImplTests.swift; sourceTree = "<group>"; };
 		5EBC0A7F2290775800AF2095 /* KeyboardInfo+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardInfo+Equatable.swift"; sourceTree = "<group>"; };
+		5EBC0A822290988100AF2095 /* Store.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		5EBC0A852290A1BB00AF2095 /* AnyStoreSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyStoreSubscriber.swift; sourceTree = "<group>"; };
+		5EBC0A872290A1CB00AF2095 /* StoreSubscriber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreSubscriber.swift; sourceTree = "<group>"; };
+		5EBC0A8A2290A1E700AF2095 /* AnyStoreAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyStoreAction.swift; sourceTree = "<group>"; };
+		5EBC0A8C2290A1F500AF2095 /* StoreAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreAction.swift; sourceTree = "<group>"; };
 		645D944A86DB51BFC487EC51 /* Pods-WeatherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTests.release.xcconfig"; path = "Target Support Files/Pods-WeatherTests/Pods-WeatherTests.release.xcconfig"; sourceTree = "<group>"; };
 		A6BE43342B40DD98535E54A1 /* Pods-Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.debug.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.debug.xcconfig"; sourceTree = "<group>"; };
 		DBC9B57DCA05848B82192180 /* Pods_WeatherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1349,6 +1359,34 @@
 			path = KeyboardObserver;
 			sourceTree = "<group>";
 		};
+		5EBC0A812290986900AF2095 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				5EBC0A892290A1DD00AF2095 /* Action */,
+				5EBC0A842290A1A500AF2095 /* Subscriber */,
+				5EBC0A822290988100AF2095 /* Store.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		5EBC0A842290A1A500AF2095 /* Subscriber */ = {
+			isa = PBXGroup;
+			children = (
+				5EBC0A852290A1BB00AF2095 /* AnyStoreSubscriber.swift */,
+				5EBC0A872290A1CB00AF2095 /* StoreSubscriber.swift */,
+			);
+			path = Subscriber;
+			sourceTree = "<group>";
+		};
+		5EBC0A892290A1DD00AF2095 /* Action */ = {
+			isa = PBXGroup;
+			children = (
+				5EBC0A8A2290A1E700AF2095 /* AnyStoreAction.swift */,
+				5EBC0A8C2290A1F500AF2095 /* StoreAction.swift */,
+			);
+			path = Action;
+			sourceTree = "<group>";
+		};
 		5ED7147E227467E6004B9883 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -1363,6 +1401,7 @@
 		5ED7147F227467FE004B9883 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				5EBC0A812290986900AF2095 /* Store */,
 				5EBC0A752290696A00AF2095 /* NotificationObserver */,
 				5EBC0A70228FDA1100AF2095 /* KeyboardObserver */,
 				5EBC0A62228F46DA00AF2095 /* CancellableExecutor */,
@@ -1739,6 +1778,7 @@
 				5E9A160B2288744500EFA833 /* CityForecast.swift in Sources */,
 				5EB5DA3D22732F5D0016A1CB /* AppDelegate.swift in Sources */,
 				5EBC0A72228FDA2F00AF2095 /* KeyboardObserver.swift in Sources */,
+				5EBC0A832290988100AF2095 /* Store.swift in Sources */,
 				5E39652A227AF6C6005F0859 /* UIView+Reuse.swift in Sources */,
 				5E259433228A04DD00B7C8C2 /* CitySearchViewModel.swift in Sources */,
 				5E39652C227B4796005F0859 /* DateFormatter+Extension.swift in Sources */,
@@ -1752,18 +1792,22 @@
 				5E9A15D822871B5900EFA833 /* CitiesWeatherJsonDecoder.swift in Sources */,
 				5E396523227AF1D7005F0859 /* UIView+Extension.swift in Sources */,
 				5E9A162A2288A4B700EFA833 /* HourlyForecastReusableViewRegistrationDirector.swift in Sources */,
+				5EBC0A8D2290A1F500AF2095 /* StoreAction.swift in Sources */,
 				5E9A15F422875C4100EFA833 /* DisabledCellSelectionBehavior.swift in Sources */,
 				5EBC0A5F228ECFF100AF2095 /* CitySearchReusableViewRegistrationDirector.swift in Sources */,
+				5EBC0A882290A1CB00AF2095 /* StoreSubscriber.swift in Sources */,
 				5EBC0A64228F46EA00AF2095 /* CancellableExecutor.swift in Sources */,
 				5E39FC23227F5F5A004F3137 /* WindowRouter.swift in Sources */,
 				5E97B8A92274BAA000DB39EE /* CitiesView.swift in Sources */,
 				5E74988A2280A9B4007005E4 /* CellSelectionBehavior.swift in Sources */,
 				5EA0A484227CDCE900558BE3 /* UIColor+Extension.swift in Sources */,
+				5EBC0A862290A1BB00AF2095 /* AnyStoreSubscriber.swift in Sources */,
 				5E043448228D922F00A96CF7 /* CitySearchCell.swift in Sources */,
 				5E39FC20227F5BE8004F3137 /* PageViewController.swift in Sources */,
 				5E0433FF228B61BB00A96CF7 /* SeparatorView.swift in Sources */,
 				5E44D09E2286B14400058236 /* Forecasts.swift in Sources */,
 				5EB5DA5E227349640016A1CB /* ApiServiceRequest.swift in Sources */,
+				5EBC0A8B2290A1E700AF2095 /* AnyStoreAction.swift in Sources */,
 				5E3964FA2275DD33005F0859 /* main.swift in Sources */,
 				5E97B8A32274BA1700DB39EE /* BaseView.swift in Sources */,
 				5E44D0892286025900058236 /* CityWeatherView.swift in Sources */,
