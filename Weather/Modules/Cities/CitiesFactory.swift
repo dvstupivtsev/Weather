@@ -13,15 +13,22 @@ final class CitiesFactory {
             jsonDecoder: CitiesWeatherJsonDecoderImpl()
         )
         
+        let viewUpdatableProxy = CitiesViewUpdatableProxy()
+        
         let vm = CitiesViewModelImpl(
+            store: Store<[CitySource]>(state: []),
             citiesService: CitiesServiceImpl(
                 citiesWeatherService: citiesWeatherService,
                 timeZoneService: TimeZoneServiceImpl()
             ),
             dateFormatter: CitiesDateFormatterImpl(),
-            router: router
+            router: router,
+            viewUpdatable: viewUpdatableProxy
         )
         
-        return CitiesViewController(viewModel: vm)
+        let vc = CitiesViewController(viewModel: vm)
+        viewUpdatableProxy.wrapped = vc
+        
+        return vc
     }
 }

@@ -4,7 +4,7 @@
 
 import Foundation
 
-protocol StoreAction {
+protocol StoreAction: AnyStoreAction {
     associatedtype StateType
     
     func modify(state: StateType) -> StateType

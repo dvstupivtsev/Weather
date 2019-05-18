@@ -8,5 +8,6 @@ import Promises
 protocol CitiesViewModel {
     var cellSelectionBehavior: CellSelectionBehavior { get }
     
-    func getData() -> Promise<CitiesViewSource>
+    // TODO: Rename
+    func getData()
 }

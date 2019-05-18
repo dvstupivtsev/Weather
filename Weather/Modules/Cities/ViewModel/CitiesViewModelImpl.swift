@@ -6,10 +6,13 @@ import Foundation
 import Promises
 import Weakify
 
+// TODO: - Tests
 final class CitiesViewModelImpl: CitiesViewModel {
+    private let store: Store<[CitySource]>
     private let citiesService: CitiesService
     private let dateFormatter: CitiesDateFormatter
     private let router: CitiesRouter
+    private let viewUpdatable: CitiesViewUpdatable
     
     private lazy var cellsSources = [CellSource]()
     
@@ -18,16 +21,22 @@ final class CitiesViewModelImpl: CitiesViewModel {
     }
     
     init(
+        store: Store<[CitySource]>,
         citiesService: CitiesService,
         dateFormatter: CitiesDateFormatter,
-        router: CitiesRouter
+        router: CitiesRouter,
+        viewUpdatable: CitiesViewUpdatable
     ) {
+        self.store = store
         self.citiesService = citiesService
         self.dateFormatter = dateFormatter
         self.router = router
+        self.viewUpdatable = viewUpdatable
+        
+        store.subscribe(self)
     }
     
-    func getData() -> Promise<CitiesViewSource> {
+    func getData() {
         // TODO: - remove
         let citiesIds = [
             "2950159",
@@ -42,12 +51,24 @@ final class CitiesViewModelImpl: CitiesViewModel {
             "1819729",
         ]
         
-        return citiesService.getCitiesWeather(for: citiesIds)
+        citiesService.getCitiesWeather(for: citiesIds)
             .then(handleCitiesSources(_:))
     }
     
-    private func handleCitiesSources(_ sources: [CitySource]) -> CitiesViewSource {
-        var cellsSources: [CellSource] = sources.map { citySource in
+    private func handleCitiesSources(_ sources: [CitySource]) {
+        store.dispatch(action: AddCitiesSourcesAction(citisSources: sources))
+    }
+    
+    private func openCitySearch() {
+        router.openCitySearch()
+    }
+}
+
+extension CitiesViewModelImpl: StoreSubscriber {
+    typealias StateType = [CitySource]
+    
+    func update(state: [CitySource]) {
+        var cellsSources: [CellSource] = state.map { citySource in
             return CellSource(
                 cellProviderConvertible: CityCell.Model(
                     title: citySource.city.name,
@@ -72,11 +93,11 @@ final class CitiesViewModelImpl: CitiesViewModel {
         
         self.cellsSources = cellsSources
         
-        return CitiesViewSource(cellProviderConvertibles: cellsSources.map { $0.cellProviderConvertible })
-    }
-    
-    private func openCitySearch() {
-        router.openCitySearch()
+        viewUpdatable.update(
+            viewSource: CitiesViewSource(
+                cellProviderConvertibles: cellsSources.map { $0.cellProviderConvertible }
+            )
+        )
     }
 }
 

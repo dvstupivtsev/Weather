@@ -27,12 +27,12 @@ final class CitiesViewController: BaseViewController<CitiesView> {
         customView.registerViews(with: CitiesReusableViewRegistrationDirector())
         
         viewModel.getData()
-            .then(on: .main, handleGetDataSuccess(result:))
-            .catch(on: .main, handleGetDataFailure(error:))
     }
-    
-    private func handleGetDataSuccess(result: CitiesViewSource) {
-        let sectionSource = TableSectionSource(cellProviderConvertibles: result.cellProviderConvertibles)
+}
+
+extension CitiesViewController: CitiesViewUpdatable {
+    func update(viewSource: CitiesViewSource) {
+        let sectionSource = TableSectionSource(cellProviderConvertibles: viewSource.cellProviderConvertibles)
         tableSource = TableDataSource(
             sources: [sectionSource],
             selectionBehavior: viewModel.cellSelectionBehavior
@@ -40,9 +40,4 @@ final class CitiesViewController: BaseViewController<CitiesView> {
         
         customView.update(tableSource: tableSource)
     }
-    
-    private func handleGetDataFailure(error: Error) {
-        // TODO: handle failure
-    }
 }
-

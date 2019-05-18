@@ -85,6 +85,7 @@ extension CitySearchViewModelImpl: CellSelectionBehavior {
     
     private func select(city: CityModel) {
         // TODO: Route
+        // TODO: Present alert if select already added city
     }
 }
 
