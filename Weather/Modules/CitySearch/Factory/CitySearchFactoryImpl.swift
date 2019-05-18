@@ -20,7 +20,14 @@ final class CitySearchFactoryImpl: CitySearchFactory {
             viewUpdatable: viewUpdatableProxy
         )
         
-        let vc = CitySearchViewController(viewModel: vm)
+        let notificationObserver = NotificationObserverImpl(notificationCenter: NotificationCenter.default)
+        let keyboardObserver = KeyboardObserverImpl(notificationObserver: notificationObserver)
+        
+        let vc = CitySearchViewController(
+            viewModel: vm,
+            keyboardObserver: keyboardObserver
+        )
+        
         viewUpdatableProxy.wrapped = vc
         
         return vc

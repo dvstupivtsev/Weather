@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5E0433F9228B47FA00A96CF7 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0433F8228B47FA00A96CF7 /* UIViewController+Extensions.swift */; };
 		5E0433FB228B49B400A96CF7 /* CitySearchHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0433FA228B49B400A96CF7 /* CitySearchHeaderView.swift */; };
 		5E0433FD228B60A700A96CF7 /* ViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0433FC228B60A700A96CF7 /* ViewContainer.swift */; };
 		5E0433FF228B61BB00A96CF7 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0433FE228B61BB00A96CF7 /* SeparatorView.swift */; };
@@ -206,6 +205,13 @@
 		5EBC0A6A228F474300AF2095 /* CancellableExecutorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A69228F474300AF2095 /* CancellableExecutorImpl.swift */; };
 		5EBC0A6D228F478300AF2095 /* CancelledTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A6C228F478300AF2095 /* CancelledTests.swift */; };
 		5EBC0A6F228FCF0E00AF2095 /* NotCancelled.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A6E228FCF0E00AF2095 /* NotCancelled.swift */; };
+		5EBC0A72228FDA2F00AF2095 /* KeyboardObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A71228FDA2F00AF2095 /* KeyboardObserver.swift */; };
+		5EBC0A74229064E900AF2095 /* KeyboardInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A73229064E900AF2095 /* KeyboardInfo.swift */; };
+		5EBC0A772290697100AF2095 /* NotificationObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A762290697100AF2095 /* NotificationObserver.swift */; };
+		5EBC0A792290698000AF2095 /* NotificationObserverImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A782290698000AF2095 /* NotificationObserverImpl.swift */; };
+		5EBC0A7B2290699600AF2095 /* KeyboardObserverImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A7A2290699600AF2095 /* KeyboardObserverImpl.swift */; };
+		5EBC0A7E229073EC00AF2095 /* KeyboardObserverImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A7D229073EC00AF2095 /* KeyboardObserverImplTests.swift */; };
+		5EBC0A802290775800AF2095 /* KeyboardInfo+Equatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0A7F2290775800AF2095 /* KeyboardInfo+Equatable.swift */; };
 		A93FA943ED64112ACAAA1343 /* Pods_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0AD972A3D27631E63D518F51 /* Pods_Weather.framework */; };
 		AA3B4CC661E4A7CDC545D35E /* Pods_WeatherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBC9B57DCA05848B82192180 /* Pods_WeatherTests.framework */; };
 /* End PBXBuildFile section */
@@ -224,7 +230,6 @@
 		0AD972A3D27631E63D518F51 /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		16726BD309CED375BD0A3226 /* Pods-WeatherTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTests.debug.xcconfig"; path = "Target Support Files/Pods-WeatherTests/Pods-WeatherTests.debug.xcconfig"; sourceTree = "<group>"; };
 		460CBEE371748C342962F893 /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
-		5E0433F8228B47FA00A96CF7 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		5E0433FA228B49B400A96CF7 /* CitySearchHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchHeaderView.swift; sourceTree = "<group>"; };
 		5E0433FC228B60A700A96CF7 /* ViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewContainer.swift; sourceTree = "<group>"; };
 		5E0433FE228B61BB00A96CF7 /* SeparatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
@@ -427,6 +432,13 @@
 		5EBC0A69228F474300AF2095 /* CancellableExecutorImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancellableExecutorImpl.swift; sourceTree = "<group>"; };
 		5EBC0A6C228F478300AF2095 /* CancelledTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CancelledTests.swift; sourceTree = "<group>"; };
 		5EBC0A6E228FCF0E00AF2095 /* NotCancelled.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotCancelled.swift; sourceTree = "<group>"; };
+		5EBC0A71228FDA2F00AF2095 /* KeyboardObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserver.swift; sourceTree = "<group>"; };
+		5EBC0A73229064E900AF2095 /* KeyboardInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardInfo.swift; sourceTree = "<group>"; };
+		5EBC0A762290697100AF2095 /* NotificationObserver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationObserver.swift; sourceTree = "<group>"; };
+		5EBC0A782290698000AF2095 /* NotificationObserverImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationObserverImpl.swift; sourceTree = "<group>"; };
+		5EBC0A7A2290699600AF2095 /* KeyboardObserverImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserverImpl.swift; sourceTree = "<group>"; };
+		5EBC0A7D229073EC00AF2095 /* KeyboardObserverImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardObserverImplTests.swift; sourceTree = "<group>"; };
+		5EBC0A7F2290775800AF2095 /* KeyboardInfo+Equatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyboardInfo+Equatable.swift"; sourceTree = "<group>"; };
 		645D944A86DB51BFC487EC51 /* Pods-WeatherTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-WeatherTests.release.xcconfig"; path = "Target Support Files/Pods-WeatherTests/Pods-WeatherTests.release.xcconfig"; sourceTree = "<group>"; };
 		A6BE43342B40DD98535E54A1 /* Pods-Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.debug.xcconfig"; path = "Target Support Files/Pods-Weather/Pods-Weather.debug.xcconfig"; sourceTree = "<group>"; };
 		DBC9B57DCA05848B82192180 /* Pods_WeatherTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WeatherTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -744,6 +756,7 @@
 				5E44D0802285CC2E00058236 /* City+Extension.swift */,
 				5E9A15E42287347300EFA833 /* Forecast+Extension.swift */,
 				5E043466228DC4A600A96CF7 /* CityModel+Extension.swift */,
+				5EBC0A7F2290775800AF2095 /* KeyboardInfo+Equatable.swift */,
 			);
 			path = Shared;
 			sourceTree = "<group>";
@@ -1223,7 +1236,6 @@
 				5EA0A49A227DF96A00558BE3 /* CGSize+Extension.swift */,
 				5E44D0B72286CF0A00058236 /* NumberFormatter+Extension.swift */,
 				5E9A161122889D7000EFA833 /* UICollectionView+Reuse.swift */,
-				5E0433F8228B47FA00A96CF7 /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -1310,6 +1322,33 @@
 			path = CancellableExecutor;
 			sourceTree = "<group>";
 		};
+		5EBC0A70228FDA1100AF2095 /* KeyboardObserver */ = {
+			isa = PBXGroup;
+			children = (
+				5EBC0A71228FDA2F00AF2095 /* KeyboardObserver.swift */,
+				5EBC0A7A2290699600AF2095 /* KeyboardObserverImpl.swift */,
+				5EBC0A73229064E900AF2095 /* KeyboardInfo.swift */,
+			);
+			path = KeyboardObserver;
+			sourceTree = "<group>";
+		};
+		5EBC0A752290696A00AF2095 /* NotificationObserver */ = {
+			isa = PBXGroup;
+			children = (
+				5EBC0A762290697100AF2095 /* NotificationObserver.swift */,
+				5EBC0A782290698000AF2095 /* NotificationObserverImpl.swift */,
+			);
+			path = NotificationObserver;
+			sourceTree = "<group>";
+		};
+		5EBC0A7C2290727900AF2095 /* KeyboardObserver */ = {
+			isa = PBXGroup;
+			children = (
+				5EBC0A7D229073EC00AF2095 /* KeyboardObserverImplTests.swift */,
+			);
+			path = KeyboardObserver;
+			sourceTree = "<group>";
+		};
 		5ED7147E227467E6004B9883 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -1324,6 +1363,8 @@
 		5ED7147F227467FE004B9883 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				5EBC0A752290696A00AF2095 /* NotificationObserver */,
+				5EBC0A70228FDA1100AF2095 /* KeyboardObserver */,
 				5EBC0A62228F46DA00AF2095 /* CancellableExecutor */,
 				5E04345B228DBAD500A96CF7 /* DiskFileReader */,
 				5E043402228C55A900A96CF7 /* TextFieldBehavior */,
@@ -1343,6 +1384,7 @@
 		5ED71480227468AD004B9883 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				5EBC0A7C2290727900AF2095 /* KeyboardObserver */,
 				5EBC0A6B228F477100AF2095 /* CancellableExecutor */,
 				5E44D0722285817900058236 /* WindowRouter */,
 				5EA0A473227B769200558BE3 /* Styles */,
@@ -1612,6 +1654,7 @@
 				5E9A160D2288745500EFA833 /* CityForecastService.swift in Sources */,
 				5E97B8B8227589FA00DB39EE /* Array+Extension.swift in Sources */,
 				5E043463228DBCAE00A96CF7 /* CitySearchServiceImpl.swift in Sources */,
+				5EBC0A74229064E900AF2095 /* KeyboardInfo.swift in Sources */,
 				5E04345D228DBADE00A96CF7 /* DiskFileReader.swift in Sources */,
 				5E043461228DBBD900A96CF7 /* CitiesLoadingJsonDecoderImpl.swift in Sources */,
 				5E44D0A22286B17000058236 /* Forecast+Temperature.swift in Sources */,
@@ -1620,6 +1663,7 @@
 				5E04340C228C5BAC00A96CF7 /* CitySearchViewUpdatable.swift in Sources */,
 				5EB5DA6922734DB90016A1CB /* CitiesViewModel.swift in Sources */,
 				5E9A15CB2287194200EFA833 /* JsonDecoder.swift in Sources */,
+				5EBC0A772290697100AF2095 /* NotificationObserver.swift in Sources */,
 				5E259435228A051500B7C8C2 /* CitySearchViewModelImpl.swift in Sources */,
 				5E043406228C55C900A96CF7 /* TextEditingDelegate.swift in Sources */,
 				5E043455228DA1CB00A96CF7 /* CitySearchService.swift in Sources */,
@@ -1644,11 +1688,11 @@
 				5E9A15EF22875A0600EFA833 /* TableSectionSource.swift in Sources */,
 				5EA0A499227DF7CF00558BE3 /* Aliases.swift in Sources */,
 				5E97B8A62274BA4400DB39EE /* BaseViewController.swift in Sources */,
-				5E0433F9228B47FA00A96CF7 /* UIViewController+Extensions.swift in Sources */,
 				5E97B8CE2275D84300DB39EE /* Localizable.swift in Sources */,
 				5E97B8C52275CE9800DB39EE /* ReloadView.swift in Sources */,
 				5E97B8B222757E7300DB39EE /* CitiesViewSource.swift in Sources */,
 				5E44D0AD2286BF1000058236 /* CityWeatherViewModel.swift in Sources */,
+				5EBC0A792290698000AF2095 /* NotificationObserverImpl.swift in Sources */,
 				5EB5DA77227386B60016A1CB /* Weather.swift in Sources */,
 				5E9A16352288AB5000EFA833 /* HourlyForecastCollectionCell.swift in Sources */,
 				5EB5DA3F22732F5D0016A1CB /* CitiesViewController.swift in Sources */,
@@ -1682,6 +1726,7 @@
 				5E7498922280AE70007005E4 /* CitiesRouterImpl.swift in Sources */,
 				5E396526227AF55A005F0859 /* CellProvider.swift in Sources */,
 				5E043458228DB80F00A96CF7 /* CitiesLoadingJsonDecoder.swift in Sources */,
+				5EBC0A7B2290699600AF2095 /* KeyboardObserverImpl.swift in Sources */,
 				5E44D086228601E900058236 /* CityWeatherViewController.swift in Sources */,
 				5E9A16312288A6E900EFA833 /* DailyForecastReusableViewRegistrationDirector.swift in Sources */,
 				5E04345A228DB82B00A96CF7 /* CitiesLoadingServiceImpl.swift in Sources */,
@@ -1693,6 +1738,7 @@
 				5E396528227AF5B5005F0859 /* UITableView+Reuse.swift in Sources */,
 				5E9A160B2288744500EFA833 /* CityForecast.swift in Sources */,
 				5EB5DA3D22732F5D0016A1CB /* AppDelegate.swift in Sources */,
+				5EBC0A72228FDA2F00AF2095 /* KeyboardObserver.swift in Sources */,
 				5E39652A227AF6C6005F0859 /* UIView+Reuse.swift in Sources */,
 				5E259433228A04DD00B7C8C2 /* CitySearchViewModel.swift in Sources */,
 				5E39652C227B4796005F0859 /* DateFormatter+Extension.swift in Sources */,
@@ -1760,6 +1806,7 @@
 				5E44D0842285CE5500058236 /* WeatherPageContainerFactoryTests.swift in Sources */,
 				5E04341B228C63AF00A96CF7 /* CellProviderMock.swift in Sources */,
 				5E44D0812285CC2E00058236 /* City+Extension.swift in Sources */,
+				5EBC0A7E229073EC00AF2095 /* KeyboardObserverImplTests.swift in Sources */,
 				5E2594272289E77C00B7C8C2 /* CollectionReusableViewRegistratorMock.swift in Sources */,
 				5E44D076228583A700058236 /* CitiesFactoryTests.swift in Sources */,
 				5E043416228C61B900A96CF7 /* CitySearchViewUpdatableProxyTests.swift in Sources */,
@@ -1770,6 +1817,7 @@
 				5E043467228DC4A600A96CF7 /* CityModel+Extension.swift in Sources */,
 				5E043468228DC86E00A96CF7 /* CitySearchViewModelImplTests.swift in Sources */,
 				5EB5DA9F2273A5A70016A1CB /* SourceryMocks.swift in Sources */,
+				5EBC0A802290775800AF2095 /* KeyboardInfo+Equatable.swift in Sources */,
 				5E44D08C228602BA00058236 /* CityWeatherFactoryImplTests.swift in Sources */,
 				5EA0A477227B79DF00558BE3 /* FontTests.swift in Sources */,
 				5E9A15EB22873F3800EFA833 /* ForecastServiceImplTests.swift in Sources */,

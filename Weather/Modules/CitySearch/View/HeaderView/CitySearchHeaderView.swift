@@ -101,8 +101,16 @@ final class CitySearchHeaderView: BaseView {
     }
     
     func setupTextFieldBehavior(_ behavior: TextFieldBehavior) {
-        self.textFieldBehavior = behavior
+        textFieldBehavior = behavior
         behavior.setup(textField: searchTextField)
+    }
+    
+    func startSearching() {
+        searchTextField.becomeFirstResponder()
+    }
+    
+    func stopSearching() {
+        searchTextField.resignFirstResponder()
     }
 }
 

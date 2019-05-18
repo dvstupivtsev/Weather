@@ -5,3 +5,4 @@
 import Foundation
 
 typealias Action = () -> Void
+typealias Handler<Type> = (Type) -> Void

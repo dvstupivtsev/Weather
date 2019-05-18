@@ -5,12 +5,12 @@
 import UIKit
 import SnapKit
 
-// TODO: fix table insets when showing keyboard
 final class CitySearchView: BaseView {
     private let headerView = CitySearchHeaderView()
     private let tableView = make(UITableView()) {
         $0.separatorStyle = .none
         $0.tableFooterView = UIView()
+        $0.keyboardDismissMode = .onDrag
     }
     
     override func commonInit() {
@@ -54,5 +54,17 @@ final class CitySearchView: BaseView {
         tableView.dataSource = tableSource
         
         tableView.reloadData()
+    }
+    
+    func startSearching() {
+        headerView.startSearching()
+    }
+    
+    func stopSearching() {
+        headerView.stopSearching()
+    }
+    
+    func updateTableInsets(_ insets: UIEdgeInsets) {
+        tableView.contentInset = insets
     }
 }
