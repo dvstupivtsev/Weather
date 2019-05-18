@@ -11,14 +11,20 @@ final class CitySearchViewModelImplTests: XCTestCase {
     
     private var subject: CitySearchViewModelImpl!
     private var service: CitySearchServiceMock!
+    private var executor: CancellableExecutorMock!
     private var viewUpdatable: CitySearchViewUpdatableMock!
     
     override func setUp() {
         super.setUp()
         
         service = .init()
+        executor = .init()
         viewUpdatable = .init()
-        subject = CitySearchViewModelImpl(service: service, viewUpdatable: viewUpdatable)
+        subject = CitySearchViewModelImpl(
+            service: service,
+            executor: executor,
+            viewUpdatable: viewUpdatable
+        )
     }
 
     func testTextEditingDelegate() {
@@ -36,17 +42,17 @@ final class CitySearchViewModelImplTests: XCTestCase {
         XCTAssertTrue(subject.shouldSelect(at: IndexPath(row: 999, section: 43)))
     }
     
-    func testSelect() {
-        // TODO: Tests
-    }
-    
     func testDidChangeTextSuccess() {
-        service.getCitiesForReturnValue = Promise(TestData.expectedModels)
+        service.getCitiesForLimitReturnValue = Promise(TestData.expectedModels)
         
         subject.didChangeText(filterString)
         
-        XCTAssertEqual(service.getCitiesForCallsCount, 1)
-        XCTAssertEqual(service.getCitiesForReceivedName, filterString)
+        XCTAssertEqual(executor.executeHandlerCallsCount, 1)
+        executor.executeHandlerReceivedHandler?(NotCancelled())
+        
+        XCTAssertEqual(service.getCitiesForLimitCallsCount, 1)
+        XCTAssertEqual(service.getCitiesForLimitReceivedArgs?.name, filterString)
+        XCTAssertEqual(service.getCitiesForLimitReceivedArgs?.limit, 50)
         
         XCTAssert(waitForPromises(timeout: 1))
         
@@ -55,10 +61,18 @@ final class CitySearchViewModelImplTests: XCTestCase {
         XCTAssertEqual(receivedModels, TestData.expectedCellModels)
     }
     
-    func testDidChangeTextWithTooShortFilterString() {
-        subject.didChangeText("12")
+    func testDidChangeTextFailure() {
+        let expectedError = Constants.error
+        service.getCitiesForLimitReturnValue = Promise(expectedError)
         
-        XCTAssertEqual(service.getCitiesForCallsCount, 0)
+        subject.didChangeText(filterString)
+        
+        XCTAssertEqual(executor.executeHandlerCallsCount, 1)
+        executor.executeHandlerReceivedHandler?(NotCancelled())
+        
+        XCTAssertEqual(service.getCitiesForLimitCallsCount, 1)
+        XCTAssertEqual(service.getCitiesForLimitReceivedArgs?.name, filterString)
+        XCTAssertEqual(service.getCitiesForLimitReceivedArgs?.limit, 50)
         
         XCTAssert(waitForPromises(timeout: 1))
         
@@ -66,19 +80,20 @@ final class CitySearchViewModelImplTests: XCTestCase {
         XCTAssertEmpty(viewUpdatable.updateProviderConvertiblesReceivedProviderConvertibles)
     }
     
-    func testDidChangeTextFailure() {
-        let expectedError = Constants.error
-        service.getCitiesForReturnValue = Promise(expectedError)
+    func testDidChangeTextCancelled() {
+        service.getCitiesForLimitReturnValue = Promise(TestData.expectedModels)
         
         subject.didChangeText(filterString)
         
-        XCTAssertEqual(service.getCitiesForCallsCount, 1)
-        XCTAssertEqual(service.getCitiesForReceivedName, filterString)
+        XCTAssertEqual(executor.executeHandlerCallsCount, 1)
+        executor.executeHandlerReceivedHandler?(Cancelled())
+        
+        XCTAssertEqual(service.getCitiesForLimitCallsCount, 1)
+        XCTAssertEqual(service.getCitiesForLimitReceivedArgs?.name, filterString)
+        XCTAssertEqual(service.getCitiesForLimitReceivedArgs?.limit, 50)
         
         XCTAssert(waitForPromises(timeout: 1))
-        
-        XCTAssertEqual(viewUpdatable.updateProviderConvertiblesCallsCount, 1)
-        XCTAssertEmpty(viewUpdatable.updateProviderConvertiblesReceivedProviderConvertibles)
+        XCTAssertEqual(viewUpdatable.updateProviderConvertiblesCallsCount, 0)
     }
 }
 

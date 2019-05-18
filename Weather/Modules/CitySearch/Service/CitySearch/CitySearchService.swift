@@ -7,5 +7,6 @@ import Promises
 
 // sourcery: AutoMockable
 protocol CitySearchService {
-    func getCities(for name: String) -> Promise<[CityModel]>
+    // TODO: Request rather than params
+    func getCities(for name: String, limit: Int) -> Promise<[CityModel]>
 }

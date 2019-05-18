@@ -7,9 +7,10 @@ import Promises
 
 final class CitySearchViewModelImpl: CitySearchViewModel {
     private let service: CitySearchService
+    private let executor: CancellableExecutor
     private let viewUpdatable: CitySearchViewUpdatable
     
-    private let minimumNumberOfSymbolsToSearch = 2
+    private let filterLimit = 50
     
     private lazy var foundCitiesSources = [CellSource]()
     
@@ -21,26 +22,36 @@ final class CitySearchViewModelImpl: CitySearchViewModel {
         return self
     }
     
-    init(service: CitySearchService, viewUpdatable: CitySearchViewUpdatable) {
+    init(
+        service: CitySearchService,
+        executor: CancellableExecutor,
+        viewUpdatable: CitySearchViewUpdatable
+    ) {
         self.service = service
+        self.executor = executor
         self.viewUpdatable = viewUpdatable
     }
 }
 
 extension CitySearchViewModelImpl: TextEditingDelegate {
     func didChangeText(_ text: String?) {
-        // TODO: Cancel previous operation while delay
-        getCities(for: text ?? "")
-            .then(on: .main, viewUpdatable.update(providerConvertibles:))
-            .catch(on: .main, handleError(_:))
+        executor.cancel()
+        
+        executor.execute { [weak self] operation in
+            self?.getCities(for: text ?? "")
+                .then(on: .main) {
+                    guard let self = self, operation.isCancelled == false else { return }
+                    self.viewUpdatable.update(providerConvertibles: $0)
+                }
+                .catch(on: .main) {
+                    guard let self = self, operation.isCancelled == false else { return }
+                    self.handleError($0)
+                }
+        }
     }
     
     private func getCities(for name: String) -> Promise<[CellProviderConvertible]> {
-        guard name.count > minimumNumberOfSymbolsToSearch else {
-            return Promise([])
-        }
-        
-        return service.getCities(for: name)
+        return service.getCities(for: name, limit: filterLimit)
             .then(createProviderConvertibles(from:))
     }
     

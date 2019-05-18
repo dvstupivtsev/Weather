@@ -12,13 +12,20 @@ final class CitySearchServiceImpl: CitySearchService {
         self.citiesLoadingService = citiesLoadingService
     }
     
-    func getCities(for name: String) -> Promise<[CityModel]> {
+    func getCities(for name: String, limit: Int) -> Promise<[CityModel]> {
         return citiesLoadingService
             .getCities()
-            .then(on: .global(qos: .userInteractive)) { self.filter(citiesModels: $0, name: name) }
+            .then(on: .global(qos: .userInteractive)) {
+                self.filter(citiesModels: $0, name: name, limit: limit)
+            }
     }
     
-    private func filter(citiesModels: [CityModel], name: String) -> [CityModel] {
-        return citiesModels.filter { $0.name.lowercased().hasPrefix(name.lowercased()) }
+    private func filter(citiesModels: [CityModel], name: String, limit: Int) -> [CityModel] {
+        let filteredModels = citiesModels
+            .filter { $0.name.lowercased().hasPrefix(name.lowercased()) }
+        
+        let limit = limit < filteredModels.count ? limit : filteredModels.count
+        
+        return Array(filteredModels[0..<limit])
     }
 }

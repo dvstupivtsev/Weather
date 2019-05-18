@@ -16,6 +16,7 @@ final class CitySearchFactoryImpl: CitySearchFactory {
         
         let vm = CitySearchViewModelImpl(
             service: service,
+            executor: CancellableExecutorImpl(queue: .main),
             viewUpdatable: viewUpdatableProxy
         )
         

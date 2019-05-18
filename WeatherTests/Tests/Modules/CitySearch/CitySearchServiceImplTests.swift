@@ -21,7 +21,7 @@ final class CitySearchServiceImplTests: XCTestCase {
         let notFilteredCities = TestData.cities
         citiesLoadingService.getCitiesReturnValue = Promise(notFilteredCities)
         
-        let result = subject.getCities(for: TestData.filterString)
+        let result = subject.getCities(for: TestData.filterString, limit: 3)
         
         XCTAssertEqual(citiesLoadingService.getCitiesCallsCount, 1)
         
@@ -34,7 +34,7 @@ final class CitySearchServiceImplTests: XCTestCase {
         let expectedError = Constants.error
         citiesLoadingService.getCitiesReturnValue = Promise(expectedError)
         
-        let result = subject.getCities(for: "1234")
+        let result = subject.getCities(for: "1234", limit: 3)
         
         XCTAssertEqual(citiesLoadingService.getCitiesCallsCount, 1)
         
