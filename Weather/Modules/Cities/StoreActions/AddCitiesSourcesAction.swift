@@ -4,7 +4,6 @@
 
 import Foundation
 
-// TODO: - Tests
 struct AddCitiesSourcesAction: StoreAction {
     typealias StateType = [CitySource]
     

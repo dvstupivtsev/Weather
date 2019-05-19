@@ -7,7 +7,7 @@ import XCTest
 
 final class CitySearchFactoryImplTests: XCTestCase {
     func testCreate() {
-        let subject = CitySearchFactoryImpl()
+        let subject = CitySearchFactoryImpl(store: Store(state: [CitySource]()))
         
         XCTAssert(subject.create(), isKindOf: CitySearchViewController.self)
     }

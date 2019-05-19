@@ -16,15 +16,15 @@ final class CitySearchRouterImpl: CitySearchRouter {
     }
     
     func openAlreadyAddedAlert() {
-        // TODO: To localizable
+        // TODO: Alert builder, maybe
         let ac = UIAlertController(
-            title: "Failure",
-            message: "This city already added to favorite list",
+            title: L10n.CitySearch.AlreadyAddedAlert.title,
+            message: L10n.CitySearch.AlreadyAddedAlert.message,
             preferredStyle: .alert
         )
         ac.addAction(
             UIAlertAction(
-                title: "OK",
+                title: L10n.CitySearch.AlreadyAddedAlert.buttonTitle,
                 style: .default
             )
         )

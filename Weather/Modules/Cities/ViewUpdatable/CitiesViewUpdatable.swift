@@ -5,6 +5,7 @@
 import Foundation
 
 // TODO: present error
+// sourcery: AutoMockable
 protocol CitiesViewUpdatable: AnyObject {
     func update(viewSource: CitiesViewSource)
 }

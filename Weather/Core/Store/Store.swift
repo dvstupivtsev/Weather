@@ -4,9 +4,10 @@
 
 import Foundation
 
-// TODO: - Tests
 final class Store<StateType> {
     private(set) var state: StateType
+    
+    // TODO: Move to Subject
     private lazy var subscribers = [AnyStoreSubscriber]()
     
     init(state: StateType) {

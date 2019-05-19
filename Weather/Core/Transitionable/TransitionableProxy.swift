@@ -4,7 +4,6 @@
 
 import UIKit
 
-// TODO: Tests
 final class TransitionableProxy: Transitionable {
     weak var wrapped: UIViewController?
     

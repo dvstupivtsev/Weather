@@ -4,7 +4,6 @@
 
 import Foundation
 
-// TODO: - Tests
 final class CitiesViewUpdatableProxy: CitiesViewUpdatable {
     weak var wrapped: CitiesViewUpdatable?
     

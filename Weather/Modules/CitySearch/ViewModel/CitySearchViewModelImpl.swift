@@ -7,10 +7,12 @@ import Promises
 import Weakify
 
 final class CitySearchViewModelImpl: CitySearchViewModel {
+    // TODO: Inject with protocol
     private let store: Store<[CitySource]>
     // TODO: Unite
     private let searchService: CitySearchService
     private let citiesService: CitiesService
+    
     private let executor: CancellableExecutor
     private let viewUpdatable: CitySearchViewUpdatable
     private let router: CitySearchRouter

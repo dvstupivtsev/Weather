@@ -6,8 +6,8 @@ import Foundation
 import Promises
 import Weakify
 
-// TODO: - Tests
 final class CitiesViewModelImpl: CitiesViewModel {
+    // TODO: Inject with protocol
     private let store: Store<[CitySource]>
     private let citiesService: CitiesService
     private let dateFormatter: CitiesDateFormatter
@@ -52,11 +52,16 @@ final class CitiesViewModelImpl: CitiesViewModel {
         ]
         
         citiesService.getCitiesWeather(for: citiesIds)
-            .then(handleCitiesSources(_:))
+            .then(weakify(self, type(of: self).handleCitiesSources(_:)))
+            .catch(weakify(self, type(of: self).handleCitiesWeatherFailure(error:)))
     }
     
     private func handleCitiesSources(_ sources: [CitySource]) {
         store.dispatch(action: AddCitiesSourcesAction(citisSources: sources))
+    }
+    
+    private func handleCitiesWeatherFailure(error: Error) {
+        // TODO: Impl
     }
     
     private func openCitySearch() {

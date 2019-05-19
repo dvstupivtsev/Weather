@@ -5,6 +5,7 @@
 import UIKit
 import SnapKit
 
+// TODO: handle clear button
 final class CitySearchHeaderView: BaseView {
     private let appearance = Appearance()
     

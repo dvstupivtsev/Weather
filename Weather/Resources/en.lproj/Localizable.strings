@@ -7,3 +7,6 @@
 "Cities.Title" = "Favorite cities";
 
 "CitySearch.SearchPlaceholder" = "Enter city name";
+"CitySearch.AlreadyAddedAlert.Title" = "Already added";
+"CitySearch.AlreadyAddedAlert.Message" = "This city already added to favorite list";
+"CitySearch.AlreadyAddedAlert.ButtonTitle" = "OK";
