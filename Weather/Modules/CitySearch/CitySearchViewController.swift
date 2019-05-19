@@ -39,13 +39,18 @@ final class CitySearchViewController: BaseViewController<CitySearchView> {
         customView.startSearching()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        customView.stopSearching()
+        
+        super.viewWillDisappear(animated)
+    }
+    
     private func changeTableInsets(with info: KeyboardInfo) {
         let insets = UIEdgeInsets(top: 0, left: 0, bottom: info.verticalOffset, right: 0)
         customView.updateTableInsets(insets)
     }
     
     private func close() {
-        customView.stopSearching()
         viewModel.close()
     }
 }
