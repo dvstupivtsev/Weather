@@ -7,7 +7,7 @@ import Promises
 
 protocol CitySearchViewModel {
     var textEditingDelegate: TextEditingDelegate { get }
-    var selectionBehavior: CellSelectionBehavior { get }
+    var selectionBehavior: TableSelectionBehavior { get }
     
     func close()
 }

@@ -6,7 +6,7 @@ import UIKit
 
 struct DailyForecastReusableViewRegistrationDirector: TableReusableViewRegistrationDirector {
     func registerViews(using registrator: TableReusableViewRegistrator) {
-        registrator.register(type: DailyForecastCell.self)
+        registrator.register(type: DailyForecastTableCell.self)
     }
 }
 

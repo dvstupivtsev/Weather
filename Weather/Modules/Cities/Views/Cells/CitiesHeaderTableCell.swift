@@ -5,8 +5,7 @@
 import UIKit
 import SnapKit
 
-// TODO: Rename to CitiesHeaderTableCell
-final class CitiesHeaderCell: BaseCell<CitiesHeaderCell.Model> {
+final class CitiesHeaderTableCell: BaseTableCell<CitiesHeaderTableCell.Model> {
     private let appearance = Appearance()
     
     private let titleLabel = make(UILabel()) {
@@ -58,18 +57,18 @@ final class CitiesHeaderCell: BaseCell<CitiesHeaderCell.Model> {
     }
 }
 
-extension CitiesHeaderCell {
-    struct Model: CellProviderConvertible {
+extension CitiesHeaderTableCell {
+    struct Model: TableCellProviderConvertible {
         let title: String
         let onAddAction: Action
         
-        var cellProvider: CellProvider {
-            return GenericCellProvider<Model, CitiesHeaderCell>(model: self)
+        var cellProvider: TableCellProvider {
+            return GenericTableCellProvider<Model, CitiesHeaderTableCell>(model: self)
         }
     }
 }
 
-private extension CitiesHeaderCell {
+private extension CitiesHeaderTableCell {
     struct Appearance {
         let margins = UIEdgeInsets(all: 12)
         let titleTopMargin: CGFloat = 20

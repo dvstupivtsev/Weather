@@ -6,7 +6,7 @@ import UIKit
 
 struct CitiesReusableViewRegistrationDirector: TableReusableViewRegistrationDirector {
     func registerViews(using registrator: TableReusableViewRegistrator) {
-        let classes = [CityCell.self, CitiesHeaderCell.self]
+        let classes = [CityTableCell.self, CitiesHeaderTableCell.self]
         classes.forEach(registrator.register(type:))
     }
 }

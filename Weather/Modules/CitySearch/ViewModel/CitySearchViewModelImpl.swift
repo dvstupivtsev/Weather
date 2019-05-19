@@ -25,7 +25,7 @@ final class CitySearchViewModelImpl: CitySearchViewModel {
         return self
     }
     
-    var selectionBehavior: CellSelectionBehavior {
+    var selectionBehavior: TableSelectionBehavior {
         return self
     }
     
@@ -67,13 +67,13 @@ extension CitySearchViewModelImpl: TextEditingDelegate {
         }
     }
     
-    private func getCities(for name: String) -> Promise<[CellProviderConvertible]> {
+    private func getCities(for name: String) -> Promise<[TableCellProviderConvertible]> {
         // TODO: show loading
         return searchService.getCities(for: name, limit: filterLimit)
             .then(createProviderConvertibles(from:))
     }
     
-    private func createProviderConvertibles(from models: [CityModel]) -> [CellProviderConvertible] {
+    private func createProviderConvertibles(from models: [CityModel]) -> [TableCellProviderConvertible] {
         foundCitiesSources = models.map { cityModel in
             let title = "\(cityModel.name), \(cityModel.country)"
             let model = CitySearchCell.Model(title: title)
@@ -92,7 +92,7 @@ extension CitySearchViewModelImpl: TextEditingDelegate {
     }
 }
 
-extension CitySearchViewModelImpl: CellSelectionBehavior {
+extension CitySearchViewModelImpl: TableSelectionBehavior {
     func shouldSelect(at indexPath: IndexPath) -> Bool {
         return true
     }
@@ -123,7 +123,7 @@ extension CitySearchViewModelImpl: CellSelectionBehavior {
 
 private extension CitySearchViewModelImpl {
     struct CellSource {
-        let providerConvertible: CellProviderConvertible
+        let providerConvertible: TableCellProviderConvertible
         let onSelectAction: Action
     }
 }

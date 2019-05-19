@@ -40,14 +40,14 @@ final class CityWeatherViewController: BaseViewController<CityWeatherView> {
         updateDailyForecast(with: viewSource.dailyProviderConvertibles)
     }
     
-    private func updateDailyForecast(with providerConvertibles: [CellProviderConvertible]) {
+    private func updateDailyForecast(with providerConvertibles: [TableCellProviderConvertible]) {
         let sectionSource = TableSectionSource(
             cellProviderConvertibles: providerConvertibles
         )
         
         dailyForecastSource = TableDataSource(
             sources: [sectionSource],
-            selectionBehavior: DisabledCellSelectionBehavior()
+            selectionBehavior: DisabledTableSelectionBehavior()
         )
         
         customView.update(dailyForecastSource: dailyForecastSource)

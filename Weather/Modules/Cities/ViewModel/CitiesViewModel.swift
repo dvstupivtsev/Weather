@@ -6,7 +6,7 @@ import Foundation
 import Promises
 
 protocol CitiesViewModel {
-    var cellSelectionBehavior: CellSelectionBehavior { get }
+    var selectionBehavior: TableSelectionBehavior { get }
     
     // TODO: Rename
     func getData()

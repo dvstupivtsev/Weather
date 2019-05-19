@@ -5,5 +5,5 @@
 import Foundation
 
 struct TableSectionSource {
-    let cellProviderConvertibles: [CellProviderConvertible]
+    let cellProviderConvertibles: [TableCellProviderConvertible]
 }

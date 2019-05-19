@@ -5,7 +5,7 @@
 import UIKit
 import SnapKit
 
-// TODO: Add reload view if smth went wrong, add Pull2Refresh for reloading data, add skeleton loading
+// TODO: Add reload view if smth went wrong, add Pull2Refresh for reloading data, skeleton loading and progress HUD
 final class CitiesView: BaseView {
     private let appearance = Appearance()
     

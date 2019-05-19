@@ -4,7 +4,7 @@
 
 import UIKit
 
-// TODO: Swop cities in table
+// TODO: add swop and remove cells features
 final class CitiesViewController: BaseViewController<CitiesView> {
     private let viewModel: CitiesViewModel
     
@@ -34,7 +34,7 @@ extension CitiesViewController: CitiesViewUpdatable {
         let sectionSource = TableSectionSource(cellProviderConvertibles: viewSource.cellProviderConvertibles)
         tableSource = TableDataSource(
             sources: [sectionSource],
-            selectionBehavior: viewModel.cellSelectionBehavior
+            selectionBehavior: viewModel.selectionBehavior
         )
         
         customView.update(tableSource: tableSource)

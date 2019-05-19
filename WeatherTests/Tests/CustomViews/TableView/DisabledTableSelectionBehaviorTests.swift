@@ -5,7 +5,7 @@
 import XCTest
 @testable import Weather
 
-final class DisabledCellSelectionBehaviorTests: XCTestCase {
+final class DisabledTableSelectionBehaviorTests: XCTestCase {
     func testShouldSelect() {
         let subject = DisabledCollectionSelectionBehavior()
         

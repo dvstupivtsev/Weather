@@ -6,7 +6,7 @@ import UIKit
 import SnapKit
 
 // TODO: Highlight found part of word
-final class CitySearchCell: BaseCell<CitySearchCell.Model> {
+final class CitySearchCell: BaseTableCell<CitySearchCell.Model> {
     private let appearance = Appearance()
     
     private let titleLabel = make(UILabel()) {
@@ -47,11 +47,11 @@ final class CitySearchCell: BaseCell<CitySearchCell.Model> {
 }
 
 extension CitySearchCell {
-    struct Model: CellProviderConvertible {
+    struct Model: TableCellProviderConvertible {
         let title: String
         
-        var cellProvider: CellProvider {
-            return GenericCellProvider<Model, CitySearchCell>(model: self)
+        var cellProvider: TableCellProvider {
+            return GenericTableCellProvider<Model, CitySearchCell>(model: self)
         }
     }
 }

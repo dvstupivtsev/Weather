@@ -5,8 +5,7 @@
 import UIKit
 import SnapKit
 
-// TODO: Rename to CityTableCell
-final class CityCell: BaseCell<CityCell.Model> {
+final class CityTableCell: BaseTableCell<CityTableCell.Model> {
     private let appearance = Appearance()
     
     private let titleLabel = make(UILabel()) {
@@ -77,20 +76,20 @@ final class CityCell: BaseCell<CityCell.Model> {
     }
 }
 
-extension CityCell {
-    struct Model: CellProviderConvertible {
+extension CityTableCell {
+    struct Model: TableCellProviderConvertible {
         let title: String
         let dateTimeString: String
         let temperatureString: String
         let weatherIcon: UIImage?
         
-        var cellProvider: CellProvider {
-            return GenericCellProvider<Model, CityCell>(model: self)
+        var cellProvider: TableCellProvider {
+            return GenericTableCellProvider<Model, CityTableCell>(model: self)
         }
     }
 }
 
-private extension CityCell {
+private extension CityTableCell {
     struct Appearance {
         let margins = UIEdgeInsets(all: 12)
         let titleCenterOffset: CGFloat = 2

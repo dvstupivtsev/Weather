@@ -4,8 +4,7 @@
 
 import UIKit
 
-// TODO: Rename to BaseTableCell
-class BaseCell<Model>: UITableViewCell {
+class BaseTableCell<Model>: UITableViewCell {
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         

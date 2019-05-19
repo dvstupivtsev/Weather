@@ -5,10 +5,10 @@
 import UIKit
 @testable import Weather
 
-struct CellProviderMock: CellProvider {
+struct TableCellProviderMock: TableCellProvider {
     static let cell = UITableViewCell()
     
     func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        return CellProviderMock.cell
+        return TableCellProviderMock.cell
     }
 }

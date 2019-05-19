@@ -5,8 +5,7 @@
 import UIKit
 import SnapKit
 
-// TODO: Rename to DailyForecastTableCell
-final class DailyForecastCell: BaseCell<DailyForecastCell.Model> {
+final class DailyForecastTableCell: BaseTableCell<DailyForecastTableCell.Model> {
     private let appearance = Appearance()
     
     private let weekdayLabel = make(UILabel()) {
@@ -77,7 +76,7 @@ final class DailyForecastCell: BaseCell<DailyForecastCell.Model> {
         }
     }
     
-    override func update(model: DailyForecastCell.Model) {
+    override func update(model: DailyForecastTableCell.Model) {
         weekdayLabel.text = model.weekdayTitle
         dateLabel.text = model.dateString
         maxTempLabel.text = model.maxTemperatureString
@@ -86,21 +85,21 @@ final class DailyForecastCell: BaseCell<DailyForecastCell.Model> {
     }
 }
 
-extension DailyForecastCell {
-    struct Model: CellProviderConvertible {
+extension DailyForecastTableCell {
+    struct Model: TableCellProviderConvertible {
         let weekdayTitle: String
         let dateString: String
         let weatherImage: UIImage
         let maxTemperatureString: String
         let minTemperatureString: String
         
-        var cellProvider: CellProvider {
-            return GenericCellProvider<Model, DailyForecastCell>(model: self)
+        var cellProvider: TableCellProvider {
+            return GenericTableCellProvider<Model, DailyForecastTableCell>(model: self)
         }
     }
 }
 
-private extension DailyForecastCell {
+private extension DailyForecastTableCell {
     struct Appearance {
         let margins = UIEdgeInsets(all: 12)
         let dateWithWeekdaySpacing: CGFloat = 4

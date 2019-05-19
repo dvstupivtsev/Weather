@@ -6,9 +6,9 @@ import UIKit
 
 final class TableDataSource: NSObject & UITableViewDataSource & UITableViewDelegate {
     private let sources: [TableSectionSource]
-    private let selectionBehavior: CellSelectionBehavior
+    private let selectionBehavior: TableSelectionBehavior
     
-    init(sources: [TableSectionSource], selectionBehavior: CellSelectionBehavior) {
+    init(sources: [TableSectionSource], selectionBehavior: TableSelectionBehavior) {
         self.sources = sources
         self.selectionBehavior = selectionBehavior
     }
@@ -41,6 +41,6 @@ final class TableDataSource: NSObject & UITableViewDataSource & UITableViewDeleg
 
 extension TableDataSource {
     static var empty: TableDataSource {
-        return TableDataSource(sources: [], selectionBehavior: DisabledCellSelectionBehavior())
+        return TableDataSource(sources: [], selectionBehavior: DisabledTableSelectionBehavior())
     }
 }

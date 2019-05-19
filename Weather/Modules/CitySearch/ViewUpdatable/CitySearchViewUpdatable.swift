@@ -6,5 +6,5 @@ import Foundation
 
 // sourcery: AutoMockable
 protocol CitySearchViewUpdatable: AnyObject {
-    func update(providerConvertibles: [CellProviderConvertible])
+    func update(providerConvertibles: [TableCellProviderConvertible])
 }

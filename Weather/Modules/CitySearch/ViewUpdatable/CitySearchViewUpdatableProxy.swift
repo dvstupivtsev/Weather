@@ -7,7 +7,7 @@ import Foundation
 final class CitySearchViewUpdatableProxy: CitySearchViewUpdatable {
     weak var wrapped: CitySearchViewUpdatable?
     
-    func update(providerConvertibles: [CellProviderConvertible]) {
+    func update(providerConvertibles: [TableCellProviderConvertible]) {
         wrapped?.update(providerConvertibles: providerConvertibles)
     }
 }

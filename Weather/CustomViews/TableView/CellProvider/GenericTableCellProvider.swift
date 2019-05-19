@@ -4,8 +4,7 @@
 
 import UIKit
 
-// TODO: Rename to GenericTableCellProvider
-struct GenericCellProvider<Model, Cell: BaseCell<Model>>: CellProvider {
+struct GenericTableCellProvider<Model, Cell: BaseTableCell<Model>>: TableCellProvider {
     private let model: Model
     
     init(model: Model) {

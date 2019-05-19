@@ -22,7 +22,7 @@ final class CityForecastAdapter: CityForecastService {
         
         let maxForecastsCount = forecast.count < 8 ? forecast.count : 8
         
-        // TODO: interpolate, make it 24 hour forecast
+        // TODO: interpolate, make it 24 hour forecast per hour
         let firstEightForecasts = Array(forecast[0..<maxForecastsCount])
         
         // TODO: refactor this monster

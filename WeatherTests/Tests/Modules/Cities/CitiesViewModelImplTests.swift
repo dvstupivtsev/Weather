@@ -53,17 +53,17 @@ final class CitiesViewModelImplTests: XCTestCase {
     private func _testViewSource(_ viewSource: CitiesViewSource, expectedCount: Int, expectedSearchCallsCount: Int) {
         XCTAssertEqual(viewUpdatable.updateViewSourceReceivedViewSource?.cellProviderConvertibles.count, expectedCount)
         
-        let expectedHeaderCellModel = CitiesHeaderCell.Model(title: "Favorite cities", onAddAction: { })
+        let expectedHeaderCellModel = CitiesHeaderTableCell.Model(title: "Favorite cities", onAddAction: { })
         
         let cellsModels = viewSource.cellProviderConvertibles
-        let headerCellModel = cellsModels.first as? CitiesHeaderCell.Model
+        let headerCellModel = cellsModels.first as? CitiesHeaderTableCell.Model
         
         headerCellModel?.onAddAction()
         XCTAssertEqual(router.openCitySearchCallsCount, expectedSearchCallsCount)
         
         if expectedCount > 1 {
             let expectedCityCellModelsSource = citiesSources.map {
-                return CityCell.Model(
+                return CityTableCell.Model(
                     title: $0.city.name,
                     dateTimeString: dateFormatter.stringFromTimeZoneReturnValue,
                     temperatureString: MeasurementFormatter.celsius.string(from: $0.city.main.temp),
@@ -71,7 +71,7 @@ final class CitiesViewModelImplTests: XCTestCase {
                 )
             }
             
-            let citiesCellModels = Array(cellsModels[1..<expectedCount]) as? [CityCell.Model] ?? []
+            let citiesCellModels = Array(cellsModels[1..<expectedCount]) as? [CityTableCell.Model] ?? []
             XCTAssertEqual(dateFormatter.stringFromTimeZoneCallsCount, 2)
             XCTAssertEqual(headerCellModel, expectedHeaderCellModel)
             XCTAssertEqual(citiesCellModels, expectedCityCellModelsSource)
@@ -80,7 +80,7 @@ final class CitiesViewModelImplTests: XCTestCase {
         }
     }
     
-    private func _testRouting(for models: [CityCell.Model], for citiesSources: [CitySource]) {
+    private func _testRouting(for models: [CityTableCell.Model], for citiesSources: [CitySource]) {
         models.enumerated().forEach { index, model in
             let indexPath = IndexPath(row: index + 1, section: 0)
             XCTAssertTrue(subject.shouldSelect(at: indexPath))
@@ -121,16 +121,16 @@ private extension CitiesViewModelImplTests {
     }
 }
 
-extension CityCell.Model: Equatable {
-    public static func == (lhs: CityCell.Model, rhs: CityCell.Model) -> Bool {
+extension CityTableCell.Model: Equatable {
+    public static func == (lhs: CityTableCell.Model, rhs: CityTableCell.Model) -> Bool {
         return lhs.title == rhs.title
             && lhs.temperatureString == rhs.temperatureString
             && lhs.dateTimeString == rhs.dateTimeString
     }
 }
 
-extension CitiesHeaderCell.Model: Equatable {
-    public static func == (lhs: CitiesHeaderCell.Model, rhs: CitiesHeaderCell.Model) -> Bool {
+extension CitiesHeaderTableCell.Model: Equatable {
+    public static func == (lhs: CitiesHeaderTableCell.Model, rhs: CitiesHeaderTableCell.Model) -> Bool {
         return lhs.title == rhs.title
     }
 }

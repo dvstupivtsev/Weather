@@ -4,8 +4,7 @@
 
 import Foundation
 
-// TODO: Rename to DisabledTableSelectionBehavior
-struct DisabledCellSelectionBehavior: CellSelectionBehavior {
+struct DisabledTableSelectionBehavior: TableSelectionBehavior {
     func shouldSelect(at indexPath: IndexPath) -> Bool { return false }
     func select(at indexPath: IndexPath) { }
 }

@@ -16,7 +16,7 @@ final class CitiesViewModelImpl: CitiesViewModel {
     
     private lazy var cellsSources = [CellSource]()
     
-    var cellSelectionBehavior: CellSelectionBehavior {
+    var selectionBehavior: TableSelectionBehavior {
         return self
     }
     
@@ -65,7 +65,7 @@ extension CitiesViewModelImpl: StoreSubscriber {
         var cellsSources: [CellSource] = state.map { citySource in
             return CellSource(
                 // TODO: Add country name to title
-                cellProviderConvertible: CityCell.Model(
+                cellProviderConvertible: CityTableCell.Model(
                     title: citySource.city.name,
                     dateTimeString: dateFormatter.string(from: citySource.city.date, timeZone: citySource.timeZone),
                     temperatureString: MeasurementFormatter.celsius.string(from: citySource.city.main.temp),
@@ -77,7 +77,7 @@ extension CitiesViewModelImpl: StoreSubscriber {
         
         cellsSources.insert(
             CellSource(
-                cellProviderConvertible: CitiesHeaderCell.Model(
+                cellProviderConvertible: CitiesHeaderTableCell.Model(
                     title: L10n.Cities.title,
                     onAddAction: weakify(self, type(of: self).openCitySearch)
                 ),
@@ -96,7 +96,7 @@ extension CitiesViewModelImpl: StoreSubscriber {
     }
 }
 
-extension CitiesViewModelImpl: CellSelectionBehavior {
+extension CitiesViewModelImpl: TableSelectionBehavior {
     func shouldSelect(at indexPath: IndexPath) -> Bool {
         return cellsSources[indexPath.row].onSelectAction != nil
     }
@@ -108,7 +108,7 @@ extension CitiesViewModelImpl: CellSelectionBehavior {
 
 private extension CitiesViewModelImpl {
     struct CellSource {
-        let cellProviderConvertible: CellProviderConvertible
+        let cellProviderConvertible: TableCellProviderConvertible
         let onSelectAction: Action?
     }
 }

@@ -10,7 +10,7 @@ final class CitySearchViewUpdatableProxyTests: XCTestCase {
         let viewUpdatable = CitySearchViewUpdatableMock()
         let subject = CitySearchViewUpdatableProxy()
         
-        let expectedValue = [CellProviderConvertibleMock(id: 1), .init(id: 2)]
+        let expectedValue = [TableCellProviderConvertibleMock(id: 1), .init(id: 2)]
         subject.update(providerConvertibles: expectedValue)
         XCTAssertEqual(viewUpdatable.updateProviderConvertiblesCallsCount, 0)
         
@@ -18,7 +18,7 @@ final class CitySearchViewUpdatableProxyTests: XCTestCase {
         subject.update(providerConvertibles: expectedValue)
         XCTAssertEqual(viewUpdatable.updateProviderConvertiblesCallsCount, 1)
         XCTAssertEqual(
-            viewUpdatable.updateProviderConvertiblesReceivedProviderConvertibles as? [CellProviderConvertibleMock],
+            viewUpdatable.updateProviderConvertiblesReceivedProviderConvertibles as? [TableCellProviderConvertibleMock],
             expectedValue
         )
     }

@@ -10,7 +10,7 @@ final class CitiesReusableViewRegistrationDirectorTests: XCTestCase {
         let subject = CitiesReusableViewRegistrationDirector()
         let registrator = TableReusableViewRegistratorMock()
         
-        let expectedValue = [CityCell.self, CitiesHeaderCell.self]
+        let expectedValue = [CityTableCell.self, CitiesHeaderTableCell.self]
             .map(String.init(describing:))
         
         var types = [UITableViewCell.Type]()

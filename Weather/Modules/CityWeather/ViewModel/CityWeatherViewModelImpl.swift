@@ -56,9 +56,9 @@ final class CityWeatherViewModelImpl: CityWeatherViewModel {
         }
     }
     
-    private func createDailyForecastCellProviders(with forecast: [Forecast]) -> [CellProviderConvertible] {
+    private func createDailyForecastCellProviders(with forecast: [Forecast]) -> [TableCellProviderConvertible] {
         return forecast.map {
-            DailyForecastCell.Model(
+            DailyForecastTableCell.Model(
                 weekdayTitle: formatter.formatForecastWeekday($0.date),
                 dateString: formatter.formatForecastDate($0.date),
                 weatherImage: $0.weather.first.flatMap { UIImage(named: $0.icon) } ?? UIImage(),

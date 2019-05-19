@@ -13,7 +13,7 @@ final class DailyForecastReusableViewRegistrationDirectorTests: XCTestCase {
         subject.registerViews(using: registrator)
         XCTAssertEqual(registrator.registerTypeCallsCount, 1)
         
-        let expectedValue = String(describing: DailyForecastCell.self)
+        let expectedValue = String(describing: DailyForecastTableCell.self)
         XCTAssertEqual(String(describing: registrator.registerTypeReceivedType!), expectedValue)
     }
 }

@@ -4,8 +4,7 @@
 
 import Foundation
 
-// TODO: Rename to TableSelectionBehavior
-protocol CellSelectionBehavior {
+protocol TableSelectionBehavior {
     func shouldSelect(at indexPath: IndexPath) -> Bool
     func select(at indexPath: IndexPath)
 }

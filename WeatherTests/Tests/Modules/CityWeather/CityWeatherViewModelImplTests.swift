@@ -59,8 +59,8 @@ final class CityWeatherViewModelImplTests: XCTestCase {
         XCTAssertNil(result.error)
     }
     
-    private func expect(actual: [CellProviderConvertible]?, equalTo expected: [DailyForecastCell.Model]) {
-        let actualCellsModels = actual?.compactMap { $0 as? DailyForecastCell.Model }
+    private func expect(actual: [TableCellProviderConvertible]?, equalTo expected: [DailyForecastTableCell.Model]) {
+        let actualCellsModels = actual?.compactMap { $0 as? DailyForecastTableCell.Model }
         XCTAssertEqual(actualCellsModels, expected)
     }
     
@@ -104,16 +104,16 @@ private extension CityWeatherViewModelImplTests {
         ]
     }
     
-    var expectedDailyForecastCellsModels: [DailyForecastCell.Model] {
+    var expectedDailyForecastCellsModels: [DailyForecastTableCell.Model] {
         return [
-            DailyForecastCell.Model(
+            DailyForecastTableCell.Model(
                 weekdayTitle: formatter.formatForecastWeekdayReturnValue,
                 dateString: formatter.formatForecastDateReturnValue,
                 weatherImage: UIImage(),
                 maxTemperatureString: formatter.formatForecastTemperatureReturnValue,
                 minTemperatureString: formatter.formatForecastTemperatureReturnValue
             ),
-            DailyForecastCell.Model(
+            DailyForecastTableCell.Model(
                 weekdayTitle: formatter.formatForecastWeekdayReturnValue,
                 dateString: formatter.formatForecastDateReturnValue,
                 weatherImage: UIImage(),
@@ -124,8 +124,8 @@ private extension CityWeatherViewModelImplTests {
     }
 }
 
-extension DailyForecastCell.Model: Equatable {
-    public static func == (lhs: DailyForecastCell.Model, rhs: DailyForecastCell.Model) -> Bool {
+extension DailyForecastTableCell.Model: Equatable {
+    public static func == (lhs: DailyForecastTableCell.Model, rhs: DailyForecastTableCell.Model) -> Bool {
         return lhs.weekdayTitle == rhs.weekdayTitle
             && lhs.dateString == rhs.dateString
             && lhs.maxTemperatureString == rhs.maxTemperatureString

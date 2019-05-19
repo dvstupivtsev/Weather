@@ -56,7 +56,7 @@ final class CitySearchViewController: BaseViewController<CitySearchView> {
 }
 
 extension CitySearchViewController: CitySearchViewUpdatable {
-    func update(providerConvertibles: [CellProviderConvertible]) {
+    func update(providerConvertibles: [TableCellProviderConvertible]) {
         let sectionSource = TableSectionSource(cellProviderConvertibles: providerConvertibles)
         tableSource = TableDataSource(
             sources: [sectionSource],

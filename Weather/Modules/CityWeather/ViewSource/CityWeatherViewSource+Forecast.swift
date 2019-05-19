@@ -7,6 +7,6 @@ import Foundation
 extension CityWeatherViewSource {
     struct Forecast {
         let hourlyProviderConvertibles: [CollectionCellProviderConvertible]
-        let dailyProviderConvertibles: [CellProviderConvertible]
+        let dailyProviderConvertibles: [TableCellProviderConvertible]
     }
 }
