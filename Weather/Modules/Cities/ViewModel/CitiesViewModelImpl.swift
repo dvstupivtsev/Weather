@@ -70,6 +70,7 @@ extension CitiesViewModelImpl: StoreSubscriber {
     func update(state: [CitySource]) {
         var cellsSources: [CellSource] = state.map { citySource in
             return CellSource(
+                // TODO: Add country name to title
                 cellProviderConvertible: CityCell.Model(
                     title: citySource.city.name,
                     dateTimeString: dateFormatter.string(from: citySource.city.date, timeZone: citySource.timeZone),

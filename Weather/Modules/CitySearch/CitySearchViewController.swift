@@ -46,7 +46,7 @@ final class CitySearchViewController: BaseViewController<CitySearchView> {
     
     private func close() {
         customView.stopSearching()
-        dismiss(animated: true)
+        viewModel.close()
     }
 }
 

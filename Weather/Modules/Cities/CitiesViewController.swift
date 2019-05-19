@@ -3,7 +3,6 @@
 //
 
 import UIKit
-import Promises
 
 // TODO: Swop cities in table
 final class CitiesViewController: BaseViewController<CitiesView> {

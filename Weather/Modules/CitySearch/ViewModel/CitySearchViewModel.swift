@@ -8,4 +8,6 @@ import Promises
 protocol CitySearchViewModel {
     var textEditingDelegate: TextEditingDelegate { get }
     var selectionBehavior: CellSelectionBehavior { get }
+    
+    func close()
 }

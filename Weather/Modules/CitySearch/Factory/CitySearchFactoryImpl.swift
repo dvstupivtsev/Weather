@@ -5,6 +5,12 @@
 import UIKit
 
 final class CitySearchFactoryImpl: CitySearchFactory {
+    private let store: Store<[CitySource]>
+    
+    init(store: Store<[CitySource]>) {
+        self.store = store
+    }
+    
     func create() -> UIViewController {
         let viewUpdatableProxy = CitySearchViewUpdatableProxy()
         
@@ -12,12 +18,28 @@ final class CitySearchFactoryImpl: CitySearchFactory {
             diskFileReader: DiskJsonFileReader(),
             jsonDecoder: CitiesLoadingJsonDecoderImpl()
         )
-        let service = CitySearchServiceImpl(citiesLoadingService: citiesLoadingService)
+        let searchService = CitySearchServiceImpl(citiesLoadingService: citiesLoadingService)
+        
+        let urlSessionAdapter = UrlSessionAdapter(session: URLSession.shared)
+        let apiService = ApiServiceImpl(urlService: urlSessionAdapter)
+        let citiesWeatherService = CitiesWeatherServiceImpl(
+            apiService: apiService,
+            jsonDecoder: CitiesWeatherJsonDecoderImpl()
+        )
+        let citiesService = CitiesServiceImpl(
+            citiesWeatherService: citiesWeatherService,
+            timeZoneService: TimeZoneServiceImpl()
+        )
+        
+        let transitionableProxy = TransitionableProxy()
         
         let vm = CitySearchViewModelImpl(
-            service: service,
+            store: store,
+            searchService: searchService,
+            citiesService: citiesService,
             executor: CancellableExecutorImpl(queue: .main),
-            viewUpdatable: viewUpdatableProxy
+            viewUpdatable: viewUpdatableProxy,
+            router: CitySearchRouterImpl(transitionable: transitionableProxy)
         )
         
         let notificationObserver = NotificationObserverImpl(notificationCenter: NotificationCenter.default)
@@ -29,6 +51,7 @@ final class CitySearchFactoryImpl: CitySearchFactory {
         )
         
         viewUpdatableProxy.wrapped = vc
+        transitionableProxy.wrapped = vc
         
         return vc
     }

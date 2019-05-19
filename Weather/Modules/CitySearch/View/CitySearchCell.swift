@@ -5,6 +5,7 @@
 import UIKit
 import SnapKit
 
+// TODO: Highlight found part of word
 final class CitySearchCell: BaseCell<CitySearchCell.Model> {
     private let appearance = Appearance()
     
