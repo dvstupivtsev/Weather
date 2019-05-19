@@ -105,7 +105,7 @@ extension CitySearchViewModelImpl: CellSelectionBehavior {
         if store.state.contains(where: { $0.city.id == city.id }) {
             router.openAlreadyAddedAlert()
         } else {
-            citiesService.getCitiesWeather(for: ["\(city.id)"])
+            citiesService.getCitiesWeather(for: [city.id])
                 .then(weakify(self, type(of: self).handleCitiesSourcesLoaded(_:)))
                 .catch(weakify(self, type(of: self).handleCitiesSourcesFailed(error:)))
         }

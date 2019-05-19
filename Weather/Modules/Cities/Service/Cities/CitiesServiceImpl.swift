@@ -14,8 +14,8 @@ final class CitiesServiceImpl: CitiesService {
         self.timeZoneService = timeZoneService
     }
     
-    func getCitiesWeather(for citiesIds: [String]) -> Promise<[CitySource]> {
-        return citiesWeatherService.getWeather(for: citiesIds)
+    func getCitiesWeather(for citiesIds: [Int]) -> Promise<[CitySource]> {
+        return citiesWeatherService.getWeather(for: citiesIds.map(String.init))
             .then(mergeTimeZones(with:))
     }
     

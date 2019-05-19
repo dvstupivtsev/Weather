@@ -32,8 +32,8 @@ final class CitiesServiceImplTests: XCTestCase {
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
-        XCTAssertEqual(citiesWeatherService.getWeatherForCallsCount, 1, "should request service")
-        XCTAssertEqual(citiesWeatherService.getWeatherForReceivedCitiesIds, citiesIds, "should receive valid cities ids")
+        XCTAssertEqual(citiesWeatherService.getWeatherForCallsCount, 1)
+        XCTAssertEqual(citiesWeatherService.getWeatherForReceivedCitiesIds, citiesIds.map(String.init))
         
         let response = self.response
         let timeZones = self.timeZones
@@ -42,12 +42,12 @@ final class CitiesServiceImplTests: XCTestCase {
         timeZoneService.getTimeZonesFromReturnValue.fulfill(timeZones)
         XCTAssert(waitForPromises(timeout: 1))
         
-        XCTAssertEqual(timeZoneService.getTimeZonesFromCallsCount, 1, "should request service")
-        XCTAssertEqual(timeZoneService.getTimeZonesFromReceivedCoordinates, response.map { $0.coordinate }, "should receive valid cities ids")
+        XCTAssertEqual(timeZoneService.getTimeZonesFromCallsCount, 1)
+        XCTAssertEqual(timeZoneService.getTimeZonesFromReceivedCoordinates, response.map { $0.coordinate })
         
         let citiesSources = createCitiesSources(with: response, timeZones: timeZones)
         XCTAssertEqual(receivedValue, citiesSources)
-        XCTAssertNil(receivedError, "shouldn't receive error")
+        XCTAssertNil(receivedError)
     }
     
     func testGetWeatherFailure() {
@@ -59,23 +59,23 @@ final class CitiesServiceImplTests: XCTestCase {
             .then { receivedValue = $0 }
             .catch { receivedError = $0 }
         
-        XCTAssertEqual(citiesWeatherService.getWeatherForCallsCount, 1, "should request service")
-        XCTAssertEqual(citiesWeatherService.getWeatherForReceivedCitiesIds, citiesIds, "should receive valid cities ids")
+        XCTAssertEqual(citiesWeatherService.getWeatherForCallsCount, 1)
+        XCTAssertEqual(citiesWeatherService.getWeatherForReceivedCitiesIds, citiesIds.map(String.init))
         
         let expectedError = NSError.error(message: "Test")
         citiesWeatherService.getWeatherForReturnValue.reject(expectedError)
         XCTAssert(waitForPromises(timeout: 1))
         
-        XCTAssertEqual(timeZoneService.getTimeZonesFromCallsCount, 0, "should request service")
+        XCTAssertEqual(timeZoneService.getTimeZonesFromCallsCount, 0)
         
-        XCTAssertNil(receivedValue, "shouldn't receive sources")
+        XCTAssertNil(receivedValue)
         XCTAssertEqual(receivedError as NSError?, expectedError)
     }
 }
 
 private extension CitiesServiceImplTests {
-    var citiesIds: [String] {
-        return ["123", "456"]
+    var citiesIds: [Int] {
+        return [123, 456]
     }
     
     var response: [City] {

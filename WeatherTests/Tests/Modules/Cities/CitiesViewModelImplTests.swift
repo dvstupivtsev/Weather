@@ -38,99 +38,80 @@ final class CitiesViewModelImplTests: XCTestCase {
         
         subject.getData()
         
-        XCTAssertEqual(citiesService.getCitiesWeatherForCallsCount, 1, "should request service")
-        XCTAssertEqual(citiesService.getCitiesWeatherForReceivedCitiesIds, citiesIds, "should receive valid cities ids")
+        XCTAssertEqual(citiesService.getCitiesWeatherForCallsCount, 1)
+        XCTAssertEqual(citiesService.getCitiesWeatherForReceivedCitiesIds, store.state.map { $0.city.id })
+        
+        _testViewSource(viewUpdatable.updateViewSourceReceivedViewSource!, expectedCount: 1, expectedSearchCallsCount: 1)
         
         XCTAssert(waitForPromises(timeout: 1))
         
-        let expectedHeaderCellModel = CitiesHeaderCell.Model(title: "Favorite cities", onAddAction: { })
-        let expectedCityCellModelsSource = citiesSources.map {
-            return CityCell.Model(
-                title: $0.city.name,
-                dateTimeString: dateFormatter.stringFromTimeZoneReturnValue,
-                temperatureString: MeasurementFormatter.celsius.string(from: $0.city.main.temp),
-                weatherIcon: UIImage()
-            )
-        }
-        
         XCTAssertEqual(store.state, expectedSources)
-        XCTAssertEqual(viewUpdatable.updateViewSourceCallsCount, 1)
         
-        let receivedCellsModels = viewUpdatable.updateViewSourceReceivedViewSource?.cellProviderConvertibles
-        let headerCellModel = receivedCellsModels?.first as? CitiesHeaderCell.Model
-        let citiesCellModels = Array(receivedCellsModels![1..<receivedCellsModels!.count]) as? [CityCell.Model] ?? []
-        XCTAssertEqual(dateFormatter.stringFromTimeZoneCallsCount, 2)
-        XCTAssertEqual(headerCellModel, expectedHeaderCellModel)
-        XCTAssertEqual(citiesCellModels, expectedCityCellModelsSource)
-        
-        _testRouting(for: headerCellModel!)
-        _testRouting(for: citiesCellModels, for: citiesSources)
+        _testViewSource(viewUpdatable.updateViewSourceReceivedViewSource!, expectedCount: 1 + store.state.count, expectedSearchCallsCount: 2)
     }
     
-    private func _testRouting(for model: CitiesHeaderCell.Model) {
-        model.onAddAction()
+    private func _testViewSource(_ viewSource: CitiesViewSource, expectedCount: Int, expectedSearchCallsCount: Int) {
+        XCTAssertEqual(viewUpdatable.updateViewSourceReceivedViewSource?.cellProviderConvertibles.count, expectedCount)
         
-        XCTAssertEqual(
-            router.openCitySearchCallsCount,
-            1,
-            "expect to open city search once, received calls count: \(router.openCitySearchCallsCount)"
-        )
+        let expectedHeaderCellModel = CitiesHeaderCell.Model(title: "Favorite cities", onAddAction: { })
+        
+        let cellsModels = viewSource.cellProviderConvertibles
+        let headerCellModel = cellsModels.first as? CitiesHeaderCell.Model
+        
+        headerCellModel?.onAddAction()
+        XCTAssertEqual(router.openCitySearchCallsCount, expectedSearchCallsCount)
+        
+        if expectedCount > 1 {
+            let expectedCityCellModelsSource = citiesSources.map {
+                return CityCell.Model(
+                    title: $0.city.name,
+                    dateTimeString: dateFormatter.stringFromTimeZoneReturnValue,
+                    temperatureString: MeasurementFormatter.celsius.string(from: $0.city.main.temp),
+                    weatherIcon: UIImage()
+                )
+            }
+            
+            let citiesCellModels = Array(cellsModels[1..<expectedCount]) as? [CityCell.Model] ?? []
+            XCTAssertEqual(dateFormatter.stringFromTimeZoneCallsCount, 2)
+            XCTAssertEqual(headerCellModel, expectedHeaderCellModel)
+            XCTAssertEqual(citiesCellModels, expectedCityCellModelsSource)
+            
+            _testRouting(for: citiesCellModels, for: citiesSources)
+        }
     }
     
     private func _testRouting(for models: [CityCell.Model], for citiesSources: [CitySource]) {
         models.enumerated().forEach { index, model in
             let indexPath = IndexPath(row: index + 1, section: 0)
-            XCTAssertTrue(
-                subject.shouldSelect(at: indexPath),
-                "expect to should select cell at \(indexPath), got false"
-            )
+            XCTAssertTrue(subject.shouldSelect(at: indexPath))
             
             subject.select(at: indexPath)
             let citySource = citiesSources[index]
             XCTAssertEqual(router.openCityWeatherCitySourceReceivedCitySource, citySource)
             
             let callsCount = index + 1
-            XCTAssertEqual(
-                router.openCityWeatherCitySourceCallsCount,
-                callsCount,
-                "expect to open city weather \(callsCount) times, received calls count: \(router.openCityWeatherCitySourceCallsCount)"
-            )
+            XCTAssertEqual(router.openCityWeatherCitySourceCallsCount, callsCount)
         }
     }
     
     func testGetDataFailure() {
-        citiesService.getCitiesWeatherForReturnValue = Promise<[CitySource]>.pending()
+        citiesService.getCitiesWeatherForReturnValue = Promise(NSError.error(message: "Test"))
         
         subject.getData()
         
-        XCTAssertEqual(citiesService.getCitiesWeatherForCallsCount, 1, "should request service")
-        XCTAssertEqual(citiesService.getCitiesWeatherForReceivedCitiesIds, citiesIds, "should receive valid cities ids")
+        _testViewSource(viewUpdatable.updateViewSourceReceivedViewSource!, expectedCount: 1, expectedSearchCallsCount: 1)
         
-        let expectedError = NSError.error(message: "Test")
-        citiesService.getCitiesWeatherForReturnValue.reject(expectedError)
+        XCTAssertEqual(citiesService.getCitiesWeatherForCallsCount, 1)
+        XCTAssertEqual(citiesService.getCitiesWeatherForReceivedCitiesIds, store.state.map { $0.city.id })
+        
         XCTAssert(waitForPromises(timeout: 1))
         
-        XCTAssertEqual(viewUpdatable.updateViewSourceCallsCount, 0)
+        _testViewSource(viewUpdatable.updateViewSourceReceivedViewSource!, expectedCount: 1, expectedSearchCallsCount: 2)
         // TODO: Test when there will be implementation
     }
 }
 
 private extension CitiesViewModelImplTests {
-    var citiesIds: [String] {
-        return [
-            "2950159",
-            "2968815",
-            "2643743",
-            "3128760",
-            "4699066",
-            "98182",
-            "3518326",
-            "2664454",
-            "1850147",
-            "1819729",
-        ]
-    }
-    
     var citiesSources: [CitySource] {
         let cities: [City] = [.city1, .city2]
         let timeZones = [TimeZone.current, TimeZone(secondsFromGMT: 123)!]

@@ -71,7 +71,7 @@ final class CitySearchViewModelImplTests: XCTestCase {
         XCTAssertEqual(citiesService.getCitiesWeatherForCallsCount, 1)
         XCTAssertEqual(
             citiesService.getCitiesWeatherForReceivedCitiesIds,
-            [TestData.expectedModels[indexPath.row].id].map(String.init)
+            [TestData.expectedModels[indexPath.row].id]
         )
         
         XCTAssert(waitForPromises(timeout: 1))

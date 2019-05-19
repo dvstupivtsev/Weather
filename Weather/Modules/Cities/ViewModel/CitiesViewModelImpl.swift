@@ -37,21 +37,10 @@ final class CitiesViewModelImpl: CitiesViewModel {
     }
     
     func getData() {
-        // TODO: - remove
-        let citiesIds = [
-            "2950159",
-            "2968815",
-            "2643743",
-            "3128760",
-            "4699066",
-            "98182",
-            "3518326",
-            "2664454",
-            "1850147",
-            "1819729",
-        ]
+        let citiesSources = store.state
+        update(state: citiesSources)
         
-        citiesService.getCitiesWeather(for: citiesIds)
+        citiesService.getCitiesWeather(for: citiesSources.map { $0.city.id })
             .then(weakify(self, type(of: self).handleCitiesSources(_:)))
             .catch(weakify(self, type(of: self).handleCitiesWeatherFailure(error:)))
     }
