@@ -4,42 +4,25 @@
 
 import UIKit
 
+// TODO: Tests
 final class CitySearchFactoryImpl: CitySearchFactory {
-    private let store: Store<[CitySource]>
-    
-    init(store: Store<[CitySource]>) {
-        self.store = store
-    }
-    
-    func create() -> UIViewController {
+    func create(selectStrategy: CitySearchSelectStrategy) -> UIViewController {
         let viewUpdatableProxy = CitySearchViewUpdatableProxy()
         
         let citiesLoadingService = CitiesLoadingServiceImpl(
             diskFileReader: DiskJsonFileReader(),
             jsonDecoder: CitiesLoadingJsonDecoderImpl()
         )
-        let searchService = CitySearchServiceImpl(citiesLoadingService: citiesLoadingService)
-        
-        let urlSessionAdapter = UrlSessionAdapter(session: URLSession.shared)
-        let apiService = ApiServiceImpl(urlService: urlSessionAdapter)
-        let citiesWeatherService = CitiesWeatherServiceImpl(
-            apiService: apiService,
-            jsonDecoder: CitiesWeatherJsonDecoderImpl()
-        )
-        let citiesService = CitiesServiceImpl(
-            citiesWeatherService: citiesWeatherService,
-            timeZoneService: TimeZoneServiceImpl()
-        )
+        let service = CitySearchServiceImpl(citiesLoadingService: citiesLoadingService)
         
         let transitionableProxy = TransitionableProxy()
         
         let vm = CitySearchViewModelImpl(
-            store: store,
-            searchService: searchService,
-            citiesService: citiesService,
+            service: service,
             executor: CancellableExecutorImpl(queue: .main),
             viewUpdatable: viewUpdatableProxy,
-            router: CitySearchRouterImpl(transitionable: transitionableProxy)
+            router: CitySearchRouterImpl(transitionable: transitionableProxy),
+            selectStrategy: selectStrategy
         )
         
         let notificationObserver = NotificationObserverImpl(notificationCenter: NotificationCenter.default)

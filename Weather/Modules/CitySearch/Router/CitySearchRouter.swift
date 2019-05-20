@@ -7,5 +7,4 @@ import Foundation
 // sourcery: AutoMockable
 protocol CitySearchRouter {
     func close()
-    func openAlreadyAddedAlert()
 }

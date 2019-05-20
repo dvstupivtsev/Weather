@@ -4,18 +4,14 @@
 
 import Foundation
 import Promises
-import Weakify
 
+// TODO: Tests
 final class CitySearchViewModelImpl: CitySearchViewModel {
-    // TODO: Inject with protocol
-    private let store: Store<[CitySource]>
-    // TODO: Unite
-    private let searchService: CitySearchService
-    private let citiesService: CitiesService
-    
+    private let service: CitySearchService
     private let executor: CancellableExecutor
     private let viewUpdatable: CitySearchViewUpdatable
     private let router: CitySearchRouter
+    private let selectStrategy: CitySearchSelectStrategy
     
     private let filterLimit = 50
     
@@ -30,19 +26,17 @@ final class CitySearchViewModelImpl: CitySearchViewModel {
     }
     
     init(
-        store: Store<[CitySource]>,
-        searchService: CitySearchService,
-        citiesService: CitiesService,
+        service: CitySearchService,
         executor: CancellableExecutor,
         viewUpdatable: CitySearchViewUpdatable,
-        router: CitySearchRouter
+        router: CitySearchRouter,
+        selectStrategy: CitySearchSelectStrategy
     ) {
-        self.store = store
-        self.searchService = searchService
-        self.citiesService = citiesService
+        self.service = service
         self.executor = executor
         self.viewUpdatable = viewUpdatable
         self.router = router
+        self.selectStrategy = selectStrategy
     }
     
     func close() {
@@ -69,7 +63,7 @@ extension CitySearchViewModelImpl: TextEditingDelegate {
     
     private func getCities(for name: String) -> Promise<[TableCellProviderConvertible]> {
         // TODO: show loading
-        return searchService.getCities(for: name, limit: filterLimit)
+        return service.getCities(for: name, limit: filterLimit)
             .then(createProviderConvertibles(from:))
     }
     
@@ -79,7 +73,7 @@ extension CitySearchViewModelImpl: TextEditingDelegate {
             let model = CitySearchCell.Model(title: title)
             
             return CellSource(providerConvertible: model) { [weak self] in
-                self?.select(city: cityModel)
+                self?.selectStrategy.select(cityModel: cityModel)
             }
         }
         
@@ -99,25 +93,6 @@ extension CitySearchViewModelImpl: TableSelectionBehavior {
     
     func select(at indexPath: IndexPath) {
         foundCitiesSources[indexPath.row].onSelectAction()
-    }
-    
-    private func select(city: CityModel) {
-        if store.state.contains(where: { $0.city.id == city.id }) {
-            router.openAlreadyAddedAlert()
-        } else {
-            citiesService.getCitiesWeather(for: [city.id])
-                .then(weakify(self, type(of: self).handleCitiesSourcesLoaded(_:)))
-                .catch(weakify(self, type(of: self).handleCitiesSourcesFailed(error:)))
-        }
-    }
-    
-    private func handleCitiesSourcesLoaded(_ sources: [CitySource]) {
-        store.dispatch(action: AddCitiesSourcesAction(citisSources: sources))
-        router.close()
-    }
-    
-    private func handleCitiesSourcesFailed(error: Error) {
-        // TODO: Handle error
     }
 }
 

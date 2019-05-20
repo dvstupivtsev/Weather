@@ -8,6 +8,7 @@ final class Store<StateType> {
     private(set) var state: StateType
     
     // TODO: Move to Subject
+    // TODO: Retain cycle
     private lazy var subscribers = [AnyStoreSubscriber]()
     
     init(state: StateType) {

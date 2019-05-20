@@ -10,7 +10,7 @@ final class WeatherPageContainerFactory: ControllerFactory {
         
         let citiesRouter = CitiesRouterImpl(
             cityWeatherFactory: CityWeatherFactoryImpl(),
-            citySearchFactory: CitySearchFactoryImpl(store: store)
+            citySearchFactory: CitySearchFactoryImpl()
         )
         
         let citiesController = CitiesFactory().create(router: citiesRouter, store: store)

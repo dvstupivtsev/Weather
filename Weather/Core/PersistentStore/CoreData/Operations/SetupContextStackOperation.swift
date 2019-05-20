@@ -5,6 +5,8 @@
 import Foundation
 import CoreData
 
+// TODO: isCancelled
+// TODO: NSPersistentContainer instead of manual setup
 final class SetupContextStackOperation: Operation {
     private let modelName: String
     private let completion: Handler<[NSManagedObjectContext]>

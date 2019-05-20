@@ -6,6 +6,7 @@ import Foundation
 import Promises
 import Weakify
 
+// TODO: Tests
 final class CitiesViewModelImpl: CitiesViewModel {
     // TODO: Inject with protocol
     private let store: Store<[CitySource]>
@@ -54,7 +55,17 @@ final class CitiesViewModelImpl: CitiesViewModel {
     }
     
     private func openCitySearch() {
-        router.openCitySearch()
+        let transitionable = TransitionableProxy()
+        let strategy = CitiesAddStrategy(
+            store: store,
+            citiesService: citiesService,
+            router: CitiesAddRouterImpl(transitionable: transitionable)
+        )
+        
+        router.openCitySearch(
+            selectStrategy: strategy,
+            transitionableProxy: transitionable
+        )
     }
 }
 

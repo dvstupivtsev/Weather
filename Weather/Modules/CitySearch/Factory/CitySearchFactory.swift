@@ -6,5 +6,5 @@ import UIKit
 
 // sourcery: AutoMockable
 protocol CitySearchFactory {
-    func create() -> UIViewController
+    func create(selectStrategy: CitySearchSelectStrategy) -> UIViewController
 }

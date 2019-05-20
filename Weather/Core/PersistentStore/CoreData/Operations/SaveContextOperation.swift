@@ -22,10 +22,12 @@ final class SaveContextOperation: Operation {
     private func save() {
         guard context.hasChanges else { return }
         
+        // TODO: isCancelled
+        
         do {
             try context.save()
         } catch {
-            print("Unable to save changes of main managed object context with error: \(error)")
+            print("Unable to save changes in context with error: \(error)")
         }
     }
 }
