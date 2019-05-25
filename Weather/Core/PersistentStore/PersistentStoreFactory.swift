@@ -6,6 +6,9 @@ import Foundation
 
 struct PersistentStoreFactory {
     func createCoreDataStore() -> PersistentStore {
-        return CoreDataStore(modelName: "WeatherDataModel")
+        return CoreDataStore(
+            containerName: "WeatherPersistentContainer",
+            modelName: "WeatherDataModel"
+        )
     }
 }

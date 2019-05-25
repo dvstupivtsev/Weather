@@ -4,6 +4,7 @@
 
 import UIKit
 
+// TODO: move calls to app manager or smth else for testing
 final class AppDelegate: UIResponder, UIApplicationDelegate {
     lazy var window: UIWindow? = UIWindow()
     

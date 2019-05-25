@@ -6,67 +6,42 @@ import Foundation
 import CoreData
 
 // TODO: isCancelled
-// TODO: NSPersistentContainer instead of manual setup
-final class SetupContextStackOperation: Operation {
+final class SetupContextOperation: Operation {
+    private let containerName: String
     private let modelName: String
-    private let completion: Handler<[NSManagedObjectContext]>
+    private let completion: Handler<NSManagedObjectContext?>
     
-    init(modelName: String, completion: @escaping Handler<[NSManagedObjectContext]>) {
+    init(containerName: String, modelName: String, completion: @escaping Handler<NSManagedObjectContext?>) {
+        self.containerName = containerName
         self.modelName = modelName
         self.completion = completion
     }
     
     override func main() {
-        completion(setupContextsStack())
+        completion(loadContext())
     }
     
-    private func setupContextsStack() -> [NSManagedObjectContext] {
-        guard let coreContext = setupPrivateContext() else { return [] }
+    private func loadContext() -> NSManagedObjectContext? {
+        guard let persistentContainer = createPersistentContainer() else { return nil }
         
-        let mainContext = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)
-        mainContext.parent = coreContext
-        
-        return [coreContext, mainContext].compactMap { $0 }
-    }
-    
-    private func setupPrivateContext() -> NSManagedObjectContext? {
-        return createPersistentStoreCoordinator().flatMap {
-            let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
-            context.persistentStoreCoordinator = $0
+        let mutex = DispatchSemaphore(value: 1)
+        persistentContainer.loadPersistentStores { (storeDescription, error) in
+            if let error = error {
+                print("Failed to load store: \(error)")
+            }
             
-            return context
+            mutex.signal()
         }
+        
+        mutex.wait()
+        
+        return persistentContainer.viewContext
     }
     
-    private func createPersistentStoreCoordinator() -> NSPersistentStoreCoordinator? {
-        guard
-            let coordinator = createManagedObjectModel().map(NSPersistentStoreCoordinator.init(managedObjectModel:)),
-            let documentsDirectoryUrl = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        else {
-            return nil
-        }
-        
-        let storeUrl = documentsDirectoryUrl.appendingPathComponent("\(modelName).sqlite")
-        
-        do {
-            try coordinator.addPersistentStore(
-                ofType: NSSQLiteStoreType,
-                configurationName: nil,
-                at: storeUrl,
-                options: [
-                    NSMigratePersistentStoresAutomaticallyOption : true,
-                    NSInferMappingModelAutomaticallyOption : true
-                ]
-            )
-        } catch {
-            return nil
-        }
-        
-        return coordinator
-    }
-    
-    private func createManagedObjectModel() -> NSManagedObjectModel? {
-        return Bundle.main.url(forResource: modelName, withExtension: "momd")
+    private func createPersistentContainer() -> NSPersistentContainer? {
+        let managedObjectModel = Bundle.main.url(forResource: modelName, withExtension: "momd")
             .flatMap(NSManagedObjectModel.init(contentsOf:))
+        
+        return managedObjectModel.map { NSPersistentContainer(name: containerName, managedObjectModel: $0) }
     }
 }
