@@ -9,7 +9,7 @@ final class PageView: BaseView {
     private let appearance = Appearance()
     
     private var backgroundView: UIView?
-    private let pageControl = make(UIPageControl()) {
+    private let pageControl = setup(UIPageControl()) {
         $0.isUserInteractionEnabled = false
     }
     

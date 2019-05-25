@@ -10,7 +10,7 @@ protocol MeasurementFormatterProtocol {
 }
 
 extension MeasurementFormatter: MeasurementFormatterProtocol {
-    static let celsius = make(MeasurementFormatter()) {
+    static let celsius = setup(MeasurementFormatter()) {
         $0.numberFormatter = .temperature
         $0.unitOptions = [.naturalScale, .temperatureWithoutUnit]
     }

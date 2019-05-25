@@ -12,14 +12,14 @@ final class CitySearchHeaderView: BaseView {
     private var textFieldBehavior: TextFieldBehavior?
     
     private lazy var searchImageContainer = ViewContainer(
-        contained: make(UIImageView()) {
+        contained: setup(UIImageView()) {
             $0.tintColor = Color.black
             $0.image = Assets.search.image.withRenderingMode(.alwaysTemplate)
         },
         insets: appearance.searchImageInsets
     )
     
-    private lazy var searchTextField = make(UITextField()) {
+    private lazy var searchTextField = setup(UITextField()) {
         $0.textColor = Color.black
         $0.tintColor = Color.black50
         $0.placeholder = L10n.CitySearch.searchPlaceholder
@@ -29,13 +29,13 @@ final class CitySearchHeaderView: BaseView {
         $0.rightViewMode = .whileEditing
     }
     
-    private lazy var clearButton = make(UIButton(type: .system)) {
+    private lazy var clearButton = setup(UIButton(type: .system)) {
         $0.tintColor = Color.black
         $0.setImage(Assets.clear.image.withRenderingMode(.alwaysTemplate), for: .normal)
         $0.contentEdgeInsets = appearance.clearButtonInsets
     }
     
-    private let closeButton = make(UIButton(type: .system)) {
+    private let closeButton = setup(UIButton(type: .system)) {
         $0.tintColor = Color.black
         $0.titleLabel?.font = Font.regular17
         $0.setTitle(L10n.close, for: .normal)

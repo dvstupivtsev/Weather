@@ -9,7 +9,7 @@ import SnapKit
 final class CitySearchCell: BaseTableCell<CitySearchCell.Model> {
     private let appearance = Appearance()
     
-    private let titleLabel = make(UILabel()) {
+    private let titleLabel = setup(UILabel()) {
         $0.font = Font.regular17
         $0.textColor = Color.black
     }

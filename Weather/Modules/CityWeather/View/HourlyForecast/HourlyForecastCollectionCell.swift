@@ -7,17 +7,17 @@ import UIKit
 final class HourlyForecastCollectionCell: BaseCollectionCell<HourlyForecastCollectionCell.Model> {
     private let appearance = Appearance()
     
-    private let dateLabel = make(UILabel()) {
+    private let dateLabel = setup(UILabel()) {
         $0.textColor = Color.white
         $0.font = Font.regular13
     }
     
-    private let temperatureLabel = make(UILabel()) {
+    private let temperatureLabel = setup(UILabel()) {
         $0.textColor = Color.white
         $0.font = Font.regular13
     }
     
-    private let iconImageView = make(UIImageView()) {
+    private let iconImageView = setup(UIImageView()) {
         $0.tintColor = Color.white
     }
     

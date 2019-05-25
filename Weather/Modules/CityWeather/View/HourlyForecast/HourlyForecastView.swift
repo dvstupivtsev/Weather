@@ -6,7 +6,7 @@ import UIKit
 import SnapKit
 
 final class HourlyForecastView: BaseView {
-    private lazy var collectionView = make(UICollectionView(frame: .zero, collectionViewLayout: LineLayout())) {
+    private lazy var collectionView = setup(UICollectionView(frame: .zero, collectionViewLayout: LineLayout())) {
         $0.backgroundColor = Color.clear
         $0.showsHorizontalScrollIndicator = false
     }

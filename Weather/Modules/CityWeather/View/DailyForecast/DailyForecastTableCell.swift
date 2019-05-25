@@ -8,27 +8,27 @@ import SnapKit
 final class DailyForecastTableCell: BaseTableCell<DailyForecastTableCell.Model> {
     private let appearance = Appearance()
     
-    private let weekdayLabel = make(UILabel()) {
+    private let weekdayLabel = setup(UILabel()) {
         $0.font = Font.regular17
         $0.textColor = Color.black
     }
     
-    private let dateLabel = make(UILabel()) {
+    private let dateLabel = setup(UILabel()) {
         $0.font = Font.regular13
         $0.textColor = Color.black50
     }
     
-    private let maxTempLabel = make(UILabel()) {
+    private let maxTempLabel = setup(UILabel()) {
         $0.font = Font.regular17
         $0.textColor = Color.black
     }
     
-    private let minTempLabel = make(UILabel()) {
+    private let minTempLabel = setup(UILabel()) {
         $0.font = Font.regular15
         $0.textColor = Color.black50
     }
     
-    private let weatherImageView = make(UIImageView()) {
+    private let weatherImageView = setup(UIImageView()) {
         $0.tintColor = Color.black50
     }
     

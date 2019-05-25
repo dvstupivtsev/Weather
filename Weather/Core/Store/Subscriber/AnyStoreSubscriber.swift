@@ -4,6 +4,6 @@
 
 import Foundation
 
-protocol AnyStoreSubscriber: class {
+protocol AnyStoreSubscriber: AnyObject {
     func _update(state: Any)
 }

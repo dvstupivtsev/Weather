@@ -8,12 +8,12 @@ import SnapKit
 final class CitiesHeaderTableCell: BaseTableCell<CitiesHeaderTableCell.Model> {
     private let appearance = Appearance()
     
-    private let titleLabel = make(UILabel()) {
+    private let titleLabel = setup(UILabel()) {
         $0.font = Font.regular30
         $0.textColor = Color.white
     }
     
-    private let addButton = make(UIButton()) {
+    private let addButton = setup(UIButton()) {
         $0.imageView?.tintColor = Color.white
         $0.setImage(Assets.add.image.withRenderingMode(.alwaysTemplate), for: .normal)
     }

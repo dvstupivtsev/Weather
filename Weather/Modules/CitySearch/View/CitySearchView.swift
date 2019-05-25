@@ -7,7 +7,7 @@ import SnapKit
 
 final class CitySearchView: BaseView {
     private let headerView = CitySearchHeaderView()
-    private let tableView = make(UITableView()) {
+    private let tableView = setup(UITableView()) {
         $0.separatorStyle = .none
         $0.tableFooterView = UIView()
         $0.keyboardDismissMode = .onDrag

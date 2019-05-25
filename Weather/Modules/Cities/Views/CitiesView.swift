@@ -9,7 +9,7 @@ import SnapKit
 final class CitiesView: BaseView {
     private let appearance = Appearance()
     
-    private let tableView = make(UITableView()) {
+    private let tableView = setup(UITableView()) {
         $0.tableFooterView = UIView()
         $0.separatorStyle = .none
         $0.backgroundColor = Color.clear
