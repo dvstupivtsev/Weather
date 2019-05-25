@@ -22,20 +22,4 @@ final class CitySearchRouterImplTests: XCTestCase {
         XCTAssertNil(transitionable.dismissAnimatedCompletionReceivedArgs!.completion)
         XCTAssertEqual(transitionable.dismissAnimatedCompletionCallsCount, 1)
     }
-    
-    func testOpenAlreadyAddedAlert() {
-        subject.openAlreadyAddedAlert()
-        
-        let receivedAlertController = transitionable.presentControllerAnimatedCompletionReceivedArgs?.controller as? UIAlertController
-        XCTAssert(transitionable.presentControllerAnimatedCompletionReceivedArgs!.controller, isKindOf: UIAlertController.self)
-        XCTAssertEqual(receivedAlertController?.title, "Already added")
-        XCTAssertEqual(receivedAlertController?.message, "This city already added to favorite list")
-        XCTAssertEqual(receivedAlertController?.preferredStyle, .alert)
-        XCTAssertEqual(receivedAlertController?.actions.count, 1)
-        XCTAssertEqual(receivedAlertController?.actions.first?.title, "OK")
-        XCTAssertEqual(receivedAlertController?.actions.first?.style, .default)
-        XCTAssertTrue(transitionable.presentControllerAnimatedCompletionReceivedArgs!.animated)
-        XCTAssertNil(transitionable.presentControllerAnimatedCompletionReceivedArgs!.completion)
-        XCTAssertEqual(transitionable.presentControllerAnimatedCompletionCallsCount, 1)
-    }
 }

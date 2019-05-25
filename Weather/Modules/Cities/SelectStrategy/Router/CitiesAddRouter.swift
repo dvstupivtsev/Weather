@@ -4,7 +4,8 @@
 
 import Foundation
 
+// sourcery: AutoMockable
 protocol CitiesAddRouter {
-    func openAlreadyAddedAlert()
+    // TODO: move to selected city
     func closeSearch()
 }

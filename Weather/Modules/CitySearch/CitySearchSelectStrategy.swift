@@ -4,6 +4,7 @@
 
 import Foundation
 
+// sourcery: AutoMockable
 protocol CitySearchSelectStrategy {
     func select(cityModel: CityModel)
 }

@@ -59,7 +59,7 @@ final class CitiesViewModelImplTests: XCTestCase {
         let headerCellModel = cellsModels.first as? CitiesHeaderTableCell.Model
         
         headerCellModel?.onAddAction()
-        XCTAssertEqual(router.openCitySearchCallsCount, expectedSearchCallsCount)
+        XCTAssertEqual(router.openCitySearchSelectStrategyTransitionableProxyCallsCount, expectedSearchCallsCount)
         
         if expectedCount > 1 {
             let expectedCityCellModelsSource = citiesSources.map {

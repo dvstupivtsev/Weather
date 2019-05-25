@@ -22,7 +22,7 @@ final class CitiesAddStrategy: CitySearchSelectStrategy {
     
     func select(cityModel: CityModel) {
         if store.state.contains(where: { $0.city.id == cityModel.id }) {
-            router.openAlreadyAddedAlert()
+            router.closeSearch()
         } else {
             citiesService.getCitiesWeather(for: [cityModel.id])
                 .then(weakify(self, type(of: self).handleCitiesSourcesLoaded(_:)))
