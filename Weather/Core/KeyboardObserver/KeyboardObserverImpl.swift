@@ -8,13 +8,15 @@ import Weakify
 final class KeyboardObserverImpl: KeyboardObserver {
     private let notificationObserver: NotificationObserver
     
-    var onChange: Handler<KeyboardInfo>?
+    private var onChange: Handler<KeyboardInfo>?
     
     init(notificationObserver: NotificationObserver) {
         self.notificationObserver = notificationObserver
     }
     
-    func startObserving() {
+    func startObserving(handler: @escaping Handler<KeyboardInfo>) {
+        onChange = handler
+        
         notificationObserver.subscribe(
             on: UIResponder.keyboardWillShowNotification,
             handler: weakify(self, type(of: self).handleKeyboardWillShow(notification:))

@@ -5,8 +5,5 @@
 import Foundation
 
 protocol KeyboardObserver: AnyObject {
-    // TODO: unite in one method
-    var onChange: Handler<KeyboardInfo>? { get set }
-    
-    func startObserving()
+    func startObserving(handler: @escaping Handler<KeyboardInfo>)
 }

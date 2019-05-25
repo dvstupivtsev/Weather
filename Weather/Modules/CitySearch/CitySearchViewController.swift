@@ -29,8 +29,9 @@ final class CitySearchViewController: BaseViewController<CitySearchView> {
         customView.setupTextFieldBehavior(CitySearchTextFieldBehavior(delegate: viewModel.textEditingDelegate))
         customView.registerViews(with: CitySearchReusableViewRegistrationDirector())
         
-        keyboardObserver.onChange = weakify(self, type(of: self).changeTableInsets(with:))
-        keyboardObserver.startObserving()
+        keyboardObserver.startObserving(
+            handler: weakify(self, type(of: self).changeTableInsets(with:))
+        )
     }
     
     override func viewDidAppear(_ animated: Bool) {

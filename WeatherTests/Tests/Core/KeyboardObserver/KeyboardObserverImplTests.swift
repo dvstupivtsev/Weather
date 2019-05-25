@@ -15,30 +15,16 @@ final class KeyboardObserverImplTests: XCTestCase {
         notificationObserver = .init()
         subject = KeyboardObserverImpl(notificationObserver: notificationObserver)
     }
-
-    func testNotificationsWithoutStartingObserving() {
-        var receivedKeyboardInfo: KeyboardInfo?
-        subject.onChange = { receivedKeyboardInfo = $0 }
-        
-        XCTAssertEqual(notificationObserver.subscribeOnHandlerCallsCount, 0)
-        
-        notificationObserver.subscribeOnHandlerReceivedArgs?.handler(TestData.willShowNotification)
-        XCTAssertNil(receivedKeyboardInfo)
-        
-        notificationObserver.subscribeOnHandlerReceivedArgs?.handler(TestData.willHideNotification)
-        XCTAssertNil(receivedKeyboardInfo)
-    }
     
-    func testNotificationsWithStartingObserving() {
-        var receivedKeyboardInfo: KeyboardInfo?
-        subject.onChange = { receivedKeyboardInfo = $0 }
-        
+    func testStartObserving() {
         var notifications = [Notification.Name: Handler<Notification>]()
         notificationObserver.subscribeOnHandlerClosure = {
             notifications[$0] = $1
         }
         
-        subject.startObserving()
+        var receivedKeyboardInfo: KeyboardInfo?
+        subject.startObserving { receivedKeyboardInfo = $0 }
+        
         XCTAssertEqual(notificationObserver.subscribeOnHandlerCallsCount, 2)
         
         notifications[TestData.willShowNotification.name]?(TestData.willShowNotification)
