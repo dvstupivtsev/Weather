@@ -7,20 +7,20 @@ import CoreData
 import Weakify
 
 final class SaveContextOperation: Operation {
-    private let context: NSManagedObjectContext
+    private let contextContainer: ManagedObjectContextContainer
     
-    init(context: NSManagedObjectContext) {
-        self.context = context
+    init(contextContainer: ManagedObjectContextContainer) {
+        self.contextContainer = contextContainer
         
         super.init()
     }
     
     override func main() {
-        context.performAndWait(weakify(self, type(of: self).save))
+        contextContainer.context?.performAndWait(weakify(self, type(of: self).save))
     }
     
     private func save() {
-        guard context.hasChanges else { return }
+        guard let context = contextContainer.context, context.hasChanges else { return }
         
         // TODO: isCancelled
         

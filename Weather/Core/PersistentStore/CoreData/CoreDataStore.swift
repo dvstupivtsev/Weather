@@ -6,33 +6,45 @@ import Foundation
 import CoreData
 import Weakify
 
-final class CoreDataStore {
+final class CoreDataStore: ManagedObjectContextContainer {
     private lazy var queue = setup(OperationQueue()) {
         $0.maxConcurrentOperationCount = 1
         $0.qualityOfService = .utility
     }
     
-    private var context: NSManagedObjectContext?
+    private var persistentContainer: NSPersistentContainer?
+    
+    var context: NSManagedObjectContext? {
+        return persistentContainer?.viewContext
+    }
     
     init(containerName: String, modelName: String) {
         queue.addOperation(
-            SetupContextOperation(
+            SetupPersistentContainerOperation(
                 containerName: containerName,
                 modelName: modelName,
-                completion: weakify(self, type(of: self).update(context:))
+                completion: weakify(self, type(of: self).update(persistentContainer:))
             )
         )
     }
     
-    private func update(context: NSManagedObjectContext?) {
-        self.context = context
+    private func update(persistentContainer: NSPersistentContainer?) {
+        self.persistentContainer = persistentContainer
     }
 }
 
 extension CoreDataStore: PersistentStore {
     func save() {
-        context
-            .map(SaveContextOperation.init(context:))
-            .map(queue.addOperation)
+        queue.addOperation(SaveContextOperation(contextContainer: self))
+    }
+    
+    func insert(_ keyValuePairsArray: [[String: Any]], for entityName: String) {
+        queue.addOperation(
+            InsertObjectsOperation(
+                contextContainer: self,
+                keyValuePairsArray: keyValuePairsArray,
+                entityName: entityName
+            )
+        )
     }
 }

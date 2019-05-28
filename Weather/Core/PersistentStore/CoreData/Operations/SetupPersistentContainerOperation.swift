@@ -6,22 +6,22 @@ import Foundation
 import CoreData
 
 // TODO: isCancelled
-final class SetupContextOperation: Operation {
+final class SetupPersistentContainerOperation: Operation {
     private let containerName: String
     private let modelName: String
-    private let completion: Handler<NSManagedObjectContext?>
+    private let completion: Handler<NSPersistentContainer?>
     
-    init(containerName: String, modelName: String, completion: @escaping Handler<NSManagedObjectContext?>) {
+    init(containerName: String, modelName: String, completion: @escaping Handler<NSPersistentContainer?>) {
         self.containerName = containerName
         self.modelName = modelName
         self.completion = completion
     }
     
     override func main() {
-        completion(loadContext())
+        completion(setupPersistentContainer())
     }
     
-    private func loadContext() -> NSManagedObjectContext? {
+    private func setupPersistentContainer() -> NSPersistentContainer? {
         guard let persistentContainer = createPersistentContainer() else { return nil }
         
         let mutex = DispatchSemaphore(value: 1)
@@ -35,7 +35,7 @@ final class SetupContextOperation: Operation {
         
         mutex.wait()
         
-        return persistentContainer.viewContext
+        return persistentContainer
     }
     
     private func createPersistentContainer() -> NSPersistentContainer? {

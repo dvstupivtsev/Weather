@@ -71,6 +71,8 @@
 		5E39FC1E227F5BD0004F3137 /* PageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39FC1D227F5BD0004F3137 /* PageView.swift */; };
 		5E39FC20227F5BE8004F3137 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39FC1F227F5BE8004F3137 /* PageViewController.swift */; };
 		5E39FC23227F5F5A004F3137 /* WindowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E39FC22227F5F5A004F3137 /* WindowRouter.swift */; };
+		5E3AFE1C229DB3A7003A808E /* ManagedObjectContextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3AFE1B229DB3A7003A808E /* ManagedObjectContextContainer.swift */; };
+		5E3AFE1E229DB40F003A808E /* InsertObjectsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E3AFE1D229DB40F003A808E /* InsertObjectsOperation.swift */; };
 		5E44D06E22857FAA00058236 /* ControllerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E44D06D22857FAA00058236 /* ControllerFactory.swift */; };
 		5E44D0712285803200058236 /* WeatherPageContainerFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E44D0702285803200058236 /* WeatherPageContainerFactory.swift */; };
 		5E44D0742285819E00058236 /* WindowRouterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E44D0732285819E00058236 /* WindowRouterTests.swift */; };
@@ -233,7 +235,7 @@
 		5EBC0AD52291E4DB00AF2095 /* CoreDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0AD42291E4DB00AF2095 /* CoreDataStore.swift */; };
 		5EBC0AD72291E52500AF2095 /* PersistentStoreFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0AD62291E52500AF2095 /* PersistentStoreFactory.swift */; };
 		5EBC0ADB2291EEB300AF2095 /* SaveContextOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0ADA2291EEB300AF2095 /* SaveContextOperation.swift */; };
-		5EBC0ADD2291F8F800AF2095 /* SetupContextStackOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0ADC2291F8F800AF2095 /* SetupContextStackOperation.swift */; };
+		5EBC0ADD2291F8F800AF2095 /* SetupPersistentContainerOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0ADC2291F8F800AF2095 /* SetupPersistentContainerOperation.swift */; };
 		5EBC0AE02291FB3500AF2095 /* WeatherDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 5EBC0ADE2291FB3500AF2095 /* WeatherDataModel.xcdatamodeld */; };
 		5EC0E6CF229935C700A12BE3 /* CitiesAddRouterImplTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0E6CE229935C700A12BE3 /* CitiesAddRouterImplTests.swift */; };
 		5EC0E6D1229937BA00A12BE3 /* CitiesAddStrategyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EC0E6D0229937BA00A12BE3 /* CitiesAddStrategyTests.swift */; };
@@ -322,6 +324,8 @@
 		5E39FC1D227F5BD0004F3137 /* PageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageView.swift; sourceTree = "<group>"; };
 		5E39FC1F227F5BE8004F3137 /* PageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		5E39FC22227F5F5A004F3137 /* WindowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowRouter.swift; sourceTree = "<group>"; };
+		5E3AFE1B229DB3A7003A808E /* ManagedObjectContextContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagedObjectContextContainer.swift; sourceTree = "<group>"; };
+		5E3AFE1D229DB40F003A808E /* InsertObjectsOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertObjectsOperation.swift; sourceTree = "<group>"; };
 		5E44D06D22857FAA00058236 /* ControllerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ControllerFactory.swift; sourceTree = "<group>"; };
 		5E44D0702285803200058236 /* WeatherPageContainerFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherPageContainerFactory.swift; sourceTree = "<group>"; };
 		5E44D0732285819E00058236 /* WindowRouterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowRouterTests.swift; sourceTree = "<group>"; };
@@ -489,7 +493,7 @@
 		5EBC0AD42291E4DB00AF2095 /* CoreDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStore.swift; sourceTree = "<group>"; };
 		5EBC0AD62291E52500AF2095 /* PersistentStoreFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentStoreFactory.swift; sourceTree = "<group>"; };
 		5EBC0ADA2291EEB300AF2095 /* SaveContextOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveContextOperation.swift; sourceTree = "<group>"; };
-		5EBC0ADC2291F8F800AF2095 /* SetupContextStackOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupContextStackOperation.swift; sourceTree = "<group>"; };
+		5EBC0ADC2291F8F800AF2095 /* SetupPersistentContainerOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupPersistentContainerOperation.swift; sourceTree = "<group>"; };
 		5EBC0ADF2291FB3500AF2095 /* WeatherDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = WeatherDataModel.xcdatamodel; sourceTree = "<group>"; };
 		5EC0E6CE229935C700A12BE3 /* CitiesAddRouterImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesAddRouterImplTests.swift; sourceTree = "<group>"; };
 		5EC0E6D0229937BA00A12BE3 /* CitiesAddStrategyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesAddStrategyTests.swift; sourceTree = "<group>"; };
@@ -1501,6 +1505,7 @@
 			children = (
 				5EBC0AD92291EEA600AF2095 /* Operations */,
 				5EBC0AD42291E4DB00AF2095 /* CoreDataStore.swift */,
+				5E3AFE1B229DB3A7003A808E /* ManagedObjectContextContainer.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -1509,7 +1514,8 @@
 			isa = PBXGroup;
 			children = (
 				5EBC0ADA2291EEB300AF2095 /* SaveContextOperation.swift */,
-				5EBC0ADC2291F8F800AF2095 /* SetupContextStackOperation.swift */,
+				5EBC0ADC2291F8F800AF2095 /* SetupPersistentContainerOperation.swift */,
+				5E3AFE1D229DB40F003A808E /* InsertObjectsOperation.swift */,
 			);
 			path = Operations;
 			sourceTree = "<group>";
@@ -1877,7 +1883,7 @@
 				5E9A15F82287654800EFA833 /* GenericTableCellProvider.swift in Sources */,
 				5EB5DA5C227349160016A1CB /* UrlService.swift in Sources */,
 				5E04345F228DBB1000A96CF7 /* DiskJsonFileReader.swift in Sources */,
-				5EBC0ADD2291F8F800AF2095 /* SetupContextStackOperation.swift in Sources */,
+				5EBC0ADD2291F8F800AF2095 /* SetupPersistentContainerOperation.swift in Sources */,
 				5E0F26F5228713500093BB48 /* ForecastService.swift in Sources */,
 				5EBC0A902290A95F00AF2095 /* CitiesViewUpdatable.swift in Sources */,
 				5EB5DA752273868C0016A1CB /* CitiesResponse.swift in Sources */,
@@ -1957,6 +1963,7 @@
 				5E396531227B4CB2005F0859 /* CitiesDateFormatterImpl.swift in Sources */,
 				5EBC0AA2229119A000AF2095 /* TransitionableProxy.swift in Sources */,
 				5EB5DAA22273A93E0016A1CB /* UrlSessionAdapter.swift in Sources */,
+				5E3AFE1C229DB3A7003A808E /* ManagedObjectContextContainer.swift in Sources */,
 				5EA0A48C227CE58100558BE3 /* CitySource.swift in Sources */,
 				5E7498942280B06D007005E4 /* CitySearchFactoryImpl.swift in Sources */,
 				5E25941C2289BF8F00B7C8C2 /* TableReusableViewRegistrator.swift in Sources */,
@@ -1979,6 +1986,7 @@
 				5EBC0AD32291CF5C00AF2095 /* PersistentStore.swift in Sources */,
 				5E043448228D922F00A96CF7 /* CitySearchCell.swift in Sources */,
 				5E39FC20227F5BE8004F3137 /* PageViewController.swift in Sources */,
+				5E3AFE1E229DB40F003A808E /* InsertObjectsOperation.swift in Sources */,
 				5E0433FF228B61BB00A96CF7 /* SeparatorView.swift in Sources */,
 				5E44D09E2286B14400058236 /* Forecasts.swift in Sources */,
 				5EBC0AE02291FB3500AF2095 /* WeatherDataModel.xcdatamodeld in Sources */,

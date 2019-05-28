@@ -6,4 +6,5 @@ import Foundation
 
 protocol PersistentStore {
     func save()
+    func insert(_ keyValuePairsArray: [[String: Any]], for entityName: String)
 }
