@@ -4,16 +4,22 @@
 
 import UIKit
 
-// TODO: Tests
 final class CitySearchFactoryImpl: CitySearchFactory {
-    func create(selectStrategy: CitySearchSelectStrategy) -> UIViewController {
+    func create(selectStrategy: CitySearchSelectStrategy, persistentStore: CitiesPersistentStore) -> UIViewController {
         let viewUpdatableProxy = CitySearchViewUpdatableProxy()
         
-        let citiesLoadingService = CitiesLoadingServiceImpl(
+        let citiesParsingService = CitiesParsingServiceImpl(
             diskFileReader: DiskJsonFileReader(),
             jsonDecoder: CitiesLoadingJsonDecoderImpl()
         )
-        let service = CitySearchServiceImpl(citiesLoadingService: citiesLoadingService)
+        let persistentCitiesLoadingService = PersistentCitiesLoadingService(
+            service: citiesParsingService,
+            persistentStore: persistentStore
+        )
+        let service = CitySearchServiceImpl(
+            citiesLoadingService: persistentCitiesLoadingService,
+            persistentStore: persistentStore
+        )
         
         let transitionableProxy = TransitionableProxy()
         

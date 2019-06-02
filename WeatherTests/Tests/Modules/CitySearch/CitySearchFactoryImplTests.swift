@@ -9,6 +9,10 @@ final class CitySearchFactoryImplTests: XCTestCase {
     func testCreate() {
         let subject = CitySearchFactoryImpl()
         
-        XCTAssert(subject.create(selectStrategy: CitySearchSelectStrategyMock()), isKindOf: CitySearchViewController.self)
+        let received = subject.create(
+            selectStrategy: CitySearchSelectStrategyMock(),
+            persistentStore: CitiesPersistentStoreMock()
+        )
+        XCTAssert(received, isKindOf: CitySearchViewController.self)
     }
 }

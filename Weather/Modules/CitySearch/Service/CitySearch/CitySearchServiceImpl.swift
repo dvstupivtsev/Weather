@@ -7,25 +7,18 @@ import Promises
 
 final class CitySearchServiceImpl: CitySearchService {
     private let citiesLoadingService: CitiesLoadingService
+    private let persistentStore: CitiesPersistentStore
     
-    init(citiesLoadingService: CitiesLoadingService) {
+    init(citiesLoadingService: CitiesLoadingService, persistentStore: CitiesPersistentStore) {
         self.citiesLoadingService = citiesLoadingService
+        self.persistentStore = persistentStore
     }
     
     func getCities(for name: String, limit: Int) -> Promise<[CityModel]> {
+        guard limit > 0, name.isEmpty == false else { return Promise([]) }
+        
         return citiesLoadingService
-            .getCities()
-            .then(on: .global(qos: .userInteractive)) {
-                self.filter(citiesModels: $0, name: name, limit: limit)
-            }
-    }
-    
-    private func filter(citiesModels: [CityModel], name: String, limit: Int) -> [CityModel] {
-        let filteredModels = citiesModels
-            .filter { $0.name.lowercased().hasPrefix(name.lowercased()) }
-        
-        let limit = limit < filteredModels.count ? limit : filteredModels.count
-        
-        return Array(filteredModels[0..<limit])
+            .loadCities()
+            .then { self.persistentStore.cities(filteredWith: name, limit: limit) }
     }
 }

@@ -14,6 +14,7 @@ final class CitySearchViewModelImpl: CitySearchViewModel {
     private let selectStrategy: CitySearchSelectStrategy
     
     private let filterLimit = 50
+    private let delay = 200
     
     private lazy var foundCitiesSources = [CellSource]()
     
@@ -48,7 +49,7 @@ extension CitySearchViewModelImpl: TextEditingDelegate {
     func didChangeText(_ text: String?) {
         executor.cancel()
         
-        executor.execute { [weak self] operation in
+        executor.execute(delay: delay) { [weak self] operation in
             self?.getCities(for: text ?? "")
                 .then(on: .main) {
                     guard let self = self, operation.isCancelled == false else { return }

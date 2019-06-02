@@ -6,17 +6,13 @@ import Foundation
 import CoreData
 import Weakify
 
-final class CoreDataStore: ManagedObjectContextContainer {
+final class CoreDataStore {
     private lazy var queue = setup(OperationQueue()) {
         $0.maxConcurrentOperationCount = 1
         $0.qualityOfService = .utility
     }
     
     private var persistentContainer: NSPersistentContainer?
-    
-    var context: NSManagedObjectContext? {
-        return persistentContainer?.viewContext
-    }
     
     init(containerName: String, modelName: String) {
         queue.addOperation(
@@ -33,17 +29,57 @@ final class CoreDataStore: ManagedObjectContextContainer {
     }
 }
 
+extension CoreDataStore: ManagedObjectContextContainer {
+    var context: NSManagedObjectContext? {
+        return persistentContainer?.viewContext
+    }
+}
+
+extension CoreDataStore: PersistentStoreCoordinatorContainer {
+    var persistentStoreCoordinator: NSPersistentStoreCoordinator? {
+        return persistentContainer?.persistentStoreCoordinator
+    }
+}
+
 extension CoreDataStore: PersistentStore {
     func save() {
         queue.addOperation(SaveContextOperation(contextContainer: self))
     }
     
-    func insert(_ keyValuePairsArray: [[String: Any]], for entityName: String) {
+    func insert(_ keyValuePairsArray: [[String: Any]], for entityName: String, completion: @escaping Action) {
         queue.addOperation(
             InsertObjectsOperation(
                 contextContainer: self,
                 keyValuePairsArray: keyValuePairsArray,
-                entityName: entityName
+                entityName: entityName,
+                completion: completion
+            )
+        )
+    }
+    
+    func count(for entityName: String, completion: @escaping Handler<Int>) {
+        queue.addOperation(
+            CheckCountOperation(
+                contextContainer: self,
+                entityName: entityName,
+                completion: completion
+            )
+        )
+    }
+    
+    func keyValuePairs(
+        for entityName: String,
+        predicate: NSPredicate?,
+        limit: Int,
+        completion: @escaping Handler<[[String : Any]]>
+    ) {
+        queue.addOperation(
+            FetchOperation(
+                contextContainer: self,
+                entityName: entityName,
+                predicate: predicate,
+                fetchLimit: limit,
+                completion: completion
             )
         )
     }

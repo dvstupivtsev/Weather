@@ -13,7 +13,7 @@ final class CancellableExecutorImpl: CancellableExecutor {
         self.queue = queue
     }
     
-    func execute(handler: @escaping (_ operation: Cancellable) -> Void) {
+    func execute(delay: Int, handler: @escaping Handler<Cancellable>) {
         var workItem: DispatchWorkItem?
         workItem = DispatchWorkItem {
             handler(workItem ?? Cancelled())
@@ -21,7 +21,7 @@ final class CancellableExecutorImpl: CancellableExecutor {
         
         self.workItem = workItem
         
-        workItem.map(queue.async(execute:))
+        workItem.map { queue.asyncAfter(deadline: .now() + .milliseconds(delay), execute: $0) }
     }
     
     func cancel() {

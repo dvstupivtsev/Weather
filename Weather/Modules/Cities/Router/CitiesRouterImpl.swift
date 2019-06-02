@@ -7,15 +7,21 @@ import UIKit
 final class CitiesRouterImpl: CitiesRouter {
     private let cityWeatherFactory: CityWeatherFactory
     private let citySearchFactory: CitySearchFactory
+    private let persistentStore: CitiesPersistentStore
     
     weak var citiesController: UIViewController?
     weak var pageController: PageViewController?
     
     private var selectedCity: City?
     
-    init(cityWeatherFactory: CityWeatherFactory, citySearchFactory: CitySearchFactory) {
+    init(
+        cityWeatherFactory: CityWeatherFactory,
+        citySearchFactory: CitySearchFactory,
+        persistentStore: CitiesPersistentStore
+    ) {
         self.cityWeatherFactory = cityWeatherFactory
         self.citySearchFactory = citySearchFactory
+        self.persistentStore = persistentStore
     }
     
     func openCityWeather(citySource: CitySource) {
@@ -35,7 +41,10 @@ final class CitiesRouterImpl: CitiesRouter {
     func openCitySearch(selectStrategy: CitySearchSelectStrategy, transitionableProxy: TransitionableProxy) {
         guard let pageController = pageController else { return }
         
-        let citySearchController = citySearchFactory.create(selectStrategy: selectStrategy)
+        let citySearchController = citySearchFactory.create(
+            selectStrategy: selectStrategy,
+            persistentStore: persistentStore
+        )
         transitionableProxy.wrapped = citySearchController
         
         pageController.present(citySearchController, animated: true)

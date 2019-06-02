@@ -5,12 +5,19 @@
 import UIKit
 
 final class WeatherPageContainerFactory: ControllerFactory {
+    private let persistentStore: PersistentStore
+    
+    init(persistentStore: PersistentStore) {
+        self.persistentStore = persistentStore
+    }
+    
     func create() -> UIViewController {
         let store = Store<[CitySource]>(state: [])
         
         let citiesRouter = CitiesRouterImpl(
             cityWeatherFactory: CityWeatherFactoryImpl(),
-            citySearchFactory: CitySearchFactoryImpl()
+            citySearchFactory: CitySearchFactoryImpl(),
+            persistentStore: CitiesPersistentStoreImpl(persistentStore: persistentStore)
         )
         
         let citiesController = CitiesFactory().create(router: citiesRouter, store: store)

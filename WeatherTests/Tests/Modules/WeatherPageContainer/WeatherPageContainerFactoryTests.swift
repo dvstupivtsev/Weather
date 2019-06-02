@@ -7,7 +7,7 @@ import XCTest
 
 final class WeatherPageContainerFactoryTests: XCTestCase {
     func testCreate() {
-        let subject = WeatherPageContainerFactory()
+        let subject = WeatherPageContainerFactory(persistentStore: PersistentStoreMock())
         let receivedController = subject.create()
         
         XCTAssert(

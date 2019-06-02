@@ -14,7 +14,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions options: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        let router = WindowRouter(controllerFactory: WeatherPageContainerFactory())
+        let pageContainerFactory = WeatherPageContainerFactory(persistentStore: persistentStore)
+        let router = WindowRouter(controllerFactory: pageContainerFactory)
         window.map(router.setRoot(window:))
         
         return true

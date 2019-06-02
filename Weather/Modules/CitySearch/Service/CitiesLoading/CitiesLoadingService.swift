@@ -7,5 +7,5 @@ import Promises
 
 // sourcery: AutoMockable
 protocol CitiesLoadingService {
-    func getCities() -> Promise<[CityModel]>
+    func loadCities() -> Promise<Void>
 }

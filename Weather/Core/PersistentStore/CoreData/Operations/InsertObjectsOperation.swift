@@ -10,15 +10,18 @@ final class InsertObjectsOperation: Operation {
     private let contextContainer: ManagedObjectContextContainer
     private let keyValuePairsArray: [[String: Any]]
     private let entityName: String
+    private let completion: Action
     
     init(
         contextContainer: ManagedObjectContextContainer,
         keyValuePairsArray: [[String: Any]],
-        entityName: String
+        entityName: String,
+        completion: @escaping Action
     ) {
         self.contextContainer = contextContainer
         self.keyValuePairsArray = keyValuePairsArray
         self.entityName = entityName
+        self.completion = completion
         
         super.init()
     }
@@ -45,5 +48,7 @@ final class InsertObjectsOperation: Operation {
         } catch {
             print("Unable to save data with error: \(error)")
         }
+        
+        completion()
     }
 }

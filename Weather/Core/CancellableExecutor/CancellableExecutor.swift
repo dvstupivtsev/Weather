@@ -6,6 +6,7 @@ import Foundation
 
 // sourcery: AutoMockable
 protocol CancellableExecutor: AnyObject {
-    func execute(handler: @escaping (_ operation: Cancellable) -> Void)
+    /// - parameter delay: in milliseconds
+    func execute(delay: Int, handler: @escaping Handler<Cancellable>)
     func cancel()
 }

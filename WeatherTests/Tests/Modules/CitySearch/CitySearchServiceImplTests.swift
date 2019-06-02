@@ -9,34 +9,66 @@ import XCTest
 final class CitySearchServiceImplTests: XCTestCase {
     private var subject: CitySearchServiceImpl!
     private var citiesLoadingService: CitiesLoadingServiceMock!
+    private var persistentStore: CitiesPersistentStoreMock!
     
     override func setUp() {
         super.setUp()
         
         citiesLoadingService = .init()
-        subject = CitySearchServiceImpl(citiesLoadingService: citiesLoadingService)
+        persistentStore = .init()
+        subject = CitySearchServiceImpl(
+            citiesLoadingService: citiesLoadingService,
+            persistentStore: persistentStore
+        )
     }
     
     func testGetCitiesSuccess() {
-        let notFilteredCities = TestData.cities
-        citiesLoadingService.getCitiesReturnValue = Promise(notFilteredCities)
+        citiesLoadingService.loadCitiesReturnValue = Promise(())
         
         let result = subject.getCities(for: TestData.filterString, limit: 3)
         
-        XCTAssertEqual(citiesLoadingService.getCitiesCallsCount, 1)
+        XCTAssertEqual(citiesLoadingService.loadCitiesCallsCount, 1)
+        
+        let expectedModels = TestData.expectedCities
+        persistentStore.citiesFilteredWithLimitReturnValue = Promise(expectedModels)
         
         XCTAssert(waitForPromises(timeout: 1))
+        XCTAssertEqual(persistentStore.citiesFilteredWithLimitCallsCount, 1)
         XCTAssertEqual(result.value, TestData.expectedCities)
+        XCTAssertNil(result.error)
+    }
+    
+    func testGetCitiesSuccessWithNullLimit() {
+        citiesLoadingService.loadCitiesReturnValue = Promise(())
+        
+        let result = subject.getCities(for: TestData.filterString, limit: 0)
+        
+        XCTAssertEqual(citiesLoadingService.loadCitiesCallsCount, 0)
+        
+        XCTAssert(waitForPromises(timeout: 1))
+        XCTAssertEmpty(result.value)
+        XCTAssertNil(result.error)
+    }
+    
+    func testGetCitiesSuccessWithEmptyFilterString() {
+        citiesLoadingService.loadCitiesReturnValue = Promise(())
+        
+        let result = subject.getCities(for: "", limit: 2)
+        
+        XCTAssertEqual(citiesLoadingService.loadCitiesCallsCount, 0)
+        
+        XCTAssert(waitForPromises(timeout: 1))
+        XCTAssertEmpty(result.value)
         XCTAssertNil(result.error)
     }
     
     func testGetCitiesFailure() {
         let expectedError = Constants.error
-        citiesLoadingService.getCitiesReturnValue = Promise(expectedError)
+        citiesLoadingService.loadCitiesReturnValue = Promise(expectedError)
         
         let result = subject.getCities(for: "1234", limit: 3)
         
-        XCTAssertEqual(citiesLoadingService.getCitiesCallsCount, 1)
+        XCTAssertEqual(citiesLoadingService.loadCitiesCallsCount, 1)
         
         XCTAssert(waitForPromises(timeout: 1))
         XCTAssertIdentical(result.error, to: expectedError)
@@ -52,17 +84,5 @@ private extension CitySearchServiceImplTests {
             CityModel(id: 4, name: "Imaginationland123", country: "Test"),
             CityModel(id: 5, name: "Imaginationland456", country: "Test"),
         ]
-        
-        static let cities: [CityModel] = {
-            var cities = [
-                CityModel(id: 1, name: "1623TEST", country: "TEstTest"),
-                CityModel(id: 2, name: "TEstT", country: "Imaginationland123"),
-                CityModel(id: 3, name: "City", country: "Test")
-            ]
-            
-            cities.append(contentsOf: expectedCities)
-            
-            return cities
-        }()
     }
 }

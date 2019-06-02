@@ -54,8 +54,9 @@ final class CitySearchViewModelImplTests: XCTestCase {
         
         subject.didChangeText(filterString)
         
-        XCTAssertEqual(executor.executeHandlerCallsCount, 1)
-        executor.executeHandlerReceivedHandler?(NotCancelled())
+        XCTAssertEqual(executor.executeDelayHandlerCallsCount, 1)
+        XCTAssertEqual(executor.executeDelayHandlerReceivedArgs?.delay, 200)
+        executor.executeDelayHandlerReceivedArgs?.handler(NotCancelled())
         
         XCTAssertEqual(service.getCitiesForLimitCallsCount, 1)
         XCTAssertEqual(service.getCitiesForLimitReceivedArgs?.name, filterString)
@@ -77,8 +78,9 @@ final class CitySearchViewModelImplTests: XCTestCase {
         
         subject.didChangeText(filterString)
         
-        XCTAssertEqual(executor.executeHandlerCallsCount, 1)
-        executor.executeHandlerReceivedHandler?(NotCancelled())
+        XCTAssertEqual(executor.executeDelayHandlerCallsCount, 1)
+        XCTAssertEqual(executor.executeDelayHandlerReceivedArgs?.delay, 200)
+        executor.executeDelayHandlerReceivedArgs?.handler(NotCancelled())
         
         XCTAssertEqual(service.getCitiesForLimitCallsCount, 1)
         XCTAssertEqual(service.getCitiesForLimitReceivedArgs?.name, filterString)
@@ -95,8 +97,9 @@ final class CitySearchViewModelImplTests: XCTestCase {
         
         subject.didChangeText(filterString)
         
-        XCTAssertEqual(executor.executeHandlerCallsCount, 1)
-        executor.executeHandlerReceivedHandler?(Cancelled())
+        XCTAssertEqual(executor.executeDelayHandlerCallsCount, 1)
+        XCTAssertEqual(executor.executeDelayHandlerReceivedArgs?.delay, 200)
+        executor.executeDelayHandlerReceivedArgs?.handler(Cancelled())
         
         XCTAssertEqual(service.getCitiesForLimitCallsCount, 1)
         XCTAssertEqual(service.getCitiesForLimitReceivedArgs?.name, filterString)
