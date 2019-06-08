@@ -64,7 +64,7 @@ extension CitySearchViewModelImpl: TextEditingDelegate {
     
     private func getCities(for name: String) -> Promise<[TableCellProviderConvertible]> {
         // TODO: show loading
-        return service.getCities(for: name, limit: filterLimit)
+        return service.getCities(filteredWith: name, limit: filterLimit)
             .then(createProviderConvertibles(from:))
     }
     

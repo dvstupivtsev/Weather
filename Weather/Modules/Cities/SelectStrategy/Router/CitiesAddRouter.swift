@@ -6,6 +6,6 @@ import Foundation
 
 // sourcery: AutoMockable
 protocol CitiesAddRouter {
-    // TODO: move to selected city
     func closeSearch()
+    func present(error: Error)
 }

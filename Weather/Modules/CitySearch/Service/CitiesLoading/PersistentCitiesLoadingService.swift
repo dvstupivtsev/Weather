@@ -7,11 +7,11 @@ import Promises
 
 final class PersistentCitiesLoadingService: CitiesLoadingService {
     private let service: CitiesParsingService
-    private let persistentStore: CitiesPersistentStore
+    private let persistentStore: CitySearchService
     
     private var operation: Promise<Void>?
     
-    init(service: CitiesParsingService, persistentStore: CitiesPersistentStore) {
+    init(service: CitiesParsingService, persistentStore: CitySearchService) {
         self.service = service
         self.persistentStore = persistentStore
     }

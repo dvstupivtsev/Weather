@@ -6,11 +6,10 @@ import Foundation
 import Promises
 import Weakify
 
-// TODO: Tests
 final class CitiesViewModelImpl: CitiesViewModel {
     // TODO: Inject with protocol
     private let store: Store<[CitySource]>
-    private let citiesService: CitiesService
+    private let persistentStore: CitySourcePersistentStore
     private let dateFormatter: CitiesDateFormatter
     private let router: CitiesRouter
     private let viewUpdatable: CitiesViewUpdatable
@@ -23,13 +22,13 @@ final class CitiesViewModelImpl: CitiesViewModel {
     
     init(
         store: Store<[CitySource]>,
-        citiesService: CitiesService,
+        persistentStore: CitySourcePersistentStore,
         dateFormatter: CitiesDateFormatter,
         router: CitiesRouter,
         viewUpdatable: CitiesViewUpdatable
     ) {
         self.store = store
-        self.citiesService = citiesService
+        self.persistentStore = persistentStore
         self.dateFormatter = dateFormatter
         self.router = router
         self.viewUpdatable = viewUpdatable
@@ -41,9 +40,9 @@ final class CitiesViewModelImpl: CitiesViewModel {
         let citiesSources = store.state
         update(state: citiesSources)
         
-        citiesService.getCitiesWeather(for: citiesSources.map { $0.city.id })
-            .then(weakify(self, type(of: self).handleCitiesSources(_:)))
-            .catch(weakify(self, type(of: self).handleCitiesWeatherFailure(error:)))
+        persistentStore.cities()
+            .then(on: .main, weakify(self, type(of: self).handleCitiesSources(_:)))
+            .catch(on: .main, weakify(self, type(of: self).handleCitiesWeatherFailure(error:)))
     }
     
     private func handleCitiesSources(_ sources: [CitySource]) {
@@ -58,7 +57,8 @@ final class CitiesViewModelImpl: CitiesViewModel {
         let transitionable = TransitionableProxy()
         let strategy = CitiesAddStrategy(
             store: store,
-            citiesService: citiesService,
+            persistentStore: persistentStore,
+            citiesService: CitiesServiceFactory().create(),
             router: CitiesAddRouterImpl(transitionable: transitionable)
         )
         

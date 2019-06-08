@@ -9,7 +9,7 @@ import XCTest
 final class PersistentCitiesLoadingServiceTests: XCTestCase {
     private var subject: PersistentCitiesLoadingService!
     private var service: CitiesParsingServiceMock!
-    private var persistentStore: CitiesPersistentStoreMock!
+    private var persistentStore: CitySearchServiceMock!
     
     override func setUp() {
         super.setUp()
@@ -57,7 +57,7 @@ final class PersistentCitiesLoadingServiceTests: XCTestCase {
         XCTAssertNil(result.error)
     }
     
-    func testLoadCitiesPersistentStoreFailure() {
+    func testLoadCitySearchServiceFailure() {
         let expectedError = Constants.error
         persistentStore.numberOfCitiesReturnValue = Promise(expectedError)
         let result = subject.loadCities()

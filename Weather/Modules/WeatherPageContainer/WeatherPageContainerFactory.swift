@@ -17,10 +17,10 @@ final class WeatherPageContainerFactory: ControllerFactory {
         let citiesRouter = CitiesRouterImpl(
             cityWeatherFactory: CityWeatherFactoryImpl(),
             citySearchFactory: CitySearchFactoryImpl(),
-            persistentStore: CitiesPersistentStoreImpl(persistentStore: persistentStore)
+            persistentStore: CitiesPersistentStore(persistentStore: persistentStore)
         )
         
-        let citiesController = CitiesFactory().create(router: citiesRouter, store: store)
+        let citiesController = CitiesFactory().create(router: citiesRouter, store: store, persistentStore: persistentStore)
         let pageViewController = PageViewController(controllers: [citiesController])
         citiesRouter.pageController = pageViewController
         citiesRouter.citiesController = citiesController

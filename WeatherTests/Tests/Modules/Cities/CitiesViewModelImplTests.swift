@@ -9,7 +9,7 @@ import XCTest
 final class CitiesViewModelImplTests: XCTestCase {
     private var subject: CitiesViewModelImpl!
     private var store: Store<[CitySource]>!
-    private var citiesService: CitiesServiceMock!
+    private var persistentStore: CitySourcePersistentStoreMock!
     private var dateFormatter: CitiesDateFormatterMock!
     private var router: CitiesRouterMock!
     private var viewUpdatable: CitiesViewUpdatableMock!
@@ -18,14 +18,14 @@ final class CitiesViewModelImplTests: XCTestCase {
         super.setUp()
         
         store = .init(state: [])
-        citiesService = .init()
+        persistentStore = .init()
         dateFormatter = .init()
         router = .init()
         viewUpdatable = .init()
         dateFormatter.stringFromTimeZoneReturnValue = "StringFromDateTest"
         subject = CitiesViewModelImpl(
             store: store,
-            citiesService: citiesService,
+            persistentStore: persistentStore,
             dateFormatter: dateFormatter,
             router: router,
             viewUpdatable: viewUpdatable
@@ -34,12 +34,11 @@ final class CitiesViewModelImplTests: XCTestCase {
     
     func testGetDataSuccess() {
         let expectedSources = self.citiesSources
-        citiesService.getCitiesWeatherForReturnValue = Promise(expectedSources)
+        persistentStore.citiesReturnValue = Promise(expectedSources)
         
         subject.getData()
         
-        XCTAssertEqual(citiesService.getCitiesWeatherForCallsCount, 1)
-        XCTAssertEqual(citiesService.getCitiesWeatherForReceivedCitiesIds, store.state.map { $0.city.id })
+        XCTAssertEqual(persistentStore.citiesCallsCount, 1)
         
         _testViewSource(viewUpdatable.updateViewSourceReceivedViewSource!, expectedCount: 1, expectedSearchCallsCount: 1)
         
@@ -95,14 +94,13 @@ final class CitiesViewModelImplTests: XCTestCase {
     }
     
     func testGetDataFailure() {
-        citiesService.getCitiesWeatherForReturnValue = Promise(NSError.error(message: "Test"))
+        persistentStore.citiesReturnValue = Promise(NSError.error(message: "Test"))
         
         subject.getData()
         
         _testViewSource(viewUpdatable.updateViewSourceReceivedViewSource!, expectedCount: 1, expectedSearchCallsCount: 1)
         
-        XCTAssertEqual(citiesService.getCitiesWeatherForCallsCount, 1)
-        XCTAssertEqual(citiesService.getCitiesWeatherForReceivedCitiesIds, store.state.map { $0.city.id })
+        XCTAssertEqual(persistentStore.citiesCallsCount, 1)
         
         XCTAssert(waitForPromises(timeout: 1))
         

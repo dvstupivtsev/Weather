@@ -28,4 +28,29 @@ final class CitiesAddRouterImplTests: XCTestCase {
         XCTAssertTrue(args.animated)
         XCTAssertNil(args.completion)
     }
+    
+    func testPresentError() {
+        let expected = Constants.error
+        subject.present(error: expected)
+        XCTAssertEqual(transitionable.presentControllerAnimatedCompletionCallsCount, 1)
+        
+        guard let args = transitionable.presentControllerAnimatedCompletionReceivedArgs else {
+            XCTFail()
+            return
+        }
+        
+        let controller = args.controller as? UIAlertController
+        
+        XCTAssert(controller, isKindOf: UIAlertController.self)
+        XCTAssertEqual(controller?.title, "Error")
+        XCTAssertEqual(controller?.message, expected.localizedDescription)
+        XCTAssertEqual(controller?.preferredStyle, .alert)
+        
+        XCTAssertEqual(controller?.actions.count, 1)
+        XCTAssertEqual(controller?.actions.first?.title, "OK")
+        XCTAssertEqual(controller?.actions.first?.style, .default)
+        
+        XCTAssertTrue(args.animated)
+        XCTAssertNil(args.completion)
+    }
 }

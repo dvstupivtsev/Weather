@@ -5,7 +5,7 @@
 import Foundation
 import Promises
 
-final class CitiesPersistentStoreImpl: CitiesPersistentStore {
+final class CitiesPersistentStore: CitySearchService {
     private let persistentStore: PersistentStore
     private let entityName = "CityEntity"
     
@@ -25,9 +25,9 @@ final class CitiesPersistentStoreImpl: CitiesPersistentStore {
         return Promise(on: .global()) { fulfill, _ in
             let keyValuePairsArray: [[String: Any]] = citiesModels.map {
                 [
-                    "id": $0.id,
-                    "name": $0.name,
-                    "country": $0.country
+                    Keys.id: $0.id,
+                    Keys.name: $0.name,
+                    Keys.country: $0.country
                 ]
             }
             
@@ -37,9 +37,9 @@ final class CitiesPersistentStoreImpl: CitiesPersistentStore {
         }
     }
     
-    func cities(filteredWith name: String, limit: Int) -> Promise<[CityModel]> {
+    func getCities(filteredWith name: String, limit: Int) -> Promise<[CityModel]> {
         let predicate = NSPredicate(format: "name CONTAINS[cd] %@", name)
-        return Promise(on: .global()) { [weak self] fulfill, reject in
+        return Promise(on: .global(qos: .userInteractive)) { [weak self] fulfill, reject in
             guard let self = self else { return }
             self.persistentStore.keyValuePairs(for: self.entityName, predicate: predicate, limit: limit) {
                 let models = self.map(keyValuePairsArray: $0)
@@ -50,11 +50,23 @@ final class CitiesPersistentStoreImpl: CitiesPersistentStore {
     
     private func map(keyValuePairsArray: [[String: Any]]) -> [CityModel] {
         return keyValuePairsArray.compactMap {
-            guard let id = $0["id"] as? Int, let name = $0["name"] as? String, let country = $0["country"] as? String else {
+            guard
+                let id = $0[Keys.id] as? Int,
+                let name = $0[Keys.name] as? String,
+                let country = $0[Keys.country] as? String
+            else {
                 return nil
             }
             
             return CityModel(id: id, name: name, country: country)
         }
+    }
+}
+
+private extension CitiesPersistentStore {
+    struct Keys {
+        static let id = "id"
+        static let name = "name"
+        static let country = "country"
     }
 }

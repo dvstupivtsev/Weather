@@ -11,7 +11,7 @@ final class CitySearchFactoryImplTests: XCTestCase {
         
         let received = subject.create(
             selectStrategy: CitySearchSelectStrategyMock(),
-            persistentStore: CitiesPersistentStoreMock()
+            persistentStore: CitySearchServiceMock()
         )
         XCTAssert(received, isKindOf: CitySearchViewController.self)
     }

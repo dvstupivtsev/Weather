@@ -7,7 +7,7 @@ import UIKit
 final class CitiesRouterImpl: CitiesRouter {
     private let cityWeatherFactory: CityWeatherFactory
     private let citySearchFactory: CitySearchFactory
-    private let persistentStore: CitiesPersistentStore
+    private let persistentStore: CitySearchService
     
     weak var citiesController: UIViewController?
     weak var pageController: PageViewController?
@@ -17,7 +17,7 @@ final class CitiesRouterImpl: CitiesRouter {
     init(
         cityWeatherFactory: CityWeatherFactory,
         citySearchFactory: CitySearchFactory,
-        persistentStore: CitiesPersistentStore
+        persistentStore: CitySearchService
     ) {
         self.cityWeatherFactory = cityWeatherFactory
         self.citySearchFactory = citySearchFactory

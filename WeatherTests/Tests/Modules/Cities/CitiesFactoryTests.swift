@@ -8,7 +8,7 @@ import XCTest
 final class CitiesFactoryTests: XCTestCase {
     func testCreate() {
         let subject = CitiesFactory()
-        let receivedController = subject.create(router: CitiesRouterMock(), store: Store(state: [CitySource]()))
+        let receivedController = subject.create(router: CitiesRouterMock(), store: Store(state: [CitySource]()), persistentStore: PersistentStoreMock())
         
         XCTAssert(
             receivedController,

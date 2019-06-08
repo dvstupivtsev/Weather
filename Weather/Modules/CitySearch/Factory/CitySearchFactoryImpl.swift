@@ -5,7 +5,7 @@
 import UIKit
 
 final class CitySearchFactoryImpl: CitySearchFactory {
-    func create(selectStrategy: CitySearchSelectStrategy, persistentStore: CitiesPersistentStore) -> UIViewController {
+    func create(selectStrategy: CitySearchSelectStrategy, persistentStore: CitySearchService) -> UIViewController {
         let viewUpdatableProxy = CitySearchViewUpdatableProxy()
         
         let citiesParsingService = CitiesParsingServiceImpl(
@@ -16,7 +16,7 @@ final class CitySearchFactoryImpl: CitySearchFactory {
             service: citiesParsingService,
             persistentStore: persistentStore
         )
-        let service = CitySearchServiceImpl(
+        let service = CitySearchServiceDecorator(
             citiesLoadingService: persistentCitiesLoadingService,
             persistentStore: persistentStore
         )
