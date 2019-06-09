@@ -5,7 +5,7 @@
 import Foundation
 import Promises
 
-final class CitySourcePersistentStoreImpl: CitySourcePersistentStore {
+final class CitySourcePersistentStore: CitySourceService {
     private let persistentStore: PersistentStore
     private let entityName = "CitySourceEntity"
     private let limit = 100
@@ -36,7 +36,7 @@ final class CitySourcePersistentStoreImpl: CitySourcePersistentStore {
         }
     }
     
-    func cities() -> Promise<[CitySource]> {
+    func getCitiesWeather() -> Promise<[CitySource]> {
         return Promise(on: .global()) { [weak self] fulfill, reject in
             guard let self = self else { return }
             self.persistentStore.keyValuePairs(for: self.entityName, predicate: nil, limit: self.limit) {
@@ -77,7 +77,7 @@ final class CitySourcePersistentStoreImpl: CitySourcePersistentStore {
     }
 }
 
-private extension CitySourcePersistentStoreImpl {
+private extension CitySourcePersistentStore {
     struct ModelKeys {
         static let id = "id"
         static let name = "name"

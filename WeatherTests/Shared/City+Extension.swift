@@ -23,4 +23,13 @@ extension City {
         weather: [.init(description: "Desc2", icon: "Icon2")],
         main: .init(temp: 2)
     )
+    
+    static let city3 = City(
+        id: 3,
+        name: "Name3",
+        date: Constants.date,
+        coordinate: .init(lat: 4, lon: 5),
+        weather: [.init(description: "Desc3", icon: "Icon3")],
+        main: .init(temp: 3)
+    )
 }

@@ -9,7 +9,8 @@ import Weakify
 final class CitiesViewModelImpl: CitiesViewModel {
     // TODO: Inject with protocol
     private let store: Store<[CitySource]>
-    private let persistentStore: CitySourcePersistentStore
+    private let persistentStore: CitySourceService
+    private let service: CitiesService
     private let dateFormatter: CitiesDateFormatter
     private let router: CitiesRouter
     private let viewUpdatable: CitiesViewUpdatable
@@ -22,13 +23,15 @@ final class CitiesViewModelImpl: CitiesViewModel {
     
     init(
         store: Store<[CitySource]>,
-        persistentStore: CitySourcePersistentStore,
+        persistentStore: CitySourceService,
+        service: CitiesService,
         dateFormatter: CitiesDateFormatter,
         router: CitiesRouter,
         viewUpdatable: CitiesViewUpdatable
     ) {
         self.store = store
         self.persistentStore = persistentStore
+        self.service = service
         self.dateFormatter = dateFormatter
         self.router = router
         self.viewUpdatable = viewUpdatable
@@ -40,13 +43,19 @@ final class CitiesViewModelImpl: CitiesViewModel {
         let citiesSources = store.state
         update(state: citiesSources)
         
-        persistentStore.cities()
-            .then(on: .main, weakify(self, type(of: self).handleCitiesSources(_:)))
+        persistentStore.getCitiesWeather()
+            .then(on: .main, weakify(self, type(of: self).addCitiesSources(_:)))
+            .then { self.service.getCitiesWeather(for: $0.map { $0.city.id }) }
+            .then(on: .main, weakify(self, type(of: self).replaceCitiesSources(_:)))
             .catch(on: .main, weakify(self, type(of: self).handleCitiesWeatherFailure(error:)))
     }
     
-    private func handleCitiesSources(_ sources: [CitySource]) {
+    private func addCitiesSources(_ sources: [CitySource]) {
         store.dispatch(action: AddCitiesSourcesAction(citisSources: sources))
+    }
+    
+    private func replaceCitiesSources(_ sources: [CitySource]) {
+        store.dispatch(action: ReplaceCitiesSourcesAction(citisSources: sources))
     }
     
     private func handleCitiesWeatherFailure(error: Error) {
@@ -57,8 +66,8 @@ final class CitiesViewModelImpl: CitiesViewModel {
         let transitionable = TransitionableProxy()
         let strategy = CitiesAddStrategy(
             store: store,
-            persistentStore: persistentStore,
-            citiesService: CitiesServiceFactory().create(),
+            citySourceService: persistentStore,
+            citiesService: service,
             router: CitiesAddRouterImpl(transitionable: transitionable)
         )
         

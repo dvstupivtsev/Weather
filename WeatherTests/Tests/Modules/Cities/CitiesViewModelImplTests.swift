@@ -9,7 +9,8 @@ import XCTest
 final class CitiesViewModelImplTests: XCTestCase {
     private var subject: CitiesViewModelImpl!
     private var store: Store<[CitySource]>!
-    private var persistentStore: CitySourcePersistentStoreMock!
+    private var persistentStore: CitySourceServiceMock!
+    private var service: CitiesServiceMock!
     private var dateFormatter: CitiesDateFormatterMock!
     private var router: CitiesRouterMock!
     private var viewUpdatable: CitiesViewUpdatableMock!
@@ -19,6 +20,7 @@ final class CitiesViewModelImplTests: XCTestCase {
         
         store = .init(state: [])
         persistentStore = .init()
+        service = .init()
         dateFormatter = .init()
         router = .init()
         viewUpdatable = .init()
@@ -26,6 +28,7 @@ final class CitiesViewModelImplTests: XCTestCase {
         subject = CitiesViewModelImpl(
             store: store,
             persistentStore: persistentStore,
+            service: service,
             dateFormatter: dateFormatter,
             router: router,
             viewUpdatable: viewUpdatable
@@ -33,14 +36,21 @@ final class CitiesViewModelImplTests: XCTestCase {
     }
     
     func testGetDataSuccess() {
-        let expectedSources = self.citiesSources
-        persistentStore.citiesReturnValue = Promise(expectedSources)
+        let expectedSources = TestData.citiesSources
+        persistentStore.getCitiesWeatherReturnValue = Promise(expectedSources)
+        service.getCitiesWeatherForReturnValue = Promise(expectedSources)
         
         subject.getData()
         
-        XCTAssertEqual(persistentStore.citiesCallsCount, 1)
+        XCTAssertEqual(persistentStore.getCitiesWeatherCallsCount, 1)
         
         _testViewSource(viewUpdatable.updateViewSourceReceivedViewSource!, expectedCount: 1, expectedSearchCallsCount: 1)
+        
+        XCTAssert(waitForPromises(timeout: 1))
+        
+        XCTAssertEqual(store.state, expectedSources)
+        
+        XCTAssertEqual(service.getCitiesWeatherForReceivedCitiesIds, [1, 2])
         
         XCTAssert(waitForPromises(timeout: 1))
         
@@ -61,7 +71,7 @@ final class CitiesViewModelImplTests: XCTestCase {
         XCTAssertEqual(router.openCitySearchSelectStrategyTransitionableProxyCallsCount, expectedSearchCallsCount)
         
         if expectedCount > 1 {
-            let expectedCityCellModelsSource = citiesSources.map {
+            let expectedCityCellModelsSource = TestData.citiesSources.map {
                 return CityTableCell.Model(
                     title: $0.city.name,
                     dateTimeString: dateFormatter.stringFromTimeZoneReturnValue,
@@ -71,11 +81,11 @@ final class CitiesViewModelImplTests: XCTestCase {
             }
             
             let citiesCellModels = Array(cellsModels[1..<expectedCount]) as? [CityTableCell.Model] ?? []
-            XCTAssertEqual(dateFormatter.stringFromTimeZoneCallsCount, 2)
+            XCTAssertEqual(dateFormatter.stringFromTimeZoneCallsCount, 4)
             XCTAssertEqual(headerCellModel, expectedHeaderCellModel)
             XCTAssertEqual(citiesCellModels, expectedCityCellModelsSource)
             
-            _testRouting(for: citiesCellModels, for: citiesSources)
+            _testRouting(for: citiesCellModels, for: TestData.citiesSources)
         }
     }
     
@@ -94,13 +104,13 @@ final class CitiesViewModelImplTests: XCTestCase {
     }
     
     func testGetDataFailure() {
-        persistentStore.citiesReturnValue = Promise(NSError.error(message: "Test"))
+        persistentStore.getCitiesWeatherReturnValue = Promise(NSError.error(message: "Test"))
         
         subject.getData()
         
         _testViewSource(viewUpdatable.updateViewSourceReceivedViewSource!, expectedCount: 1, expectedSearchCallsCount: 1)
         
-        XCTAssertEqual(persistentStore.citiesCallsCount, 1)
+        XCTAssertEqual(persistentStore.getCitiesWeatherCallsCount, 1)
         
         XCTAssert(waitForPromises(timeout: 1))
         
@@ -110,12 +120,14 @@ final class CitiesViewModelImplTests: XCTestCase {
 }
 
 private extension CitiesViewModelImplTests {
-    var citiesSources: [CitySource] {
-        let cities: [City] = [.city1, .city2]
-        let timeZones = [TimeZone.current, TimeZone(secondsFromGMT: 123)!]
-        
-        return zip(cities, timeZones)
-            .map(CitySource.init(city:timeZone:))
+    struct TestData {
+        static let citiesSources: [CitySource] = {
+            let cities: [City] = [.city1, .city2]
+            let timeZones = [TimeZone.current, TimeZone(secondsFromGMT: 123)!]
+            
+            return zip(cities, timeZones)
+                .map(CitySource.init(city:timeZone:))
+        }()
     }
 }
 

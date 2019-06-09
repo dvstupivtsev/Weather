@@ -10,7 +10,8 @@ final class CitiesFactory {
         
         let vm = CitiesViewModelImpl(
             store: store,
-            persistentStore: CitySourcePersistentStoreImpl(persistentStore: persistentStore),
+            persistentStore: CitySourcePersistentStore(persistentStore: persistentStore),
+            service: CitiesServiceFactory().create(),
             dateFormatter: CitiesDateFormatterImpl(),
             router: router,
             viewUpdatable: viewUpdatableProxy

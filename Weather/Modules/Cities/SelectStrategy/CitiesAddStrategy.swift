@@ -6,26 +6,20 @@ import Foundation
 import Promises
 import Weakify
 
-protocol CitySourceService {
-    func getCitiesWeather(for citiesIds: [Int]) -> Promise<[CitySource]>
-    func getAllCitiesWeather() -> Promise<[CitySource]>
-    func insert(cities: [CitySource]) -> Promise<Void>
-}
-
 final class CitiesAddStrategy: CitySearchSelectStrategy {
     private let store: Store<[CitySource]>
-    private let persistentStore: CitySourcePersistentStore
+    private let citySourceService: CitySourceService
     private let citiesService: CitiesService
     private let router: CitiesAddRouter
     
     init(
         store: Store<[CitySource]>,
-        persistentStore: CitySourcePersistentStore,
+        citySourceService: CitySourceService,
         citiesService: CitiesService,
         router: CitiesAddRouter
     ) {
         self.store = store
-        self.persistentStore = persistentStore
+        self.citySourceService = citySourceService
         self.citiesService = citiesService
         self.router = router
     }
@@ -43,7 +37,7 @@ final class CitiesAddStrategy: CitySearchSelectStrategy {
     
     private func store(citiesSources: [CitySource]) -> Promise<Void> {
         store.dispatch(action: AddCitiesSourcesAction(citisSources: citiesSources))
-        return persistentStore.insert(cities: citiesSources)
+        return citySourceService.insert(cities: citiesSources)
     }
     
     private func closeSearch() {

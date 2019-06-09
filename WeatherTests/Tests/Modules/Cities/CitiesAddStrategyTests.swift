@@ -9,7 +9,7 @@ import XCTest
 final class CitiesAddStrategyTests: XCTestCase {
     private var subject: CitiesAddStrategy!
     private var store: Store<[CitySource]>!
-    private var persistentStore: CitySourcePersistentStoreMock!
+    private var citySourceService: CitySourceServiceMock!
     private var citiesService: CitiesServiceMock!
     private var router: CitiesAddRouterMock!
     
@@ -17,19 +17,19 @@ final class CitiesAddStrategyTests: XCTestCase {
         super.setUp()
         
         store = .init(state: [])
-        persistentStore = .init()
+        citySourceService = .init()
         citiesService = .init()
         router = .init()
         subject = CitiesAddStrategy(
             store: store,
-            persistentStore: persistentStore,
+            citySourceService: citySourceService,
             citiesService: citiesService,
             router: router
         )
     }
 
     func testSelectCityModelSuccess() {
-        persistentStore.insertCitiesReturnValue = Promise(())
+        citySourceService.insertCitiesReturnValue = Promise(())
         
         let expectedCitiesSources = [CitySource(city: .city1, timeZone: .current)]
         citiesService.getCitiesWeatherForReturnValue = Promise(expectedCitiesSources)
@@ -44,8 +44,8 @@ final class CitiesAddStrategyTests: XCTestCase {
         XCTAssertEqual(store.state, expectedCitiesSources)
         XCTAssertEqual(router.closeSearchCallsCount, 1)
         
-        XCTAssertEqual(persistentStore.insertCitiesCallsCount, 1)
-        XCTAssertEqual(persistentStore.insertCitiesReceivedCities, expectedCitiesSources)
+        XCTAssertEqual(citySourceService.insertCitiesCallsCount, 1)
+        XCTAssertEqual(citySourceService.insertCitiesReceivedCities, expectedCitiesSources)
         
         subject.select(cityModel: cityModel)
         XCTAssertEqual(citiesService.getCitiesWeatherForCallsCount, 1)
