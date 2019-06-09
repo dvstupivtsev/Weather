@@ -33,6 +33,8 @@ final class SetupPersistentContainerOperation: Operation {
             mutex.signal()
         }
         
+        persistentContainer.viewContext.mergePolicy = NSMergeByPropertyObjectTrumpMergePolicy
+        
         mutex.wait()
         
         return persistentContainer

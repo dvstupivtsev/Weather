@@ -39,6 +39,7 @@ final class CitiesViewModelImplTests: XCTestCase {
         let expectedSources = TestData.citiesSources
         persistentStore.getCitiesWeatherReturnValue = Promise(expectedSources)
         service.getCitiesWeatherForReturnValue = Promise(expectedSources)
+        persistentStore.insertCitiesReturnValue = Promise(())
         
         subject.getData()
         
@@ -55,6 +56,8 @@ final class CitiesViewModelImplTests: XCTestCase {
         XCTAssert(waitForPromises(timeout: 1))
         
         XCTAssertEqual(store.state, expectedSources)
+        XCTAssertEqual(persistentStore.insertCitiesCallsCount, 1)
+        XCTAssertEqual(persistentStore.insertCitiesReceivedCities, expectedSources)
         
         _testViewSource(viewUpdatable.updateViewSourceReceivedViewSource!, expectedCount: 1 + store.state.count, expectedSearchCallsCount: 2)
     }

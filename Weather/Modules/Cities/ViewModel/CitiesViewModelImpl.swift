@@ -47,6 +47,7 @@ final class CitiesViewModelImpl: CitiesViewModel {
             .then(on: .main, weakify(self, type(of: self).addCitiesSources(_:)))
             .then { self.service.getCitiesWeather(for: $0.map { $0.city.id }) }
             .then(on: .main, weakify(self, type(of: self).replaceCitiesSources(_:)))
+            .then(on: .main, weakify(self, type(of: self).insertToPersistentStore(_:)))
             .catch(on: .main, weakify(self, type(of: self).handleCitiesWeatherFailure(error:)))
     }
     
@@ -56,6 +57,10 @@ final class CitiesViewModelImpl: CitiesViewModel {
     
     private func replaceCitiesSources(_ sources: [CitySource]) {
         store.dispatch(action: ReplaceCitiesSourcesAction(citisSources: sources))
+    }
+    
+    private func insertToPersistentStore(_ sources: [CitySource]) -> Promise<Void> {
+        return persistentStore.insert(cities: sources)
     }
     
     private func handleCitiesWeatherFailure(error: Error) {

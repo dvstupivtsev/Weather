@@ -5,7 +5,7 @@
         <attribute name="id" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
-    <entity name="CitySourceEntity" representedClassName="CitySourceEntity" syncable="YES" codeGenerationType="class">
+    <entity name="CitySourceEntity" representedClassName=".CitySourceEntity" syncable="YES" codeGenerationType="class">
         <attribute name="coordinateLat" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="coordinateLon" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -15,9 +15,14 @@
         <attribute name="timeZoneSeconds" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="weatherDescription" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="weatherIcon" optional="YES" attributeType="String" syncable="YES"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
     </entity>
     <elements>
         <element name="CityEntity" positionX="-63" positionY="-18" width="128" height="90"/>
-        <element name="CitySourceEntity" positionX="-54" positionY="18" width="128" height="30"/>
+        <element name="CitySourceEntity" positionX="86.71484375" positionY="-31.59375" width="128" height="178"/>
     </elements>
 </model>
