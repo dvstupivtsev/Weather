@@ -1,6 +1,0 @@
-framework module Weakify {
-  umbrella header "Weakify-umbrella.h"
-
-  export *
-  module * { export * }
-}
