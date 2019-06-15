@@ -2,7 +2,7 @@
 //  Created by Dmitriy Stupivtsev on 26/04/2019.
 //
 
-import Foundation
+import UIKit
 import Promises
 import Weakify
 

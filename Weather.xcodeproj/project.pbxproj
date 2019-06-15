@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -116,6 +116,9 @@
 		5E7498922280AE70007005E4 /* CitiesRouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7498912280AE70007005E4 /* CitiesRouterImpl.swift */; };
 		5E7498942280B06D007005E4 /* CitySearchFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7498932280B06D007005E4 /* CitySearchFactoryImpl.swift */; };
 		5E7498962280B0A4007005E4 /* CityWeatherFactoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E7498952280B0A4007005E4 /* CityWeatherFactoryImpl.swift */; };
+		5E818A8822B5015A007E2B02 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5E818A8722B5015A007E2B02 /* SnapKit */; };
+		5E818A8B22B501B2007E2B02 /* Promises in Frameworks */ = {isa = PBXBuildFile; productRef = 5E818A8A22B501B2007E2B02 /* Promises */; };
+		5E818A8E22B5020A007E2B02 /* Weakify in Frameworks */ = {isa = PBXBuildFile; productRef = 5E818A8D22B5020A007E2B02 /* Weakify */; };
 		5E82B29922A061A600AB0148 /* cities.json in Resources */ = {isa = PBXBuildFile; fileRef = 5E82B29822A061A600AB0148 /* cities.json */; };
 		5E82B29F22A068E700AB0148 /* CitiesParsingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82B29E22A068E700AB0148 /* CitiesParsingService.swift */; };
 		5E82B2A122A068FB00AB0148 /* CitiesParsingServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E82B2A022A068FB00AB0148 /* CitiesParsingServiceImpl.swift */; };
@@ -528,6 +531,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5E818A8E22B5020A007E2B02 /* Weakify in Frameworks */,
+				5E818A8B22B501B2007E2B02 /* Promises in Frameworks */,
+				5E818A8822B5015A007E2B02 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1704,6 +1710,11 @@
 			dependencies = (
 			);
 			name = Weather;
+			packageProductDependencies = (
+				5E818A8722B5015A007E2B02 /* SnapKit */,
+				5E818A8A22B501B2007E2B02 /* Promises */,
+				5E818A8D22B5020A007E2B02 /* Weakify */,
+			);
 			productName = Weather;
 			productReference = 5EB5DA3922732F5D0016A1CB /* Weather.app */;
 			productType = "com.apple.product-type.application";
@@ -1755,6 +1766,11 @@
 				Base,
 			);
 			mainGroup = 5EB5DA3022732F5D0016A1CB;
+			packageReferences = (
+				5E818A8622B5015A007E2B02 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				5E818A8922B501B2007E2B02 /* XCRemoteSwiftPackageReference "promises" */,
+				5E818A8C22B5020A007E2B02 /* XCRemoteSwiftPackageReference "Weakify" */,
+			);
 			productRefGroup = 5EB5DA3A22732F5D0016A1CB /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -2293,6 +2309,51 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		5E818A8622B5015A007E2B02 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SnapKit/SnapKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		5E818A8922B501B2007E2B02 /* XCRemoteSwiftPackageReference "promises" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/promises";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.8;
+			};
+		};
+		5E818A8C22B5020A007E2B02 /* XCRemoteSwiftPackageReference "Weakify" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/klundberg/Weakify";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.5.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		5E818A8722B5015A007E2B02 /* SnapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5E818A8622B5015A007E2B02 /* XCRemoteSwiftPackageReference "SnapKit" */;
+			productName = SnapKit;
+		};
+		5E818A8A22B501B2007E2B02 /* Promises */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5E818A8922B501B2007E2B02 /* XCRemoteSwiftPackageReference "promises" */;
+			productName = Promises;
+		};
+		5E818A8D22B5020A007E2B02 /* Weakify */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5E818A8C22B5020A007E2B02 /* XCRemoteSwiftPackageReference "Weakify" */;
+			productName = Weakify;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		5EBC0ADE2291FB3500AF2095 /* WeatherDataModel.xcdatamodeld */ = {
