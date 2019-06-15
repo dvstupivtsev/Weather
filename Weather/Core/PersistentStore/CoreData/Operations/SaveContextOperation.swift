@@ -22,8 +22,6 @@ final class SaveContextOperation: Operation {
     private func save() {
         guard let context = contextContainer.context, context.hasChanges else { return }
         
-        // TODO: isCancelled
-        
         do {
             try context.save()
         } catch {

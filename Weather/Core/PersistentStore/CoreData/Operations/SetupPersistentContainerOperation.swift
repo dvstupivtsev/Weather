@@ -5,7 +5,6 @@
 import Foundation
 import CoreData
 
-// TODO: isCancelled
 final class SetupPersistentContainerOperation: Operation {
     private let containerName: String
     private let modelName: String

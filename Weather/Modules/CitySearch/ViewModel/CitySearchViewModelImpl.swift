@@ -5,7 +5,6 @@
 import Foundation
 import Promises
 
-// TODO: Tests
 final class CitySearchViewModelImpl: CitySearchViewModel {
     private let service: CitySearchService
     private let executor: CancellableExecutor

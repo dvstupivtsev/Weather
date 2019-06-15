@@ -4,7 +4,6 @@
 
 import UIKit
 
-// TODO: Tests
 final class CitySearchRouterImpl: CitySearchRouter {
     private let transitionable: Transitionable
     
