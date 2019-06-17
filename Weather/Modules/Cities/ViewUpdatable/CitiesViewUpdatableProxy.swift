@@ -10,4 +10,12 @@ final class CitiesViewUpdatableProxy: CitiesViewUpdatable {
     func update(viewSource: CitiesViewSource) {
         wrapped?.update(viewSource: viewSource)
     }
+    
+    func showLoading() {
+        wrapped?.showLoading()
+    }
+    
+    func hideLoading() {
+        wrapped?.hideLoading()
+    }
 }

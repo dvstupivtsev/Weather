@@ -108,6 +108,7 @@
 		5E513CC122B8201C0021F8B9 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E513CBA22B8201B0021F8B9 /* SVIndefiniteAnimatedView.m */; };
 		5E513CC222B8201C0021F8B9 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E513CBC22B8201B0021F8B9 /* SVProgressHUD.m */; };
 		5E513CC322B8201C0021F8B9 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E513CBE22B8201B0021F8B9 /* SVRadialGradientLayer.m */; };
+		5E513C9B22B815F50021F8B9 /* LoadingPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E513C9A22B815F50021F8B9 /* LoadingPresentable.swift */; };
 		5E705F0D22A3AF5A0028BE33 /* CheckCountOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E705F0C22A3AF5A0028BE33 /* CheckCountOperation.swift */; };
 		5E705F0F22A3B35C0028BE33 /* FetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E705F0E22A3B35C0028BE33 /* FetchOperation.swift */; };
 		5E705F1222A3D6E80028BE33 /* CitySearchServiceDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E705F1122A3D6E80028BE33 /* CitySearchServiceDecorator.swift */; };
@@ -383,6 +384,7 @@
 		5E513CBC22B8201B0021F8B9 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		5E513CBD22B8201B0021F8B9 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		5E513CBE22B8201B0021F8B9 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
+		5E513C9A22B815F50021F8B9 /* LoadingPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPresentable.swift; sourceTree = "<group>"; };
 		5E705F0C22A3AF5A0028BE33 /* CheckCountOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckCountOperation.swift; sourceTree = "<group>"; };
 		5E705F0E22A3B35C0028BE33 /* FetchOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchOperation.swift; sourceTree = "<group>"; };
 		5E705F1122A3D6E80028BE33 /* CitySearchServiceDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchServiceDecorator.swift; sourceTree = "<group>"; };
@@ -803,6 +805,7 @@
 			isa = PBXGroup;
 			children = (
 				5E44D06D22857FAA00058236 /* ControllerFactory.swift */,
+				5E513C9A22B815F50021F8B9 /* LoadingPresentable.swift */,
 			);
 			path = CommonProtocols;
 			sourceTree = "<group>";
@@ -1911,6 +1914,7 @@
 				5EE5157322933CC2008C3EBF /* CitiesAddStrategy.swift in Sources */,
 				5E043451228DA18E00A96CF7 /* CityModel.swift in Sources */,
 				5E9A15EF22875A0600EFA833 /* TableSectionSource.swift in Sources */,
+				5E513C9B22B815F50021F8B9 /* LoadingPresentable.swift in Sources */,
 				5EA0A499227DF7CF00558BE3 /* Aliases.swift in Sources */,
 				5E97B8A62274BA4400DB39EE /* BaseViewController.swift in Sources */,
 				5EBC0AD52291E4DB00AF2095 /* CoreDataStore.swift in Sources */,

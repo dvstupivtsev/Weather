@@ -6,6 +6,6 @@ import Foundation
 
 // TODO: present error
 // sourcery: AutoMockable
-protocol CitiesViewUpdatable: AnyObject {
+protocol CitiesViewUpdatable: AnyObject, LoadingPresentable {
     func update(viewSource: CitiesViewSource)
 }

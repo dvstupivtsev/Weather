@@ -24,7 +24,6 @@ final class CitiesViewController: BaseViewController<CitiesView> {
         super.viewDidLoad()
         
         customView.registerViews(with: CitiesReusableViewRegistrationDirector())
-        
         viewModel.getData()
     }
 }
