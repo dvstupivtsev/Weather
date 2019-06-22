@@ -18,6 +18,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         let router = WindowRouter(controllerFactory: pageContainerFactory)
         window.map(router.setRoot(window:))
         
+        SVProgressHUD.setDefaultStyle(.dark)
+        
         return true
     }
     

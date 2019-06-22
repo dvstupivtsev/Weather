@@ -36,6 +36,7 @@
 		5E0F26F02286E1790093BB48 /* DateFormatter_ExtensionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E44D0B92286D5BF00058236 /* DateFormatter_ExtensionTests.swift */; };
 		5E0F26F5228713500093BB48 /* ForecastService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F26F4228713500093BB48 /* ForecastService.swift */; };
 		5E0F26FD228714400093BB48 /* ForecastServiceImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E0F26FC228714400093BB48 /* ForecastServiceImpl.swift */; };
+		5E19978522BE33C300199205 /* LoadingPresentableProxyTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E19978422BE33C300199205 /* LoadingPresentableProxyTests.swift */; };
 		5E2594162289BBE500B7C8C2 /* DisabledCollectionSelectionBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2594152289BBE500B7C8C2 /* DisabledCollectionSelectionBehaviorTests.swift */; };
 		5E2594192289BC6D00B7C8C2 /* DisabledTableSelectionBehaviorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E2594182289BC6D00B7C8C2 /* DisabledTableSelectionBehaviorTests.swift */; };
 		5E25941C2289BF8F00B7C8C2 /* TableReusableViewRegistrator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E25941B2289BF8F00B7C8C2 /* TableReusableViewRegistrator.swift */; };
@@ -103,12 +104,13 @@
 		5E4D427E22AC4E0300D1023E /* CitiesServiceFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D427D22AC4E0300D1023E /* CitiesServiceFactory.swift */; };
 		5E4D428122ACCDEB00D1023E /* CitySourceService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D428022ACCDEB00D1023E /* CitySourceService.swift */; };
 		5E4D428522ACD22600D1023E /* ReplaceCitiesSourcesAction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E4D428422ACD22600D1023E /* ReplaceCitiesSourcesAction.swift */; };
+		5E513C9B22B815F50021F8B9 /* LoadingPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E513C9A22B815F50021F8B9 /* LoadingPresentable.swift */; };
 		5E513CBF22B8201C0021F8B9 /* SVProgressHUD.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 5E513CB722B8201A0021F8B9 /* SVProgressHUD.bundle */; };
 		5E513CC022B8201C0021F8B9 /* SVProgressAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E513CB822B8201B0021F8B9 /* SVProgressAnimatedView.m */; };
 		5E513CC122B8201C0021F8B9 /* SVIndefiniteAnimatedView.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E513CBA22B8201B0021F8B9 /* SVIndefiniteAnimatedView.m */; };
 		5E513CC222B8201C0021F8B9 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E513CBC22B8201B0021F8B9 /* SVProgressHUD.m */; };
 		5E513CC322B8201C0021F8B9 /* SVRadialGradientLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E513CBE22B8201B0021F8B9 /* SVRadialGradientLayer.m */; };
-		5E513C9B22B815F50021F8B9 /* LoadingPresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E513C9A22B815F50021F8B9 /* LoadingPresentable.swift */; };
+		5E513CC622B823090021F8B9 /* LoadingPresentableProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E513CC522B823090021F8B9 /* LoadingPresentableProxy.swift */; };
 		5E705F0D22A3AF5A0028BE33 /* CheckCountOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E705F0C22A3AF5A0028BE33 /* CheckCountOperation.swift */; };
 		5E705F0F22A3B35C0028BE33 /* FetchOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E705F0E22A3B35C0028BE33 /* FetchOperation.swift */; };
 		5E705F1222A3D6E80028BE33 /* CitySearchServiceDecorator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5E705F1122A3D6E80028BE33 /* CitySearchServiceDecorator.swift */; };
@@ -305,6 +307,7 @@
 		5E043469228DC89200A96CF7 /* CitiesLoadingJsonDecoderImplTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesLoadingJsonDecoderImplTests.swift; sourceTree = "<group>"; };
 		5E0F26F4228713500093BB48 /* ForecastService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastService.swift; sourceTree = "<group>"; };
 		5E0F26FC228714400093BB48 /* ForecastServiceImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastServiceImpl.swift; sourceTree = "<group>"; };
+		5E19978422BE33C300199205 /* LoadingPresentableProxyTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPresentableProxyTests.swift; sourceTree = "<group>"; };
 		5E2594152289BBE500B7C8C2 /* DisabledCollectionSelectionBehaviorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledCollectionSelectionBehaviorTests.swift; sourceTree = "<group>"; };
 		5E2594182289BC6D00B7C8C2 /* DisabledTableSelectionBehaviorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisabledTableSelectionBehaviorTests.swift; sourceTree = "<group>"; };
 		5E25941B2289BF8F00B7C8C2 /* TableReusableViewRegistrator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableReusableViewRegistrator.swift; sourceTree = "<group>"; };
@@ -373,6 +376,7 @@
 		5E4D427D22AC4E0300D1023E /* CitiesServiceFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitiesServiceFactory.swift; sourceTree = "<group>"; };
 		5E4D428022ACCDEB00D1023E /* CitySourceService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySourceService.swift; sourceTree = "<group>"; };
 		5E4D428422ACD22600D1023E /* ReplaceCitiesSourcesAction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReplaceCitiesSourcesAction.swift; sourceTree = "<group>"; };
+		5E513C9A22B815F50021F8B9 /* LoadingPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPresentable.swift; sourceTree = "<group>"; };
 		5E513CB322B81F450021F8B9 /* Weather-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Weather-Bridging-Header.h"; sourceTree = "<group>"; };
 		5E513CB522B8201A0021F8B9 /* SVProgressHUD-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SVProgressHUD-Prefix.pch"; sourceTree = "<group>"; };
 		5E513CB622B8201A0021F8B9 /* SVProgressAnimatedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVProgressAnimatedView.h; sourceTree = "<group>"; };
@@ -384,7 +388,7 @@
 		5E513CBC22B8201B0021F8B9 /* SVProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVProgressHUD.m; sourceTree = "<group>"; };
 		5E513CBD22B8201B0021F8B9 /* SVRadialGradientLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SVRadialGradientLayer.h; sourceTree = "<group>"; };
 		5E513CBE22B8201B0021F8B9 /* SVRadialGradientLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SVRadialGradientLayer.m; sourceTree = "<group>"; };
-		5E513C9A22B815F50021F8B9 /* LoadingPresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPresentable.swift; sourceTree = "<group>"; };
+		5E513CC522B823090021F8B9 /* LoadingPresentableProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingPresentableProxy.swift; sourceTree = "<group>"; };
 		5E705F0C22A3AF5A0028BE33 /* CheckCountOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckCountOperation.swift; sourceTree = "<group>"; };
 		5E705F0E22A3B35C0028BE33 /* FetchOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchOperation.swift; sourceTree = "<group>"; };
 		5E705F1122A3D6E80028BE33 /* CitySearchServiceDecorator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CitySearchServiceDecorator.swift; sourceTree = "<group>"; };
@@ -688,6 +692,7 @@
 			children = (
 				5E2594172289BC5500B7C8C2 /* TableView */,
 				5E2594142289BBD900B7C8C2 /* CollectionView */,
+				5E19978422BE33C300199205 /* LoadingPresentableProxyTests.swift */,
 			);
 			path = CustomViews;
 			sourceTree = "<group>";
@@ -804,8 +809,8 @@
 		5E44D06C22857F9C00058236 /* CommonProtocols */ = {
 			isa = PBXGroup;
 			children = (
+				5E513CC422B822FC0021F8B9 /* LoadingPresentable */,
 				5E44D06D22857FAA00058236 /* ControllerFactory.swift */,
-				5E513C9A22B815F50021F8B9 /* LoadingPresentable.swift */,
 			);
 			path = CommonProtocols;
 			sourceTree = "<group>";
@@ -981,6 +986,15 @@
 				5E513CBE22B8201B0021F8B9 /* SVRadialGradientLayer.m */,
 			);
 			path = SVProgressHUD;
+			sourceTree = "<group>";
+		};
+		5E513CC422B822FC0021F8B9 /* LoadingPresentable */ = {
+			isa = PBXGroup;
+			children = (
+				5E513C9A22B815F50021F8B9 /* LoadingPresentable.swift */,
+				5E513CC522B823090021F8B9 /* LoadingPresentableProxy.swift */,
+			);
+			path = LoadingPresentable;
 			sourceTree = "<group>";
 		};
 		5E705F1922A5BA380028BE33 /* PersistentStore */ = {
@@ -2005,6 +2019,7 @@
 				5EBC0A64228F46EA00AF2095 /* CancellableExecutor.swift in Sources */,
 				5E705F1D22A5BA6D0028BE33 /* CitySourcePersistentStoreImpl.swift in Sources */,
 				5E513CC022B8201C0021F8B9 /* SVProgressAnimatedView.m in Sources */,
+				5E513CC622B823090021F8B9 /* LoadingPresentableProxy.swift in Sources */,
 				5E39FC23227F5F5A004F3137 /* WindowRouter.swift in Sources */,
 				5E97B8A92274BAA000DB39EE /* CitiesView.swift in Sources */,
 				5E74988A2280A9B4007005E4 /* TableSelectionBehavior.swift in Sources */,
@@ -2063,6 +2078,7 @@
 				5E9A15E52287347300EFA833 /* Forecast+Extension.swift in Sources */,
 				5E2594202289C32F00B7C8C2 /* DailyForecastReusableViewRegistrationDirectorTests.swift in Sources */,
 				5E44D0792285C8B500058236 /* XCTAssert+Functions.swift in Sources */,
+				5E19978522BE33C300199205 /* LoadingPresentableProxyTests.swift in Sources */,
 				5E44D0842285CE5500058236 /* WeatherPageContainerFactoryTests.swift in Sources */,
 				5E04341B228C63AF00A96CF7 /* TableCellProviderMock.swift in Sources */,
 				5EBC0AAB229135F800AF2095 /* CitySearchRouterImplTests.swift in Sources */,

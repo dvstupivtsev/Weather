@@ -11,27 +11,31 @@ final class CitiesAddStrategy: CitySearchSelectStrategy {
     private let citySourceService: CitySourceService
     private let citiesService: CitiesService
     private let router: CitiesAddRouter
+    private let loadingPresentable: LoadingPresentable
     
     init(
         store: Store<[CitySource]>,
         citySourceService: CitySourceService,
         citiesService: CitiesService,
-        router: CitiesAddRouter
+        router: CitiesAddRouter,
+        loadingPresentable: LoadingPresentable
     ) {
         self.store = store
         self.citySourceService = citySourceService
         self.citiesService = citiesService
         self.router = router
+        self.loadingPresentable = loadingPresentable
     }
     
     func select(cityModel: CityModel) {
         if store.state.contains(where: { $0.city.id == cityModel.id }) {
             router.closeSearch()
         } else {
+            loadingPresentable.showLoading()
             citiesService.getCitiesWeather(for: [cityModel.id])
-                .then(weakify(self, type(of: self).store(citiesSources:)))
-                .then(weakify(self, type(of: self).closeSearch))
-                .catch(weakify(self, type(of: self).present(error:)))
+                .then(on: .main, weakify(self, type(of: self).store(citiesSources:)))
+                .then(on: .main, weakify(self, type(of: self).closeSearch))
+                .catch(on: .main, weakify(self, type(of: self).present(error:)))
         }
     }
     
@@ -41,10 +45,12 @@ final class CitiesAddStrategy: CitySearchSelectStrategy {
     }
     
     private func closeSearch() {
+        loadingPresentable.hideLoading()
         router.closeSearch()
     }
     
     private func present(error: Error) {
+        loadingPresentable.hideLoading()
         router.present(error: error)
     }
 }

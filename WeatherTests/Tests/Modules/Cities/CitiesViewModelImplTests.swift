@@ -43,12 +43,14 @@ final class CitiesViewModelImplTests: XCTestCase {
         
         subject.getData()
         
+        XCTAssertEqual(viewUpdatable.showLoadingCallsCount, 1)
         XCTAssertEqual(persistentStore.getCitiesWeatherCallsCount, 1)
         
         _testViewSource(viewUpdatable.updateViewSourceReceivedViewSource!, expectedCount: 1, expectedSearchCallsCount: 1)
         
         XCTAssert(waitForPromises(timeout: 1))
         
+        XCTAssertEqual(viewUpdatable.hideLoadingCallsCount, 1)
         XCTAssertEqual(store.state, expectedSources)
         
         XCTAssertEqual(service.getCitiesWeatherForReceivedCitiesIds, [1, 2])
@@ -71,7 +73,7 @@ final class CitiesViewModelImplTests: XCTestCase {
         let headerCellModel = cellsModels.first as? CitiesHeaderTableCell.Model
         
         headerCellModel?.onAddAction()
-        XCTAssertEqual(router.openCitySearchSelectStrategyTransitionableProxyCallsCount, expectedSearchCallsCount)
+        XCTAssertEqual(router.openCitySearchSelectStrategyTransitionableProxyLoadingPresentableProxyCallsCount, expectedSearchCallsCount)
         
         if expectedCount > 1 {
             let expectedCityCellModelsSource = TestData.citiesSources.map {
@@ -113,10 +115,12 @@ final class CitiesViewModelImplTests: XCTestCase {
         
         _testViewSource(viewUpdatable.updateViewSourceReceivedViewSource!, expectedCount: 1, expectedSearchCallsCount: 1)
         
+        XCTAssertEqual(viewUpdatable.showLoadingCallsCount, 1)
         XCTAssertEqual(persistentStore.getCitiesWeatherCallsCount, 1)
         
         XCTAssert(waitForPromises(timeout: 1))
         
+        XCTAssertEqual(viewUpdatable.hideLoadingCallsCount, 1)
         _testViewSource(viewUpdatable.updateViewSourceReceivedViewSource!, expectedCount: 1, expectedSearchCallsCount: 2)
         // TODO: Test when there will be implementation
     }

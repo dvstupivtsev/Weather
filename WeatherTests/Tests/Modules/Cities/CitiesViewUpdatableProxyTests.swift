@@ -6,18 +6,32 @@ import XCTest
 @testable import Weather
 
 final class CitiesViewUpdatableProxyTests: XCTestCase {
-    func testUpdate() {
-        let subject = CitiesViewUpdatableProxy()
-        let wrapped = CitiesViewUpdatableMock()
+    var subject: CitiesViewUpdatableProxy!
+    var wrapped: CitiesViewUpdatableMock!
+    
+    override func setUp() {
+        super.setUp()
         
-        let viewSource = CitiesViewSource(cellProviderConvertibles: [])
-        subject.update(viewSource: viewSource)
-        XCTAssertNil(wrapped.updateViewSourceReceivedViewSource)
-        XCTAssertEqual(wrapped.updateViewSourceCallsCount, 0)
+        subject = CitiesViewUpdatableProxy()
         
+        wrapped = CitiesViewUpdatableMock()
         subject.wrapped = wrapped
+    }
+    
+    func testUpdate() {
+        let viewSource = CitiesViewSource(cellProviderConvertibles: [])
         subject.update(viewSource: viewSource)
         XCTAssertNotNil(wrapped.updateViewSourceReceivedViewSource)
         XCTAssertEqual(wrapped.updateViewSourceCallsCount, 1)
+    }
+    
+    func testShowLoading() {
+        subject.showLoading()
+        XCTAssertEqual(wrapped.showLoadingCallsCount, 1)
+    }
+    
+    func testHideLoading() {
+        subject.hideLoading()
+        XCTAssertEqual(wrapped.hideLoadingCallsCount, 1)
     }
 }

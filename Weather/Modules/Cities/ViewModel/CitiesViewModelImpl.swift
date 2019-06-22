@@ -71,21 +71,25 @@ final class CitiesViewModelImpl: CitiesViewModel {
     }
     
     private func handleCitiesWeatherFailure(error: Error) {
+        viewUpdatable.hideLoading()
         // TODO: Impl
     }
     
     private func openCitySearch() {
         let transitionable = TransitionableProxy()
+        let loadingPresentable = LoadingPresentableProxy()
         let strategy = CitiesAddStrategy(
             store: store,
             citySourceService: persistentStore,
             citiesService: service,
-            router: CitiesAddRouterImpl(transitionable: transitionable)
+            router: CitiesAddRouterImpl(transitionable: transitionable),
+            loadingPresentable: loadingPresentable
         )
         
         router.openCitySearch(
             selectStrategy: strategy,
-            transitionableProxy: transitionable
+            transitionableProxy: transitionable,
+            loadingPresentableProxy: loadingPresentable
         )
     }
 }

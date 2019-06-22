@@ -4,13 +4,15 @@
 
 import UIKit
 
-protocol LoadingPresentable {
+// sourcery: AutoMockable
+protocol LoadingPresentable: AnyObject {
     func showLoading()
     func hideLoading()
 }
 
 extension LoadingPresentable where Self: UIViewController {
     func showLoading() {
+        // TODO: show in separated window
         SVProgressHUD.show()
     }
     
@@ -18,3 +20,5 @@ extension LoadingPresentable where Self: UIViewController {
         SVProgressHUD.dismiss()
     }
 }
+
+extension UIViewController: LoadingPresentable { }

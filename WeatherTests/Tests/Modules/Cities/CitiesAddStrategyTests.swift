@@ -12,6 +12,7 @@ final class CitiesAddStrategyTests: XCTestCase {
     private var citySourceService: CitySourceServiceMock!
     private var citiesService: CitiesServiceMock!
     private var router: CitiesAddRouterMock!
+    private var loadingPresentable: LoadingPresentableMock!
     
     override func setUp() {
         super.setUp()
@@ -20,11 +21,13 @@ final class CitiesAddStrategyTests: XCTestCase {
         citySourceService = .init()
         citiesService = .init()
         router = .init()
+        loadingPresentable = .init()
         subject = CitiesAddStrategy(
             store: store,
             citySourceService: citySourceService,
             citiesService: citiesService,
-            router: router
+            router: router,
+            loadingPresentable: loadingPresentable
         )
     }
 
@@ -36,12 +39,14 @@ final class CitiesAddStrategyTests: XCTestCase {
         
         let cityModel = CityModel.model1
         subject.select(cityModel: cityModel)
+        XCTAssertEqual(loadingPresentable.showLoadingCallsCount, 1)
         XCTAssertEqual(citiesService.getCitiesWeatherForCallsCount, 1)
         XCTAssertEqual(citiesService.getCitiesWeatherForReceivedCitiesIds, [cityModel.id])
         
         XCTAssert(waitForPromises(timeout: 1))
         
         XCTAssertEqual(store.state, expectedCitiesSources)
+        XCTAssertEqual(loadingPresentable.hideLoadingCallsCount, 1)
         XCTAssertEqual(router.closeSearchCallsCount, 1)
         
         XCTAssertEqual(citySourceService.insertCitiesCallsCount, 1)
@@ -59,6 +64,7 @@ final class CitiesAddStrategyTests: XCTestCase {
         
         let cityModel = CityModel.model1
         subject.select(cityModel: cityModel)
+        XCTAssertEqual(loadingPresentable.showLoadingCallsCount, 1)
         XCTAssertEqual(citiesService.getCitiesWeatherForCallsCount, 1)
         XCTAssertEqual(citiesService.getCitiesWeatherForReceivedCitiesIds, [cityModel.id])
         
@@ -67,6 +73,7 @@ final class CitiesAddStrategyTests: XCTestCase {
         XCTAssertEmpty(store.state)
         XCTAssertEqual(router.closeSearchCallsCount, 0)
         
+        XCTAssertEqual(loadingPresentable.hideLoadingCallsCount, 1)
         XCTAssertEqual(router.presentErrorCallsCount, 1)
         XCTAssertIdentical(router.presentErrorReceivedError, to: expected)
     }

@@ -38,7 +38,7 @@ final class CitiesRouterImpl: CitiesRouter {
         pageController.setCurrentControllerIndex(1)
     }
     
-    func openCitySearch(selectStrategy: CitySearchSelectStrategy, transitionableProxy: TransitionableProxy) {
+    func openCitySearch(selectStrategy: CitySearchSelectStrategy, transitionableProxy: TransitionableProxy, loadingPresentableProxy: LoadingPresentableProxy) {
         guard let pageController = pageController else { return }
         
         let citySearchController = citySearchFactory.create(
@@ -46,6 +46,7 @@ final class CitiesRouterImpl: CitiesRouter {
             persistentStore: persistentStore
         )
         transitionableProxy.wrapped = citySearchController
+        loadingPresentableProxy.wrapped = citySearchController
         
         pageController.present(citySearchController, animated: true)
     }
