@@ -7,9 +7,7 @@ import UIKit
 final class WeatherPageContainerViewController: BaseViewController<WeatherPageContainerView> {
     private let pageViewController: PageViewController
     
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return .lightContent
-    }
+    override var preferredStatusBarStyle: UIStatusBarStyle { .lightContent }
     
     init(pageViewController: PageViewController) {
         self.pageViewController = pageViewController

@@ -6,6 +6,6 @@ import Foundation
 
 final class CitiesWeatherJsonDecoderImpl: JsonDecoder<CitiesResponse>, CitiesWeatherJsonDecoder {
     func parse(data: Data?) throws -> [City] {
-        return try parse(data: data).cities
+        try parse(data: data).cities
     }
 }

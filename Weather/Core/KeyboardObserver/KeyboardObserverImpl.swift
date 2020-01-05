@@ -4,6 +4,7 @@
 
 import UIKit
 import Weakify
+import Prelude
 
 final class KeyboardObserverImpl: KeyboardObserver {
     private let notificationObserver: NotificationObserver
@@ -35,14 +36,14 @@ final class KeyboardObserverImpl: KeyboardObserver {
         let verticalOffset = frameEnd.height
         let value = info?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber
         
-        let duration = value.map { $0.doubleValue } ?? 0
+        let duration = value.map(^\.doubleValue) ?? 0
         
         onChange?(KeyboardInfo(verticalOffset: verticalOffset, duration: duration))
     }
     
     private func handleKeyboardWillHide(notification: Notification) {
         let value = notification.userInfo?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber
-        let duration = value.map { $0.doubleValue } ?? 0
+        let duration = value.map(^\.doubleValue) ?? 0
         
         onChange?(KeyboardInfo(verticalOffset: 0, duration: duration))
     }

@@ -4,6 +4,7 @@
 
 import Foundation
 import Promises
+import Prelude
 
 final class CityForecastAdapter: CityForecastService {
     private let forecastService: ForecastService
@@ -13,7 +14,7 @@ final class CityForecastAdapter: CityForecastService {
     }
     
     func getForecast(for cityId: Int) -> Promise<CityForecast> {
-        return forecastService.getForecast(for: cityId)
+        forecastService.getForecast(for: cityId)
             .then(createCityForecast(from:))
     }
     
@@ -36,17 +37,17 @@ final class CityForecastAdapter: CityForecastService {
                 return newDict
             }
             .map {
-                let minTemp = $0.value.map { $0.temperature.min }.min() ?? 0
-                let maxTemp = $0.value.map { $0.temperature.max }.max() ?? 0
-                let averageTemp = $0.value.map { $0.temperature.value }.reduce(0, +) / Double($0.value.count)
+                let value = $0.value.map(^\.temperature.value).reduce(0, +) / Double($0.value.count)
+                let min = $0.value.map(^\.temperature.min).min() ?? 0
+                let max = $0.value.map(^\.temperature.max).max() ?? 0
                 return Forecast(
                     date: $0.key,
-                    temperature: Forecast.Temperature(value: averageTemp, min: minTemp, max: maxTemp),
+                    temperature: Forecast.Temperature(value: value, min: min, max: max),
                     // TODO: replace icons with day icons
-                    weather: $0.value.map { $0.weather }.first ?? []
+                    weather: $0.value.map(^\.weather).first ?? []
                 )
             }
-            .sorted { $0.date < $1.date }
+            .sorted(by: their(^\.date, <))
         
         return CityForecast(hourlyForecast: firstEightForecasts, dailyForecast: dailyForecast)
     }

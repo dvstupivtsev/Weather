@@ -11,7 +11,7 @@ protocol NumberFormatterProtocol {
 
 extension NumberFormatter: NumberFormatterProtocol {
     func string(from value: Double) -> String {
-        return string(from: NSNumber(value: value)) ?? ""
+        string(from: NSNumber(value: value)) ?? ""
     }
 }
 

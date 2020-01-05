@@ -6,30 +6,30 @@ import UIKit
 
 struct Font {
     static func regular(ofSize size: CGFloat) -> UIFont {
-        return .systemFont(ofSize: size, weight: .regular)
+        .systemFont(ofSize: size, weight: .regular)
     }
     
     static var regular11: UIFont {
-        return regular(ofSize: 11)
+        regular(ofSize: 11)
     }
     
     static var regular13: UIFont {
-        return regular(ofSize: 13)
+        regular(ofSize: 13)
     }
     
     static var regular15: UIFont {
-        return regular(ofSize: 15)
+        regular(ofSize: 15)
     }
     
     static var regular17: UIFont {
-        return regular(ofSize: 17)
+        regular(ofSize: 17)
     }
     
     static var regular30: UIFont {
-        return regular(ofSize: 30)
+        regular(ofSize: 30)
     }
     
     static var regular90: UIFont {
-        return regular(ofSize: 90)
+        regular(ofSize: 90)
     }
 }

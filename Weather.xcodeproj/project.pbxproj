@@ -645,13 +645,6 @@
 			path = Mocks;
 			sourceTree = "<group>";
 		};
-		5E043449228D9FC800A96CF7 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Resources;
-			sourceTree = "<group>";
-		};
 		5E04344C228DA07500A96CF7 /* Service */ = {
 			isa = PBXGroup;
 			children = (
@@ -1056,7 +1049,6 @@
 			children = (
 				5EBC0A99229116EC00AF2095 /* Router */,
 				5E04344C228DA07500A96CF7 /* Service */,
-				5E043449228D9FC800A96CF7 /* Resources */,
 				5E04340F228C5DBB00A96CF7 /* ViewUpdatable */,
 				5E259431228A04CD00B7C8C2 /* ViewModel */,
 				5E25942E228A048F00B7C8C2 /* View */,

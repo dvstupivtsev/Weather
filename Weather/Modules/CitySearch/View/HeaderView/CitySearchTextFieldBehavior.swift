@@ -13,7 +13,7 @@ final class CitySearchTextFieldBehavior: NSObject, TextFieldBehavior {
     
     func setup(textField: UITextField) {
         textField.delegate = self
-        textField.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
+        textField.addTarget(self, action: #selector(textFieldDidChange), for: .editingChanged)
     }
     
     @objc

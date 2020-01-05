@@ -5,6 +5,7 @@
 import UIKit
 import Promises
 import Weakify
+import Prelude
 
 final class CityWeatherViewModelImpl: CityWeatherViewModel {
     private let citySource: CitySource
@@ -24,7 +25,7 @@ final class CityWeatherViewModelImpl: CityWeatherViewModel {
     }
     
     private func createMainSource() -> CityWeatherViewSource.Main {
-        return CityWeatherViewSource.Main(
+        CityWeatherViewSource.Main(
             cityName: citySource.city.name.uppercased(),
             temperatue: formatter.formatTemperatureValue(citySource.city.main.temp),
             degreeSymbol: "°",
@@ -34,20 +35,20 @@ final class CityWeatherViewModelImpl: CityWeatherViewModel {
     }
     
     func getForecastSource() -> Promise<CityWeatherViewSource.Forecast> {
-        return forecastService
+        forecastService
             .getForecast(for: citySource.city.id)
             .then(createForecastViewSource(with:))
     }
     
     private func createForecastViewSource(with forecast: CityForecast) -> CityWeatherViewSource.Forecast {
-        return CityWeatherViewSource.Forecast(
+        CityWeatherViewSource.Forecast(
             hourlyProviderConvertibles: createHourlyForecastCellProviders(with: forecast.hourlyForecast),
             dailyProviderConvertibles: createDailyForecastCellProviders(with: forecast.dailyForecast)
         )
     }
     
     private func createHourlyForecastCellProviders(with forecast: [Forecast]) -> [CollectionCellProviderConvertible] {
-        return forecast.map {
+        forecast.map {
             HourlyForecastCollectionCell.Model(
                 dateString: formatter.formatHourlyForecastDate($0.date),
                 temperatureString: formatter.formatForecastTemperature($0.temperature.value),
@@ -57,7 +58,7 @@ final class CityWeatherViewModelImpl: CityWeatherViewModel {
     }
     
     private func createDailyForecastCellProviders(with forecast: [Forecast]) -> [TableCellProviderConvertible] {
-        return forecast.map {
+        forecast.map {
             DailyForecastTableCell.Model(
                 weekdayTitle: formatter.formatForecastWeekday($0.date),
                 dateString: formatter.formatForecastDate($0.date),

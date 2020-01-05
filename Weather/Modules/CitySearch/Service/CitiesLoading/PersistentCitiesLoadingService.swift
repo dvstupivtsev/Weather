@@ -29,8 +29,8 @@ final class PersistentCitiesLoadingService: CitiesLoadingService {
     }
     
     private func handleCount(_ count: Int) -> Promise<Void> {
-        guard count == 0 else { return Promise(()) }
-        
-        return service.getCities().then(persistentStore.insert(citiesModels:))
+        count == 0
+            ? service.getCities().then(persistentStore.insert(citiesModels:))
+            : Promise(())
     }
 }

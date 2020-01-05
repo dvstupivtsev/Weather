@@ -17,7 +17,7 @@ final class CitiesParsingServiceImpl: CitiesParsingService {
     }
     
     func getCities() -> Promise<[CityModel]> {
-        return Promise<[CityModel]>(on: .global(qos: .userInteractive), decodeCities)
+        Promise<[CityModel]>(on: .global(qos: .userInteractive), decodeCities)
     }
     
     private func decodeCities() throws -> [CityModel] {

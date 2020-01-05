@@ -4,6 +4,7 @@
 
 import Foundation
 import CoreData
+import Prelude
 
 final class SetupPersistentContainerOperation: Operation {
     private let containerName: String
@@ -40,9 +41,8 @@ final class SetupPersistentContainerOperation: Operation {
     }
     
     private func createPersistentContainer() -> NSPersistentContainer? {
-        let managedObjectModel = Bundle.main.url(forResource: modelName, withExtension: "momd")
+        Bundle.main.url(forResource: modelName, withExtension: "momd")
             .flatMap(NSManagedObjectModel.init(contentsOf:))
-        
-        return managedObjectModel.map { NSPersistentContainer(name: containerName, managedObjectModel: $0) }
+            .map { NSPersistentContainer(name: containerName, managedObjectModel: $0) }
     }
 }

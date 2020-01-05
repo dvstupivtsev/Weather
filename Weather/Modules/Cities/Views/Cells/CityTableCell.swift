@@ -84,7 +84,7 @@ extension CityTableCell {
         let weatherIcon: UIImage?
         
         var cellProvider: TableCellProvider {
-            return GenericTableCellProvider<Model, CityTableCell>(model: self)
+            GenericTableCellProvider<Model, CityTableCell>(model: self)
         }
     }
 }

@@ -3,10 +3,11 @@
 //
 
 import UIKit
+import Prelude
 
 struct CitiesReusableViewRegistrationDirector: TableReusableViewRegistrationDirector {
     func registerViews(using registrator: TableReusableViewRegistrator) {
-        let classes = [CityTableCell.self, CitiesHeaderTableCell.self]
-        classes.forEach(registrator.register(type:))
+        [CityTableCell.self, CitiesHeaderTableCell.self]
+            .forEach(registrator.register(type:))
     }
 }

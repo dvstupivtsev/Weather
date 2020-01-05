@@ -15,11 +15,11 @@ final class CitySearchServiceDecorator: CitySearchService {
     }
     
     func numberOfCities() -> Promise<Int> {
-        return persistentStore.numberOfCities()
+        persistentStore.numberOfCities()
     }
     
     func insert(citiesModels: [CityModel]) -> Promise<Void> {
-        return persistentStore.insert(citiesModels: citiesModels)
+        persistentStore.insert(citiesModels: citiesModels)
     }
     
     func getCities(filteredWith name: String, limit: Int) -> Promise<[CityModel]> {

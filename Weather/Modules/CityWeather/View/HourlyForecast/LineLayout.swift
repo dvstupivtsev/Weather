@@ -19,9 +19,7 @@ final class LineLayout: UICollectionViewFlowLayout {
         fatalError("init(coder:) has not been implemented")
     }
     
-    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool {
-        return true
-    }
+    override func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool { true }
     
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint) -> CGPoint {
         var offsetAdjustment = CGFloat.greatestFiniteMagnitude

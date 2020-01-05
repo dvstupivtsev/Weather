@@ -30,26 +30,26 @@ final class CityWeatherFormatterImpl: CityWeatherFormatter {
     }
     
     func formatTemperatureValue(_ value: Double) -> String {
-        return numberFormatter.string(from: value)
+        numberFormatter.string(from: value)
     }
     
     func formatCurrentDate(_ date: Date) -> String {
-        return currentDateFormatter.string(from: date)
+        currentDateFormatter.string(from: date)
     }
     
     func formatForecastDate(_ date: Date) -> String {
-        return forecastDateFormatter.string(from: date)
+        forecastDateFormatter.string(from: date)
     }
     
     func formatForecastWeekday(_ date: Date) -> String {
-        return forecastWeekdayDateFormatter.string(from: date)
+        forecastWeekdayDateFormatter.string(from: date)
     }
     
     func formatHourlyForecastDate(_ date: Date) -> String {
-        return hourlyForecastDateFormatter.string(from: date)
+        hourlyForecastDateFormatter.string(from: date)
     }
     
     func formatForecastTemperature(_ value: Double) -> String {
-        return temperatureFormatter.string(from: value)
+        temperatureFormatter.string(from: value)
     }
 }

@@ -14,22 +14,22 @@ final class TableDataSource: NSObject & UITableViewDataSource & UITableViewDeleg
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return sources.count
+        sources.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sources[section].cellProviderConvertibles.count
+        sources[section].cellProviderConvertibles.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return sources[indexPath.section]
+        sources[indexPath.section]
             .cellProviderConvertibles[indexPath.row]
             .cellProvider
             .cell(for: tableView, at: indexPath)
     }
     
     func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
-        return selectionBehavior.shouldSelect(at: indexPath)
+        selectionBehavior.shouldSelect(at: indexPath)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -41,6 +41,6 @@ final class TableDataSource: NSObject & UITableViewDataSource & UITableViewDeleg
 
 extension TableDataSource {
     static var empty: TableDataSource {
-        return TableDataSource(sources: [], selectionBehavior: DisabledTableSelectionBehavior())
+        TableDataSource(sources: [], selectionBehavior: DisabledTableSelectionBehavior())
     }
 }

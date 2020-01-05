@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import Prelude
 
 // TODO: move calls to app manager or smth else for testing
 final class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -14,9 +15,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate {
         _ application: UIApplication,
         didFinishLaunchingWithOptions options: [UIApplication.LaunchOptionsKey: Any]?
     ) -> Bool {
-        let pageContainerFactory = WeatherPageContainerFactory(persistentStore: persistentStore)
-        let router = WindowRouter(controllerFactory: pageContainerFactory)
-        window.map(router.setRoot(window:))
+        let router = persistentStore
+            |> WeatherPageContainerFactory.init(persistentStore:)
+            >>> WindowRouter.init(controllerFactory:)
+        router.setRoot(window:) <*> window
         
         SVProgressHUD.setDefaultStyle(.dark)
         

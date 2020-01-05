@@ -4,6 +4,7 @@
 
 import Foundation
 import Promises
+import Prelude
 
 final class CitySearchViewModelImpl: CitySearchViewModel {
     private let service: CitySearchService
@@ -17,13 +18,9 @@ final class CitySearchViewModelImpl: CitySearchViewModel {
     
     private lazy var foundCitiesSources = [CellSource]()
     
-    var textEditingDelegate: TextEditingDelegate {
-        return self
-    }
+    var textEditingDelegate: TextEditingDelegate { self }
     
-    var selectionBehavior: TableSelectionBehavior {
-        return self
-    }
+    var selectionBehavior: TableSelectionBehavior { self }
     
     init(
         service: CitySearchService,
@@ -51,19 +48,19 @@ extension CitySearchViewModelImpl: TextEditingDelegate {
         executor.execute(delay: delay) { [weak self] operation in
             self?.getCities(for: text ?? "")
                 .then(on: .main) {
-                    guard let self = self, operation.isCancelled == false else { return }
-                    self.viewUpdatable.update(providerConvertibles: $0)
+                    guard operation.isCancelled == false else { return }
+                    self?.viewUpdatable.update(providerConvertibles: $0)
                 }
                 .catch(on: .main) {
-                    guard let self = self, operation.isCancelled == false else { return }
-                    self.handleError($0)
+                    guard operation.isCancelled == false else { return }
+                    self?.handleError($0)
                 }
         }
     }
     
     private func getCities(for name: String) -> Promise<[TableCellProviderConvertible]> {
         // TODO: show loading
-        return service.getCities(filteredWith: name, limit: filterLimit)
+        service.getCities(filteredWith: name, limit: filterLimit)
             .then(createProviderConvertibles(from:))
     }
     
@@ -77,7 +74,7 @@ extension CitySearchViewModelImpl: TextEditingDelegate {
             }
         }
         
-        return foundCitiesSources.map { $0.providerConvertible }
+        return foundCitiesSources.map(^\.providerConvertible)
     }
     
     private func handleError(_ error: Error) {
@@ -87,9 +84,7 @@ extension CitySearchViewModelImpl: TextEditingDelegate {
 }
 
 extension CitySearchViewModelImpl: TableSelectionBehavior {
-    func shouldSelect(at indexPath: IndexPath) -> Bool {
-        return true
-    }
+    func shouldSelect(at indexPath: IndexPath) -> Bool { true }
     
     func select(at indexPath: IndexPath) {
         foundCitiesSources[indexPath.row].onSelectAction()

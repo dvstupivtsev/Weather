@@ -4,6 +4,8 @@
 
 import Foundation
 import Promises
+import Overture
+import Prelude
 
 final class CitySourcePersistentStore: CitySourceService {
     private let persistentStore: PersistentStore
@@ -15,7 +17,7 @@ final class CitySourcePersistentStore: CitySourceService {
     }
     
     func insert(cities: [CitySource]) -> Promise<Void> {
-        return Promise(on: .global()) { fulfill, _ in
+        Promise(on: .global()) { fulfill, _ in
             let keyValuePairsArray: [[String: Any]] = cities.map {
                 [
                     ModelKeys.id: $0.city.id,

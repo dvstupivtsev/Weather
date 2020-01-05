@@ -32,7 +32,7 @@ final class CheckCountOperation: Operation {
         
         context.performAndWait {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-            fetchRequest.resultType = NSFetchRequestResultType.countResultType
+            fetchRequest.resultType = .countResultType
             
             do {
                 count = try context.count(for: fetchRequest)

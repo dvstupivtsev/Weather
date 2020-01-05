@@ -5,6 +5,7 @@
 import UIKit
 import Promises
 import Weakify
+import Prelude
 
 final class CitiesViewModelImpl: CitiesViewModel {
     // TODO: Inject with protocol
@@ -17,9 +18,7 @@ final class CitiesViewModelImpl: CitiesViewModel {
     
     private lazy var cellsSources = [CellSource]()
     
-    var selectionBehavior: TableSelectionBehavior {
-        return self
-    }
+    var selectionBehavior: TableSelectionBehavior { self }
     
     init(
         store: Store<[CitySource]>,
@@ -99,7 +98,7 @@ extension CitiesViewModelImpl: StoreSubscriber {
     
     func update(state: [CitySource]) {
         var cellsSources: [CellSource] = state.map { citySource in
-            return CellSource(
+            CellSource(
                 // TODO: Add country name to title
                 cellProviderConvertible: CityTableCell.Model(
                     title: citySource.city.name,
@@ -126,7 +125,7 @@ extension CitiesViewModelImpl: StoreSubscriber {
         
         viewUpdatable.update(
             viewSource: CitiesViewSource(
-                cellProviderConvertibles: cellsSources.map { $0.cellProviderConvertible }
+                cellProviderConvertibles: cellsSources.map(^\.cellProviderConvertible)
             )
         )
     }
@@ -134,7 +133,7 @@ extension CitiesViewModelImpl: StoreSubscriber {
 
 extension CitiesViewModelImpl: TableSelectionBehavior {
     func shouldSelect(at indexPath: IndexPath) -> Bool {
-        return cellsSources[indexPath.row].onSelectAction != nil
+        cellsSources[indexPath.row].onSelectAction != nil
     }
     
     func select(at indexPath: IndexPath) {

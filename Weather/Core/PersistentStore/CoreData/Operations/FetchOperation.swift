@@ -4,6 +4,8 @@
 
 import Foundation
 import CoreData
+import Prelude
+import Optics
 
 final class FetchOperation: Operation {
     private let contextContainer: ManagedObjectContextContainer
@@ -38,9 +40,9 @@ final class FetchOperation: Operation {
         
         context.performAndWait {
             let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
-            fetchRequest.resultType = NSFetchRequestResultType.dictionaryResultType
-            fetchRequest.predicate = predicate
-            fetchRequest.fetchLimit = fetchLimit
+                |> \.resultType .~ .dictionaryResultType
+                |> \.predicate .~ predicate
+                |> \.fetchLimit .~ fetchLimit
             
             do {
                 keyValuePairsArray = try context.fetch(fetchRequest) as? [[String : Any]] ?? []

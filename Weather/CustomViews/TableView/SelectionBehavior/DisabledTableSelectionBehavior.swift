@@ -5,6 +5,6 @@
 import Foundation
 
 struct DisabledTableSelectionBehavior: TableSelectionBehavior {
-    func shouldSelect(at indexPath: IndexPath) -> Bool { return false }
+    func shouldSelect(at indexPath: IndexPath) -> Bool { false }
     func select(at indexPath: IndexPath) { }
 }

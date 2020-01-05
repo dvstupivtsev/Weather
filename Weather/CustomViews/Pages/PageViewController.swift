@@ -102,9 +102,10 @@ final class PageViewController: PageViewControllerType {
         _ pageViewController: UIPageViewController,
         viewControllerBefore viewController: UIViewController
     ) -> UIViewController? {
-        return controllers.firstIndex(of: viewController).flatMap { index in
-            guard index > 0 else { return nil }
-            return controllers[index - 1]
+        controllers.firstIndex(of: viewController).flatMap { index in
+            index > 0
+                ? controllers[index - 1]
+                : nil
         }
     }
     
@@ -112,9 +113,10 @@ final class PageViewController: PageViewControllerType {
         _ pageViewController: UIPageViewController,
         viewControllerAfter viewController: UIViewController
     ) -> UIViewController? {
-        return controllers.firstIndex(of: viewController).flatMap { index in
-            guard index < controllers.count - 1 else { return nil }
-            return controllers[index + 1]
+        controllers.firstIndex(of: viewController).flatMap { index in
+            index < controllers.count - 1
+                ? controllers[index + 1]
+                : nil
         }
     }
 }

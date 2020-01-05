@@ -63,7 +63,7 @@ extension CitiesHeaderTableCell {
         let onAddAction: Action
         
         var cellProvider: TableCellProvider {
-            return GenericTableCellProvider<Model, CitiesHeaderTableCell>(model: self)
+            GenericTableCellProvider<Model, CitiesHeaderTableCell>(model: self)
         }
     }
 }

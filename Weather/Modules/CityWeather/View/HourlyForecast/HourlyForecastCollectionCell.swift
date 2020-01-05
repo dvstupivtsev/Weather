@@ -79,7 +79,7 @@ extension HourlyForecastCollectionCell {
         let iconImage: UIImage
         
         var provider: CollectionCellProvider {
-            return GenericCollectionCellProvider<Model, HourlyForecastCollectionCell>(model: self)
+            GenericCollectionCellProvider<Model, HourlyForecastCollectionCell>(model: self)
         }
     }
 }

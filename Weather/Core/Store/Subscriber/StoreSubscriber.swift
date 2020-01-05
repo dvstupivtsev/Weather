@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import Prelude
 
 protocol StoreSubscriber: AnyStoreSubscriber {
     associatedtype StateType
@@ -12,8 +13,6 @@ protocol StoreSubscriber: AnyStoreSubscriber {
 
 extension StoreSubscriber {
     func _update(state: Any) {
-        guard let state = state as? StateType else { return }
-        
-        update(state: state)
+        update <*> (state as? StateType)
     }
 }

@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import Prelude
 
 final class Store<StateType> {
     private(set) var state: StateType

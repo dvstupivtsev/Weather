@@ -6,6 +6,6 @@ import Foundation
 
 final class ForecastJsonDecoderImpl: JsonDecoder<Forecasts>, ForecastJsonDecoder {
     func parse(data: Data?) throws -> [Forecast] {
-        return try parse(data: data).list
+        try parse(data: data).list
     }
 }

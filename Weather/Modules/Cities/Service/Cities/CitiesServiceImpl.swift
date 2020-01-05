@@ -4,6 +4,7 @@
 
 import Foundation
 import Promises
+import Prelude
 
 final class CitiesServiceImpl: CitiesService {
     private let citiesWeatherService: CitiesWeatherService
@@ -20,8 +21,7 @@ final class CitiesServiceImpl: CitiesService {
     }
     
     private func mergeTimeZones(with cities: [City]) -> Promise<[CitySource]> {
-        let coordinates = cities.map { $0.coordinate }
-        return timeZoneService.getTimeZones(from: coordinates).then {
+        timeZoneService.getTimeZones(from: cities.map(^\.coordinate)).then {
             zip(cities, $0).map(CitySource.init(city:timeZone:))
         }
     }

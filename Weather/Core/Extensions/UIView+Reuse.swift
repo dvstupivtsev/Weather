@@ -10,6 +10,6 @@ protocol ReusableView {
 
 extension UIView: ReusableView {
     static var reuseIdentifier: String {
-        return String(describing: self)
+        String(describing: self)
     }
 }

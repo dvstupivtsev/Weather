@@ -14,22 +14,22 @@ final class CollectionDataSource: NSObject & UICollectionViewDataSource & UIColl
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sources.count
+        sources.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return sources[section].providerConvertibles.count
+        sources[section].providerConvertibles.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        return sources[indexPath.section]
+        sources[indexPath.section]
             .providerConvertibles[indexPath.item]
             .provider
             .cell(for: collectionView, at: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return selectionBehavior.shouldSelect(at: indexPath)
+        selectionBehavior.shouldSelect(at: indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -41,6 +41,6 @@ final class CollectionDataSource: NSObject & UICollectionViewDataSource & UIColl
 
 extension CollectionDataSource {
     static var empty: CollectionDataSource {
-        return CollectionDataSource(sources: [], selectionBehavior: DisabledCollectionSelectionBehavior())
+        CollectionDataSource(sources: [], selectionBehavior: DisabledCollectionSelectionBehavior())
     }
 }

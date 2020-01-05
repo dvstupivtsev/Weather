@@ -6,7 +6,7 @@ import UIKit
 
 extension UIView {
     func addSubviews(_ subviews: UIView...) {
-        subviews.forEach(addSubview(_:))
+        subviews.forEach(addSubview)
     }
     
     func insertFirst(subview: UIView) {
@@ -14,16 +14,13 @@ extension UIView {
     }
     
     func roundCorners(_ corners: UIRectCorner = .allCorners, radius: CGFloat) {
-        let maskPath = UIBezierPath(
-            roundedRect: bounds,
-            byRoundingCorners: corners,
-            cornerRadii: CGSize(width: radius, height: radius)
-        )
-        
-        let maskLayer = CAShapeLayer()
-        maskLayer.frame = bounds
-        maskLayer.path = maskPath.cgPath
-        
-        layer.mask = maskLayer
+        layer.mask = setup(CAShapeLayer()) {
+            $0.frame = bounds
+            $0.path = UIBezierPath(
+                roundedRect: bounds,
+                byRoundingCorners: corners,
+                cornerRadii: CGSize(edge: radius)
+            ).cgPath
+        }
     }
 }

@@ -5,7 +5,5 @@
 import Foundation
 
 struct NotCancelled: Cancellable {
-    var isCancelled: Bool {
-        return false
-    }
+    let isCancelled = false
 }
