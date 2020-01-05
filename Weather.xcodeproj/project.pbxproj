@@ -266,6 +266,17 @@
 		5EE5157322933CC2008C3EBF /* CitiesAddStrategy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE5157222933CC2008C3EBF /* CitiesAddStrategy.swift */; };
 		5EE5157522933E2C008C3EBF /* CitiesAddRouterImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE5157422933E2C008C3EBF /* CitiesAddRouterImpl.swift */; };
 		5EE51577229340A4008C3EBF /* CitiesAddRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EE51576229340A4008C3EBF /* CitiesAddRouter.swift */; };
+		FFFBA30823C2322900885392 /* Reader in Frameworks */ = {isa = PBXBuildFile; productRef = FFFBA30723C2322900885392 /* Reader */; };
+		FFFBA30A23C2322900885392 /* ValidationNearSemiring in Frameworks */ = {isa = PBXBuildFile; productRef = FFFBA30923C2322900885392 /* ValidationNearSemiring */; };
+		FFFBA30C23C2322900885392 /* Either in Frameworks */ = {isa = PBXBuildFile; productRef = FFFBA30B23C2322900885392 /* Either */; };
+		FFFBA30E23C2322900885392 /* State in Frameworks */ = {isa = PBXBuildFile; productRef = FFFBA30D23C2322900885392 /* State */; };
+		FFFBA31023C2322900885392 /* Prelude in Frameworks */ = {isa = PBXBuildFile; productRef = FFFBA30F23C2322900885392 /* Prelude */; };
+		FFFBA31223C2322900885392 /* Optics in Frameworks */ = {isa = PBXBuildFile; productRef = FFFBA31123C2322900885392 /* Optics */; };
+		FFFBA31423C2322900885392 /* Frp in Frameworks */ = {isa = PBXBuildFile; productRef = FFFBA31323C2322900885392 /* Frp */; };
+		FFFBA31623C2322900885392 /* Tuple in Frameworks */ = {isa = PBXBuildFile; productRef = FFFBA31523C2322900885392 /* Tuple */; };
+		FFFBA31823C2322900885392 /* ValidationSemigroup in Frameworks */ = {isa = PBXBuildFile; productRef = FFFBA31723C2322900885392 /* ValidationSemigroup */; };
+		FFFBA31A23C2322900885392 /* Writer in Frameworks */ = {isa = PBXBuildFile; productRef = FFFBA31923C2322900885392 /* Writer */; };
+		FFFBA31D23C2328F00885392 /* Overture in Frameworks */ = {isa = PBXBuildFile; productRef = FFFBA31C23C2328F00885392 /* Overture */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -553,9 +564,20 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFFBA31A23C2322900885392 /* Writer in Frameworks */,
+				FFFBA31623C2322900885392 /* Tuple in Frameworks */,
+				FFFBA31023C2322900885392 /* Prelude in Frameworks */,
+				FFFBA31423C2322900885392 /* Frp in Frameworks */,
+				FFFBA31D23C2328F00885392 /* Overture in Frameworks */,
 				5E818A8E22B5020A007E2B02 /* Weakify in Frameworks */,
+				FFFBA30823C2322900885392 /* Reader in Frameworks */,
+				FFFBA31823C2322900885392 /* ValidationSemigroup in Frameworks */,
 				5E818A8B22B501B2007E2B02 /* Promises in Frameworks */,
+				FFFBA30A23C2322900885392 /* ValidationNearSemiring in Frameworks */,
+				FFFBA30E23C2322900885392 /* State in Frameworks */,
 				5E818A8822B5015A007E2B02 /* SnapKit in Frameworks */,
+				FFFBA31223C2322900885392 /* Optics in Frameworks */,
+				FFFBA30C23C2322900885392 /* Either in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1774,6 +1796,17 @@
 				5E818A8722B5015A007E2B02 /* SnapKit */,
 				5E818A8A22B501B2007E2B02 /* Promises */,
 				5E818A8D22B5020A007E2B02 /* Weakify */,
+				FFFBA30723C2322900885392 /* Reader */,
+				FFFBA30923C2322900885392 /* ValidationNearSemiring */,
+				FFFBA30B23C2322900885392 /* Either */,
+				FFFBA30D23C2322900885392 /* State */,
+				FFFBA30F23C2322900885392 /* Prelude */,
+				FFFBA31123C2322900885392 /* Optics */,
+				FFFBA31323C2322900885392 /* Frp */,
+				FFFBA31523C2322900885392 /* Tuple */,
+				FFFBA31723C2322900885392 /* ValidationSemigroup */,
+				FFFBA31923C2322900885392 /* Writer */,
+				FFFBA31C23C2328F00885392 /* Overture */,
 			);
 			productName = Weather;
 			productReference = 5EB5DA3922732F5D0016A1CB /* Weather.app */;
@@ -1830,6 +1863,8 @@
 				5E818A8622B5015A007E2B02 /* XCRemoteSwiftPackageReference "SnapKit" */,
 				5E818A8922B501B2007E2B02 /* XCRemoteSwiftPackageReference "promises" */,
 				5E818A8C22B5020A007E2B02 /* XCRemoteSwiftPackageReference "Weakify" */,
+				FFFBA30623C2322900885392 /* XCRemoteSwiftPackageReference "swift-prelude" */,
+				FFFBA31B23C2328F00885392 /* XCRemoteSwiftPackageReference "swift-overture" */,
 			);
 			productRefGroup = 5EB5DA3A22732F5D0016A1CB /* Products */;
 			projectDirPath = "";
@@ -2405,6 +2440,22 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/klundberg/Weakify";
 			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		FFFBA30623C2322900885392 /* XCRemoteSwiftPackageReference "swift-prelude" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-prelude";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		FFFBA31B23C2328F00885392 /* XCRemoteSwiftPackageReference "swift-overture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-overture";
+			requirement = {
 				kind = upToNextMajorVersion;
 				minimumVersion = 0.5.0;
 			};
@@ -2426,6 +2477,61 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5E818A8C22B5020A007E2B02 /* XCRemoteSwiftPackageReference "Weakify" */;
 			productName = Weakify;
+		};
+		FFFBA30723C2322900885392 /* Reader */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFFBA30623C2322900885392 /* XCRemoteSwiftPackageReference "swift-prelude" */;
+			productName = Reader;
+		};
+		FFFBA30923C2322900885392 /* ValidationNearSemiring */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFFBA30623C2322900885392 /* XCRemoteSwiftPackageReference "swift-prelude" */;
+			productName = ValidationNearSemiring;
+		};
+		FFFBA30B23C2322900885392 /* Either */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFFBA30623C2322900885392 /* XCRemoteSwiftPackageReference "swift-prelude" */;
+			productName = Either;
+		};
+		FFFBA30D23C2322900885392 /* State */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFFBA30623C2322900885392 /* XCRemoteSwiftPackageReference "swift-prelude" */;
+			productName = State;
+		};
+		FFFBA30F23C2322900885392 /* Prelude */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFFBA30623C2322900885392 /* XCRemoteSwiftPackageReference "swift-prelude" */;
+			productName = Prelude;
+		};
+		FFFBA31123C2322900885392 /* Optics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFFBA30623C2322900885392 /* XCRemoteSwiftPackageReference "swift-prelude" */;
+			productName = Optics;
+		};
+		FFFBA31323C2322900885392 /* Frp */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFFBA30623C2322900885392 /* XCRemoteSwiftPackageReference "swift-prelude" */;
+			productName = Frp;
+		};
+		FFFBA31523C2322900885392 /* Tuple */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFFBA30623C2322900885392 /* XCRemoteSwiftPackageReference "swift-prelude" */;
+			productName = Tuple;
+		};
+		FFFBA31723C2322900885392 /* ValidationSemigroup */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFFBA30623C2322900885392 /* XCRemoteSwiftPackageReference "swift-prelude" */;
+			productName = ValidationSemigroup;
+		};
+		FFFBA31923C2322900885392 /* Writer */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFFBA30623C2322900885392 /* XCRemoteSwiftPackageReference "swift-prelude" */;
+			productName = Writer;
+		};
+		FFFBA31C23C2328F00885392 /* Overture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FFFBA31B23C2328F00885392 /* XCRemoteSwiftPackageReference "swift-overture" */;
+			productName = Overture;
 		};
 /* End XCSwiftPackageProductDependency section */
 
