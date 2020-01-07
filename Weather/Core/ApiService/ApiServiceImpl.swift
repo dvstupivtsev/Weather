@@ -4,6 +4,7 @@
 
 import Foundation
 import Promises
+import Prelude
 
 final class ApiServiceImpl: ApiService {
     private let urlService: UrlService
@@ -16,21 +17,17 @@ final class ApiServiceImpl: ApiService {
     }
     
     func execute(request: ApiServiceRequest) -> Promise<Data?> {
-        guard let url = createURL(request: request) else {
-            return Promise(NSError.common)
-        }
-        
-        return urlService.dataTask(with: url)
+        createURL(request: request)
+            .apply(urlService.dataTask)
+            ?? Promise(NSError.common)
     }
     
     
     private func createURL(request: ApiServiceRequest) -> URL? {
-        let joinedParams = request.parameters
-            .map { "\($0.key)=\($0.value)" }
-            .joined(separator: "&")
-        
-        let urlString = "\(baseURLString)\(request.name)?\(joinedParams)&appid=\(apiKey)"
-        
-        return URL(string: urlString)
+        request.parameters
+            |> map { "\($0.key)=\($0.value)" }
+            >>> joined(separator: "&")
+            >>> { "\(self.baseURLString)\(request.name)?\($0)&appid=\(self.apiKey)" }
+            >>> URL.init
     }
 }

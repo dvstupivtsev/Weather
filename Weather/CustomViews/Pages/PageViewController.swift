@@ -3,6 +3,7 @@
 //
 
 import UIKit
+import Prelude
 
 typealias PageViewControllerType = BaseViewController<PageView>
     & UIPageViewControllerDataSource
@@ -82,9 +83,9 @@ final class PageViewController: PageViewControllerType {
         _ pageViewController: UIPageViewController,
         willTransitionTo pendingViewControllers: [UIViewController]
     ) {
-        guard let index = pendingViewControllers.first.flatMap({ controllers.firstIndex(of: $0) }) else { return }
-        
-        currentIndex = index
+        pendingViewControllers.first.flatMap(controllers.firstIndex).do {
+            currentIndex = $0
+        }
     }
     
     func pageViewController(

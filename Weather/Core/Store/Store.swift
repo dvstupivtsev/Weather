@@ -18,14 +18,14 @@ final class Store<StateType> {
     
     func dispatch(action: AnyStoreAction) {
         guard let state = action._modify(state: state) as? StateType else { return }
-        
+
         self.state = state
         notifySubscribers()
     }
     
     func subscribe(_ subscriber: AnyStoreSubscriber) {
         guard subscribers.contains(where: { $0 === subscriber }) == false else { return }
-        
+
         subscribers.append(subscriber)
     }
     

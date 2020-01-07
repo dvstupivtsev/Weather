@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import Prelude
 
 protocol StoreAction: AnyStoreAction {
     associatedtype StateType
@@ -13,7 +14,7 @@ protocol StoreAction: AnyStoreAction {
 extension StoreAction {
     func _modify(state: Any) -> Any {
         guard let typedState = state as? StateType else { return state }
-        
+
         return modify(state: typedState)
     }
 }
