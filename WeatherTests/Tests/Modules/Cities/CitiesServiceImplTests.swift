@@ -44,7 +44,7 @@ final class CitiesServiceImplTests: XCTestCase {
         XCTAssert(waitForPromises(timeout: 1))
         
         XCTAssertEqual(timeZoneService.getTimeZonesFromCallsCount, 1)
-        XCTAssertEqual(timeZoneService.getTimeZonesFromReceivedCoordinates, response.map { $0.coordinate })
+        XCTAssertEqual(timeZoneService.getTimeZonesFromReceivedCoordinates, response.map(^\.coordinate))
         
         let citiesSources = createCitiesSources(with: response, timeZones: timeZones)
         XCTAssertEqual(receivedValue, citiesSources)

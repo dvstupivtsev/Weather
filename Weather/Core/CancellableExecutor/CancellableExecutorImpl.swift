@@ -3,6 +3,7 @@
 //
 
 import Foundation
+import Prelude
 
 final class CancellableExecutorImpl: CancellableExecutor {
     private let queue: DispatchQueue
@@ -21,7 +22,7 @@ final class CancellableExecutorImpl: CancellableExecutor {
         
         self.workItem = workItem
         
-        workItem.map { queue.asyncAfter(deadline: .now() + .milliseconds(delay), execute: $0) }
+        workItem.do { queue.asyncAfter(deadline: .now() + .milliseconds(delay), execute: $0) }
     }
     
     func cancel() {

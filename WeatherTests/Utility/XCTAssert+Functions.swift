@@ -3,6 +3,7 @@
 //
 
 import XCTest
+import Prelude
 
 func XCTAssert(
     _ expression: @autoclosure () throws -> Any?,
@@ -49,8 +50,8 @@ func XCTAssertEmpty<Type: Collection>(
 
 private func createMessage(with messages: String...) -> String {
     return messages
-        .filter { $0.isEmpty == false }
-        .joined(separator: " - ")
+        |> filter((!) <<< ^\.isEmpty)
+        >>> joined(separator: " - ")
 }
 
 func XCTAssertNotEmpty<Type: Collection>(

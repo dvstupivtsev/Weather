@@ -5,6 +5,7 @@
 import Foundation
 import Promises
 import CoreLocation
+import Prelude
 
 final class TimeZoneServiceImpl: TimeZoneService {
     func getTimeZones(from coordinates: [Coordinate]) -> Promise<[TimeZone]> {
@@ -13,7 +14,7 @@ final class TimeZoneServiceImpl: TimeZoneService {
                 let location = CLLocation(latitude: coordinate.lat, longitude: coordinate.lon)
                 
                 CLGeocoder().reverseGeocodeLocation(location) { placemars, error in
-                    if let timeZone = placemars?.first.flatMap({ $0.timeZone }) {
+                    if let timeZone = placemars?.first.flatMap(^\.timeZone) {
                         fulfill(timeZone)
                     } else {
                         fulfill(.current)

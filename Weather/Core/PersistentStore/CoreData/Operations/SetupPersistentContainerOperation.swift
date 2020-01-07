@@ -42,7 +42,7 @@ final class SetupPersistentContainerOperation: Operation {
     
     private func createPersistentContainer() -> NSPersistentContainer? {
         Bundle.main.url(forResource: modelName, withExtension: "momd")
-            .flatMap(NSManagedObjectModel.init(contentsOf:))
-            .map { NSPersistentContainer(name: containerName, managedObjectModel: $0) }
+            .flatMap(NSManagedObjectModel.init)
+            .map(curry(NSPersistentContainer.init) <| containerName)
     }
 }
