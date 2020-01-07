@@ -5,6 +5,7 @@
 import XCTest
 @testable import Weather
 @testable import Promises
+import Prelude
 
 final class CityForecastAdapterTests: XCTestCase {
     private let cityId = 123
@@ -74,7 +75,7 @@ final class CityForecastAdapterTests: XCTestCase {
 
 private extension CityForecastAdapterTests {
     var forecastWithSomeSameDays: [Forecast] {
-        return [
+        [
             Forecast(
                 date: DateFormatter.MM_dd_yyyy_hh_mm_a.date(from: "05/13/2019 08:22 AM")!,
                 temperature: Forecast.Temperature(value: 1, min: 2, max: 3),
@@ -119,11 +120,11 @@ private extension CityForecastAdapterTests {
     }
     
     var expectedHourlyForecastFromSomeSameDays: [Forecast] {
-        return forecastWithSomeSameDays
+        forecastWithSomeSameDays
     }
     
     var expectedDailyForecastFromSomeSameDays: [Forecast] {
-        return [
+        [
             Forecast(
                 date: DateFormatter.MM_dd_yyyy_hh_mm_a.date(from: "05/13/2019 08:22 AM")!.startOfDay,
                 temperature: Forecast.Temperature(value: 2.5, min: 2, max: 6),
@@ -143,7 +144,7 @@ private extension CityForecastAdapterTests {
     }
     
     var forecastWithDifferentDays: [Forecast] {
-        return [
+        [
             Forecast(
                 date: DateFormatter.MM_dd_yyyy_hh_mm_a.date(from: "05/13/2019 08:22 AM")!,
                 temperature: Forecast.Temperature(value: 1, min: 2, max: 3),
@@ -193,12 +194,12 @@ private extension CityForecastAdapterTests {
     }
     
     var expectedHourlyForecastFromDifferentDays: [Forecast] {
-        return Array(forecastWithDifferentDays[0..<8])
+        forecastWithDifferentDays[0..<8] |> Array.init
     }
     
     var expectedDailyForecastFromDifferentDays: [Forecast] {
-        return forecastWithDifferentDays.map {
-            return Forecast(
+        forecastWithDifferentDays.map {
+            Forecast(
                 date: $0.date.startOfDay,
                 temperature: $0.temperature,
                 weather: $0.weather

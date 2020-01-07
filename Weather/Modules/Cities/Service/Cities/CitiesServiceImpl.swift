@@ -16,7 +16,7 @@ final class CitiesServiceImpl: CitiesService {
     }
     
     func getCitiesWeather(for citiesIds: [Int]) -> Promise<[CitySource]> {
-        return citiesWeatherService.getWeather(for: citiesIds.map(String.init))
+        citiesWeatherService.getWeather(for: citiesIds.map(String.init))
             .then(mergeTimeZones(with:))
     }
     

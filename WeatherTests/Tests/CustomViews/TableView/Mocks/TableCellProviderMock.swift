@@ -9,6 +9,6 @@ struct TableCellProviderMock: TableCellProvider {
     static let cell = UITableViewCell()
     
     func cell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        return TableCellProviderMock.cell
+        TableCellProviderMock.cell
     }
 }

@@ -43,11 +43,11 @@ final class CitiesWeatherJsonDecoderImplTests: XCTestCase {
 
 private extension CitiesWeatherJsonDecoderImplTests {
     var expectedCities: [City] {
-        return [.city1, .city2]
+        [.city1, .city2]
     }
     
     var expectedResponse: CitiesResponse {
-        return CitiesResponse(cities: expectedCities)
+        CitiesResponse(cities: expectedCities)
     }
     
     var validJson: Data {
@@ -57,6 +57,6 @@ private extension CitiesWeatherJsonDecoderImplTests {
     }
     
     var invalidJson: Data {
-        return Data()
+        Data()
     }
 }

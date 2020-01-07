@@ -31,13 +31,13 @@ final class CoreDataStore {
 
 extension CoreDataStore: ManagedObjectContextContainer {
     var context: NSManagedObjectContext? {
-        return persistentContainer?.viewContext
+        persistentContainer?.viewContext
     }
 }
 
 extension CoreDataStore: PersistentStoreCoordinatorContainer {
     var persistentStoreCoordinator: NSPersistentStoreCoordinator? {
-        return persistentContainer?.persistentStoreCoordinator
+        persistentContainer?.persistentStoreCoordinator
     }
 }
 

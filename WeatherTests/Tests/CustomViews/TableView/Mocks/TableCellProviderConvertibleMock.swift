@@ -9,7 +9,7 @@ struct TableCellProviderConvertibleMock: TableCellProviderConvertible, Equatable
     private let id: Int
     
     var cellProvider: TableCellProvider {
-        return TableCellProviderMock()
+        TableCellProviderMock()
     }
     
     init(id: Int) {
@@ -17,6 +17,6 @@ struct TableCellProviderConvertibleMock: TableCellProviderConvertible, Equatable
     }
     
     static func ==(lhs: TableCellProviderConvertibleMock, rhs: TableCellProviderConvertibleMock) -> Bool {
-        return lhs.id == rhs.id
+        lhs.id == rhs.id
     }
 }

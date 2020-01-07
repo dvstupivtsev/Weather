@@ -7,6 +7,6 @@ import Foundation
 
 extension KeyboardInfo: Equatable {
     public static func == (lhs: KeyboardInfo, rhs: KeyboardInfo) -> Bool {
-        return lhs.verticalOffset == rhs.verticalOffset && lhs.duration == rhs.duration
+        lhs.verticalOffset == rhs.verticalOffset && lhs.duration == rhs.duration
     }
 }

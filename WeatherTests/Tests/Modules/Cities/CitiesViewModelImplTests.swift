@@ -3,6 +3,7 @@
 //
 
 import XCTest
+import Prelude
 @testable import Promises
 @testable import Weather
 
@@ -132,15 +133,16 @@ private extension CitiesViewModelImplTests {
             let cities: [City] = [.city1, .city2]
             let timeZones = [TimeZone.current, TimeZone(secondsFromGMT: 123)!]
             
-            return zip(cities, timeZones)
-                .map(CitySource.init(city:timeZone:))
+            return (cities, timeZones)
+                |> zip
+                >>> map(CitySource.init)
         }()
     }
 }
 
 extension CityTableCell.Model: Equatable {
     public static func == (lhs: CityTableCell.Model, rhs: CityTableCell.Model) -> Bool {
-        return lhs.title == rhs.title
+        lhs.title == rhs.title
             && lhs.temperatureString == rhs.temperatureString
             && lhs.dateTimeString == rhs.dateTimeString
     }
@@ -148,6 +150,6 @@ extension CityTableCell.Model: Equatable {
 
 extension CitiesHeaderTableCell.Model: Equatable {
     public static func == (lhs: CitiesHeaderTableCell.Model, rhs: CitiesHeaderTableCell.Model) -> Bool {
-        return lhs.title == rhs.title
+        lhs.title == rhs.title
     }
 }

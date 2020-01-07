@@ -130,6 +130,6 @@ private extension CitySearchViewModelImplTests {
 
 extension CitySearchCell.Model: Equatable {
     public static func == (lhs: CitySearchCell.Model, rhs: CitySearchCell.Model) -> Bool {
-        return lhs.title == rhs.title
+        lhs.title == rhs.title
     }
 }

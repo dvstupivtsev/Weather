@@ -73,15 +73,15 @@ final class CitiesWeatherServiceImplTests: XCTestCase {
 
 private extension CitiesWeatherServiceImplTests {
     var expectedCities: [City] {
-        return [.city1, .city2]
+        [.city1, .city2]
     }
     
     var citiesIds: [String] {
-        return ["123", "42134", "asdfasd"]
+        ["123", "42134", "asdfasd"]
     }
     
     var request: ApiServiceRequest {
-        return ApiServiceRequest(
+        ApiServiceRequest(
             name: "group",
             parameters: [
                 "id": citiesIds.joined(separator: ","),

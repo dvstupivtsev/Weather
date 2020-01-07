@@ -44,11 +44,11 @@ final class ForecastJsonDecoderImplTests: XCTestCase {
 
 private extension ForecastJsonDecoderImplTests {
     var expectedForecastList: [Forecast] {
-        return [.forecast1, .forecast2]
+        [.forecast1, .forecast2]
     }
     
     var expectedForecasts: Forecasts {
-        return Forecasts(list: expectedForecastList)
+        Forecasts(list: expectedForecastList)
     }
     
     var validJson: Data {
@@ -58,6 +58,6 @@ private extension ForecastJsonDecoderImplTests {
     }
     
     var invalidJson: Data {
-        return Data()
+        Data()
     }
 }

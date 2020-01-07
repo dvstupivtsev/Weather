@@ -56,6 +56,6 @@ private struct ColorComponents: Equatable, CustomDebugStringConvertible {
     let alpha: CGFloat
     
     var debugDescription: String {
-        return "red: \(red), green: \(green), blue: \(blue), alpha: \(alpha)"
+        "red: \(red), green: \(green), blue: \(blue), alpha: \(alpha)"
     }
 }

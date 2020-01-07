@@ -66,7 +66,7 @@ final class CitiesViewModelImpl: CitiesViewModel {
     }
     
     private func insertToPersistentStore(_ sources: [CitySource]) -> Promise<Void> {
-        return persistentStore.insert(cities: sources)
+        persistentStore.insert(cities: sources)
     }
     
     private func handleCitiesWeatherFailure(error: Error) {

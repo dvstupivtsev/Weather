@@ -72,14 +72,14 @@ final class ApiServiceImplTests: XCTestCase {
 
 private extension ApiServiceImplTests {
     private var validRequest: ApiServiceRequest {
-        return ApiServiceRequest(name: "TestName", parameters: ["TestKey": "TestValue"])
+        ApiServiceRequest(name: "TestName", parameters: ["TestKey": "TestValue"])
     }
     
     private var invalidRequest: ApiServiceRequest {
-        return ApiServiceRequest(name: " TestName", parameters: ["TestKey": "TestValue"])
+        ApiServiceRequest(name: " TestName", parameters: ["TestKey": "TestValue"])
     }
     
     private var validUrlString: String {
-        return "https://api.openweathermap.org/data/2.5/TestName?TestKey=TestValue&appid=95ff45a9380c75f19a9a9ef20502dac9"
+        "https://api.openweathermap.org/data/2.5/TestName?TestKey=TestValue&appid=95ff45a9380c75f19a9a9ef20502dac9"
     }
 }

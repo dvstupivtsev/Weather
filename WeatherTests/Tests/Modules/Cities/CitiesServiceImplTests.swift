@@ -3,6 +3,7 @@
 //
 
 import XCTest
+import Prelude
 @testable import Promises
 @testable import Weather
 
@@ -75,19 +76,20 @@ final class CitiesServiceImplTests: XCTestCase {
 
 private extension CitiesServiceImplTests {
     var citiesIds: [Int] {
-        return [123, 456]
+        [123, 456]
     }
     
     var response: [City] {
-        return [.city1, .city2]
+        [.city1, .city2]
     }
     
     var timeZones: [TimeZone] {
-        return [.current, TimeZone(secondsFromGMT: 123)!]
+        [.current, TimeZone(secondsFromGMT: 123)!]
     }
     
     func createCitiesSources(with cities: [City], timeZones: [TimeZone]) -> [CitySource] {
-        return zip(cities, timeZones)
-            .map(CitySource.init(city:timeZone:))
+        (cities, timeZones)
+            |> zip
+            >>> map(CitySource.init)
     }
 }

@@ -34,14 +34,14 @@ final class CitiesLoadingJsonDecoderImplTests: XCTestCase {
 
 private extension CitiesLoadingJsonDecoderImplTests {
     var expectedModels: [CityModel] {
-        return [.model1, .model2, .model3]
+        [.model1, .model2, .model3]
     }
 
     var validJson: Data {
-        return try! JSONEncoder().encode(expectedModels)
+        try! JSONEncoder().encode(expectedModels)
     }
 
     var invalidJson: Data {
-        return Data()
+        Data()
     }
 }

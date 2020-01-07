@@ -16,8 +16,6 @@ extension MeasurementFormatter: MeasurementFormatterProtocol {
     }
     
     func string(from doubleCelsius: Double) -> String {
-        return string(
-            from: Measurement(value: doubleCelsius, unit: UnitTemperature.celsius)
-        )
+        string(from: Measurement(value: doubleCelsius, unit: UnitTemperature.celsius))
     }
 }

@@ -13,7 +13,7 @@ final class UrlSessionAdapter: UrlService {
     }
     
     func dataTask(with url: URL) -> Promise<Data?> {
-        return Promise(on: .global(qos: .userInteractive)) { fulfill, reject in
+        Promise(on: .global(qos: .userInteractive)) { fulfill, reject in
             self.session.dataTask(with: url) { data, response, error in
                 if let error = error {
                     reject(error)

@@ -52,7 +52,7 @@ final class CitiesPersistentStore: CitySearchService {
     }
     
     private func map(keyValuePairsArray: [[String: Any]]) -> [CityModel] {
-        return keyValuePairsArray.compactMap {
+        keyValuePairsArray.compactMap {
             CityModel.init <*> zip(
                 $0[Keys.id] as? Int,
                 $0[Keys.name] as? String,

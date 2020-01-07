@@ -83,14 +83,14 @@ final class CityWeatherViewModelImplTests: XCTestCase {
 
 private extension CityWeatherViewModelImplTests {
     var cityForecast: CityForecast {
-        return CityForecast(
+        CityForecast(
             hourlyForecast: [Forecast.forecast1, .forecast2],
             dailyForecast: [Forecast.forecast2, .forecast1]
         )
     }
     
     var expectedHourlyForecastCellsModels: [HourlyForecastCollectionCell.Model] {
-        return [
+        [
             HourlyForecastCollectionCell.Model(
                 dateString: formatter.formatHourlyForecastDateReturnValue,
                 temperatureString: formatter.formatForecastTemperatureReturnValue,
@@ -105,7 +105,7 @@ private extension CityWeatherViewModelImplTests {
     }
     
     var expectedDailyForecastCellsModels: [DailyForecastTableCell.Model] {
-        return [
+        [
             DailyForecastTableCell.Model(
                 weekdayTitle: formatter.formatForecastWeekdayReturnValue,
                 dateString: formatter.formatForecastDateReturnValue,
@@ -126,7 +126,7 @@ private extension CityWeatherViewModelImplTests {
 
 extension DailyForecastTableCell.Model: Equatable {
     public static func == (lhs: DailyForecastTableCell.Model, rhs: DailyForecastTableCell.Model) -> Bool {
-        return lhs.weekdayTitle == rhs.weekdayTitle
+        lhs.weekdayTitle == rhs.weekdayTitle
             && lhs.dateString == rhs.dateString
             && lhs.maxTemperatureString == rhs.maxTemperatureString
             && lhs.minTemperatureString == rhs.minTemperatureString
@@ -135,7 +135,7 @@ extension DailyForecastTableCell.Model: Equatable {
 
 extension HourlyForecastCollectionCell.Model: Equatable {
     public static func == (lhs: HourlyForecastCollectionCell.Model, rhs: HourlyForecastCollectionCell.Model) -> Bool {
-        return lhs.temperatureString == rhs.temperatureString
+        lhs.temperatureString == rhs.temperatureString
             && lhs.dateString == rhs.dateString
     }
 }

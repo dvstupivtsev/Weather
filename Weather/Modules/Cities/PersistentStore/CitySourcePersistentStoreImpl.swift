@@ -39,7 +39,7 @@ final class CitySourcePersistentStore: CitySourceService {
     }
     
     func getCitiesWeather() -> Promise<[CitySource]> {
-        return Promise(on: .global()) { [weak self] fulfill, reject in
+        Promise(on: .global()) { [weak self] fulfill, reject in
             guard let self = self else { return }
             self.persistentStore.keyValuePairs(for: self.entityName, predicate: nil, limit: self.limit) {
                 let models = self.map(keyValuePairsArray: $0)
@@ -49,7 +49,7 @@ final class CitySourcePersistentStore: CitySourceService {
     }
     
     private func map(keyValuePairsArray: [[String: Any]]) -> [CitySource] {
-        return keyValuePairsArray.compactMap {
+        keyValuePairsArray.compactMap {
             guard
                 let id = $0["id"] as? Int,
                 let name = $0["name"] as? String,

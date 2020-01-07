@@ -82,6 +82,6 @@ private struct FontComponents: Equatable, CustomDebugStringConvertible {
     let weight: UIFont.Weight
     
     var debugDescription: String {
-        return "size: \(size), weight: \(weight)"
+        "size: \(size), weight: \(weight)"
     }
 }
