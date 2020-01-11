@@ -6,12 +6,9 @@ import Foundation
 
 final class CitiesDateFormatterImpl: CitiesDateFormatter {
     func string(from date: Date, timeZone: TimeZone) -> String {
-        let formatter: DateFormatter
-        if date.isToday {
-            formatter = DateFormatter.hh_mm_a
-        } else {
-            formatter = DateFormatter.MM_dd_yyyy_hh_mm_a
-        }
+        let formatter: DateFormatter = date.isToday
+            ? .hh_mm_a
+            : .MM_dd_yyyy_hh_mm_a
         
         let oldTimeZone = formatter.timeZone
         formatter.timeZone = timeZone

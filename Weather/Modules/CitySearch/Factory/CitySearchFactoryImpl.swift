@@ -38,6 +38,7 @@ final class CitySearchFactoryImpl: CitySearchFactory {
             viewModel: vm,
             keyboardObserver: keyboardObserver
         )
+        vc.modalPresentationStyle = .fullScreen
         
         viewUpdatableProxy.wrapped = vc
         transitionableProxy.wrapped = vc

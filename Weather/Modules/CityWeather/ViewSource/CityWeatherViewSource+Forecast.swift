@@ -8,5 +8,9 @@ extension CityWeatherViewSource {
     struct Forecast {
         let hourlyProviderConvertibles: [CollectionCellProviderConvertible]
         let dailyProviderConvertibles: [TableCellProviderConvertible]
+        
+        static var empty: Forecast {
+            Forecast(hourlyProviderConvertibles: .empty, dailyProviderConvertibles: .empty)
+        }
     }
 }

@@ -32,10 +32,9 @@ final class KeyboardObserverImpl: KeyboardObserver {
     private func handleKeyboardWillShow(notification: Notification) {
         let info = notification.userInfo
         let frameEnd = (info?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue ?? .zero
-        
         let verticalOffset = frameEnd.height
-        let value = info?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber
         
+        let value = info?[UIResponder.keyboardAnimationDurationUserInfoKey] as? NSNumber
         let duration = value.map(^\.doubleValue) ?? 0
         
         onChange?(KeyboardInfo(verticalOffset: verticalOffset, duration: duration))

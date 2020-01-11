@@ -31,7 +31,7 @@ final class CityWeatherViewController: BaseViewController<CityWeatherView> {
         viewModel.getForecastSource()
             .then(weakify(self, type(of: self).updateForecast(with:)))
             .catch { [weak self] _ in
-                self?.updateForecast(with: .init(hourlyProviderConvertibles: [], dailyProviderConvertibles: []))
+                self?.updateForecast(with: .empty)
             }
     }
     

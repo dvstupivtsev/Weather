@@ -22,7 +22,6 @@ final class ApiServiceImpl: ApiService {
             ?? Promise(NSError.common)
     }
     
-    
     private func createURL(request: ApiServiceRequest) -> URL? {
         request.parameters
             |> map { "\($0.key)=\($0.value)" }

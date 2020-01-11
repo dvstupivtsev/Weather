@@ -11,8 +11,8 @@ final class GradientView: BaseView {
         super.init(frame: .zero)
         
         gradientLayer.colors = colors.map(^\.cgColor)
-        gradientLayer.locations = colors.enumerated().map { (index, _) in
-            let location = 1.0 / Double(colors.count) * Double(index + 1)
+        gradientLayer.locations = colors.indices.map {
+            let location = 1.0 / Double(colors.count) * Double($0 + 1)
             return NSNumber(value: location)
         }
         

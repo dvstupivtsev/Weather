@@ -43,11 +43,12 @@ final class CitiesPersistentStore: CitySearchService {
         Promise(on: .global(qos: .userInteractive)) { [weak self] fulfill, reject in
             guard let self = self else { return }
             
-            let predicate = NSPredicate(format: "name CONTAINS[cd] %@", name)
-            self.persistentStore.keyValuePairs(for: self.entityName, predicate: predicate, limit: limit) {
-                let models = self.map(keyValuePairsArray: $0)
-                fulfill(models)
-            }
+            self.persistentStore.keyValuePairs(
+                for: self.entityName,
+                predicate: NSPredicate(format: "name CONTAINS[cd] %@", name),
+                limit: limit,
+                completion: self.map(keyValuePairsArray:) >>> fulfill
+            )
         }
     }
     

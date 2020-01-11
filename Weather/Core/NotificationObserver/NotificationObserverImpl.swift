@@ -18,13 +18,13 @@ final class NotificationObserverImpl: NotificationObserver {
     }
     
     func subscribe(on notification: Notification.Name, handler: @escaping Handler<Notification>) {
-        let observer = notificationCenter.addObserver(
-            forName: notification,
-            object: nil,
-            queue: nil,
-            using: handler
+        observers.append(
+            notificationCenter.addObserver(
+                forName: notification,
+                object: nil,
+                queue: nil,
+                using: handler
+            )
         )
-        
-        observers.append(observer)
     }
 }

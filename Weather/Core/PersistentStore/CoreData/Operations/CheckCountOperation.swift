@@ -23,10 +23,8 @@ final class CheckCountOperation: Operation {
     }
     
     override func main() {
-        var count: Int = 0
-        
         guard let context = contextContainer.context else {
-            completion(count)
+            completion(0)
             return
         }
         
@@ -35,13 +33,10 @@ final class CheckCountOperation: Operation {
             fetchRequest.resultType = .countResultType
             
             do {
-                count = try context.count(for: fetchRequest)
+                completion(try context.count(for: fetchRequest))
             } catch {
                 // TODO: Handle error
             }
-            
         }
-        
-        completion(count)
     }
 }

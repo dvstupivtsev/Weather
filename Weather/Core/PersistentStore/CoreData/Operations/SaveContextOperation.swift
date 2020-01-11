@@ -5,6 +5,7 @@
 import Foundation
 import CoreData
 import Weakify
+import Prelude
 
 final class SaveContextOperation: Operation {
     private let contextContainer: ManagedObjectContextContainer
@@ -20,10 +21,8 @@ final class SaveContextOperation: Operation {
     }
     
     private func save() {
-        guard let context = contextContainer.context, context.hasChanges else { return }
-        
         do {
-            try context.save()
+            try contextContainer.context.filter(^\.hasChanges).map { try $0.save() }
         } catch {
             print("Unable to save changes in context with error: \(error)")
         }

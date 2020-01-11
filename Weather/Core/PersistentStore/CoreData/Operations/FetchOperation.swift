@@ -31,10 +31,8 @@ final class FetchOperation: Operation {
     }
     
     override func main() {
-        var keyValuePairsArray = [[String : Any]]()
-        
         guard let context = contextContainer.context else {
-            completion(keyValuePairsArray)
+            completion(.empty)
             return
         }
         
@@ -45,12 +43,11 @@ final class FetchOperation: Operation {
                 |> \.fetchLimit .~ fetchLimit
             
             do {
-                keyValuePairsArray = try context.fetch(fetchRequest) as? [[String : Any]] ?? []
+                let keyValuePairsArray = try context.fetch(fetchRequest) as? [[String : Any]] ?? .empty
+                completion(keyValuePairsArray)
             } catch {
                 // TODO: Handle error
             }
         }
-        
-        completion(keyValuePairsArray)
     }
 }

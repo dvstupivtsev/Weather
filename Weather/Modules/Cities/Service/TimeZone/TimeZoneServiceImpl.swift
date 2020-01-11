@@ -13,12 +13,8 @@ final class TimeZoneServiceImpl: TimeZoneService {
             Promise(on: .global(qos: .userInteractive)) { fulfill, reject in
                 let location = CLLocation(latitude: coordinate.lat, longitude: coordinate.lon)
                 
-                CLGeocoder().reverseGeocodeLocation(location) { placemars, error in
-                    if let timeZone = placemars?.first.flatMap(^\.timeZone) {
-                        fulfill(timeZone)
-                    } else {
-                        fulfill(.current)
-                    }
+                CLGeocoder().reverseGeocodeLocation(location) { placemars, _ in
+                    (placemars?.first.flatMap(^\.timeZone) ?? .current) |> fulfill
                 }
             }
         }

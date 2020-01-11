@@ -22,11 +22,17 @@ final class CancellableExecutorImpl: CancellableExecutor {
         
         self.workItem = workItem
         
-        workItem.do { queue.asyncAfter(deadline: .now() + .milliseconds(delay), execute: $0) }
+        queue.asyncAfter(milliseconds: delay) <*> workItem
     }
     
     func cancel() {
         workItem?.cancel()
         workItem = nil
+    }
+}
+
+private extension DispatchQueue {
+    func asyncAfter(milliseconds: Int) -> (DispatchWorkItem) -> Void {
+        curry(asyncAfter(deadline:execute:))(.now() + .milliseconds(milliseconds))
     }
 }
